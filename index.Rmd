@@ -1,0 +1,54 @@
+---
+title: "Statistics 251 (Statistical Methods)"
+output: 
+  html_document: 
+    theme: readable
+---
+
+Course material for Dr. Johnson's *Statistical Methods* (Stat 251, Section 01) course at the University of Idaho for the fall semester of 2021.
+
+<center>
+
+![https://xkcd.com/833](https://imgs.xkcd.com/comics/convincing.png)
+
+</center>
+
+<!-- ![https://xkcd.com/59](http://imgs.xkcd.com/comics/graduation.jpg) -->
+<!-- ![https://xkcd.com/314](http://imgs.xkcd.com/comics/dating_pools.png) -->
+<!-- ![https://xkcd.com/539](https://imgs.xkcd.com/comics/boyfriend.png) -->
+<!-- ![https://xkcd.com/552](http://imgs.xkcd.com/comics/correlation.png) -->
+<!-- ![https://xkcd.com/557](http://imgs.xkcd.com/comics/students.png) -->
+<!-- ![https://xkcd.com/688](https://imgs.xkcd.com/comics/self_description.png) -->
+<!-- ![https://xkcd.com/833](https://imgs.xkcd.com/comics/convincing.png) -->
+<!-- ![https://xkcd.com/882](http://imgs.xkcd.com/comics/significant.png) -->
+<!-- ![https://xkcd.com/892](http://imgs.xkcd.com/comics/null_hypothesis.png) -->
+<!-- ![https://xkcd.com/1347](http://imgs.xkcd.com/comics/t_distribution.png) -->
+<!-- ![https://xkcd.com/1462](https://imgs.xkcd.com/comics/blind_trials.png) -->
+<!-- ![https://xkcd.com/1526](https://imgs.xkcd.com/comics/placebo_blocker.png) -->
+<!-- ![https://xkcd.com/1798](http://imgs.xkcd.com/comics/box_plot.png) -->
+<!-- ![https://xkcd.com/1999](http://imgs.xkcd.com/comics/selection_effect.png) -->
+<!-- ![https://xkcd.com/2048](http://imgs.xkcd.com/comics/curve_fitting.png) -->
+<!-- ![https://xkcd.com/2080](http://imgs.xkcd.com/comics/cohort_and_age_effects.png) -->
+<!-- ![https://xkcd.com/2110](http://imgs.xkcd.com/comics/error_bars.png) -->
+<!-- ![https://xkcd.com/2303](https://imgs.xkcd.com/comics/error_types.png) -->
+<!-- ![https://xkcd.com/2311](http://imgs.xkcd.com/comics/confidence_interval.png) -->
+<!-- ![https://xkcd.com/2343](https://imgs.xkcd.com/comics/mathematical_symbol_fight.png) -->
+<!-- ![https://xkcd.com/2400](https://imgs.xkcd.com/comics/statistics.png) -->
+
+<!-- ![https://xkcd.com/520](https://imgs.xkcd.com/comics/cuttlefish.png) -->
+
+<!-- You may be familiar with some of [Timothée Chalamet's](https://en.wikipedia.org/wiki/Timoth%C3%A9e_Chalamet) filmography (I'm looking forward to seeing how he does in the new [Dune](https://youtu.be/n9xhJrPXop4) movie because I'm a fan of [Frank Herbert's](https://en.wikipedia.org/wiki/Frank_Herbert) books), but have you seen his early work? -->
+
+<!-- <center> -->
+
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/BvWefB4NGGI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+
+<!-- Apparently he enjoyed his statistics course. -->
+
+<!-- </center> -->
+
+<!-- ![](opus-magnum.gif) -->
+
+<!-- ![](opus-magnum.png)  -->
+
+<!-- My solution to the "Precision Machine Oil" puzzle in the game [Opus Magnum](https://en.wikipedia.org/wiki/Opus_Magnum_(video_game)). The histograms show the distribution of cost, number of cycles, and area for solutions by other players (my solution is shown by the vertical line).   -->

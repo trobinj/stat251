@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Syllabus for Statistical Methods (Stat 251) Draft</title>
+
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics 251</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="lectures.html">Lectures</a>
+</li>
+<li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Syllabus for Statistical Methods (Stat 251) Draft</h1>
+<h3 class="subtitle">Section 01 (Johnson), Fall 2021</h3>
+
+</div>
+
+
+<p>You can <a href="syllabus.pdf">download a PDF version</a> of this syllabus.</p>
+<p><strong>Instructor</strong>: Dr. Timothy R. Johnson, Professor of Statistics, Department of Mathematics and Statistical Science. Email: <a href="mailto:trjohns@uidaho.edu" class="email">trjohns@uidaho.edu</a>. Office phone: 208-885-2928. Department phone: 208-885-6742. My office is <a href="https://goo.gl/maps/zcpTXzbPCGWGj7tM9">Brink 417</a> and my office hours are 11:00 to 12:00 on Monday, Wednesday, and Friday, but I am available to meet other times. You are welcome to make an appointment or drop-in at any time without an appointment. I can meet in person or over Zoom. If you would like to meet over Zoom, email me and I will send you a link.</p>
+<p><strong>Prerequisites</strong>: One of the following: Math 143 (with grade of ‘C’ or better), Math 160, Math 170, or sufficient score on SAT, ACT, or math placement test (see <a href="http://www.uidaho.edu/registrar/registration/placement">www.uidaho.edu/registrar/registration/placement</a>).</p>
+<p><strong>Textbook</strong>: There is no textbook. Lectures and lecture notes will be your source of material. For those who would like to consult a textbook there are some free books available online such as <a href="https://www.openintro.org/stat">OpenIntro Statistics</a>. But all material for which you are responsible will be covered in lecture.</p>
+<p><strong>Course Website</strong>: Many course materials including lecture notes, homework assignments, study guides, this syllabus, and other materials can be found at <a href="https://trobinj.github.io/stat251">trobinj.github.io/stat251</a>.</p>
+<p><strong>BbLearn</strong>: Refer to <a href="http://bblearn.uidaho.edu">bblearn.uidaho.edu</a> for a calendar of events, examination scores, and a link to the <a href="https://trobinj.github.io/stat422">course website</a>.</p>
+<p><strong>Homework</strong>: Homework assignments be made available periodically on the <a href="https://trobinj.github.io/stat251">course website</a> (see the <a href="https://trobinj.github.io/stat251/lectures">lectures</a> section). Homework assignments will <em>not</em> be collected/graded. Some computational problems in the examinations are based on homework problems (although the numbers may be changed in some cases) so it is highly recommended that you have worked through the homework problems before each examination and have your solutions handy as well as an understanding of how you arrived at those solutions.</p>
+<p><strong>Examinations</strong>: There are six examinations (not including the final examination). The dates of these examinations are 9/8, 9/24, 10/11, 10/27, 11/12, and 12/3. These dates may be postponed if unforeseen circumstances delay my progression through the material in lecture. You will have the full class session (50 minutes) for each examination. A page of formulas will be provided with each examination, but the formulas will not be labeled. You are permitted to use one page of notes (8.5 by 11 inches maximum, writing on both sides is fine) during the examinations. Calculators are permitted (and sometimes necessary), but must not be capable of wireless communication. Notes and calculators used during the examination may not be shared. Make-ups for missed examinations will only be permitted for documented university sanctioned events or in extreme circumstances. Notice of a missed examination due to a foreseeable absence must be given <em>at least one week before</em> the scheduled day of the examination. Notice of a missed examination due to unforeseeable absence must be made <em>before the end of the day</em> for which the examination was scheduled. If I contact you to schedule a make-up a examination you must respond <em>promptly</em> (i.e., the same day) or you may not be able to make up the examination. Study guides for examinations will be made available on the <a href="https://trobinj.github.io/stat251/calendar.html">course website</a>.</p>
+<p><strong>Final Examination</strong>: The final examination is on Wednesday, December 15, from 8:00 to 10:00 AM. The final examination may not be taken at another time unless, as according to university policy, you have more than two final examinations on that day, or a conflict with a documented university sanctioned event. The amount of time permitted to complete the final examination is two hours (120 minutes). The format of the final examination is like that of the other examinations except that it is comprehensive and longer. A study guide for the final examination will be made available.</p>
+<p><strong>Grading</strong>: The first six examinations altogether are worth 75% of your course grade. Your lowest score of these six examinations will be dropped when grades are determined. The remaining five examinations are thus each worth 15% of your course grade. The final examination is worth the remaining 25% of your course grade. Letter grades for the course will be assigned according to the following rubric: A (87.5%-100%), B (75%-87.5%), C (62.5%-75%), D (50%-62.5%), F (less than 50%). Course grades are based solely on the examination scores and the grading rubric described above. Changes to the grading system (e.g., the grade rubric or the weights) will not result in any students getting a lower letter grade than that obtained using the system described above.</p>
+<p><strong>SI-PASS</strong>: <strong>S</strong>upplemental <strong>I</strong>nstruction via <strong>P</strong>eer <strong>A</strong>ssisted <strong>S</strong>tudy <strong>S</strong>essions (<a href="https://www.uidaho.edu/current-students/academic-support/asp/tcs/si">SI-PASS</a>) are peer-led, group study sessions scheduled outside of class time. These sessions are led by an SI-PASS Leader, who is a student who has taken this course and is an expert in the subject area. The SI-PASS Leader facilitates the study sessions with a variety of activities aimed to help students master course content and develop effective study skills. These sessions are free, voluntary, and anonymous for students to attend. Your SI-PASS leader is Erika Anthony. The SI-PASS session schedule will be given here in the near future. If you have questions, please talk to your SI-PASS Leader or email <a href="mailto:si-pass@uidaho.edu" class="email">si-pass@uidaho.edu</a>.</p>
+<p><strong>Tutoring</strong>: The Statistics Assistance Center (SAC) is a free drop-in tutoring service located in the library. See <a href="http://www.uidaho.edu/sci/stat/about/sac">www.uidaho.edu/sci/stat/about/sac</a> for more information. Tutoring is also available through Academic Support Programs. See <a href="https://www.uidaho.edu/current-students/academic-support/asp/tcs/tutoring">www.uidaho.edu/current-students/academic-support/asp/tcs/tutoring</a> for more information.</p>
+<p><strong>Disability Access</strong>: Students with disabilities needing accommodations to fully participate in this class should contact Center for Disability Access and Resources (CDAR). All accommodations must be approved through CDAR prior to being implemented. To learn more about the accommodation process, visit CDAR’s website at <a href="https://www.uidaho.edu/current-students/cdar">www.uidaho.edu/cdar</a> or call 208-885-6307.</p>
+<p><strong>Academic Honesty</strong>: You are responsible for being aware of the policies of the University of Idaho on academic honesty. See Section A-1 of Article II of the <a href="http://www.uidaho.edu/student-affairs/dean-of-students/student-conduct/student-code-of-conduct">Student Code of Conduct</a>. This includes but is not limited to cheating, facilitation of cheating, and furnishing false information or false representation. Breaches of academic honesty will not be tolerated, and will result in a F for the course and referral to the Dean of Students for further disciplinary action.</p>
+<p><strong>Healthy Vandals Pledge</strong>: Students are required to follow the <a href="https://www.webpages.uidaho.edu/cetl/docs/2021-Fall-Healthy-Vandals-Syllabus-Policies.pdf">Healthy Vandals Pledge</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Daily Symptom Monitoring and In-Person Class Attendance</strong>. Evaluate your own health status before attending in-person classes and refrain from attending class in-person if you are ill, if you are experiencing any of the <a href="https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/symptoms.html">known symptoms of COVID-19</a>, or if you have tested positive for COVID-19 or have been potentially exposed to someone with COVID-19.</p>
+<ul>
+<li><p>Stay home if you experience any symptoms related to COVID-19 and that are not attributed to a non-infectious health condition regardless of how mild.</p></li>
+<li><p>Contact your medical provider or local Idaho Public Health District for assessment of symptoms and possible COVID-19 testing. Positive COVID-19 tests should be submitted via a <a href="https://www.uidaho.edu/student-affairs/dean-of-students/vandalcare">VandalCare Report</a> in order to make arrangements that involve classroom absences due to illness, and/or quarantine or isolation requirements directed by a medical provider.</p></li>
+</ul></li>
+<li><p><strong>Face Masks</strong>. All faculty, staff, students and visitors across all U of I locations must use face masks whenever indoors at any U of I buildings. You are required to wear a face mask over your nose and mouth indoors at all times.</p>
+<ul>
+<li><p>If you have a medical condition that affects your ability to comply with the face covering policy, please contact the <a href="https://www.uidaho.edu/current-students/cdar">Center for Disability Access and Resources (CDAR)</a> to request a reasonable accommodation.</p></li>
+<li><p>Failure to wear a face covering means you will be required to leave the classroom. If a disruption to the learning experience occurs due to repeated offence and/or egregious behavior, it will be referred to the Dean of Students Office for potential code violation.</p></li>
+</ul></li>
+</ol>
+<p>All students are highly encouraged to get vaccinated for COVID-19. Refer to the <a href="https://www.uidaho.edu/vandal-health-clinic/coronavirus/vaccine">Vandal Health Clinic</a> for more information about vaccinations. Your instructor has been vaccinated for COVID-19.</p>
+<p><strong>Learning Outcomes</strong>: The learning outcomes for this course are a familiarity with the concepts of statistical description, statistical inference (including estimation, confidence intervals, statistical tests, and prediction), and the relationship between design and inference in surveys, observational studies, and randomized experiments. Students should become familiar with specific methods for inferences concerning means and proportions for one- and two-sample designs, and some methods for bivariate data including contingency tables, correlation, and regression. Students should also gain an understanding of some of the underlying theoretical foundations of statistical inference including probability theory and sampling distributions.</p>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
