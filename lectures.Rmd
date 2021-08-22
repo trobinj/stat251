@@ -18,7 +18,7 @@ i <- 0
 
 &nbsp;
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Introduction, samples versus populations, statistics versus parameters, description versus inference, and the "big picture"](lecture-08-23-2021.html).
 
 `r i <- i + 1; d[i]` 
 

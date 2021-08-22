@@ -5,7 +5,7 @@ output:
     theme: readable
 ---
 
-Course material for Dr. Johnson's *Statistical Methods* (Stat 251, Section 01) course at the University of Idaho for the fall semester of 2021.
+Course material for Dr. Johnson's *Statistical Methods* (Stat 251, Section 01) at the University of Idaho for the fall semester of 2021.
 
 <center>
 
