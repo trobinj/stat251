@@ -20,7 +20,7 @@ i <- 0
 
 `r i <- i + 1; d[i]` [Introduction, samples versus populations, statistics versus parameters, description versus inference, and the "big picture"](lecture-08-23-2021.html).
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Distributions and their description](lecture-08-25-2021.html). A [set of homework problems](homework-01.html) on describing distributions is now available.
 
 `r i <- i + 1; d[i]` 
  

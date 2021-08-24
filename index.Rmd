@@ -22,9 +22,11 @@ Course material for Dr. Johnson's *Statistical Methods* (Stat 251, Section 01) a
 <!-- ![https://xkcd.com/833](https://imgs.xkcd.com/comics/convincing.png) -->
 <!-- ![https://xkcd.com/882](http://imgs.xkcd.com/comics/significant.png) -->
 <!-- ![https://xkcd.com/892](http://imgs.xkcd.com/comics/null_hypothesis.png) -->
+<!-- ![https://xkcd.com/1260](http://imgs.xkcd.com/comics/ld50.png) -->
 <!-- ![https://xkcd.com/1347](http://imgs.xkcd.com/comics/t_distribution.png) -->
 <!-- ![https://xkcd.com/1462](https://imgs.xkcd.com/comics/blind_trials.png) -->
 <!-- ![https://xkcd.com/1526](https://imgs.xkcd.com/comics/placebo_blocker.png) -->
+<!-- ![https://xkcd.com/1781](http://imgs.xkcd.com/comics/artifacts.png) -->
 <!-- ![https://xkcd.com/1798](http://imgs.xkcd.com/comics/box_plot.png) -->
 <!-- ![https://xkcd.com/1999](http://imgs.xkcd.com/comics/selection_effect.png) -->
 <!-- ![https://xkcd.com/2048](http://imgs.xkcd.com/comics/curve_fitting.png) -->
