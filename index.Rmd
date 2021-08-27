@@ -7,9 +7,13 @@ output:
 
 Course material for Dr. Johnson's *Statistical Methods* (Stat 251, Section 01) at the University of Idaho for the fall semester of 2021.
 
+<center>
+
 ![](opus-magnum.gif)
 
 ![](opus-magnum.png)
+
+</center>
 
 My solution to the "Precision Machine Oil" puzzle in the game [Opus Magnum](https://en.wikipedia.org/wiki/Opus_Magnum_(video_game)). The histograms show the distribution of cost, number of cycles, and area for solutions by other players (my solution is shown by the vertical line).
 
