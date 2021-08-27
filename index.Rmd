@@ -7,29 +7,11 @@ output:
 
 Course material for Dr. Johnson's *Statistical Methods* (Stat 251, Section 01) at the University of Idaho for the fall semester of 2021.
 
-```{r, message = FALSE, echo = FALSE, fig.width = 9, fig.height = 7, fig.align = "center"}
-set.seed(124)
+![](opus-magnum.gif)
 
-library(dplyr)
-library(tidyr)
-library(ggplot2)
+![](opus-magnum.png)
 
-crawl <- faraway::crawl %>% mutate(month = 1:n()) %>% uncount(n) %>% 
-   group_by(month) %>% mutate(age = rnorm(n(), crawling, SD)) %>%
-   mutate(age = SD * (age - mean(age))/sd(age) + crawling) %>% 
-   select(age, month) %>%
-   mutate(month = factor(month, levels = 1:12, labels = rownames(faraway::crawl))) %>%
-   mutate(meanage = mean(age))
-
-p <- ggplot(crawl, aes(x = month, y = age)) + theme_minimal() + 
-   geom_dotplot(binaxis = "y", method = "histodot", binpositions = "all", binwidth = 0.5) + 
-   labs(x = "Birth Month", y = "Crawling Age (weeks)", title = "Crawling Age by Birth Month",
-        caption = "Note: Crawling age is the reported age (in weeks) when the child can first crawl four feet in a minute or less.") +
-   coord_flip() + theme(plot.caption = element_text(hjust = 0.5)) + 
-   geom_point(aes(x = as.numeric(month) - 0.2, y = meanage), shape = 17, size = 2, color = "red")
-
-plot(p)
-```
+My solution to the "Precision Machine Oil" puzzle in the game [Opus Magnum](https://en.wikipedia.org/wiki/Opus_Magnum_(video_game)). The histograms show the distribution of cost, number of cycles, and area for solutions by other players (my solution is shown by the vertical line).
 
 <!-- ![https://xkcd.com/59](http://imgs.xkcd.com/comics/graduation.jpg) -->
 <!-- ![https://xkcd.com/314](http://imgs.xkcd.com/comics/dating_pools.png) -->

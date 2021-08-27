@@ -21,7 +21,7 @@ header-includes:
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, fig.align = "center", cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, fig.align = "center", out.width = "100%", fig.width = 9, cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
 ```
 
 ```{r packages}
@@ -407,6 +407,34 @@ p <- p + stat_summary(fun.data = myfive, geom = "boxplot", fatten = 1, width = 0
 p <- p + facet_grid(schizophrenic ~ ., scales = "free_y", space = "free_y")
 p <- p + labs(x = "Subject", y = "Response Time (msec)")
 plot(p)
+```
+
+**Example**: Distributions of samples of observations of the weights of gold sovereigns collected from circulation in Manchester, England. 
+```{r, fig.height = 4}
+set.seed(123)
+
+coins <- alr4::jevons %>% uncount(n) %>% 
+  group_by(Age) %>% mutate(y = rnorm(n(), Weight, SD)) %>%
+  mutate(y = SD * (y - mean(y))/sd(y) + Weight) %>%
+  select(Age, y) 
+
+coins_quantiles <- coins %>% group_by(Age) %>% 
+  summarize(min = min(y), 
+            Q1 = quantile(y, 0.25, type = 2),
+            Q2 = quantile(y, 0.5, type = 2), 
+            Q3 = quantile(y, 0.75, type = 2),
+            max = max(y), mean = mean(y), sd = sd(y), n = n(), IQR = Q3-Q1) %>%
+  select(c(Age, n, mean, sd, min, Q1, Q2, Q3, max, IQR))
+
+p <- ggplot(coins, aes(x = factor(Age), y = y)) + theme_minimal() + 
+  geom_dotplot(binaxis = "y", binwidth = 0.001, method = "histodot") +
+  coord_flip() + labs(x = "Age (decades)", y = "Weight (g)") + 
+  geom_boxplot(aes(y = NULL, ymin = min, lower = Q1, middle = Q2, upper = Q3, ymax = max),
+    stat = "identity", fill = NA, fatten = 1, data = coins_quantiles)
+plot(p)
+
+options(digits = 4)
+coins_quantiles %>% arrange(desc(Age)) %>% ktbl()
 ```
 
 \pagebreak

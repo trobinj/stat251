@@ -384,7 +384,7 @@ Cumulative Relative Frequency
 </tr>
 </tbody>
 </table>
-<p>We can graph the cumulative distribution using a <em>step function</em>. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We can graph the cumulative distribution using a <em>step function</em>. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <div style="page-break-after: always;"></div>
 <strong>Example</strong>: Consider the cumulative distribution of the sample of observations of eruption duration of <a href="https://en.wikipedia.org/wiki/Old_Faithful">Old Faithful</a>.
 <table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -505,7 +505,7 @@ Cumulative Relative Frequency
 </tr>
 </tbody>
 </table>
-<p>Note: The relative and cumulative relative frequencies above have been rounded. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Note: The relative and cumulative relative frequencies above have been rounded. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <div id="finding-percentiles-using-a-cumulative-distribution" class="section level3">
 <h3>Finding Percentiles Using a Cumulative Distribution</h3>
 <p>The <span class="math inline">\(P\)</span>th <strong>percentile</strong> is the value of the variable such that <span class="math inline">\(P\%\)</span> of the observations are <em>less than that value</em>.</p>
@@ -608,9 +608,9 @@ Cumulative Relative Frequency
 <p>One solution is to use the <em>midpoint in the first case</em>, and <em>the smallest value of <span class="math inline">\(x\)</span> that has more than <span class="math inline">\(P\)</span>% of observations less than it</em> in the second case. This is easier to explain/do using a graph of the cumulative distribution.</p>
 <p><strong>Finding Percentiles Using the Cumulative Distribution</strong>: To find the approximate percentile using a <em>graph</em> of the cumulative relative distribution, find the value where the step function crosses the cumulative relative frequency of <span class="math inline">\(P\)</span>/100. If more than one value crosses value, use the midpoint (i.e., average of the two values). </p>
 <p><strong>Example</strong>: We can confirm that the 25th, 40th, 50th, 60th, and 70th percentiles for the distribution show below are 6, 6.5, 7, 7.5, and 8, respectively.</p>
-<p><img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <div style="page-break-after: always;"></div>
-<p><strong>Example</strong>: We can use the following plot to approximate the 25th, 50th, and 75th percentiles “by eye” (the actual percentiles are 2.15, 4, and 4.45). <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>Example</strong>: We can use the following plot to approximate the 25th, 50th, and 75th percentiles “by eye” (the actual percentiles are 2.15, 4, and 4.45). <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -626,27 +626,226 @@ Cumulative Relative Frequency
 </ol>
 <p>Comment: Because there is more than one way to approximate a percentile and thus a quartile, there is more than one way to draw a boxplot. For consistency we will use the approximation given earlier for finding percentiles.</p>
 <p><strong>Example</strong>: Box plot based on an earlier example.</p>
-<p><img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /> Note that the five number summary is 5, 6, 7, 8, and 10.</p>
+<p><img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" /> Note that the five number summary is 5, 6, 7, 8, and 10.</p>
 <div style="page-break-after: always;"></div>
-<p><strong>Example</strong>: Box plot of the Old Faithful data. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /> Note that the five number summary is 1.6, 2.15, 4, 4.45, and 5.1.</p>
+<p><strong>Example</strong>: Box plot of the Old Faithful data. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /> Note that the five number summary is 1.6, 2.15, 4, 4.45, and 5.1.</p>
 <p>A box plot visually depicts three summary measures: the <strong>median</strong> (i.e., <span class="math inline">\(Q_2\)</span>), <strong>range</strong> (i.e., maximum <span class="math inline">\(-\)</span> minimum), and <strong>interquartile range</strong> (i.e., <span class="math inline">\(Q_3-Q_1\)</span>).</p>
 <div style="page-break-after: always;"></div>
-<p><strong>Example</strong>: Cumulative distributions and box plots of the data from the study on creativity and motivation. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>Example</strong>: Cumulative distributions and box plots of the data from the study on creativity and motivation. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <div style="page-break-after: always;"></div>
-<p><strong>Example</strong>: Distribution of examination scores from Stat 251, Fall 2016. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p><strong>Example</strong>: Distribution of response times for 11 non-schizophrenic individuals and six schizophrenic individuals. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>Example</strong>: Distribution of examination scores from Stat 251, Fall 2016. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Example</strong>: Distribution of response times for 11 non-schizophrenic individuals and six schizophrenic individuals. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<strong>Example</strong>: Distributions of samples of observations of the weights of gold sovereigns collected from circulation in Manchester, England. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" />
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Age
+</th>
+<th style="text-align:center;">
+n
+</th>
+<th style="text-align:center;">
+mean
+</th>
+<th style="text-align:center;">
+sd
+</th>
+<th style="text-align:center;">
+min
+</th>
+<th style="text-align:center;">
+Q1
+</th>
+<th style="text-align:center;">
+Q2
+</th>
+<th style="text-align:center;">
+Q3
+</th>
+<th style="text-align:center;">
+max
+</th>
+<th style="text-align:center;">
+IQR
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+24
+</td>
+<td style="text-align:center;">
+7.873
+</td>
+<td style="text-align:center;">
+0.0535
+</td>
+<td style="text-align:center;">
+7.773
+</td>
+<td style="text-align:center;">
+7.842
+</td>
+<td style="text-align:center;">
+7.864
+</td>
+<td style="text-align:center;">
+7.913
+</td>
+<td style="text-align:center;">
+7.986
+</td>
+<td style="text-align:center;">
+0.0708
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+17
+</td>
+<td style="text-align:center;">
+7.896
+</td>
+<td style="text-align:center;">
+0.0406
+</td>
+<td style="text-align:center;">
+7.845
+</td>
+<td style="text-align:center;">
+7.871
+</td>
+<td style="text-align:center;">
+7.883
+</td>
+<td style="text-align:center;">
+7.920
+</td>
+<td style="text-align:center;">
+7.990
+</td>
+<td style="text-align:center;">
+0.0492
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+32
+</td>
+<td style="text-align:center;">
+7.928
+</td>
+<td style="text-align:center;">
+0.0343
+</td>
+<td style="text-align:center;">
+7.877
+</td>
+<td style="text-align:center;">
+7.902
+</td>
+<td style="text-align:center;">
+7.920
+</td>
+<td style="text-align:center;">
+7.952
+</td>
+<td style="text-align:center;">
+8.001
+</td>
+<td style="text-align:center;">
+0.0501
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+78
+</td>
+<td style="text-align:center;">
+7.950
+</td>
+<td style="text-align:center;">
+0.0227
+</td>
+<td style="text-align:center;">
+7.906
+</td>
+<td style="text-align:center;">
+7.934
+</td>
+<td style="text-align:center;">
+7.948
+</td>
+<td style="text-align:center;">
+7.964
+</td>
+<td style="text-align:center;">
+8.020
+</td>
+<td style="text-align:center;">
+0.0297
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+123
+</td>
+<td style="text-align:center;">
+7.973
+</td>
+<td style="text-align:center;">
+0.0141
+</td>
+<td style="text-align:center;">
+7.936
+</td>
+<td style="text-align:center;">
+7.963
+</td>
+<td style="text-align:center;">
+7.972
+</td>
+<td style="text-align:center;">
+7.981
+</td>
+<td style="text-align:center;">
+8.007
+</td>
+<td style="text-align:center;">
+0.0183
+</td>
+</tr>
+</tbody>
+</table>
 <div style="page-break-after: always;"></div>
 </div>
 <div id="distribution-shapes" class="section level2">
 <h2>Distribution Shapes</h2>
 <p>Some terms we use to describe the <em>shape</em> of the distribution of a quantitative variable: <em>symmetric</em>, <em>uniform</em>, <em>left-skewed</em>, <em>right-skewed</em>, <em>uni-modal</em>, <em>bi-modal</em>.</p>
-<p><strong>Example</strong>: Uniform and symmetric. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p><strong>Example</strong>: Uni-modal and symmetric. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>Example</strong>: Uniform and symmetric. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Example</strong>: Uni-modal and symmetric. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <div style="page-break-after: always;"></div>
-<p><strong>Example</strong>: Bi-modal and symmetric. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p><strong>Example</strong>: Left-skewed and uni-modal. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>Example</strong>: Bi-modal and symmetric. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Example</strong>: Left-skewed and uni-modal. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <div style="page-break-after: always;"></div>
-<p><strong>Example</strong>: Right-skewed and uni-modal. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>Example</strong>: Right-skewed and uni-modal. <img src="lecture-08-27-2021_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 
 
