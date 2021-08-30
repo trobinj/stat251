@@ -11,7 +11,7 @@
 
 
 
-<title>Lectures</title>
+<title>Homework Problem Set 3: Normal Distributions &amp; Outliers</title>
 
 <script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -259,77 +259,53 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Lectures</h1>
+<h1 class="title toc-ignore">Homework Problem Set 3: Normal Distributions &amp; Outliers</h1>
 
 </div>
 
 
-<p> </p>
-<p>Monday, Aug 23. <a href="lecture-08-23-2021.html">Introduction, samples versus populations, statistics versus parameters, description versus inference, and the “big picture”</a>.</p>
-<p>Wednesday, Aug 25. <a href="lecture-08-25-2021.html">Distributions and their description</a>. A <a href="homework-01.html">set of homework problems</a> on describing distributions is now available.</p>
-<p>Friday, Aug 27. <a href="lecture-08-27-2021.html">Summary measures — continued, cumulative distributions, percentiles, and box plots</a>. A set of <a href="homework-02.html">homework problems</a> on cumulative distributions, percentiles, and box plots is now available.</p>
-<hr />
-<p>Monday, Aug 30. <a href="lecture-08-30-2021.html">Normal/bell-shaped distributions, the empirical rule, <span class="math inline">\(z\)</span>-scores</a>. A set of <a href="homework-03.html">homework problems</a> on normal distributions and outliers (to be discussed in the next lecture) is now available.</p>
-<p>Wednesday, Sep 1.</p>
-<p>Friday, Sep 3.</p>
-<hr />
-<p>Monday, Sep 6. Labor Day.</p>
-<p>Wednesday, Sep 8. <strong>First examination</strong>.</p>
-<p>Friday, Sep 10.</p>
-<hr />
-<p>Monday, Sep 13.</p>
-<p>Wednesday, Sep 15.</p>
-<p>Friday, Sep 17.</p>
-<hr />
-<p>Monday, Sep 20.</p>
-<p>Wednesday, Sep 22.</p>
-<p>Friday, Sep 24. <strong>Second examination</strong>.</p>
-<hr />
-<p>Monday, Sep 27.</p>
-<p>Wednesday, Sep 29.</p>
-<p>Friday, Oct 1.</p>
-<hr />
-<p>Monday, Oct 4.</p>
-<p>Wednesday, Oct 6.</p>
-<p>Friday, Oct 8.</p>
-<hr />
-<p>Monday, Oct 11. <strong>Third examination</strong>.</p>
-<p>Wednesday, Oct 13.</p>
-<p>Friday, Oct 15.</p>
-<hr />
-<p>Monday, Oct 18.</p>
-<p>Wednesday, Oct 20.</p>
-<p>Friday, Oct 22.</p>
-<hr />
-<p>Monday, Oct 25.</p>
-<p>Wednesday, Oct 27. <strong>Fourth examination</strong>.</p>
-<p>Friday, Oct 29.</p>
-<hr />
-<p>Monday, Nov 1.</p>
-<p>Wednesday, Nov 3.</p>
-<p>Friday, Nov 5.</p>
-<hr />
-<p>Monday, Nov 8.</p>
-<p>Wednesday, Nov 10.</p>
-<p>Friday, Nov 12. <strong>Fifth examination</strong>.</p>
-<hr />
-<p>Monday, Nov 15.</p>
-<p>Wednesday, Nov 17.</p>
-<p>Friday, Nov 19.</p>
-<hr />
-<p>Monday, Nov 22. Fall recess.</p>
-<p>Wednesday, Nov 24. Fall recess.</p>
-<p>Friday, Nov 26. Fall recess.</p>
-<hr />
-<p>Monday, Nov 29.</p>
-<p>Wednesday, Dec 1.</p>
-<p>Friday, Dec 3. <strong>Sixth examination</strong>.</p>
-<hr />
-<p>Monday, Dec 6.</p>
-<p>Wednesday, Dec 8.</p>
-<p>Friday, Dec 10.</p>
-<hr />
-<p>Wednesday, Dec 15. <strong>Final examination</strong>, 8:00 to 10:00 AM.</p>
+<p>You can also download a <a href="homework-03.pdf">PDF</a> copy of this homework assignment.</p>
+<p>Solutions for some problems are given at the end. For problems that ask you to “confirm” something, the answer is given within the problem.</p>
+<div id="means-and-standard-deviations-of-normal-distributions" class="section level2">
+<h2>Means and Standard Deviations of Normal Distributions</h2>
+<p>The figure below shows four normal/bell-shaped distributions. <img src="homework-03_files/figure-html/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /> Each distribution has a mean of either 80 or 120, and a standard deviation of either 10 or 20. Label each distribution by its mean and standard deviation. The solution is given at the end.</p>
+</div>
+<div id="normal-distributions-and-the-empirical-rule" class="section level2">
+<h2>Normal Distributions and the Empirical Rule</h2>
+<p>The figure below shows two distributions: the distribution of the heights of Hobbits living in the North Farthing, and the distribution of the heights of Hobbits living in the South Farthing. Both distributions are normal/bell-shaped. The distribution of heights for Hobbits living in the North Farthing has a mean of 100 and a standard deviation of 5, and the distribution of Hobbits living in the South Farthing has a mean of 85 and a standard deviation of 10. Box plots representing each distribution are also shown. Note that the five-number summary for each distribution is shown below the corresponding box plot. <img src="homework-03_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /> Use the information above to answer the following questions.</p>
+<ol style="list-style-type: decimal">
+<li><p>Confirm that of the Hobbits from the North Farthing, about 68% are between 95 cm and 105 cm, and about 95% are between 90 cm and 110 cm. Also confirm that of the Hobbits from the South Farthing, about 68% are between 75 cm and 95 cm, and about 95% are between 65 cm and 105 cm.</p></li>
+<li><p>Two Hobbits, Marigold and Pimpernel, are both 105 cm tall. But Marigold is from the North Farthing, and Pimpernel is from the South Farthing. But suppose we want to know how they compare <em>relative</em> to the distribution of Hobbit heights in their home Farthing. Confirm that Merigold has a <span class="math inline">\(z\)</span>-score of 1 and that Pimpernel has a <span class="math inline">\(z\)</span>-score of 2, so Pimpernel is taller <em>relative</em> to the Hobbits in her home Farthing.</p></li>
+<li><p>Using the box plots, confirm that of the Hobbits from the South Farthing, about 25% are less than 78 cm, and about 50% are between 78 cm and 92 cm.</p></li>
+</ol>
+</div>
+<div id="outlier-identification" class="section level2">
+<h2>Outlier Identification</h2>
+<ol style="list-style-type: decimal">
+<li>The dot plot and box plot below show the distribution of a variable <span class="math inline">\(x\)</span>. Note that the five number summary is given below the box plot. Identify the observations that are outliers using the criteria based on the five number summary.<br />
+<img src="homework-03_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></li>
+</ol>
+<div style="page-break-after: always;"></div>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Consider the following distribution of a variable <span class="math inline">\(x\)</span>. The first quartile is 7 and the third quartile is 16.5. Which observations are outliers using the criteria based on the five number summary. <img src="homework-03_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /></p></li>
+<li><p>Consider the following bell/normal-shaped distribution of a variable <span class="math inline">\(x\)</span>. The distribution has a mean of 100 and a standard deviation of 10. Which observations are outliers using the criteria based on the empirical rule? <img src="homework-03_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" /></p></li>
+<li><p>Recall the distributions of the heights of Hobbits from the North and South Farthings shown in the <strong>Normal Distributions and the Empirical Rule</strong> problems earlier. Based on the empirical rule criteria, how short or tall would a Hobbit need to be to be considered an outlier in each Farthing?</p></li>
+</ol>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="means-and-standard-deviations-of-normal-distributions-solution" class="section level2">
+<h2>Means and Standard Deviations of Normal Distributions (Solution)</h2>
+<p>Distributions <em>a</em> and <em>c</em> have means of 80, while distributions <em>b</em> and <em>d</em> have means of 120. Distributions <em>a</em> and <em>b</em> have standard deviations of 10, while distributions <em>c</em> and <em>d</em> have standard deviations of 20.</p>
+</div>
+<div id="outlier-identification-solutions" class="section level2">
+<h2>Outlier Identification (Solutions)</h2>
+<ol style="list-style-type: decimal">
+<li><p>The plot below shows the observations that are outliers. <img src="homework-03_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /></p></li>
+<li><p>The plot below shows the observations that are outliers. <img src="homework-03_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" /></p></li>
+<li><p>The plot below shows the observations that are outliers. <img src="homework-03_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /></p></li>
+<li><p>In the North Farthing heights less than 90 cm or greater than 110 cm would be outliers, while in the South Farthing heights less than 65 cm or greater than 105 cm would be outliers.</p></li>
+</ol>
+</div>
 
 
 

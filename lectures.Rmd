@@ -26,7 +26,7 @@ i <- 0
  
 ***
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Normal/bell-shaped distributions, the empirical rule, $z$-scores](lecture-08-30-2021.html). A set of [homework problems](homework-03.html) on normal distributions and outliers (to be discussed in the next lecture) is now available. 
 
 `r i <- i + 1; d[i]` 
 

@@ -11,7 +11,7 @@
 
 
 
-<title>Lectures</title>
+<title>Monday, Aug 30</title>
 
 <script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -259,77 +259,62 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Lectures</h1>
+<h1 class="title toc-ignore">Monday, Aug 30</h1>
 
 </div>
 
 
-<p> </p>
-<p>Monday, Aug 23. <a href="lecture-08-23-2021.html">Introduction, samples versus populations, statistics versus parameters, description versus inference, and the “big picture”</a>.</p>
-<p>Wednesday, Aug 25. <a href="lecture-08-25-2021.html">Distributions and their description</a>. A <a href="homework-01.html">set of homework problems</a> on describing distributions is now available.</p>
-<p>Friday, Aug 27. <a href="lecture-08-27-2021.html">Summary measures — continued, cumulative distributions, percentiles, and box plots</a>. A set of <a href="homework-02.html">homework problems</a> on cumulative distributions, percentiles, and box plots is now available.</p>
-<hr />
-<p>Monday, Aug 30. <a href="lecture-08-30-2021.html">Normal/bell-shaped distributions, the empirical rule, <span class="math inline">\(z\)</span>-scores</a>. A set of <a href="homework-03.html">homework problems</a> on normal distributions and outliers (to be discussed in the next lecture) is now available.</p>
-<p>Wednesday, Sep 1.</p>
-<p>Friday, Sep 3.</p>
-<hr />
-<p>Monday, Sep 6. Labor Day.</p>
-<p>Wednesday, Sep 8. <strong>First examination</strong>.</p>
-<p>Friday, Sep 10.</p>
-<hr />
-<p>Monday, Sep 13.</p>
-<p>Wednesday, Sep 15.</p>
-<p>Friday, Sep 17.</p>
-<hr />
-<p>Monday, Sep 20.</p>
-<p>Wednesday, Sep 22.</p>
-<p>Friday, Sep 24. <strong>Second examination</strong>.</p>
-<hr />
-<p>Monday, Sep 27.</p>
-<p>Wednesday, Sep 29.</p>
-<p>Friday, Oct 1.</p>
-<hr />
-<p>Monday, Oct 4.</p>
-<p>Wednesday, Oct 6.</p>
-<p>Friday, Oct 8.</p>
-<hr />
-<p>Monday, Oct 11. <strong>Third examination</strong>.</p>
-<p>Wednesday, Oct 13.</p>
-<p>Friday, Oct 15.</p>
-<hr />
-<p>Monday, Oct 18.</p>
-<p>Wednesday, Oct 20.</p>
-<p>Friday, Oct 22.</p>
-<hr />
-<p>Monday, Oct 25.</p>
-<p>Wednesday, Oct 27. <strong>Fourth examination</strong>.</p>
-<p>Friday, Oct 29.</p>
-<hr />
-<p>Monday, Nov 1.</p>
-<p>Wednesday, Nov 3.</p>
-<p>Friday, Nov 5.</p>
-<hr />
-<p>Monday, Nov 8.</p>
-<p>Wednesday, Nov 10.</p>
-<p>Friday, Nov 12. <strong>Fifth examination</strong>.</p>
-<hr />
-<p>Monday, Nov 15.</p>
-<p>Wednesday, Nov 17.</p>
-<p>Friday, Nov 19.</p>
-<hr />
-<p>Monday, Nov 22. Fall recess.</p>
-<p>Wednesday, Nov 24. Fall recess.</p>
-<p>Friday, Nov 26. Fall recess.</p>
-<hr />
-<p>Monday, Nov 29.</p>
-<p>Wednesday, Dec 1.</p>
-<p>Friday, Dec 3. <strong>Sixth examination</strong>.</p>
-<hr />
-<p>Monday, Dec 6.</p>
-<p>Wednesday, Dec 8.</p>
-<p>Friday, Dec 10.</p>
-<hr />
-<p>Wednesday, Dec 15. <strong>Final examination</strong>, 8:00 to 10:00 AM.</p>
+<p>You can also download a <a href="lecture-08-30-2021.pdf">PDF</a> copy of this lecture.</p>
+<div id="normal-bell-shaped-distributions" class="section level2">
+<h2>Normal (“Bell-Shaped”) Distributions</h2>
+<p><strong>Example</strong>: Consider the distribution of the observations of the heights of adult men and women in the United States.</p>
+<ol style="list-style-type: decimal">
+<li><p>For <strong>men</strong> the mean and standard deviation would be about <strong>69</strong> and <strong>3</strong> inches, respectively.</p></li>
+<li><p>For <strong>women</strong> the mean and standard deviation would be about <strong>63.5</strong> and <strong>2.5</strong> inches, respectively.</p></li>
+</ol>
+<p>Also those distributions would be approximately <em>normal</em> or <em>bell-shaped</em> (or sometimes <em>Gaussian</em>).</p>
+<p><img src="lecture-08-30-2021_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div style="page-break-after: always;"></div>
+<div id="relationship-with-mean-and-standard-deviation" class="section level3">
+<h3>Relationship with Mean and Standard Deviation</h3>
+<p>The <em>shape</em> of a normal distribution is related to its mean and standard deviation.</p>
+<ol style="list-style-type: decimal">
+<li><p>The mean is located where the (relative) frequency is at its peak.</p></li>
+<li><p>The standard deviation is the distance from the mean to the value of the variable where the (relative) frequency is a little more than half way (actually about 61%) to its maximum.</p></li>
+</ol>
+<p><strong>Example</strong>: Consider the distributions of the heights of adult men and women. <img src="lecture-08-30-2021_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Example</strong>: Suppose that the distribution of Hobbit height is normal in shape with a mean of 107 cm and a standard deviation of 10 cm. How could we plot an outline of this distribution?</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="the-empirical-rule-for-normal-distributions" class="section level3">
+<h3>The “Empirical Rule” for Normal Distributions</h3>
+<p><img src="lecture-08-30-2021_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>If a distribution is normal then we know the following.</p>
+<ol style="list-style-type: decimal">
+<li>Approximately 68% of observations are within <em>one</em> standard deviation of the mean.</li>
+<li>Approximately 95% of observations are within <em>two</em> standard deviations of the mean.</li>
+<li>Approximately 100% of observations are within <em>three</em> standard deviations of the mean.</li>
+</ol>
+<p><strong>Example</strong>: Where would we find the middle 68%, 95%, and almost all of the observations of Hobbit height if the distribution of Hobbit height is normal in shape with a mean of 107 cm and a standard deviation of 10 cm?</p>
+<p><strong>Example</strong>: Where are the middle 95% of observations of the heights of men if the distribution of the heights of men is approximately normal with a mean of 69 and a standard deviation of 3?</p>
+<p><strong>Example</strong>: Where are the middle 95% of observations of the heights of women if the distribution of the heights of women is approximately normal with a mean of 63.5 and a standard deviation of 2.5?</p>
+<div style="page-break-after: always;"></div>
+<p>The percents stated in the empirical rule are based on percentiles. <img src="lecture-08-30-2021_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div style="page-break-after: always;"></div>
+<p><strong>Example</strong>: Suppose I flipped a coin 200 times and observed the number of times it came up heads. Now suppose I did this many thousands of times to get a sample of observations of the number of times the coin comes up heads when flipped 200 times. The plot below shows the distribution of the number of times the coin comes up heads out of 200 flips. <img src="lecture-08-30-2021_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /> This distribution is clearly normal in shape, and it has a mean of 100 and a standard deviation of approximately 7. What does the empirical rule tell us about where we would expect (or not expect) about the number of heads out of 200 flips?</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="standard-scores-i.e.-z-scores" class="section level3">
+<h3>Standard Scores (i.e., <em>z</em>-Scores)</h3>
+<p>A <span class="math inline">\(z\)</span>-score is computed as <span class="math display">\[
+  z = \frac{x - \bar{x}}{s}.
+\]</span> It is the number of standard deviations <span class="math inline">\(x\)</span> is above (if <span class="math inline">\(z\)</span> &gt; 0) or below (if <span class="math inline">\(z\)</span> &lt; 0) the mean.</p>
+<p><strong>Example</strong>: Tim is 74 inches tall. Kristine is 70 inches tall. What are their <span class="math inline">\(z\)</span>-scores? Is Tim taller for a man or is Kristine taller for a woman?</p>
+<p><strong>Example</strong>: A man is five inches above average (for men) in height. A woman is also five inches above average (for women) in height. Who is taller <em>relative</em> to the distribution of adults of the same gender?</p>
+<p><strong>Example</strong>: Consider again the sample of coin flips, but now suppose that we look at the <em>proportion</em> of flips that come up heads, and we do so out of 100 flips and again out of 400 flips. The distribution for 100 flips has a mean of 0.5 and a standard deviation of 0.05, while the distribution of 400 flips has a mean of 0.5 and a standard deviation of 0.025. What is the <span class="math inline">\(z\)</span>-score for each distribution if we observe that the coin comes up heads on 55% of the trials (i.e., a proportion of 0.55)?</p>
+<p><img src="lecture-08-30-2021_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
 
 
 
