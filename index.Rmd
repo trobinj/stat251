@@ -9,13 +9,9 @@ Course material for Dr. Johnson's *Statistical Methods* (Stat 251, Section 01) a
 
 <center>
 
-![](opus-magnum.gif)
-
-![](opus-magnum.png)
+![https://xkcd.com/1798](http://imgs.xkcd.com/comics/box_plot.png)
 
 </center>
-
-My solution to the "Precision Machine Oil" puzzle in the game [Opus Magnum](https://en.wikipedia.org/wiki/Opus_Magnum_(video_game)). The histograms show the distribution of cost, number of cycles, and area for solutions by other players (my solution is shown by the vertical line).
 
 <!-- ![https://xkcd.com/59](http://imgs.xkcd.com/comics/graduation.jpg) -->
 <!-- ![https://xkcd.com/314](http://imgs.xkcd.com/comics/dating_pools.png) -->
