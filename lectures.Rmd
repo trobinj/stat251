@@ -28,7 +28,7 @@ i <- 0
 
 `r i <- i + 1; d[i]` [Normal/bell-shaped distributions, the empirical rule, $z$-scores](lecture-08-30-2021.html). A set of [homework problems](homework-03.html) on normal distributions and outliers (to be discussed in the next lecture) is now available. 
 
-`r i <- i + 1; d[i]` [Outlier identification, margin of error](lecture-01-25-2021.html). The [study guide](e1-studyguide.html) for the first examination is now available.
+`r i <- i + 1; d[i]` [Outlier identification, margin of error](lecture-09-01-2021.html). The [study guide](e1-studyguide.html) for the first examination is now available.
 
 `r i <- i + 1; d[i]` 
  
