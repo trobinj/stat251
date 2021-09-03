@@ -56,9 +56,9 @@ knitr::opts_chunk$set(echo = FALSE)
 
 0. Understand what is meant by *statistically significant*. 
 
-0. Be able to identify the *explanatory* and *response* variables in a study.
+0. ~~Be able to identify the *explanatory* and *response* variables in a study.~~
 
-0. Understand the three basic kinds of studies: a *survey*, an *experiment*, and an *observational study*. 
+0. ~~Understand the three basic kinds of studies: a *survey*, an *experiment*, and an *observational study*.~~
 
 0. Be sure you understand the notation (i.e., symbols) we have used so far (e.g., $n$, $\bar{x}$, $s$, $s^2$, $Q_1$, $Q_2$, $Q_3$).
 
