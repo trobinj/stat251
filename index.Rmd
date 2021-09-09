@@ -9,7 +9,7 @@ Course material for Dr. Johnson's *Statistical Methods* (Stat 251, Section 01) a
 
 <center>
 
-![https://xkcd.com/1798](http://imgs.xkcd.com/comics/box_plot.png)
+![https://xccd.com/2142](https://imgs.xkcd.com/comics/dangerous_fields.png)
 
 </center>
 
@@ -32,6 +32,7 @@ Course material for Dr. Johnson's *Statistical Methods* (Stat 251, Section 01) a
 <!-- ![https://xkcd.com/2048](http://imgs.xkcd.com/comics/curve_fitting.png) -->
 <!-- ![https://xkcd.com/2080](http://imgs.xkcd.com/comics/cohort_and_age_effects.png) -->
 <!-- ![https://xkcd.com/2110](http://imgs.xkcd.com/comics/error_bars.png) -->
+<!-- ![https://xccd.com/2142](https://imgs.xkcd.com/comics/dangerous_fields.png) -->
 <!-- ![https://xkcd.com/2303](https://imgs.xkcd.com/comics/error_types.png) -->
 <!-- ![https://xkcd.com/2311](http://imgs.xkcd.com/comics/confidence_interval.png) -->
 <!-- ![https://xkcd.com/2343](https://imgs.xkcd.com/comics/mathematical_symbol_fight.png) -->
