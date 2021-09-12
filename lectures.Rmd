@@ -42,7 +42,7 @@ i <- 0
  
 ***
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Computing probabilities from probability distributions](lecture-09-13-2021.html). 
 
 `r i <- i + 1; d[i]` 
 
