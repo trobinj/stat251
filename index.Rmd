@@ -7,9 +7,11 @@ output:
 
 Course material for Dr. Johnson's *Statistical Methods* (Stat 251, Section 01) at the University of Idaho for the fall semester of 2021.
 
+A cute explanation of how [mRNA vaccines](https://en.wikipedia.org/wiki/RNA_vaccine) work, including the Moderna and Pfizer–BioNTech COVID-19 vaccines. See the [University of Idaho COVID-19 Vaccine](https://www.uidaho.edu/vandal-health-clinic/coronavirus/vaccine) information page for how to get vaccinated if you have not done so already. 
+
 <center>
 
-![https://xccd.com/2142](https://imgs.xkcd.com/comics/dangerous_fields.png)
+![https://xkcd.com/2425](https://imgs.xkcd.com/comics/mrna_vaccine.png)
 
 </center>
 

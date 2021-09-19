@@ -50,7 +50,7 @@ i <- 0
  
 ***
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Central limit theorem, estimation using $\bar{x}$ and $\hat{p}$](lecture-09-20-2021.html). The [study guide](e2-studyguide.html) for the second examination is now available.
 
 `r i <- i + 1; d[i]` 
 
