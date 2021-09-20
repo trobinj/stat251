@@ -1,0 +1,144 @@
+---
+output:
+  html_document:
+    theme: readable
+---
+
+```{r, echo = FALSE, message = FALSE}
+library(lubridate)
+date <- "09-22-2021"
+weekday <- wday(mdy(date), label = TRUE, abbr = FALSE)
+month <- month(mdy(date), label = TRUE)
+day <- day(mdy(date))
+```
+
+---
+title: `r paste(weekday, ", ", month, " ", day, sep = "")`
+header-includes:
+  - \usepackage{array}
+  - \usepackage{float}
+  - \usepackage{booktabs}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, fig.align = "center", out.width = "100%", fig.width = 9, cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
+```
+
+```{r packages}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(kableExtra)
+```
+
+```{r utilities}
+source("../../utilities.R")
+```
+
+`r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](lecture-", date, ".pdf) copy of this lecture.", sep = ""), "")`
+
+
+## Why Do We Divide by $n-1$ When Computing $s^2$
+
+Recall that the variance ($s^2$) for a sample of $n$ observations is
+$$
+  s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}.
+$$
+Why divide by $n-1$ rather than $n$? 
+
+Consider the following population distribution.
+```{r}
+sampdist <- function(x, p, n, stat = mean, space = FALSE) {
+   y <- apply(expand.grid(rep(list(x), n)), 1, stat)   
+   p <- apply(expand.grid(rep(list(p), n)), 1, prod)
+   if (space) {
+      s <- apply(expand.grid(rep(list(x), n)), 1, function(z) paste(z, collapse = ","))
+      d <- data.frame(Sample = s, Probability = p, Statistic = y)
+      return(d)
+   } else {
+      d <- data.frame(Statistic = y, Probability = p) %>% 
+         group_by(Statistic) %>% summarize(Probability = sum(Probability)) 
+      return(d)
+   }
+}
+
+x <- 1:3
+p <- c(0.1,0.3,0.6)
+
+m <- sum(x*p)
+v <- sum((x - m)^2*p)
+
+d <- data.frame(x, p)
+names(d) <- c("$x$","$P(x)$")
+ktbl(d)
+```
+The mean of $x$ is
+$$
+  \mu_x = `r x[1]` \times `r p[1]` + `r x[2]` \times `r p[2]` + `r x[3]` \times `r p[3]` = `r sum(x*p)`,
+$$
+and the variance of $x$ is
+$$
+  \sigma_x^2 = (`r x[1]` - `r sum(x*p)`)^2 \times `r p[1]` + 
+  (`r x[2]` - `r sum(x*p)`)^2 \times `r p[2]` + (`r x[3]` - `r sum(x*p)`)^2 \times `r p[3]` = `r sum((x - sum(x*p))^2 * p)`.
+$$
+But in practice we would not know $\sigma_x^2$, but we could use the variance from a *sample* of observations ($s^2$) to estimate $\sigma_x^2$. Recall that $s^2$ is defined as
+$$
+  s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}.
+$$
+What is the sampling distribution of $s^2$ if $n$ = 2? 
+
+
+```{r}
+d <- sampdist(x, p, 2, var, space = TRUE)
+names(d)[3] <- "$s^2$"
+ktbl(d)
+```
+
+
+```{r}
+d <- sampdist(x, p, 2, var, space = FALSE)
+names(d) <- c("$s^2$","$P(s^2)$")
+ktbl(d)
+```
+
+The mean of $s^2$ is `r sum(c(0,0.5,2)*c(0.46,0.42,0.12))`. Note that this equals $\sigma_x^2$. So $s^2$ is *unbiased* when we use it to estimate $\sigma_x^2$.
+
+\pagebreak
+
+But now suppose we compute the sample variance by dividing by $n$ rather than $n - 1$ so that
+$$
+  s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n}.
+$$
+Now consider the sampling distribution of this version of $s^2$ when $n$ = 2.
+```{r}
+x <- 1:3
+p <- c(0.1,0.3,0.6)
+d <- sampdist(x, p, 2, function(z) sum((z - mean(z))^2)/length(z), space = TRUE)
+names(d)[3] <- "$s^2$"
+ktbl(d)
+```
+
+```{r}
+d <- sampdist(x, p, 2, function(z) sum((z - mean(z))^2)/length(z), space = FALSE)
+names(d) <- c("$s^2$","$P(s^2)$")
+ktbl(d)
+```
+
+The mean of $s^2$ is now `r sum(c(0,0.25,1) * c(0.46,0.42,0.12))`. But this is less than $\sigma_x^2$ which is 0.45, so now $s^2$ is *biased* if we were to use it to estimate $\sigma_x^2$. 
+
+\pagebreak
+
+**Example**: Consider a survey of Hobbits in the Shire. Suppose that the mean height of all Hobbits is 107 cm and the standard deviation is 10 cm. Suppose we plan to select a sample of 100 Hobbits to estimate the mean height of all Hobbits in the Shire using the mean height from the sample. What do we know about the sampling distribution of the mean height from the sample?
+
+\vspace{7cm}
+
+**Example**: Suppose that 20% of Hobbits in the Shire have foot lice. We plan to select a sample of 100 Hobbits to estimate the proportion of Hobbits in the Shire that have foot lice by using the proportion of Hobbits in the sample that have foot lice. What do we know about the sampling distribution of the proportion from the sample?
+
+\pagebreak
+
+**Example**: Consider again Darwin's fertilization study. Suppose we assume, for the sake of argument, that type of fertilization does not affect height. Then the mean of the population distribution of differences should be *zero*. Assume that this is true and that this population distribution as a standard deviation of 5. What do we know about the sampling distribution of the mean height difference in a sample of 15 observations? 
+
+\vspace{7cm}
+
+**Example**: In one of Gregor Mendel's well know studies, he raised pea plants and observed the color of the offspring as green or yellow. Based on his ideas about inheritance, he thought that the probabilities of observing a green or yellow offspring are 0.25 and 0.75, respectively. In one study he observed that in a sample of 8023 observations, 6022 were yellow and 2001 were green. If Mendel is correct that the probability of a yellow offspring is 0.75, what do we know about the sampling distribution of the proportion of yellow offspring in a sample of 8023 observations?
+
