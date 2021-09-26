@@ -58,7 +58,7 @@ i <- 0
  
 ***
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Sampling distributions, error of estimation, and an introduction to confidence intervals](lecture-09-27-2021.html).
 
 `r i <- i + 1; d[i]` 
 
