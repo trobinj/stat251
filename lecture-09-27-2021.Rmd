@@ -114,7 +114,7 @@ Note that calculation of the standard error and margin of error do not require k
 
 \vspace{5cm}
 
-**Example**: Suppose that the mean height of all Hobbits is 100 cm, and the standard deviation of all heights is 10 cm. Let $x$ be the height of one Hobbit, selected at random. Suppose we obtain a sample of $n$ = 25 Hobbits and find that $s$ = `r round(sd(rnorm(25, 100, 10)), 1)`. What are the (estimated) *standard error* and the *margin of error* of $\bar{x}$? What are the (estimated) median and mean of the error of estimation?
+**Example**: Let $x$ be the height of one Hobbit, selected at random. Suppose we obtain a sample of $n$ = 25 Hobbits and find that $s$ = `r round(sd(rnorm(25, 100, 10)), 1)`. What are the (estimated) *standard error* and the *margin of error* of $\bar{x}$? What are the (estimated) median and mean of the error of estimation?
 
 \vspace{5cm}
 
