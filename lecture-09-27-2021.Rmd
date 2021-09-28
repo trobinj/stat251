@@ -36,6 +36,8 @@ source("../../utilities.R")
 
 `r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](lecture-", date, ".pdf) copy of this lecture.", sep = ""), "")`
 
+<!-- Too many examples in this lecture. Suggest dropping one for each section (i.e., mean and p). Could not get to confidence intervals in this lecture.  -->
+
 ## The Sampling Distribution of $\bar{x}$ and Estimation of $\mu$
 
 Note: To keep the notation simple, we will use $\mu$ and $\sigma$ to represent the mean and standard deviation of $x$, respectively (i.e., we will omit the subscript from $\mu_x$ and $\sigma_x$). 

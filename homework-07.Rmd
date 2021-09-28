@@ -1,0 +1,167 @@
+---
+title: "Homework Problem Set 7: Margins of Error and Confidence Intervals for Estimating $\\mu$ and $p$"
+output: 
+  html_document: 
+    theme: readable
+  pdf_document: default
+header-includes:
+  - \usepackage{array}
+  - \usepackage{booktabs}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, out.width = "100%", fig.align = "center", 
+  cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
+```
+
+```{r packages}
+library(tidyverse)
+library(kableExtra)
+```
+
+```{r utilities}
+source("../../utilities.R")
+```
+
+`r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](homework-07.pdf) copy of this homework assignment.", sep = ""), "")`
+
+Answers are given at the end. 
+
+Use [statdistributions.com](http://www.statdistributions.com) to look up values of $z$ and $t$ to use for computing margins of error and confidence intervals. Use the [standard normal distribution](http://www.statdistributions.com/normal) to look up $z$ and use [Student's $t$ distribution](http://www.statdistributions.com/t) to look up $t$. 
+
+## Mendel's Peas
+
+```{r}
+x <- 6022
+n <- 8023
+```
+
+In an earlier practice problem you encountered a classic study by [Gregor Mendel](https://en.wikipedia.org/wiki/Gregor_Mendel) on the inheritance of the trait of color in pea plants. He bred pea plants by crossing plants from a strain that only produced green peas with another strain that only produced yellow peas. The first-generation offspring from this crossbreeding then produced a strain of pea plants that were presumed to carried the genes for both yellow and green peas --- one from each parent. However these plants only had yellow seeds because it was assumed that the yellow genes are dominant in the sense that an offspring with at least one gene for yellow peas will always have yellow peas. The only way for a plant to have green peas is if both genes were for green peas. The plants from the first-generation offspring were then crossed with themselves to produce the second-generation offspring. 
+
+What was particularly relevant to Mendel was the *probability* that a second-generation offspring would have yellow peas because this probability has implications for Mendel's ideas about genetics and inheritance. Let $p$ represent this probability. In one study Mendel produced `r n` second-generation offspring, so we have `r n` observations of the variable color (i.e., yellow or green), and for `r x` of the `r n` observations the color was yellow. Use this information to compute the *margin of error* for estimating $p$, as well as the *confidence interval* to estimate $p$. Use a confidence level of 95%.
+
+## The Trebuchet at Château des Baux
+
+```{r}
+n <- 25
+m <- 250
+s <- 15
+```
+
+Several years ago I saw a working full scale working trebuchet at [Château des Baux](https://en.wikipedia.org/wiki/Ch%C3%A2teau_des_Baux) in [Les Baux-de-Provence](https://en.wikipedia.org/wiki/Les_Baux-de-Provence). Suppose that engineers want to know the mean distance this trebuchet will throw a projectile of a given weight. Let $x$ be the distance that the trebuchet throws a projectile on a given observation. This is a random variable from our perspective because various uncontrollable factors will cause $x$ to vary from observation to observation. The engineers want to know is $\mu$, the mean distance that the trebuchet throws a projectile. To estimate $\mu$ they fire the trebuchet `r n` times to produce `r n` observations of $x$. From this sample they compute a mean distance of `r m` meters and a standard deviation of the distances of `r s` meters. Compute the *margin of error* for estimating $\mu$, and the *confidence interval* to estimate $\mu$. Use a confidence level of 95%.
+
+```{r}
+set.seed(123)
+hobbit <- c("Frodo","Merry","Pippin","Sam")
+decks <- c(1,2,3,4)
+correct <- rbinom(4, decks*25, c(0.2,0.2,0.5,0.2))
+phat <- correct/(decks*25)
+se <- sqrt(phat*(1-phat)/(decks*25))
+me <- 1.96*se
+interval <- paste("(", round(phat - me, 3), ", ", round(phat + me, 3), ")", sep = "")
+dhobbit <- data.frame(Hobbit = hobbit, Correct = correct, Cards = decks * 25, phat = round(phat, 3), se = round(se, 3), me = round(me, 3), interval = interval)
+```
+
+## Experiments for Extra Sensory Perception
+
+Some early experiments designed to test for extra sensory perception (ESP) used "Zener cards" named after Karl Zener.[^zener] A typical pack of cards contains 25 cards that are each printed with one five symbols. Each symbol appears in the deck five times. Examples of each card are shown in Figure 2. 
+```{r, out.width = '75%'}
+knitr::include_graphics("zenercards.jpg")
+```
+In a typical experiment, the deck would first be shuffled and then the experimenter would select a card from the deck, study it, but not show it to the subject. The subject would then be asked "read the mind" of the experimenter to determine the symbol on the card. This would proceed until all of the cards in the deck had been exhausted, although it could be repeated as many times as desired by reshuffling the deck and going through it again. The subject would not be told if they were correct or incorrect so they could not more easily guess later cards by simply determining which cards had already been seen. 
+
+The table below shows the results from testing four subjects with Zener cards. Each row shows the name of the subject, the number of times they correctly read/guessed the card, and the number of times they went through the deck of 25 cards.
+```{r}
+ktbl(dhobbit[,1:3])
+```
+So, for example, out of 50 cards (i.e., two decks), Merry read/guessed the correct card `r dhobbit[2,2]` times (note that the sample size is the number of *cards*, not the number of decks). For each subject we can imagine a population distribution of the following form.
+```{r}
+dpop <- data.frame(Response = c("correct","incorrect"), Probability = c("$p$","$1-p$"))
+names(dpop) <- c("$x$","$P(x)$")
+ktbl(dpop)
+```
+That is, for a randomly selected card they will correctly read/guess the card with probability $p$, and be incorrect with probability $1-p$. It is of interest to estimate $p$, because if we can clearly show that $p$ is larger than 0.2 (which is the probability of being correct *by guessing*) then that would be interpreted as evidence that the subject has some capacity for ESP (albeit not perfect unless $p$ = 1). Let $p_f$, $p_m$, $p_p$, and $p_s$ denote the probability of correctly reading/guessing a card for each of the four subjects (the subscripts correspond to the first letter of their names). For each parameter, use the information given above to provide a point estimate, the standard error, the margin of error, and a confidence interval for the probability that they can correctly read/guess the card. Use a confidence level of 95\%. 
+
+## Survey of Daphnia Density
+
+[Daphnia](https://en.wikipedia.org/wiki/Daphnia) are a genus of tiny planktonic crustaceans found in freshwater lakes, ponds, streams, and rivers. In addition to being an organism of interest to biologists, ecologists, and fisheries researchers, the health of daphnia are often used to help assess the general health of a freshwater ecological system. A survey obtained several one-liter samples of water from a lake at different depths.[^daphniasource] The depths corresponded to three layers of the lake: the *epilimnion* layer (the surface layer of warmer water), the *hypolimnion* layer (the bottom layer of colder water), and the *thermocline* (a thin layer between the epilimnion and hypolimnion layers where the temperature changes dramatically over a small change in depth). A device was lowered into the water at a prescribed depth, opened so that it could fill with one liter of water, and then closed and brought back to the surface. The number of daphnia within each liter of water collected was recorded. The data for the samples from each layer are shown below.
+```{r, warning = FALSE, message = FALSE, fig.height = 4}
+d <- trtools::daphniastrat
+d$layer <- factor(d$layer, levels = c("hypolimnion","thermocline","epilimnion"))
+
+m <- d %>% group_by(layer) %>% summarize(mean = round(mean(count),2), sd = round(sd(count),2), n = length(count)) %>% mutate(se = round(sd/sqrt(n), 2), t = round(qt(0.975, df = n - 1), 3), me = round(t * sd/sqrt(n), 2)) %>% mutate(interval = paste("(", round(mean - me, 2), ", ", round(mean + me,2), ")", sep = ""))
+daphniatbl <- m
+
+p <- ggplot(d, aes(x = layer, y = count)) + coord_flip()
+p <- p + geom_dotplot(binaxis = "y", binsize = 1) + theme_minimal()
+p <- p + geom_point(aes(y = mean, x = as.numeric(layer) - 0.1), pch = 17, data = m, size = 3)
+p <- p + labs(x = NULL, y = "Number of Daphnia")
+p <- p + geom_vline(xintercept = 1:3)
+plot(p)
+```
+The table below gives the mean, standard deviation, and sample size for the samples of observations of the number of daphnia in each liter of water.
+```{r}
+tmp <- daphniatbl[c(3,2,1),c(1:4)]
+names(tmp) <- c("Layer", "$\\bar{x}$", "$s$", "$n$")
+ktbl(tmp, align = c("lccc"))
+```
+Let $x$ be the number of daphnia in a liter of water sampled from one of the three layers. It is a random variable but its mean depends on the layer from it was obtained. Let this mean be represented as $\mu_e$, $\mu_t$, and $\mu_h$ corresponding to the epilimnion, thermocline, and hypolimnion layers, respectively. As this is a survey we can view these parameters as the mean number of daphnia per liter in each of the layers (i.e., the *density* of daphnia in each layer). For each of these parameters, find/compute a *point estimate*, the *standard error*, the *margin of error*, and the *confidence interval*. Use a confidence level of 95%. Also compute the *median* and *mean* of the error of estimation for estimating $\mu_e$, $\mu_t$, and $\mu_h$.
+
+\pagebreak
+
+## Mendel's Peas (Solutions)
+
+```{r}
+x <- 6022
+n <- 8023
+p <- x/n
+```
+
+Rounding to the fourth decimal place, the margin of error is `r rnd(1.96 * sqrt(p * (1-p) / n), 4)` and the confidence interval is approximately `r round(p, 4)` $\pm$ `r round(1.96 * sqrt(p*(1-p)/n), 4)` or (`r round(p - 1.96*sqrt(p*(1-p)/n),4)`, `r round(p + 1.96*sqrt(p*(1-p)/n),4)`). Note that the margin of error is relatively small because the sample size is relatively large.
+
+## The Trebuchet at Château des Baux (Solutions)
+
+```{r}
+n <- 25
+m <- 250
+s <- 15
+me <- round(qt(0.975, df = 24), 3) * s / sqrt(n)
+```
+
+The margin of error is `r rnd(me, 3)` meters, and the confidence interval is `r m` $\pm$ `r round(me,3)` meters or (`r m - me` m, `r m + me` m). 
+
+## Experiments for Extra Sensory Perception (Solutions)
+
+The table below gives the point estimate, standard error, margin of error, and confidence interval for $p_f$, $p_m$, $p_p$, and $p_s$. 
+```{r}
+tmp <- dhobbit[,c(1,4:ncol(dhobbit))]
+names(tmp) <- c("Hobbit","Point Estimate","Standard Error","Margin of Error","Confidence Interval")
+ktbl(tmp, align = "lcccc")
+```
+Note that the results shown above were rounded, but no rounding was performed in intermediate calculations. Your answers may differ slightly. 
+
+If someone can only guess the correct card, the probability that they would be correct is $p$ = 0.2. Note that every confidence interval *except* that for Pippin contains $p$ = 0.2. Perhaps he has ESP? 
+
+## Survey of Daphnia Density (Solutions)
+
+The table below gives the point estimate, standard error, margin of error, and confidence interval for each layer of $\mu_e$, $\mu_t$, and $\mu_h$. 
+```{r}
+tmp <- daphniatbl %>% select(layer, mean, se, me, interval)
+names(tmp) <- c("Layer","Point Estimate", "Standard Error", "Margin of Error", "Confidence Interval")
+ktbl(tmp[c(3,2,1),], align = c("lcccc"))
+```
+Note that the results shown were rounded, but no rounding was performed in intermediate calculations. Your answers may differ slightly. The table below shows the standard error, margin of error, median error, and mean error for each layer.
+```{r}
+tmp <- daphniatbl %>% select(layer, se, me) %>%
+  mutate(median = round(0.674 * se, 2), mean = round(0.798 * se, 2))
+tmp <- tmp[c(3,2,1),]
+names(tmp) <- c("Layer", "Standard Error", "Margin of Error", "Median Error", "Mean Error")
+ktbl(tmp, align = c("lcccc"))
+```
+Note that the results have been rounded.
+
+[^daphniasource]: Source: Gregoire, T. G. & Valentine, H. T. (2007). *Sampling strategies for natural resources and the environment*. Boca Raton, FL: Chapman & Hall/CRC.
+
+[^zener]: See [en.wikipedia.org/wiki/Zener_cards](https://en.wikipedia.org/wiki/Zener_cards).
+
+
