@@ -165,7 +165,7 @@ Suppose I obtain 1000 samples, and from each sample I computed a confidence inte
 $$
   \hat{p} \pm 1.96\sqrt{\hat{p}(1-\hat{p})/n}.
 $$
-Approximately how many samples would contain $p$? What if we replaced 1.96 with 2.576?
+Approximately how many confidence intervals would contain $p$? What if we replaced 1.96 with 2.576?
 
 \pagebreak
 
