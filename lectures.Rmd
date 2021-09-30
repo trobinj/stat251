@@ -62,7 +62,7 @@ i <- 0
 
 `r i <- i + 1; d[i]` [Confidence intervals for $\mu$ and $p$, confidence level](lecture-09-29-2021.html). A set of [homework problems](homework-07.html) on confidence intervals for $\mu$ and $p$ are now available.
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Estimating $\mu$ and $\tau$ when sampling without replacement with known and finite $N$](lecture-10-01-2021.html). A set of [homework problems](homework-08.html) on these topics is now available. 
  
 ***
 
