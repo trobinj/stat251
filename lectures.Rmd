@@ -68,7 +68,7 @@ i <- 0
 
 `r i <- i + 1; d[i]` [Choosing a sample size](lecture-10-04-2021.html). A set of [homework problems](homework-09.html) on choosing a sample size is now available.
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Assumptions](lecture-10-06-2021.html). The [study guide](e3-studyguide.html) for the third examination is now available.
 
 `r i <- i + 1; d[i]` 
  

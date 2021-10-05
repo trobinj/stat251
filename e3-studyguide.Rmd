@@ -1,0 +1,69 @@
+---
+title: "Third Examination Study Guide"
+output:
+  html_document:
+    theme: readable
+  pdf_document: default
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+`r ifelse(knitr::is_html_output(), "You can also download a [PDF](e3-studyguide.pdf) copy of this study guide.", "")`
+
+1. What is a *standard error* and what is a *margin of error*?
+
+0. What is the difference between *point* and *interval* estimation?
+
+0. Understand the "anatomy" of a confidence interval (i.e., point estimate, standard score, standard error, and margin of error). Be able to identify each part of a confidence interval.
+
+0. Be able to find/compute the point estimate, standard error, margin of error, and confidence interval when estimating $p$. 
+
+0. Be able to find/compute the point estimate, standard error, margin of error, and confidence interval when estimating $\mu$ (also know how to do this when sampling without replacement when $N$ is known). 
+
+0. Be able to find/compute the point estimate, standard error, margin of error, and confidence interval when estimating $\tau$ when sampling without replacement.
+
+0. What is meant by the *confidence level* of a confidence interval?
+
+0. What effect does increasing the *confidence level* have on the margin of error and the confidence interval? What effect does increasing the *sample size* have on the margin of error and the confidence interval?
+
+0. How do you choose the sample size when estimating $p$ with $\hat{p}$? What are the *two* ways we might decide on the value of $p$ for this calculation?
+
+0. How do you choose the sample size when estimating $\mu$ with $\bar{x}$?
+
+0. What is sampling *with* versus *without* replacement?
+
+0. What do we need to *assume* when making inferences about $\mu$, $p$, and $\tau$ using the methods we have discussed?
+
+0. What is meant by saying that a statistic is *unbiased*? What does it mean to say that a statistic is *biased*? 
+
+0. What are the three sources of bias that we discussed in class? 
+
+0. When is the sampling distribution of $\bar{x}$ or $\hat{p}$ approximately normal in shape?
+
+0. What is the *randomized response method*? How does it work? Why is it used?
+
+0. As always, be comfortable with symbols/notation (e.g., $\mu$, $\bar{x}$, $p$, $\hat{p}$, $m$, $n$, $N$, $s$, $\sigma$, $\tau$).
+
+Formulas/expressions you should understand when and how to use. 
+$$
+  \sqrt{\hat{p}(1-\hat{p})/n} \ \ \ \ \
+  z\sqrt{\hat{p}(1-\hat{p})/n} \ \ \ \ \ 
+  \hat{p} \pm z\sqrt{\hat{p}(1-\hat{p})/n}
+$$
+$$
+  \frac{s}{\sqrt{n}}\ \ \ \ \ \ t\frac{s}{\sqrt{n}} \ \ \ \ \ \bar{x} \pm t\frac{s}{\sqrt{n}}
+$$
+$$
+  \frac{s}{\sqrt{n}}\sqrt{1 - \frac{n}{N}} \ \ \ \ \ t\frac{s}{\sqrt{n}}\sqrt{1 - \frac{n}{N}} \ \ \ \ \ \bar{x} \pm t\frac{s}{\sqrt{n}}\sqrt{1 - \frac{n}{N}}
+$$
+$$
+  N\frac{s}{\sqrt{n}}\sqrt{1 - \frac{n}{N}} \ \ \ \ \ tN\frac{s}{\sqrt{n}}\sqrt{1 - \frac{n}{N}} \ \ \ \ \ N\bar{x} \pm tN\frac{s}{\sqrt{n}}\sqrt{1 - \frac{n}{N}}
+$$
+$$
+  n = \frac{z^2p(1-p)}{m^2} \ \ \ \ \ n = \frac{z^2\sigma^2}{m^2}
+$$
+$$
+  n - 1 \ \ \ \ \ n\hat{p} \ge 15 \ \ \ \ \ n(1-\hat{p}) \ge 15
+$$

@@ -70,6 +70,8 @@ where $z$ is determined by the desired *confidence level*.
 
 ## Choosing a Sample Size for Estimating $p$ with $\hat{p}$
 
+<!-- Maybe make a plot of n against the margin of error (and other quantitities). -->
+
 How do we *choose* $n$ for estimating $p$ with $\hat{p}$? Consider that
 $$
 m = z\sqrt{\frac{p(1-p)}{n}} \ \ \Leftrightarrow \ \ n = \frac{z^2p(1-p)}{m^2}.

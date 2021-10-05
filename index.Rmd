@@ -17,7 +17,7 @@ This has nothing to do with statistics. I just like [Joy Division](https://en.wi
 
 ***
 
-See the [University of Idaho COVID-19 Vaccine information page](https://www.uidaho.edu/vandal-health-clinic/coronavirus/vaccine) for how to get vaccinated if you have not done so already. 
+See the [University of Idaho COVID-19 Vaccine information page](https://www.uidaho.edu/vandal-health-clinic/coronavirus/vaccine) for how to get vaccinated. 
 
 <!-- ![https://xkcd.com/59](http://imgs.xkcd.com/comics/graduation.jpg) -->
 <!-- ![https://xkcd.com/314](http://imgs.xkcd.com/comics/dating_pools.png) -->
@@ -43,6 +43,8 @@ See the [University of Idaho COVID-19 Vaccine information page](https://www.uida
 <!-- ![https://xkcd.com/2311](http://imgs.xkcd.com/comics/confidence_interval.png) -->
 <!-- ![https://xkcd.com/2343](https://imgs.xkcd.com/comics/mathematical_symbol_fight.png) -->
 <!-- ![https://xkcd.com/2400](https://imgs.xkcd.com/comics/statistics.png) -->
+
+<!-- ![https://xkcd.com/2443](https://imgs.xkcd.com/comics/immune_response.png)
 
 <!-- ![https://xkcd.com/520](https://imgs.xkcd.com/comics/cuttlefish.png) -->
 
