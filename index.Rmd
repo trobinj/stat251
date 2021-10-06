@@ -9,9 +9,9 @@ Course material for Dr. Johnson's *Statistical Methods* (Stat 251, Section 01) a
 
 <center>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/0rs6MFkSacg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+![https://xkcd.com/2443](https://imgs.xkcd.com/comics/immune_response.png)
 
-This has nothing to do with statistics. I just like [Joy Division](https://en.wikipedia.org/wiki/Joy_Division). 
+See the [University of Idaho COVID-19 Vaccine information page](https://www.uidaho.edu/vandal-health-clinic/coronavirus/vaccine) for how to get vaccinated.
 
 </center>
 
