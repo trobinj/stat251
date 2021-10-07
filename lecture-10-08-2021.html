@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Friday, Oct 8</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics 251</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="lectures.html">Lectures</a>
+</li>
+<li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Friday, Oct 8</h1>
+
+</div>
+
+
+<p>You can also download a <a href="lecture-10-08-2021.pdf">PDF</a> copy of this lecture.</p>
+<div id="the-challenge-of-sensitive-questions" class="section level2">
+<h2>The Challenge of Sensitive Questions</h2>
+<p>Consider a survey with human respondents answering sensitive questions.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Sampling bias</strong>: Failure to account for the fact that some units are more or less likely to be included in the sample.</p></li>
+<li><p><strong>Non-response bias</strong>: Failure to observe some observational units that were intended to be observed. <em>Respondents may be less inclined to participate in a survey with sensitive questions</em>.</p></li>
+<li><p><strong>Response bias</strong>: Errors in observation/measurement of the variable of interest. <em>Respondents may be more inclined to be dishonest in response to sensitive questions</em>.</p></li>
+</ol>
+<p>When a survey uses a <em>sensitive question</em>, respondents are more likely to (a) not respond and (b) lie if they do respond. Thus sensitive questions can produce <em>non-response</em> and <em>response</em> bias.</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="randomized-response-method-unrelated-question" class="section level2">
+<h2>Randomized Response Method (Unrelated Question)</h2>
+<p><strong>Instructions</strong>: Please roll the die but <strong>do not</strong> tell me the result or show it to anyone else. If the die came up 1-4 answer <em>Question A</em>, but if the die came up 5-6, answer <em>Question B</em>. Answer by stating “yes” or “no” but <strong>do not</strong> tell me which question you are answering.</p>
+<p><strong>Question A</strong>: <span style="color:white">Have you ever lied about being sick to get out of work or school?</span></p>
+<p><strong>Question B</strong>: <span style="color:white">Did the die come up even?</span></p>
+<p>We define the following three probabilities.</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\theta\)</span> is the probability of getting question A. In the example above <span class="math inline">\(\theta\)</span> = 2/3.</p></li>
+<li><p><span class="math inline">\(p_a\)</span> is the probability of answering “yes” if asked question A. It is unknown.</p></li>
+<li><p><span class="math inline">\(p_b\)</span> is the probability of answering “yes” if asked question B. In the example above <span class="math inline">\(p_b\)</span> = 0.5.</p></li>
+</ol>
+Our goal is to <em>estimate</em> <span class="math inline">\(p_a\)</span> from <span class="math inline">\(n\)</span> responses to the randomized response procedure. There are four outcomes, and we can write the probability of each as follows.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Question
+</th>
+<th style="text-align:center;">
+Response
+</th>
+<th style="text-align:center;">
+Probability
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+A
+</td>
+<td style="text-align:center;">
+no
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\theta(1-p_a)\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+A
+</td>
+<td style="text-align:center;">
+yes
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\theta p_a\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+B
+</td>
+<td style="text-align:center;">
+no
+</td>
+<td style="text-align:center;">
+<span class="math inline">\((1-\theta)(1-p_b)\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+B
+</td>
+<td style="text-align:center;">
+yes
+</td>
+<td style="text-align:center;">
+<span class="math inline">\((1-\theta)p_b\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The probability of getting a response of “yes” from a respondent is <span class="math display">\[
+  p_y = \theta p_a + (1-\theta) p_b.
+\]</span> Thus the probability of a response of “yes” to Question A is <span class="math display">\[
+  p_a = \frac{p_y - (1-\theta)p_b}{\theta}.
+\]</span> This suggests we estimate <span class="math inline">\(p_a\)</span> as <span class="math display">\[
+  \hat{p}_a = \frac{\hat{p}_y - (1-\theta)p_b}{\theta},
+\]</span> where <span class="math inline">\(\hat{p}_y\)</span> is the proportion of observations (out of <span class="math inline">\(n\)</span>) where a respondents responds “yes”.</p>
+<p><strong>Example</strong>: Please roll the die but <strong>do not</strong> tell me the result or show it to anyone else. If the die came up 1-4 answer <em>Question A</em>, but if the die came up 5-6, answer <em>Question B</em>. Answer by stating “yes” or “no” but <strong>do not</strong> tell me which question you are answering.</p>
+<p><strong>Question A</strong>: Have you ever been unfaithful to your partner?</p>
+<p><strong>Question B</strong>: Did the die come up even?</p>
+<p>Suppose that out of 1000 respondents, 300 responded “yes”. <span class="math display">\[
+  \hat{p}_a = \frac{0.3-(1-2/3)0.5}{2/3} = 0.2. 
+\]</span> What about a margin of error? The margin of error formula is <span class="math display">\[
+  z\frac{1}{\theta}\sqrt{\frac{\hat{p}_y(1-\hat{p}_y)}{n}}.
+\]</span> So our margin error for the above example (using a confidence level of 95%) <span class="math display">\[
+  1.96\frac{1}{2/3}\sqrt{\frac{0.3(1-0.3)}{1000}} \approx 0.04.
+\]</span> So we estimate that the proportion of people in the population that have been unfaithful to their partner is 0.2 <span class="math inline">\(\pm\)</span> 0.04.</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="randomized-response-method-mirrored-question" class="section level2">
+<h2>Randomized Response Method (Mirrored Question)</h2>
+<p><strong>Instructions</strong>: Please roll the die but <strong>do not</strong> tell me the result or show it to anyone else. If the die came up 1-4 answer <em>Question A</em>, but if the die came up 5-6, answer <em>Question B</em>. Answer by stating “yes” or “no” but <strong>do not</strong> tell me which question you are answering.</p>
+<p><strong>Question A</strong>: <span style="color:white">Statistics is my favorite class.</span></p>
+<p><strong>Question B</strong>: <span style="color:white">Statistics is not my favorite class.</span></p>
+<p>We define the following three probabilities.</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\theta\)</span> is the probability of getting question A. In the example above <span class="math inline">\(\theta\)</span> = 2/3.</p></li>
+<li><p><span class="math inline">\(p_a\)</span> is the probability of answering “yes” if asked question A. It is unknown.</p></li>
+<li><p><span class="math inline">\(p_b\)</span> is the probability of answering “yes” if asked question B. It is unknown.</p></li>
+</ol>
+Our goal is to <em>estimate</em> <span class="math inline">\(p_a\)</span> from <span class="math inline">\(n\)</span> responses to the randomized response procedure. There are four outcomes, and we can write the probability of each as follows. But note that here <span class="math inline">\(p_b = 1-p_a\)</span>.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Question
+</th>
+<th style="text-align:center;">
+Response
+</th>
+<th style="text-align:center;">
+Probability
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+A
+</td>
+<td style="text-align:center;">
+no
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\theta(1-p_a)\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+A
+</td>
+<td style="text-align:center;">
+yes
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\theta p_a\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+B
+</td>
+<td style="text-align:center;">
+no
+</td>
+<td style="text-align:center;">
+<span class="math inline">\((1-\theta)p_a\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+B
+</td>
+<td style="text-align:center;">
+yes
+</td>
+<td style="text-align:center;">
+<span class="math inline">\((1-\theta)(1-p_a)\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The probability of getting a response of “yes” from a respondent is <span class="math display">\[
+  p_y = \theta p_a + (1-\theta)(1-p_a).
+\]</span> Thus the probability of a response of “yes” to Question A is <span class="math display">\[
+  p_a = \frac{p_y + \theta - 1}{2\theta - 1}.
+\]</span> This suggest we estimate <span class="math inline">\(p_a\)</span> as <span class="math display">\[
+  \hat{p}_a = \frac{\hat{p}_y + \theta - 1}{2\theta - 1},
+\]</span> where <span class="math inline">\(\hat{p}_y\)</span> is the proportion of observations (out of <span class="math inline">\(n\)</span>) where a respondents responds “yes”.</p>
+<p><strong>Example</strong>: Please roll the die but <strong>do not</strong> tell me the result or show it to anyone else. If the die came up 1-4 answer <em>Question A</em>, but if the die came up 5-6, answer <em>Question B</em>. Answer by stating “yes” or “no” but <strong>do not</strong> tell me which question you are answering.</p>
+<p><strong>Question A</strong>: I have been unfaithful to my partner.</p>
+<p><strong>Question B</strong>: I have not been unfaithful to my partner.</p>
+<p>Suppose that out of 1000 respondents, 400 responded “yes”. <span class="math display">\[
+  \hat{p}_a = \frac{0.4 + 2/3 - 1}{2(2/3)-1} = 
+  0.2.
+\]</span> What about a margin of error? The margin of error formula is <span class="math display">\[
+z\frac{1}{\left|2\theta-1\right|}\sqrt{\frac{\hat{p}_y(1-\hat{p}_y)}{n}}.
+\]</span> So our margin of error for the above example (using a confidence level of 95%) is <span class="math display">\[
+  1.96\frac{1}{\left|2(2/3)-1\right|}\sqrt{\frac{0.4(1-0.4)}{1000}} \approx
+  0.09. 
+\]</span> So we estimate that the proportion of people in the population that have been unfaithful to their partner is 0.2 <span class="math inline">\(\pm\)</span> 0.09.</p>
+</div>
+<div id="design-considerations" class="section level2">
+<h2>Design Considerations</h2>
+<ol style="list-style-type: decimal">
+<li><p>The <em>method</em> matters. Although the unrelated question and mirrored question methods produced the same point estimate, they did not have the same margin of error.</p></li>
+<li><p>The <em>value of <span class="math inline">\(\theta\)</span></em> matters. What happens if we increase it?</p></li>
+</ol>
+<p><strong>Example</strong>: Please roll this <strong>20-sided</strong> die but <strong>do not</strong> tell me the result or show it to anyone else. If the die came up 1-18 answer <em>Question A</em>, but if the die came up 19-20, answer <em>Question B</em>.</p>
+<p><strong>Question A</strong>: “Have you ever been unfaithful to your partner?”</p>
+<p><strong>Question B</strong>: “Did the die come up even?”</p>
+<p>Note that here the probability of getting question A is <span class="math inline">\(\theta\)</span> = 0.9.</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
