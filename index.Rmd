@@ -9,15 +9,13 @@ Course material for Dr. Johnson's *Statistical Methods* (Stat 251, Section 01) a
 
 <center>
 
-![https://xkcd.com/2443](https://imgs.xkcd.com/comics/immune_response.png)
-
-See the [University of Idaho COVID-19 Vaccine information page](https://www.uidaho.edu/vandal-health-clinic/coronavirus/vaccine) for how to get vaccinated.
-
-</center>
+![https://xkcd.com/539](http://imgs.xkcd.com/comics/boyfriend.png)
 
 ***
 
 See the [University of Idaho COVID-19 Vaccine information page](https://www.uidaho.edu/vandal-health-clinic/coronavirus/vaccine) for how to get vaccinated. 
+
+</center>
 
 <!-- ![https://xkcd.com/59](http://imgs.xkcd.com/comics/graduation.jpg) -->
 <!-- ![https://xkcd.com/314](http://imgs.xkcd.com/comics/dating_pools.png) -->

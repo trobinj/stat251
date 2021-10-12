@@ -76,7 +76,7 @@ i <- 0
 
 `r i <- i + 1; d[i]` **Third examination**.
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Introduction to statistical tests](lecture-10-13-2021.html).
 
 `r i <- i + 1; d[i]` 
  
