@@ -1,0 +1,108 @@
+---
+output:
+  html_document:
+    theme: readable
+---
+
+```{r, echo = FALSE, message = FALSE}
+library(lubridate)
+date <- "10-15-2021"
+weekday <- wday(mdy(date), label = TRUE, abbr = FALSE)
+month <- month(mdy(date), label = TRUE)
+day <- day(mdy(date))
+```
+
+---
+title: `r paste(weekday, ", ", month, " ", day, sep = "")`
+header-includes:
+  - \usepackage{array}
+  - \usepackage{booktabs}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, fig.align = "center", out.width = "100%", fig.width = 9, cache = TRUE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
+```
+
+```{r packages}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(kableExtra)
+```
+
+```{r utilities}
+source("../../utilities.R")
+```
+
+`r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](lecture-", date, ".pdf) copy of this lecture.", sep = ""), "")`
+
+## The $p$-Value (Probability Value)
+
+The **p-value** of a significance test is *the probability of a value of the test statistic as or more extreme than the observed value of the test statistic when $H_0$ is true*. 
+
+## Definition and Calculation of the $p$-Value
+
+The definition of the $p$-value depends on the *alternative hypothesis*. Let $p_0$ denote the value of $p$ hypothesized by the null and alternative hypotheses, so that the test statistic is
+$$
+  z_{\text{obs}} = \frac{\hat{p}-p_0}{\sqrt{p_0(1-p_0)/n}}.
+$$
+Here is how we define and compute the $p$-value. 
+
+1. $H_a\!: p > p_0$. The $p$-value is $P(\left. z \ge z_{\text{obs}} \right| H_0)$ (i.e., the probability of a value of $z$ *greater than or equal to* the value we observed *given that $H_0$ is true*). 
+
+0. $H_a\!: p < p_0$. The $p$-value is $P(\left. z \le z_{\text{obs}} \right| H_0)$ (i.e., the probability of a value of $z$ *less than or equal to* the value we observed *given that $H_0$ is true*).
+
+0. $H_a\!: p \neq p_0$. The $p$-value is $P(\left. |z| \ge |z_{\text{obs}}| \ \right| H_0)$ (i.e., the probability of a value of $z$ that is *at least as large in absolute value* than the value we observed *given that $H_0$ is true*). 
+
+We need a resource like [statdistributions.com](http://www.statdistributions.com) to compute the $p$-value. 
+
+Note: The "$p$" in "$p$-value" is *not* the same as the $p$ in the hypotheses and test statistic.
+
+**Example**: How would we compute the $p$-values for the coin flip, pounce game, and platy examples?
+
+\pagebreak
+
+## The Decision Rule
+
+Let $\alpha$ be the **significance level**. The decision rule is then as follows.
+
+1. If $\text{$p$-value} \le \alpha$ then *reject* $H_0$ (results *are* statistically significant).
+2. If $\text{$p$-value} > \alpha$ then *do not reject* $H_0$ (results *are not* statistically significant). 
+
+**Example**: What would our decisions be for the coin flip, pounce game, and platy examples if $\alpha$ = 0.05?
+
+\pagebreak
+
+## Steps for a Statistical Test for $p$
+
+1. State the null and alternative hypotheses concerning $p$.
+
+2. Check the sample size. For the "sufficiently large sample size" we need
+$$
+  np_0 \ge 15 \ \ \ \text{and} \ \ \ n(1-p_0) \ge 15,
+$$
+where $p_0$ is the value of $p$ hypothesized by the null hypothesis. If these conditions are not met, then the calculation of the $p$-value in the fourth step below may not be accurate. 
+
+3. Compute the test statistic $z = (\hat{p} - p)/\sqrt{p(1-p)/n}$.
+
+4. Compute the $p$-value using [statdistributions.com](http://www.statdistributions.com).
+
+5. Make a decision by using the decision rule.
+
+**Example**: Consider a study of just noticeable differences for pitch.
+```{r}
+set.seed(110)
+n.jnd <- 100
+hz <- c(101,102,103,104)
+p <- c(0.5, 0.5, 0.75, 0.8)
+x.jnd <- rbinom(4, rep(n.jnd, 4), p)
+d <- data.frame(Reference = paste("100", "Hz"), Stimulus = paste(101:104, "Hz"),
+  Correct = x.jnd, Total = n.jnd)
+ktbl(d)
+```
+Can the subject discriminate between, say, 100 Hz and 103 Hz?
+
+\pagebreak
+
+**Example**: Does taking garlic supplements repel ticks? A study published in the *Journal of the American Medical Association* used a cross-over design to determine if daily consumption of garlic would reduce tick bites. A total of 66 Swedish military conscripts took 1200 mg of garlic daily during one period, and a placebo during the other period. 37 subjects reported fewer tick bites during the period they took garlic supplements. Would we conclude that garlic supplements repel (some) ticks?
+
