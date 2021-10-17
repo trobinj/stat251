@@ -3,7 +3,6 @@ title: "Homework Problem Set 10: Statistical Tests Concerning $p$"
 output: 
   html_document: 
     theme: readable
-  pdf_document: default
 header-includes:
   - \usepackage{array}
   - \usepackage{booktabs}
@@ -37,7 +36,7 @@ pval <- function(z, side = "two") {
 }
 ```
 
-Instructions: These homework problems will help familiarize you with the process of conducting a significance test concerning the parameter $p$. For each problem conduct all five steps of the significance test (state the hypotheses, check the sample size, compute the test statistic, compute the p-value, and make a decision). Also note that you will need to use [statdistributions.com](https://www.statdistributions.com) to compute p-values. The solutions are given at the end.[^rounding]
+Instructions: These homework problems will help familiarize you with the process of conducting a statistical test concerning the parameter $p$. For each problem conduct all five steps of the statistical test (state the hypotheses, check the sample size, compute the test statistic, compute the p-value, and make a decision). Also note that you will need to use [statdistributions.com](https://www.statdistributions.com) to compute p-values. The solutions are given at the end.[^rounding]
 
 [^rounding]: In the solutions the reported values of test statistics and p-values have been rounded to the second and third decimal place, respectively. Rounding was only done for the final reported values. It was avoided in intermediate calculations (e.g., the value of the test statistic used to compute a p-value was *not* rounded).
 
@@ -68,7 +67,7 @@ The table below shows the results from testing four subjects. Each row shows the
 d <- data.frame(Hobbit = hobbit, Correct = esp.x, Cards = decks * 25)
 ktbl(d)
 ```
-Suppose we want to determine for each subject if there is any evidence that they have some capacity for ESP, which would be demonstrated by showing that their probability of a correct response (i.e., $p$) exceeds that of guessing. Conduct a significance test concerning $p$ for each subject to determine if they are guessing or actually posses some capacity for ESP. Use a significance level of $\alpha$ = 0.01. 
+Suppose we want to determine for each subject if there is any evidence that they have some capacity for ESP, which would be demonstrated by showing that their probability of a correct response (i.e., $p$) exceeds that of guessing. Conduct a statistical test concerning $p$ for each subject to determine if they are guessing or actually posses some capacity for ESP. Use a significance level of $\alpha$ = 0.01. 
 
 
 ```{r}
@@ -87,17 +86,17 @@ w.veg <- "Forty"
 
 ## Vegemite and Marmite as Foot Hair Softeners
 
-Researchers conducted a study to compare the effects of [Vegemite](https://en.wikipedia.org/wiki/Vegemite) and [Marmite](https://en.wikipedia.org/wiki/Marmite) as foot hair softeners for Hobbits. For each of `r n.veg` Hobbits they selected one foot at random to which to apply Vegemite. Marmite was applied to the other foot. This was done every day for a week. Afterwards each Hobbit was asked which foot they thought had softer hair. `r w.veg` Hobbits thought that the foot to which Vegemite was applied had softer hair. Let $p$ denote the probability that a Hobbit will decide that Vegemite resulted in softer hair than Marmite. Conduct a significance test to determine if there is a statistically significant difference in the apparent effectiveness between Vegemite and Marmite. Use a significance level of $\alpha$ = 0.05.
+Researchers conducted a study to compare the effects of [Vegemite](https://en.wikipedia.org/wiki/Vegemite) and [Marmite](https://en.wikipedia.org/wiki/Marmite) as foot hair softeners for Hobbits. For each of `r n.veg` Hobbits they selected one foot at random to which to apply Vegemite. Marmite was applied to the other foot. This was done every day for a week. Afterwards each Hobbit was asked which foot they thought had softer hair. `r w.veg` Hobbits thought that the foot to which Vegemite was applied had softer hair. Let $p$ denote the probability that a Hobbit will decide that Vegemite resulted in softer hair than Marmite. Conduct a statistical test to determine if there is a statistically significant difference in the apparent effectiveness between Vegemite and Marmite. Use a significance level of $\alpha$ = 0.05.
 
 ## Mendelian Inheritance
 
-[Gregor Mendel](https://en.wikipedia.org/wiki/Gregor_Mendel) was a 19th century Augustinian friar who conducted experiments with pea plants to investigating heredity. In one classic experiment he bred pea plants by crossing plants from a strain that only produced green peas with another strain that only produced yellow peas. The first-generation offspring from this crossbreeding then produced a strain of pea plants that were presumed to carried the genes for both yellow and green peas --- one from each parent. However these plants only had yellow seeds because it was assumed that the yellow genes are *dominant* in the sense that an offspring with at least one gene for yellow peas will always have yellow peas. The only way for a plant to have green peas is if both genes were for green peas. The plants from the first-generation offspring were then crossed with themselves to produce the second-generation offspring. Mendel hypothesized that the probability of a second-generation offspring having green peas is 0.25 based on specific assumptions about how inheritance works for that particular trait. To test this conjecture he bred 8023 second-generation offspring, of which 2006 were found to be green. Use a significance test with a significance level of $\alpha$ = 0.01 based on Mendel's hypothesis.
+[Gregor Mendel](https://en.wikipedia.org/wiki/Gregor_Mendel) was a 19th century Augustinian friar who conducted experiments with pea plants to investigating heredity. In one classic experiment he bred pea plants by crossing plants from a strain that only produced green peas with another strain that only produced yellow peas. The first-generation offspring from this crossbreeding then produced a strain of pea plants that were presumed to carried the genes for both yellow and green peas --- one from each parent. However these plants only had yellow seeds because it was assumed that the yellow genes are *dominant* in the sense that an offspring with at least one gene for yellow peas will always have yellow peas. The only way for a plant to have green peas is if both genes were for green peas. The plants from the first-generation offspring were then crossed with themselves to produce the second-generation offspring. Mendel hypothesized that the probability of a second-generation offspring having green peas is 0.25 based on specific assumptions about how inheritance works for that particular trait. To test this conjecture he bred 8023 second-generation offspring, of which 2006 were found to be green. Use a statistical test with a significance level of $\alpha$ = 0.01 based on Mendel's hypothesis.
 
 Note: Usually it is the *alternative* hypothesis is what is predicted by scientific theory. This example is an exception because Mendel's theory of inheritance implies the null hypothesis.
 
 ## Twirler Mice
 
-The kinds of inheritance mechanisms that Mendel hypothesized for plants are sometimes found in animals and humans, but not all traits are inherited in this way. [Mary Lyon](https://en.wikipedia.org/wiki/Mary_F._Lyon) investigated if the trait of "twirling" in "twirler mice" exhibited Mendelian inheritance.[^lyon] A twirler mouse exhibits a behavior of shaking their head horizontally and circling. Lyon conducted a study similar to design to Mendel's pea study, but with mice. She raised 142 second-generation mice, of which 84 exhibited the twirling trait. Mendelian inheritance would hypothesize that the probability that a second-generation offspring would have the twirling trait is 0.75, but if the trait does not exhibit Mendelian inheritance then the probability would be something else. Use a significance test with a significance level of $\alpha$ = 0.05 based on the hypothesis that twirling in twirler mice exhibits Mendelian inheritance.
+The kinds of inheritance mechanisms that Mendel hypothesized for plants are sometimes found in animals and humans, but not all traits are inherited in this way. [Mary Lyon](https://en.wikipedia.org/wiki/Mary_F._Lyon) investigated if the trait of "twirling" in "twirler mice" exhibited Mendelian inheritance.[^lyon] A twirler mouse exhibits a behavior of shaking their head horizontally and circling. Lyon conducted a study similar to design to Mendel's pea study, but with mice. She raised 142 second-generation mice, of which 84 exhibited the twirling trait. Mendelian inheritance would hypothesize that the probability that a second-generation offspring would have the twirling trait is 0.75, but if the trait does not exhibit Mendelian inheritance then the probability would be something else. Use a statistical test with a significance level of $\alpha$ = 0.05 based on the hypothesis that twirling in twirler mice exhibits Mendelian inheritance.
 
 [^lyon]: Lyon, M. F. (1958). Twirler: A mutant affecting the inner ear of the house mouse. *Journal of Embryology and Experimental Morphology*, *(6)1*, 105--116.
 

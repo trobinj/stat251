@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.9)  14 OCT 2021 08:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.9)  17 OCT 2021 09:19
 entering extended mode
 **./homework-10.tex
 (homework-10.tex
@@ -473,176 +473,40 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@lastruleclass=\count288
 \@thisrulewidth=\dimen177
 )
-(C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/tools\long
-table.sty
-Package: longtable 2021-05-07 v4.16 Multi-page Table package (DPC)
-\LTleft=\skip56
-\LTright=\skip57
-\LTpre=\skip58
-\LTpost=\skip59
-\LTchunksize=\count289
-\LTcapwidth=\dimen178
-\LT@head=\box54
-\LT@firsthead=\box55
-\LT@foot=\box56
-\LT@lastfoot=\box57
-\LT@gbox=\box58
-\LT@cols=\count290
-\LT@rows=\count291
-\c@LT@tables=\count292
-\c@LT@chunks=\count293
-\LT@p@ftn=\toks27
-)
-(C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/multirow\m
-ultirow.sty
-Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
-\multirow@colwidth=\skip60
-\multirow@cntb=\count294
-\multirow@dima=\skip61
-\bigstrutjot=\dimen179
-)
-(C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/wrapfig\wr
-apfig.sty
-\wrapoverhang=\dimen180
-\WF@size=\dimen181
-\c@WF@wrappedlines=\count295
-\WF@box=\box59
-\WF@everypar=\toks28
-Package: wrapfig 2003/01/31  v 3.6
-)
-(C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/float\floa
-t.sty
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count296
-\float@exts=\toks29
-\float@box=\box60
-\@float@everytoks=\toks30
-\@floatcapt=\box61
-)
-(C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\c
-olortbl.sty
-Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
-\everycr=\toks31
-\minrowclearance=\skip62
-)
-(C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/pdflscape\
-pdflscape.sty
-Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
-
-(C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/graphics\l
-scape.sty
-Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
-)
-Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
-)
-(C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/tabu\tabu.
-sty
-Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
-
-(C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/varwidth\v
-arwidth.sty
-Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
-\@vwid@box=\box62
-\sift@deathcycles=\count297
-\@vwid@loff=\dimen182
-\@vwid@roff=\dimen183
-)
-\c@taburow=\count298
-\tabu@nbcols=\count299
-\tabu@cnt=\count300
-\tabu@Xcol=\count301
-\tabu@alloc=\count302
-\tabu@nested=\count303
-\tabu@target=\dimen184
-\tabu@spreadtarget=\dimen185
-\tabu@naturalX=\dimen186
-\tabucolX=\dimen187
-\tabu@Xsum=\dimen188
-\extrarowdepth=\dimen189
-\abovetabulinesep=\dimen190
-\belowtabulinesep=\dimen191
-\tabustrutrule=\dimen192
-\tabu@thebody=\toks32
-\tabu@footnotes=\toks33
-\tabu@box=\box63
-\tabu@arstrutbox=\box64
-\tabu@hleads=\box65
-\tabu@vleads=\box66
-\tabu@cellskip=\skip63
-)
-(C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/threepartt
-able\threeparttable.sty
-Package: threeparttable 2003/06/13  v 3.0
-\@tempboxb=\box67
-)
-(C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/threepartt
-ablex\threeparttablex.sty
-Package: threeparttablex 2013/07/23 v0.3 by daleif
-
-(C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/environ\en
-viron.sty
-Package: environ 2014/05/04 v0.3 A new way to define environments
-
-(C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/trimspaces
-\trimspaces.sty
-Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
-))
-\TPTL@width=\skip64
-)
-(C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/ulem\ulem.
-sty
-\UL@box=\box68
-\UL@hyphenbox=\box69
-\UL@skip=\skip65
-\UL@hook=\toks34
-\UL@height=\dimen193
-\UL@pe=\count304
-\UL@pixel=\dimen194
-\ULC@box=\box70
-Package: ulem 2019/11/18
-\ULdepth=\dimen195
-)
-(C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/makecell\m
-akecell.sty
-Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
-\rotheadsize=\dimen196
-\c@nlinenum=\count305
-\TeXr@lab=\toks35
-)
 (C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\
 l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-08-04 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count306
-\l__pdf_internal_box=\box71
+\l__color_backend_stack_int=\count289
+\l__pdf_internal_box=\box54
 ) (homework-10.aux)
 \openout1 = `homework-10.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Info: Redefining \microtypecontext on input line 85.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Info: Redefining \microtypecontext on input line 71.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 85.
+LaTeX Info: Redefining \showhyphens on input line 71.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -655,17 +519,17 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 (C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/context/base/mki
 i\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count307
-\scratchdimen=\dimen197
-\scratchbox=\box72
-\nofMPsegments=\count308
-\nofMParguments=\count309
-\everyMPshowfont=\toks36
-\MPscratchCnt=\count310
-\MPscratchDim=\dimen198
-\MPnumerator=\count311
-\makeMPintoPDFobject=\count312
-\everyMPtoPDFconversion=\toks37
+\scratchcounter=\count290
+\scratchdimen=\dimen178
+\scratchbox=\box55
+\nofMPsegments=\count291
+\nofMParguments=\count292
+\everyMPshowfont=\toks27
+\MPscratchCnt=\count293
+\MPscratchDim=\dimen179
+\MPnumerator=\count294
+\makeMPintoPDFobject=\count295
+\everyMPtoPDFconversion=\toks28
 )
 (C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-p
 kg\epstopdf-base.sty
@@ -677,7 +541,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 pstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring OFF on input line 85.
+Package hyperref Info: Link coloring OFF on input line 71.
 
 (C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\n
 ameref.sty
@@ -691,11 +555,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 string\gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count313
+\c@section@level=\count296
 )
-LaTeX Info: Redefining \ref on input line 85.
-LaTeX Info: Redefining \pageref on input line 85.
-LaTeX Info: Redefining \nameref on input line 85.
+LaTeX Info: Redefining \ref on input line 71.
+LaTeX Info: Redefining \pageref on input line 71.
+LaTeX Info: Redefining \nameref on input line 71.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -730,41 +594,41 @@ LaTeX Info: Redefining \nameref on input line 85.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 8
-7.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 7
+3.
 
 (C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.
 fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 8
-7.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 7
+3.
 
 (C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.
 fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-87.
+73.
 
 (C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy
 .fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-87.
+73.
 
 (C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex
 .fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <17.28> on input line 87.
+(Font)              <17.28> on input line 73.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 87.
+(Font)              <12> on input line 73.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 87.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 87.
+(Font)              <10> on input line 73.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 73.
 
 
 (C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\u
@@ -775,7 +639,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 87.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 73.
 
 
 (C:\Users\Timothy R. Johnson\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\u
@@ -787,17 +651,17 @@ mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 87.
+(Font)              <8> on input line 73.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 87.
+(Font)              <6> on input line 73.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 90.
+(Font)              <7> on input line 75.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 90.
+(Font)              <5> on input line 75.
 <zenercards.jpg, id=5, 551.05875pt x 189.70876pt>
 File: zenercards.jpg Graphic file (type jpg)
 <use zenercards.jpg>
-Package pdftex.def Info: zenercards.jpg  used on input line 110.
+Package pdftex.def Info: zenercards.jpg  used on input line 95.
 (pdftex.def)             Requested size: 352.33163pt x 121.2945pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -807,13 +671,13 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 {C:/Users/Timothy R. Johnson/AppData/Local/MiKTeX/pdftex/config/pdftex.map} <./
 zenercards.jpg>] [2] [3] (homework-10.aux) ) 
 Here is how much of TeX's memory you used:
- 14213 strings out of 478927
- 217573 string characters out of 2846338
- 567533 words of memory out of 3000000
- 31650 multiletter control sequences out of 15000+600000
- 466892 words of font info for 135 fonts, out of 8000000 for 9000
+ 12771 strings out of 478927
+ 195681 string characters out of 2846338
+ 538961 words of memory out of 3000000
+ 30264 multiletter control sequences out of 15000+600000
+ 466869 words of font info for 135 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 74i,10n,80p,677b,338s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 74i,9n,80p,677b,338s stack positions out of 5000i,500n,10000p,200000b,80000s
 {C:/Users/Timothy R. Johnson/AppDat
 a/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/Timothy R. J
 ohnson/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/Tim
@@ -833,7 +697,7 @@ MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/Timothy R. Johnson/AppData/Loca
 l/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/Timothy R. Johnson
 /AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri8.pfb><C:/Users/Timoth
 y R. Johnson/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb>
-Output written on homework-10.pdf (3 pages, 284969 bytes).
+Output written on homework-10.pdf (3 pages, 284992 bytes).
 PDF statistics:
  144 PDF objects out of 1000 (max. 8388607)
  22 named destinations out of 1000 (max. 500000)

@@ -82,7 +82,7 @@ i <- 0
  
 ***
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Statistical tests concerning $\mu$](lecture-10-18-2021.html). A set of [homework problems](homework-11.html) on statistical tests concerning $\mu$ is now available.
 
 `r i <- i + 1; d[i]` 
 
