@@ -84,7 +84,7 @@ i <- 0
 
 `r i <- i + 1; d[i]` [Statistical tests concerning $\mu$](lecture-10-18-2021.html). A set of [homework problems](homework-11.html) on statistical tests concerning $\mu$ is now available.
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Composite null hypothesis, the relationship between confidence intervals and tests, the sign test](lecture-10-20-2021.html). A set of [homework problems](homework-12.html) on these topics is now available.
 
 `r i <- i + 1; d[i]` 
  
