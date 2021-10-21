@@ -86,7 +86,7 @@ i <- 0
 
 `r i <- i + 1; d[i]` [Composite null hypothesis, the relationship between confidence intervals and tests, the sign test](lecture-10-20-2021.html). A set of [homework problems](homework-12.html) on these topics is now available.
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Type I and Type II errors in statistical tests](lecture-10-22-2021.html). The [study guide](e4-studyguide.html) for the fourth examination is now available. 
  
 ***
 
