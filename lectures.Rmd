@@ -94,7 +94,7 @@ i <- 0
 
 `r i <- i + 1; d[i]` **Fourth examination**.
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Independent versus dependent samples, inferences for $p_1 - p_2$](lecture-10-29-2021.html). A set of [homework problems](homework-13.html) on inferences for $p_1-p_2$ is now available.
  
 ***
 
