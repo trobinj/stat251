@@ -98,7 +98,7 @@ i <- 0
  
 ***
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Inferences for $\mu_1 - \mu_2$](lecture-11-01-2021.html). A set of [homework problems](homework-14.html) on inferences for $\mu_1 - \mu_2$ is now available.
 
 `r i <- i + 1; d[i]` 
 

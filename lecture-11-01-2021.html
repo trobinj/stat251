@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Monday, Nov 1</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics 251</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="lectures.html">Lectures</a>
+</li>
+<li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Monday, Nov 1</h1>
+
+</div>
+
+
+<p>You can also download a <a href="lecture-11-01-2021.pdf">PDF</a> copy of this lecture.</p>
+<div id="inferences-for-p_1-p_2-from-independent-samples" class="section level2">
+<h2>Inferences for <span class="math inline">\(p_1-p_2\)</span> from Independent Samples</h2>
+<p>When making inferences about a difference in probabilities (<span class="math inline">\(p_1-p_2\)</span>), the test statistic for the test with the null hypothesis <span class="math inline">\(H_0: p_1 - p_2 = 0\)</span> is <span class="math display">\[
+  z = \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{\hat{p}(1-\hat{p})\left(\frac{1}{n_1} + \frac{1}{n_2}\right)}},
+\]</span> where <span class="math inline">\(\hat{p}\)</span> is the “pooled” proportion obtained by combining the two samples. The confidence interval for <span class="math inline">\(p_1-p_2\)</span> is <span class="math display">\[
+  \hat{p}_1-\hat{p}_2 \pm z\sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}.
+\]</span> Note: The value of <span class="math inline">\(z\)</span> used in the confidence interval is <em>not</em> the same as the value of <span class="math inline">\(z\)</span> in the test statistic. For a test statistic we <em>compute</em> <span class="math inline">\(z\)</span>, whereas for a confidence interval we <em>look up</em> <span class="math inline">\(z\)</span> for a given confidence level.</p>
+<p><strong>Example</strong>: A study published in <em>The New England Journal of Medicine</em> reported the results of a randomized experiment with 128 children and adolescents to investigate the effectiveness of the drug fluvoxamine in the treatment of anxiety disorders in young people.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> The study found that 48 out of 63 subjects that were given the drug showed a reduction in anxiety, in comparison to only 19 out of 65 subjects that were not given the drug. What can we infer about the effect of the fluvoxamine on anxiety reduction?</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="inferences-for-mu_1-mu_2-from-independent-samples" class="section level2">
+<h2>Inferences for <span class="math inline">\(\mu_1-\mu_2\)</span> from Independent Samples</h2>
+<strong>Example</strong>: Consider the following data from a series of attempts by Lord Rayleigh (John William Strutt, 1842-1919) to isolate samples of nitrogen gas.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Method
+</th>
+<th style="text-align:left;">
+Source
+</th>
+<th style="text-align:center;">
+Mass (g)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+hot iron
+</td>
+<td style="text-align:left;">
+atmospheric
+</td>
+<td style="text-align:center;">
+2.31017
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hot iron
+</td>
+<td style="text-align:left;">
+atmospheric
+</td>
+<td style="text-align:center;">
+2.30986
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hot iron
+</td>
+<td style="text-align:left;">
+atmospheric
+</td>
+<td style="text-align:center;">
+2.31010
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hot iron
+</td>
+<td style="text-align:left;">
+atmospheric
+</td>
+<td style="text-align:center;">
+2.31001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ferrous hydrate
+</td>
+<td style="text-align:left;">
+atmospheric
+</td>
+<td style="text-align:center;">
+2.31024
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ferrous hydrate
+</td>
+<td style="text-align:left;">
+atmospheric
+</td>
+<td style="text-align:center;">
+2.31010
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ferrous hydrate
+</td>
+<td style="text-align:left;">
+atmospheric
+</td>
+<td style="text-align:center;">
+2.31028
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nitric oxide
+</td>
+<td style="text-align:left;">
+chemical
+</td>
+<td style="text-align:center;">
+2.30143
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nitric oxide
+</td>
+<td style="text-align:left;">
+chemical
+</td>
+<td style="text-align:center;">
+2.29890
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nitric oxide
+</td>
+<td style="text-align:left;">
+chemical
+</td>
+<td style="text-align:center;">
+2.29816
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nitric oxide
+</td>
+<td style="text-align:left;">
+chemical
+</td>
+<td style="text-align:center;">
+2.30182
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nitrous oxide
+</td>
+<td style="text-align:left;">
+chemical
+</td>
+<td style="text-align:center;">
+2.29869
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nitrous oxide
+</td>
+<td style="text-align:left;">
+chemical
+</td>
+<td style="text-align:center;">
+2.29940
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ammonium nitrate
+</td>
+<td style="text-align:left;">
+chemical
+</td>
+<td style="text-align:center;">
+2.29849
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ammonium nitrate
+</td>
+<td style="text-align:left;">
+chemical
+</td>
+<td style="text-align:center;">
+2.29889
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="lecture-11-01-2021_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /> There is a noticeable difference between the mass of samples obtained from <em>atmospheric</em> sources (i.e., via ferrous hydrate or hot iron) and <em>chemical</em> sources (i.e., from reactions involving ammonium nitrate, nitric oxide, or nitrous oxide).</p>
+<img src="lecture-11-01-2021_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /> Here are the statistics for the two samples of observations of the mass of the nitrogen samples by source.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Sample Statistics
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Source
+</th>
+<th style="text-align:center;">
+Size
+</th>
+<th style="text-align:center;">
+Mean
+</th>
+<th style="text-align:center;">
+SD
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+atmospheric
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+2.31011
+</td>
+<td style="text-align:center;">
+0.00014
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+chemical
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+2.29947
+</td>
+<td style="text-align:center;">
+0.00138
+</td>
+</tr>
+</tbody>
+</table>
+<p>Let <span class="math inline">\(\mu_a\)</span> and <span class="math inline">\(\mu_c\)</span> be the mean mass measurement for isolated nitrogen samples obtained from atmospheric and chemical sources, respectively. What can we infer about <span class="math inline">\(\mu_a - \mu_c\)</span>?</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="sampling-distribution-of-barx_1-barx_2" class="section level2">
+<h2>Sampling Distribution of <span class="math inline">\(\bar{x}_1-\bar{x}_2\)</span></h2>
+<p>We can estimate <span class="math inline">\(\mu_1-\mu_2\)</span> with <span class="math inline">\(\bar{x}_1-\bar{x}_2\)</span>. What do we know about the <em>sampling distribution</em> of <span class="math inline">\(\bar{x}_1-\bar{x}_2\)</span>?</p>
+<ol style="list-style-type: decimal">
+<li><p>The <em>mean</em> of the sampling distribution is <span class="math inline">\(\mu_1-\mu_2\)</span>.</p></li>
+<li><p>The <em>standard deviation</em> of the sampling distribution is <span class="math display">\[\begin{equation*}
+  \sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}
+\end{equation*}\]</span> if the samples are <em>independent</em>. In practice this quantity can be estimated by replacing <span class="math inline">\(\sigma_1\)</span> and <span class="math inline">\(\sigma_2\)</span> with <span class="math inline">\(s_1\)</span> and <span class="math inline">\(s_2\)</span>, respectively (i.e., the sample standard deviations).</p></li>
+<li><p>The <em>shape</em> of the sampling distribution is approximately that of a normal probability distribution by an application of the central limit theorem.</p></li>
+</ol>
+<p>How can we use this information to make inferences about <span class="math inline">\(\mu_1-\mu_2\)</span>?</p>
+<div id="formulas-for-inferences-regarding-mu_1-mu_2-with-independent-samples" class="section level3">
+<h3>Formulas for Inferences Regarding <span class="math inline">\(\mu_1-\mu_2\)</span> With Independent Samples</h3>
+<p>When making inferences about a difference in population distribution means (<span class="math inline">\(\mu_1-\mu_2\)</span>), the test statistic for a test with the null hypothesis <span class="math inline">\(H_0:\mu_1 - \mu_2 = 0\)</span> is<br />
+<span class="math display">\[
+  t = \frac{\bar{x}_1-\bar{x}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}.
+\]</span> The confidence interval for <span class="math inline">\(\mu_1-\mu_2\)</span> is <span class="math display">\[
+  \bar{x}_1-\bar{x}_2 \pm t\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}.
+\]</span> The degrees of freedom for the <span class="math inline">\(t\)</span> distribution is computed as <span class="math inline">\(\min(n_1-1,n_2-1)\)</span>.</p>
+<p>Note: The value of <span class="math inline">\(t\)</span> used in the confidence interval is <em>not</em> the same as the value of <span class="math inline">\(t\)</span> in the test statistic. For a test statistic we <em>compute</em> <span class="math inline">\(t\)</span>, whereas for a confidence interval we <em>look up</em> <span class="math inline">\(t\)</span> for a given confidence level.</p>
+</div>
+<div id="a-note-on-the-degrees-of-freedom-for-the-t-distribution" class="section level3">
+<h3>A Note on the Degrees of Freedom for the <span class="math inline">\(t\)</span> Distribution</h3>
+<p>The distribution of the <span class="math inline">\(t\)</span> is not that of a <span class="math inline">\(t\)</span>-distribution. But it is approximately so if we use a degrees of freedom of <span class="math display">\[
+  \text{df} = \frac{\left(s_1^2/n_1 + s_2^2/n_2\right)^2}{\left(s_1^2/n_1\right)^2/(n_1-1) + \left(s_2^2/n_2\right)^2/(n_2-1)}.
+\]</span> But to avoid having to use this more complex formula <strong>we will use a lower bound to this formula which is simply <span class="math inline">\(\min(n_1-1,n_2-1)\)</span> (i.e., the smaller of <span class="math inline">\(n_1-1\)</span> and <span class="math inline">\(n_2-1\)</span>)</strong>.</p>
+<div style="page-break-after: always;"></div>
+<strong>Example</strong>: Recall the data from an observational study of finches on Daphne Major.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> <img src="lecture-11-01-2021_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /> We can summarize the data in the two samples as follows.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Sample Statistics
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+Year
+</th>
+<th style="text-align:center;">
+Size
+</th>
+<th style="text-align:center;">
+Mean
+</th>
+<th style="text-align:center;">
+SD
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1976
+</td>
+<td style="text-align:center;">
+751
+</td>
+<td style="text-align:center;">
+9.6
+</td>
+<td style="text-align:center;">
+1.0
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+1978
+</td>
+<td style="text-align:center;">
+89
+</td>
+<td style="text-align:center;">
+10.1
+</td>
+<td style="text-align:center;">
+0.9
+</td>
+</tr>
+</tbody>
+</table>
+<p>What can we infer about the change in the mean beak depth on Daphne Major between 1976 and 1978?</p>
+<div style="page-break-after: always;"></div>
+<p><strong>Example</strong>: A study published in the <em>Journal of Applied Psychology</em> examined the effect of stress on recall of police eyewitnesses.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> A total of 40 police recruits participated in a study in which half witnessed a non-stressful interrogation of a cooperative suspect and the other half witnessed a stressful interrogation of an uncooperative and belligerent suspect (the “suspects” were actually role-playing actors). After one week the researchers recorded the number of details that the eyewitnesses could correctly recall. For those that witnessed the <em>non-stressful</em> interrogation, the mean number of details reported was 53.3 with a standard deviation of 11.6. For those that witnessed the <em>stressful</em> interrogation, the mean number of details reported was 45.3 and the standard deviation was 13.2. What can we infer about the effect (if any) of the stressfulness of the interrogation on the accuracy of memory?</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Walkup, J. T. et al. (2001). Fluvoxamine for the treatment of anxiety disorders in children and adolescents. <em>The New England Journal of Medicine</em>, 344, 1279–1285.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Data from Larsen, R. D. (1990). Lessons learned from Lord Rayleigh on the importance of data analysis. <em>Journal of Chemical Education</em>, <em>67(11)</em>, 925–928.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Grant, P. (1986). <em>Ecology and evolution of Darwin’s finches</em>. Princeton, NJ: Princeton University Press.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Yuille, J. C., Davies, G., Gibling, F., Marxsen, D., &amp; Porter, S. (1994). Eyewitness memory of police trainees for realistic role plays. <em>Journal of Applied Psychology</em>, <em>79(6)</em>, 931–936.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
