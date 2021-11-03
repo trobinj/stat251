@@ -20,7 +20,7 @@ header-includes:
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, fig.align = "center", out.width = "100%", fig.width = 9, cache = TRUE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, fig.align = "center", out.width = "100%", fig.width = 9, cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
 ```
 
 ```{r packages}
@@ -84,6 +84,8 @@ ktbl(m)
 
 \pagebreak
 
+<!-- Note: The sample sizes are backwards here but I left them as is since we did the example already. But the aspirin group has the larger n. Be sure to fix ALL the tables in the next lecture. -->
+
 **Example**: A large-scale randomized experiment investigated the effect of regular aspirin use on myocardial infarctions (i.e., heart attacks).[^aspirin]
 ```{r}
 set.seed(124)
@@ -95,7 +97,7 @@ ktbl(headtail(d, 10))
 ```
 The data can be summarized as follows.
 ```{r}
-d <- data.frame(Group = c("aspirin","control"), yes = c(104,189), no = c(10933,10845), Total = c(11034,11037))
+d <- data.frame(Group = c("aspirin","control"), yes = c(104,189), no = c(11034-104,11037-189), Total = c(11034,11037))
 ktbl(d) %>% add_header_above(c(" " = 1, "Heart Attack?" = 2, " " = 1))
 ```
 
@@ -131,7 +133,7 @@ $$
 $$
 How then might we compute the point estimate, margin of error, and confidence interval for $p_1-p_2$, and how might we apply that to the results of the aspirin study?
 ```{r}
-d <- data.frame(Group = c("aspirin","control"), yes = c(104,189), no = c(10933,10845), Total = c(11034,11037))
+d <- data.frame(Group = c("aspirin","control"), yes = c(104,189), no = c(11034-104,11037-189), Total = c(11034,11037))
 ktbl(d) %>% add_header_above(c(" " = 1, "Heart Attack?" = 2, " " = 1))
 ```
 
@@ -145,7 +147,7 @@ $$
 $$
 How might we conduct a statistical test concerning $p_1-p_2$, and how might we apply that to the results of the aspirin study?
 ```{r}
-d <- data.frame(Group = c("aspirin","control"), yes = c(104,189), no = c(10933,10845), Total = c(11034,11037))
+d <- data.frame(Group = c("aspirin","control"), yes = c(104,189), no = c(11034-104,11037-189), Total = c(11034,11037))
 ktbl(d) %>% add_header_above(c(" " = 1, "Heart Attack?" = 2, " " = 1))
 ```
 

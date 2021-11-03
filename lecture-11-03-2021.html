@@ -11,7 +11,7 @@
 
 
 
-<title>Friday, Oct 29</title>
+<title>Wednesday, Nov 3</title>
 
 <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -261,16 +261,15 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Friday, Oct 29</h1>
+<h1 class="title toc-ignore">Wednesday, Nov 3</h1>
 
 </div>
 
 
-<p>You can also download a <a href="lecture-10-29-2021.pdf">PDF</a> copy of this lecture.</p>
-<div id="dependent-samples" class="section level2">
-<h2>Dependent Samples</h2>
-<p>With two <strong>dependent samples</strong>, the observations in the two samples are somehow “linked” between the samples by design (e.g., same unit observed twice, twins). Matched-pairs designs create dependent samples.</p>
-<strong>Example</strong>: Consider the following data from a study of the effect of in-synchrony versus out-of-sychrony speech on infant attention.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>
+<p>You can also download a <a href="lecture-11-03-2021.pdf">PDF</a> copy of this lecture.</p>
+<div id="independent-versus-dependent-samples" class="section level2">
+<h2>Independent Versus Dependent Samples</h2>
+<strong>Example</strong>: Consider a study like the twin study for investigating the relationship between schizophrenia and the volume of the left hippocampus.
 <table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -278,417 +277,329 @@ $(document).ready(function () {
 </th>
 <th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Synchrony
+Schizophrenia
 </div>
 </th>
 <th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
 </tr>
 <tr>
-<th style="text-align:center;">
-Infant
+<th style="text-align:right;">
+Pair
 </th>
 <th style="text-align:center;">
-Out
+Unaffected
 </th>
 <th style="text-align:center;">
-In
+Affected
 </th>
 <th style="text-align:center;">
-Diff
+Difference
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center;">
-DC
+<td style="text-align:right;">
+1
 </td>
 <td style="text-align:center;">
-50.4
+1.94
 </td>
 <td style="text-align:center;">
-20.3
+1.27
 </td>
 <td style="text-align:center;">
-30.1
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-MK
-</td>
-<td style="text-align:center;">
-87.0
-</td>
-<td style="text-align:center;">
-17.0
-</td>
-<td style="text-align:center;">
-70.0
+0.67
 </td>
 </tr>
 <tr>
-<td style="text-align:center;">
-BH
+<td style="text-align:right;">
+2
 </td>
 <td style="text-align:center;">
-25.1
+1.44
 </td>
 <td style="text-align:center;">
-6.5
+1.63
 </td>
 <td style="text-align:center;">
-18.6
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-JM
-</td>
-<td style="text-align:center;">
-28.5
-</td>
-<td style="text-align:center;">
-25.0
-</td>
-<td style="text-align:center;">
-3.5
+-0.19
 </td>
 </tr>
 <tr>
-<td style="text-align:center;">
-SB
+<td style="text-align:right;">
+3
 </td>
 <td style="text-align:center;">
-26.9
+1.56
 </td>
 <td style="text-align:center;">
-5.4
+1.47
 </td>
 <td style="text-align:center;">
-21.5
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-MM
-</td>
-<td style="text-align:center;">
-36.6
-</td>
-<td style="text-align:center;">
-29.2
-</td>
-<td style="text-align:center;">
-7.4
+0.09
 </td>
 </tr>
 <tr>
-<td style="text-align:center;">
-RH
+<td style="text-align:right;">
+4
 </td>
 <td style="text-align:center;">
-1.0
+1.58
 </td>
 <td style="text-align:center;">
-2.9
+1.39
 </td>
 <td style="text-align:center;">
--1.9
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-DJ
-</td>
-<td style="text-align:center;">
-43.8
-</td>
-<td style="text-align:center;">
-6.6
-</td>
-<td style="text-align:center;">
-37.2
+0.19
 </td>
 </tr>
 <tr>
-<td style="text-align:center;">
-JD
+<td style="text-align:right;">
+5
 </td>
 <td style="text-align:center;">
-44.2
+2.06
 </td>
 <td style="text-align:center;">
-15.8
+1.93
 </td>
 <td style="text-align:center;">
-28.4
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-ZC
-</td>
-<td style="text-align:center;">
-10.4
-</td>
-<td style="text-align:center;">
-8.3
-</td>
-<td style="text-align:center;">
-2.1
+0.13
 </td>
 </tr>
 <tr>
-<td style="text-align:center;">
-CW
+<td style="text-align:right;">
+6
 </td>
 <td style="text-align:center;">
-29.9
+1.66
 </td>
 <td style="text-align:center;">
-34.0
+1.26
 </td>
 <td style="text-align:center;">
--4.1
+0.4
 </td>
 </tr>
 <tr>
-<td style="text-align:center;">
-AF
+<td style="text-align:right;">
+7
 </td>
 <td style="text-align:center;">
-27.7
+1.75
 </td>
 <td style="text-align:center;">
-8.0
+1.71
 </td>
 <td style="text-align:center;">
-19.7
+0.04
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:center;">
+1.77
+</td>
+<td style="text-align:center;">
+1.67
+</td>
+<td style="text-align:center;">
+0.1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:center;">
+1.78
+</td>
+<td style="text-align:center;">
+1.28
+</td>
+<td style="text-align:center;">
+0.5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:center;">
+1.92
+</td>
+<td style="text-align:center;">
+1.85
+</td>
+<td style="text-align:center;">
+0.07
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:center;">
+1.25
+</td>
+<td style="text-align:center;">
+1.02
+</td>
+<td style="text-align:center;">
+0.23
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:center;">
+1.93
+</td>
+<td style="text-align:center;">
+1.34
+</td>
+<td style="text-align:center;">
+0.59
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:center;">
+2.04
+</td>
+<td style="text-align:center;">
+2.02
+</td>
+<td style="text-align:center;">
+0.02
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:center;">
+1.62
+</td>
+<td style="text-align:center;">
+1.59
+</td>
+<td style="text-align:center;">
+0.03
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:center;">
+2.08
+</td>
+<td style="text-align:center;">
+1.97
+</td>
+<td style="text-align:center;">
+0.11
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Size:
+</td>
+<td style="text-align:center;">
+15
+</td>
+<td style="text-align:center;">
+15
+</td>
+<td style="text-align:center;">
+15
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Mean:
+</td>
+<td style="text-align:center;">
+1.759
+</td>
+<td style="text-align:center;">
+1.56
+</td>
+<td style="text-align:center;">
+0.199
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+SD:
+</td>
+<td style="text-align:center;">
+0.242
+</td>
+<td style="text-align:center;">
+0.301
+</td>
+<td style="text-align:center;">
+0.238
 </td>
 </tr>
 </tbody>
 </table>
-<p>The observations are of the percent time attending to the person speaking. The average difference is about 19.4% and the standard deviation of the differences is about 20.8%.</p>
+<p>How would we make inferences if the samples are <em>dependent</em>, and how would we make inferences if the samples are <em>independent</em>?</p>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="independent-samples" class="section level2">
-<h2>Independent Samples</h2>
-<p>With two <strong>independent samples</strong>, the observations in the two samples are <em>not</em> “linked” between the samples.</p>
-<strong>Example</strong>: Had the study of the effect of in-synchrony versus out-of-synchrony speech used a <em>randomized design</em> in which each infant was assigned to <em>either</em> the in-synchrony or out-of-sychrony condition, it would produce independent samples that might look like this.
+<div id="matching-in-observational-studies" class="section level2">
+<h2>Matching in Observational Studies</h2>
+<strong>Example</strong>: Consider a study to compare the foot hair density of Hobbits who smoke pipe-weed with that of Hobbits that do not smoke. But we use an <em>observational</em> study and are concerned that smoking and foot hair density are also related to the confounding variables <em>age</em> and <em>Farthing</em>. We can control for age and Farthing by matching Hobbits based on those two variables.
 <table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
-<th style="text-align:center;">
-Infant
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="text-align:center;">
-Synchrony
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Smoker
+</div>
 </th>
-<th style="text-align:center;">
-Attention
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center;">
-DC
-</td>
-<td style="text-align:center;">
-In
-</td>
-<td style="text-align:center;">
-20.3
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-MK
-</td>
-<td style="text-align:center;">
-Out
-</td>
-<td style="text-align:center;">
-87.0
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-BH
-</td>
-<td style="text-align:center;">
-Out
-</td>
-<td style="text-align:center;">
-25.1
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-JM
-</td>
-<td style="text-align:center;">
-In
-</td>
-<td style="text-align:center;">
-25.0
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-SB
-</td>
-<td style="text-align:center;">
-In
-</td>
-<td style="text-align:center;">
-5.4
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-MM
-</td>
-<td style="text-align:center;">
-Out
-</td>
-<td style="text-align:center;">
-36.6
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-RH
-</td>
-<td style="text-align:center;">
-In
-</td>
-<td style="text-align:center;">
-2.9
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-DJ
-</td>
-<td style="text-align:center;">
-In
-</td>
-<td style="text-align:center;">
-6.6
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-JD
-</td>
-<td style="text-align:center;">
-Out
-</td>
-<td style="text-align:center;">
-44.2
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-ZC
-</td>
-<td style="text-align:center;">
-Out
-</td>
-<td style="text-align:center;">
-10.4
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-CW
-</td>
-<td style="text-align:center;">
-In
-</td>
-<td style="text-align:center;">
-34.0
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-AF
-</td>
-<td style="text-align:center;">
-Out
-</td>
-<td style="text-align:center;">
-27.7
-</td>
-</tr>
-</tbody>
-</table>
-The mean, standard deviation, and sample sizes for the two sample are given below.
-<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:center;">
-Synchrony
-</th>
-<th style="text-align:center;">
-<span class="math inline">\(\bar{x}\)</span>
-</th>
-<th style="text-align:center;">
-<span class="math inline">\(s\)</span>
-</th>
-<th style="text-align:center;">
-<span class="math inline">\(n\)</span>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Non-Smoker
+</div>
 </th>
 </tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center;">
-In
-</td>
-<td style="text-align:center;">
-15.7
-</td>
-<td style="text-align:center;">
-12.6
-</td>
-<td style="text-align:center;">
-6
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-Out
-</td>
-<td style="text-align:center;">
-38.5
-</td>
-<td style="text-align:center;">
-26.4
-</td>
-<td style="text-align:center;">
-6
-</td>
-</tr>
-</tbody>
-</table>
-<div style="page-break-after: always;"></div>
-<!-- Note: The sample sizes are backwards here but I left them as is since we did the example already. But the aspirin group has the larger n. -->
-<strong>Example</strong>: A large-scale randomized experiment investigated the effect of regular aspirin use on myocardial infarctions (i.e., heart attacks).<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>
-<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
 <tr>
 <th style="text-align:center;">
-Subject
+Pair
 </th>
 <th style="text-align:center;">
-Treatment
+Age
 </th>
 <th style="text-align:center;">
-Heart Attack?
+Farthing
+</th>
+<th style="text-align:center;">
+FHDI
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+FHDI
+</th>
+<th style="text-align:center;">
+Farthing
+</th>
+<th style="text-align:center;">
+Age
 </th>
 </tr>
 </thead>
@@ -698,10 +609,24 @@ Heart Attack?
 1
 </td>
 <td style="text-align:center;">
-aspirin
+60
 </td>
 <td style="text-align:center;">
-no
+W
+</td>
+<td style="text-align:center;">
+74.8
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+70.1
+</td>
+<td style="text-align:center;">
+W
+</td>
+<td style="text-align:center;">
+59
 </td>
 </tr>
 <tr>
@@ -709,10 +634,24 @@ no
 2
 </td>
 <td style="text-align:center;">
-aspirin
+108
 </td>
 <td style="text-align:center;">
-no
+W
+</td>
+<td style="text-align:center;">
+96.2
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+45.1
+</td>
+<td style="text-align:center;">
+W
+</td>
+<td style="text-align:center;">
+109
 </td>
 </tr>
 <tr>
@@ -720,10 +659,24 @@ no
 3
 </td>
 <td style="text-align:center;">
-control
+80
 </td>
 <td style="text-align:center;">
-yes
+E
+</td>
+<td style="text-align:center;">
+69.3
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+60.2
+</td>
+<td style="text-align:center;">
+E
+</td>
+<td style="text-align:center;">
+80
 </td>
 </tr>
 <tr>
@@ -731,10 +684,24 @@ yes
 4
 </td>
 <td style="text-align:center;">
-aspirin
+43
 </td>
 <td style="text-align:center;">
-no
+N
+</td>
+<td style="text-align:center;">
+96.9
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+76.3
+</td>
+<td style="text-align:center;">
+N
+</td>
+<td style="text-align:center;">
+43
 </td>
 </tr>
 <tr>
@@ -742,65 +709,24 @@ no
 5
 </td>
 <td style="text-align:center;">
-aspirin
+96
 </td>
 <td style="text-align:center;">
-no
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-6
+S
 </td>
 <td style="text-align:center;">
-control
+77.6
 </td>
 <td style="text-align:center;">
-yes
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-7
 </td>
 <td style="text-align:center;">
-control
+69.2
 </td>
 <td style="text-align:center;">
-yes
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-8
+S
 </td>
 <td style="text-align:center;">
-aspirin
-</td>
-<td style="text-align:center;">
-no
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-9
-</td>
-<td style="text-align:center;">
-control
-</td>
-<td style="text-align:center;">
-no
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-10
-</td>
-<td style="text-align:center;">
-aspirin
-</td>
-<td style="text-align:center;">
-yes
+96
 </td>
 </tr>
 <tr>
@@ -813,21 +739,49 @@ yes
 <td style="text-align:center;">
 <span class="math inline">\(\vdots\)</span>
 </td>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
 </tr>
 <tr>
 <td style="text-align:center;">
-22071
+100
 </td>
 <td style="text-align:center;">
-aspirin
+98
 </td>
 <td style="text-align:center;">
-no
+W
+</td>
+<td style="text-align:center;">
+70.5
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+49
+</td>
+<td style="text-align:center;">
+W
+</td>
+<td style="text-align:center;">
+95
 </td>
 </tr>
 </tbody>
 </table>
-The data can be summarized as follows.
+This creates a matched-pairs design with dependent samples.
 <table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -835,7 +789,7 @@ The data can be summarized as follows.
 </th>
 <th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Heart Attack?
+FHDI
 </div>
 </th>
 <th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
@@ -843,206 +797,144 @@ Heart Attack?
 </tr>
 <tr>
 <th style="text-align:center;">
-Group
+Pair
 </th>
 <th style="text-align:center;">
-yes
+Smoker
 </th>
 <th style="text-align:center;">
-no
+Non-Smoker
 </th>
 <th style="text-align:center;">
-Total
+Difference
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:center;">
-aspirin
+1
 </td>
 <td style="text-align:center;">
-104
+74.8
 </td>
 <td style="text-align:center;">
-10930
+70.1
 </td>
 <td style="text-align:center;">
-11034
+4.7
 </td>
 </tr>
 <tr>
 <td style="text-align:center;">
-control
+2
 </td>
 <td style="text-align:center;">
-189
+96.2
 </td>
 <td style="text-align:center;">
-10848
+45.1
 </td>
 <td style="text-align:center;">
-11037
+51.1
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+69.3
+</td>
+<td style="text-align:center;">
+60.2
+</td>
+<td style="text-align:center;">
+9.1
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+96.9
+</td>
+<td style="text-align:center;">
+76.3
+</td>
+<td style="text-align:center;">
+20.6
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+77.6
+</td>
+<td style="text-align:center;">
+69.2
+</td>
+<td style="text-align:center;">
+8.4
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+70.5
+</td>
+<td style="text-align:center;">
+49
+</td>
+<td style="text-align:center;">
+21.5
 </td>
 </tr>
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="sampling-distribution-of-hatp_1---hatp_2" class="section level2">
-<h2>Sampling Distribution of <span class="math inline">\(\hat{p}_1 - \hat{p}_2\)</span></h2>
-<p>What do we know about the sampling distribution of <span class="math inline">\(\hat{p}_1 - \hat{p}_2\)</span>?</p>
+<div id="standard-errors-for-dependent-versus-independent-samples" class="section level2">
+<h2>Standard Errors for Dependent Versus Independent Samples</h2>
+<p>Suppose we have two samples, both of equal size <span class="math inline">\(n\)</span> (so we’ll leave off the subscript). The standard error of <span class="math inline">\(\bar{x}_1-\bar{x}_2\)</span> is <span class="math display">\[
+    \underbrace{\sqrt{\frac{\sigma_1^2}{n} + \frac{\sigma_2^2}{n}}}_{\text{independent}} \ge 
+    \underbrace{\sqrt{\frac{\sigma_1^2}{n} + \frac{\sigma_2^2}{n} - \rho\frac{2\sigma_1\sigma_2}{n}}}_{\text{dependent}} = \frac{\sigma_d}{\sqrt{n}}.
+\]</span> Here <span class="math inline">\(\sigma_d\)</span> is the standard deviation of the <em>differences</em> of matched observations, and <span class="math inline">\(\rho\)</span> is the <em>correlation coefficient</em>. The correlation coefficient can be between -1 and 1.</p>
 <ol style="list-style-type: decimal">
-<li><p>The <em>mean</em> of the sampling distribution is <span class="math inline">\(p_1 - p_2\)</span>.</p></li>
-<li><p>The <em>standard deviation</em> (i.e., standard error) is <span class="math display">\[
-  \sqrt{\frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}},
-\]</span> assuming <em>independent</em> samples. Why? Because the variance of the <em>sum</em> or <em>difference</em> of two <em>indepedent</em> random variables is equal to the <em>sum of their variances</em>.</p></li>
-<li><p>The <em>shape</em> of the sampling distribution is approximately that of a normal probability distribution by an application of the central limit theorem.</p></li>
+<li>If the samples are <em>independent</em> then <span class="math inline">\(\rho = 0\)</span>.</li>
+<li>If the samples are <em>dependent</em> then (usually) <span class="math inline">\(0 &lt; \rho &lt; 1\)</span>.</li>
 </ol>
+<p>What does this imply about the standard errors for dependent versus independent samples?</p>
+<p><strong>Example</strong>: Suppose we had a matched-pairs design using genetically-related individuals (e.g., cousins, siblings, or identical twins) for a study like that that investigated the relationship between schizophrenia and left hippocampus volume. <img src="lecture-11-03-2021_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="confidence-interval-for-p_1-p_2" class="section level2">
-<h2>Confidence Interval for <span class="math inline">\(p_1-p_2\)</span></h2>
-A general “recipe” for a confidence interval is <span class="math display">\[
-\text{point estimate} \pm \text{margin of error},
-\]</span> where <span class="math display">\[
-\text{margin of error} = \text{multiplier} \times \text{standard error}. 
-\]</span> How then might we compute the point estimate, margin of error, and confidence interval for <span class="math inline">\(p_1-p_2\)</span>, and how might we apply that to the results of the aspirin study?
-<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
-</th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Heart Attack?
-</div>
-</th>
-<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
-</th>
-</tr>
-<tr>
-<th style="text-align:center;">
-Group
-</th>
-<th style="text-align:center;">
-yes
-</th>
-<th style="text-align:center;">
-no
-</th>
-<th style="text-align:center;">
-Total
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center;">
-aspirin
-</td>
-<td style="text-align:center;">
-104
-</td>
-<td style="text-align:center;">
-10930
-</td>
-<td style="text-align:center;">
-11034
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-control
-</td>
-<td style="text-align:center;">
-189
-</td>
-<td style="text-align:center;">
-10848
-</td>
-<td style="text-align:center;">
-11037
-</td>
-</tr>
-</tbody>
-</table>
-<div style="page-break-after: always;"></div>
-</div>
-<div id="statistical-test-concerning-p_1-p_2" class="section level2">
-<h2>Statistical Test Concerning <span class="math inline">\(p_1-p_2\)</span></h2>
-A general “recipe” for a test statistic is <span class="math display">\[
-\text{test statistic} = \frac{\text{point estimate} - \text{hypothesized mean}}{\text{standard error}}.
-\]</span> How might we conduct a statistical test concerning <span class="math inline">\(p_1-p_2\)</span>, and how might we apply that to the results of the aspirin study?
-<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
-</th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Heart Attack?
-</div>
-</th>
-<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
-</th>
-</tr>
-<tr>
-<th style="text-align:center;">
-Group
-</th>
-<th style="text-align:center;">
-yes
-</th>
-<th style="text-align:center;">
-no
-</th>
-<th style="text-align:center;">
-Total
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center;">
-aspirin
-</td>
-<td style="text-align:center;">
-104
-</td>
-<td style="text-align:center;">
-10930
-</td>
-<td style="text-align:center;">
-11034
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-control
-</td>
-<td style="text-align:center;">
-189
-</td>
-<td style="text-align:center;">
-10848
-</td>
-<td style="text-align:center;">
-11037
-</td>
-</tr>
-</tbody>
-</table>
-<div style="page-break-after: always;"></div>
-<p><strong>Example</strong>: A study published in <em>The New England Journal of Medicine</em> reported the results of a randomized experiment with 128 children and adolescents to investigate the effectiveness of the drug fluvoxamine in the treatment of anxiety disorders in young people.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> The study found that 48 out of 63 subjects that were given the drug showed a reduction in anxiety, in comparison to only 19 out of 65 subjects that were not given the drug. What can we infer about the effect of the fluvoxamine on anxiety reduction?</p>
-</div>
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn1"><p>Dodd, B. (1979). Lip reading in infants: Attention to speech presented in- and out-of-synchrony. <em>Cognitive Psychology</em>, <em>11</em>, 478–484.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>Steering Committee of the Physicians’ Health Study Research Group. (1989). Final report on the aspirin component of the ongoing Physicians’ Health Study. <em>New England Journal of Medicine</em>, <em>321</em>, 129–135.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p>Walkup, J. T. et al. (2001). Fluvoxamine for the treatment of anxiety disorders in children and adolescents. <em>The New England Journal of Medicine</em>, 344, 1279–1285.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
-</ol>
+<div id="the-other-standard-error-for-barx_1-barx_2" class="section level2">
+<h2>The Other Standard Error for <span class="math inline">\(\bar{x}_1-\bar{x}_2\)</span></h2>
+<p>If two samples are independent, the standard error we have been using is <span class="math display">\[
+  \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}.
+\]</span> An alternative is to use <span class="math display">\[
+  s\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}, \ \ \ \text{where} \ \ \ s = \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1 + n_2 - 2}},
+\]</span> and the degrees of freedom becomes <span class="math inline">\(n_1 + n_2 - 2\)</span>.</p>
+<p>Why would we use this alternative standard error?</p>
 </div>
 
 
