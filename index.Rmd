@@ -9,7 +9,7 @@ Course material for Dr. Johnson's *Statistical Methods* (Stat 251, Section 01) a
 
 <center>
 
-![https://xkcd.com/1526](https://imgs.xkcd.com/comics/placebo_blocker.png)
+![https://xkcd.com/552](http://imgs.xkcd.com/comics/correlation.png)
 
 ***
 

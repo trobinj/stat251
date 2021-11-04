@@ -102,7 +102,7 @@ i <- 0
 
 `r i <- i + 1; d[i]` [Independent versus dependent samples --- revisited, the alternative standard error for inferences for $\mu_1-\mu_2$](lecture-11-03-2021.html). 
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Causal inference](lecture-11-05-2021.html).
  
 ***
 
