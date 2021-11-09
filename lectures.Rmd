@@ -108,7 +108,7 @@ i <- 0
 
 `r i <- i + 1; d[i]` [Sampling designs for surveys](lecture-11-08-2021.html). The [study guide](e5-studyguide.html) for the fifth examination is now available.
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Misconceptions and limitations of statistical tests](lecture-11-10-2021.html).
 
 `r i <- i + 1; d[i]` **Fifth examination**. 
  
