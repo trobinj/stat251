@@ -1,0 +1,14 @@
+name: stat251
+output_dir: '.'
+navbar:
+  title: Statistics 251
+  right:
+  - text: Lectures
+    href: lectures.html
+  - text: Syllabus
+    href: syllabus.html
+output:
+  html_document:
+    lib_dir: site_libs
+    self_contained: no
+      

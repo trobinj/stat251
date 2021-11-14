@@ -1,0 +1,245 @@
+---
+title: "Homework Problem Set 4: Probability Distributions"
+output: 
+  html_document: 
+    theme: readable
+  pdf_document: default
+header-includes:
+  - \usepackage{array}
+  - \usepackage{booktabs}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, out.width = "100%", fig.align = "center", 
+  cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
+```
+
+```{r packages}
+library(tidyverse)
+library(kableExtra)
+```
+
+```{r utilities}
+source("../../utilities.R")
+```
+
+`r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](homework-04.pdf) copy of this homework assignment.", sep = ""), "")`
+
+Note: The solutions are given within each problem by asking you to confirm the answer. 
+
+## Means and Standard Deviations of Discrete Random Variables
+
+```{r}
+x <- c(10,20,30,40)
+p <- c(0.1,0.2,0.3,0.4)
+
+pop <- data.frame(x,p)
+
+x.grid <- expand.grid(x1 = x, x2 = x)
+x.grid <- apply(x.grid, 1, mean)
+p.grid <- expand.grid(p1 = p, p2 = p)
+p.grid <- apply(p.grid, 1, prod)
+
+sam <- data.frame(x = x.grid, p = p.grid)
+sam <- sam %>% group_by(x) %>% summarize(p = sum(p))
+
+m.pop <- with(pop, crossprod(x,p))[1,1]
+v.pop <- with(pop, crossprod((x-m.pop)^2,p))
+m.sam <- with(sam, crossprod(x,p))[1,1]
+v.sam <- with(sam, crossprod((x-m.sam)^2,p))
+```
+
+1. Consider a survey of tree volume. Suppose that in the population of trees 10% have a volume of 10 cubic feet, 20% have a volume of 20 cubic feet, 30% have a volume of 30 cubic feet, and 40% have a volume of 40 cubic feet. Let $x$ denote the volume of a randomly selected tree, assuming that every tree has an equal chance of being selected. The probability distribution of $x$ is given in the table below.
+```{r}
+tmp <- pop
+names(tmp) <- c("$x$","$P(x)$")
+ktbl(tmp)
+```
+This is what we would call a *population distribution* since it is the probability distribution of a single observation (and also happens to correspond to the distribution of observations in the population if we think of the probabilities as relative frequencies). Confirm that $x$ has a mean of $\mu$ = `r m.pop` cubic feet and a standard deviation of $\sigma$ = `r sqrt(v.pop)` cubic feet by computing them yourself.
+
+0. Now consider the probability distribution of the *mean volume* ($\bar{x}$) of the observed volumes of $n$ = 2  trees, selected at random based on the distribution given above. Recall that the probability distribution of a *statistic*, like $\bar{x}$, is called a *sampling distribution*. This probability distribution is shown in the table below. 
+```{r}
+tmp <- sam
+names(tmp) <- c("$\\bar{x}$","$P(\\bar{x})$")
+ktbl(tmp)
+```
+Confirm that the mean, variance, and standard deviation of $\bar{x}$ are `r m.sam`, `r v.sam`, and approximately `r round(sqrt(v.sam),2)`, respectively.
+
+0. Recall the example from class where we observe whether a female platy prefers the yellow-tailed or the clear-tailed male. Let $x$ denote the preference and assume the following probability distribution.
+```{r}
+d <- data.frame(x = c("clear","yellow"), Probability = c(0.3,0.7))
+names(d) <- c("$x$","$P(x)$")
+ktbl(d)
+```
+If we observe a sample of $n$ = 2 observations and compute the proportion of those observations in which the yellow-tailed male is preferred (which we denote as $\hat{p}$), then the sampling distribution of $\hat{p}$ is as follows.
+```{r}
+d <- data.frame(p = c(0,0.5,1), Probability = dbinom(0:2, 2, 0.7))
+names(d) <- c("$\\hat{p}$","$P(\\hat{p})$")
+ktbl(d)
+```
+Confirm that the mean of $\hat{p}$ is 0.7, and that the standard deviation of $\hat{p}$ is approximately `r round(sqrt(0.7*0.3/2),2)`. 
+
+## Computing Probabilities from Discrete Probability Distributions
+
+1. Consider again the sampling distribution of the mean volume ($\bar{x}$) of a sample of $n$ = 2 trees. 
+```{r}
+tmp <- sam
+names(tmp) <- c("$\\bar{x}$","$P(\\bar{x})$")
+ktbl(tmp)
+```
+Use this distribution to confirm that the probability that $\bar{x}$ is less than 20 is `r with(sam, sum(p[x < 20]))`, the probability that $\bar{x}$ is greater than 30 is `r with(sam, sum(p[x > 30]))`, and that the probability that $\bar{x}$ is both greater than 15 and less than 35 is `r with(sam, sum(p[x > 15 & x < 35]))`.  
+
+0. Suppose a fair coin is flipped 10 times and compute the proportion of flips on which the coin comes up heads. We can think of this proportion, $\hat{p}$, as a statistic for a sample of $n$ = 10 observations. The sampling distribution of this statistic is shown below using a plot and also a table. 
+```{r, fig.height = 3}
+d <- data.frame(x = c(0:10)/10, y = dbinom(0:10, 10, 0.5))
+p <- ggplot(d, aes(x = x, y = y)) + theme_classic()
+p <- p + geom_point() + geom_segment(aes(yend = 0, xend = x))
+p <- p + scale_x_continuous(breaks = c(0:10)/10)
+p <- p + labs(x = tex("$\\hat{p}$"), y = "Probability")
+plot(p)
+tmp <- d
+tmp$y <- round(tmp$y,3)
+names(tmp) <- c("$\\hat{p}$", "$P(\\hat{p})$")
+ktbl(tmp)
+```
+Use this distribution to confirm that the probability that the proportion of heads is between 0.3 and 0.7 (meaning that it is greater than 0.3 and less than 0.7) is `r sum(round(dbinom(4:6, 10, 0.5),3))`, the probability that the proportion of heads is between 0.2 and 0.8 (meaning that it is greater than 0.2 and less than 0.8) is `r sum(round(dbinom(3:7, 10, 0.5),3))`, the probability that the proportion of heads is greater than 0.6 is `r sum(round(dbinom(7:10, 10, 0.5),3))`, and the probability that the proportion of heads is greater than 0.7 is `r sum(round(dbinom(8:10, 10, 0.5),3))`.
+
+## Computing Probabilities from Continuous Probability Distributions
+
+The figure below shows the probability distribution of a *continuous* random variable $x$. 
+```{r, fig.height = 2.25}
+x <- c(0,0,1,1,2,2,3,3,4,4) * 2
+y <- c(0,2,2,4,4,3,3,1,1,0)/10 / 2
+
+d <- data.frame(x = x, y = y)
+
+p <- ggplot(d, aes(x = x, y = y)) 
+p <- p + geom_line() + theme_bw() + theme(panel.border = element_blank(), axis.line = element_line(colour = "black"), panel.grid.minor = element_blank())
+p <- p + scale_x_continuous(breaks = seq(0, 8, by = 1))
+p <- p + labs(x = "x", y = "Probability Density")
+plot(p)
+```
+Use this figure to confirm the following probabilities by computing them yourself. 
+
+1. The probability of $x < 2$ is `r 4/20`.
+0. The probability of $x > 2$ is `r 1 - 4/20`.
+0. The probability of $2 < x < 4$ is `r 8/20`. 
+0. The probability of $4 < x < 6$ is `r 6/20`. 
+0. The probability of $2 < x < 6$ is `r 14/20`. 
+0. The probability of $3 < x < 5$ is `r 7/20`. 
+0. The probability of $x > 5$ is `r 5/20`. 
+0. The probability of $x = 3$ is 0. 
+0. The probability of $0 < x < 0.5$ is 0.05.
+0. The probability of $x > 6.5$ is `r 0.05 + 0.025`. 
+
+  The figure below shows the probability distribution of a continuous random variable $x$.
+```{r, fig.height = 4}
+f <- function(theta, prb, x) {
+  (prb[1] - pbeta(x[1], theta[1], theta[2]))^2 + (prb[2] - pbeta(x[2], theta[1], theta[2]))^2
+}
+  
+d <- optim(par = c(1,1), fn = f, method = "L-BFGS-B", prb = c(0.1, 0.7), x = c(0.3, 0.8), lower = 0, upper = Inf)
+
+alph <- d$par[1]
+beta <- d$par[2]
+
+x <- seq(0, 1, length = 1000)
+y <- dbeta(x, alph, beta)
+
+d <- data.frame(x = x, y = y)
+ 
+p <- ggplot(d, aes(x = x*10, y = y/10)) + theme_classic()
+p <- p + geom_line() + labs(x = "x", y = "Probability Density")
+
+d <- data.frame(p = seq(0.05, 0.95, by = 0.05), y = NA)
+for (i in 1:nrow(d)) {
+  d$x[i] <- qbeta(d$p[i], alph, beta)
+  d$y[i] <- dbeta(d$x[i], alph, beta)
+}
+
+p <- p + geom_segment(aes(x = x*10, xend = x*10, y = 0, yend = y/10), linetype = 3, data = d)
+p <- p + scale_x_continuous(breaks = seq(0, 10, by = 0.5))
+plot(p)
+```
+The vertical dotted line segments divide the total area under the curve into 20 areas of equal size, so each slice has an area of 1/20 = 0.05. Use the figure to confirm the following probabilities.
+
+1. The probability of $x < 3$ is 0.1.
+
+0. The probability of $x < 8$ is 0.7.
+
+0. The probability of $x > 3$ is 0.9.
+
+0. The probability of $x > 8$ is 0.3.
+
+0. The probability of $3 < x < 8$ is 0.6. 
+
+## Quartiles of the Probability Distribution of a Continuous Random Variable
+
+The figure below shows the probability distribution of a *continuous* random variable $x$. 
+```{r, fig.height = 2.25}
+x <- c(0,0,1,1,2,3,4,4,5,6,6,7,8,9,9,10,10)
+y <- c(0,1,1,2,2,2,2,3,3,3,2,2,2,2,1,1,0)/20
+
+d <- data.frame(x = x, y = y)
+
+p <- ggplot(d, aes(x = x, y = y)) 
+p <- p + geom_line() + theme_bw() + theme(panel.border = element_blank(), axis.line = element_line(colour = "black"), panel.grid.minor = element_blank())
+p <- p + scale_x_continuous(breaks = seq(0, 10, by = 1))
+p <- p + labs(x = "x", y = "Probability Density")
+plot(p)
+```
+Consider the problem of finding the quartiles. By definition, the first quartile is a number $Q_1$ such that the probability of $x < Q_1$ is 0.25. Similarly we can define the second and third quartiles by the fact that the probability of $x < Q_2$ is 0.5, and that the probability of $x < Q_3$ is 0.75 (also the probability of $x > Q_1$ is 0.75, the probability of $x > Q_2$ is 0.5, and the probability of $x > Q_3$ is 0.25). For example, in the first problem in this section $Q_3 = 5$ because there the probability of $x > 5$ is 0.25. Find the quartiles. (Hint: You will know if you have the correct numbers if the probabilities described above are correct for those numbers. For example, you will know if you have found $Q_1$ if the probability of $x < Q_1$ is 0.25. Also, all three quartiles are whole numbers for this distribution.)
+
+## Computing Probabilities from the Normal Distribution
+
+```{r}
+m <- 75
+s <- 4
+
+x <- seq(m - 3*s, m + 3*s, length = 1000)
+y1 <- dnorm(x, m, s)
+y2 <- dnorm(x, m, s/sqrt(4))
+
+f <- function(a,b,m,s) {
+  pnorm(b,m,s) - pnorm(a,m,s)
+}
+```
+
+Consider a survey of black cherry trees in a forest where the variable of interest is the heights of the trees (in feet). Let $x$ denote the height of a single tree is randomly selected from the forest, and suppose that the probability distribution of $x$ (i.e., the *population distribution*) is approximately normal in shape with mean `r m` and standard deviation `r s`. Let $\bar{x}$ denote the mean height of the trees in a sample of $n$ = 4 trees selected at random. The probability distribution of $\bar{x}$ (i.e., the *sampling distribution*) is also approximately normal with a mean of `r m` and a standard deviation of `r s/2`. The figure below shows these two distributions.
+```{r, fig.height = 2.75}
+d <- data.frame(x = rep(x, 2), y = c(y1,y2), n = rep(c("population distribution","sampling distribution"), each = length(x)))
+p <- ggplot(d, aes(x = x, y = y)) + theme_classic()
+p <- p + geom_line(aes(linetype = n)) + theme(legend.position = c(0.8,0.8))
+p <- p + scale_x_continuous(breaks = seq(50, 100, by = 1))
+p <- p + labs(y = "Probability Density", x = "", linetype = "")
+plot(p)
+```
+Use the *population distribution* described above to confirm the following probabilities. You can use [statdistributions.com](http://www.statdistributions.com) to compute probabilities based on $z$-scores.
+
+1. The probability that $x$ is between 73 and 77 is `r rnd(f(73,77,75,4),2)`.
+
+0. The probability that $x$ is between 71 and 79 is `r rnd(f(71,79,75,4),2)`.
+
+0. The probability that $x$ is between 70 and 80 is `r rnd(f(70,80,75,4),2)`.
+
+0. The probability that $x$ is greater than 77 is `r rnd(f(77,Inf,75,4),2)`.
+
+0. The probability that $x$ is greater than 80 is `r rnd(f(80,Inf,75,4),2)`.
+
+
+Use the *sampling distribution* described above to confirm the following probabilities. You can use [statdistributions.com](http://www.statdistributions.com) to compute probabilities based on $z$-scores.
+
+1. The probability that $\bar{x}$ is between 73 and 77 is `r rnd(f(73,77,75,2),2)`.
+
+0. The probability that $\bar{x}$ is between 71 and 79 is `r rnd(f(71,79,75,2),2)`.
+
+0. The probability that $\bar{x}$ is between 70 and 80 is `r rnd(f(70,80,75,2),2)`.
+
+0. The probability that $\bar{x}$ is greater than 77 is `r rnd(f(77,Inf,75,2),2)`.
+
+0. The probability that $\bar{x}$ is greater than 80 is `r rnd(f(80,Inf,75,2),2)`.
+
+```{r}
+rm(list = ls())
+```
+

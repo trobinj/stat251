@@ -1,0 +1,82 @@
+---
+title: "First Examination Study Guide"
+output:
+  html_document:
+    theme: readable
+  pdf_document: default
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+`r ifelse(knitr::is_html_output(), "You can also download a [PDF](e1-studyguide.pdf) copy of this study guide.", "")`
+
+1. The "anatomy" of data (i.e., observations and variables, quantitative and categorical variables). 
+
+0. Understand *samples* versus *populations*.
+
+0. Understand *statistics* versus *parameters*.
+
+0. Understand *descriptive* versus *inferential* statistics. 
+
+0. What is meant by a *distribution*?
+
+0. Be able to compute *frequency*, *relative frequency*, and *cumulative relative frequency* given a small set of observations. 
+
+0. Understand how a *dot plot* and a *histogram* are constructed from data.
+
+0. Be able to compute a *mean*, *median*, and *mode* given a small set of observations. Note that you should also know how to compute a mean using a distribution that gives the values of the variable and their relative frequencies. 
+
+0. Be able to compute a *variance* and *standard deviation* given a small set of observations, and the *interquartile range* (if given $Q_3$ and $Q_1$) and *range* given the five-number summary. 
+
+0. Understand how to construct and plot a *cumulative distribution*. 
+
+0. Know how to find percentiles (approximately) from a plot of the cumulative distribution. 
+
+0. Know how a *box plot* is constructed from a *five number summary*.
+
+0. Know the terms for the *shape* of the distribution of a quantitative variable.
+
+0. Know how the shape of normal distribution is related to its *mean* and *standard deviation*. 
+
+0. Be able to apply the *empirical rule* to a normal distribution.
+
+0. Know how to compute and interpret $z$-scores. 
+
+0. Know how to identify outliers using percentiles. 
+
+0. Know how to identify outliers in normal distributions using the mean and standard deviation.
+
+0. Know how to identify outliers using the five number summary (specifically, $Q_1$ and $Q_3$). 
+
+0. Understand what it means to say that a summary measure is resistant, and which summary measures we have discussed that are resistant and which are not. 
+
+0. Understand what is meant by the *margin of error*.
+
+0. Understand what is meant by *statistically significant*. 
+
+0. ~~Be able to identify the *explanatory* and *response* variables in a study.~~
+
+0. ~~Understand the three basic kinds of studies: a *survey*, an *experiment*, and an *observational study*.~~
+
+0. Be sure you understand the notation (i.e., symbols) we have used so far (e.g., $n$, $\bar{x}$, $s$, $s^2$, $Q_1$, $Q_2$, $Q_3$).
+
+Formulas/expressions you should understand when and how to use. 
+
+$$
+  \bar{x} = \frac{\sum_{i=1}^n x_i}{n}, \ \ \ \bar{x} = \sum_x xr(x), \ \ \ s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}, 
+  \ \ \ s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}} 
+$$
+$$
+  z = \frac{x - \bar{x}}{s}
+$$
+$$
+  \text{range} = \text{max}-\text{min}, \ \ \ \text{IQR} = Q_3 - Q_1
+$$
+$$
+  x < \bar{x} - 2s, \ \ \ x > \bar{x} + 2s
+$$
+$$
+  x < Q_1 - 1.5 \times (Q_3-Q_1), \ \ \ x > Q_3 + 1.5 \times (Q_3-Q_1)
+$$
