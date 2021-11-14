@@ -1,0 +1,158 @@
+---
+output:
+  html_document:
+    theme: readable
+---
+
+```{r, echo = FALSE, message = FALSE}
+library(lubridate)
+date <- "10-29-2021"
+weekday <- wday(mdy(date), label = TRUE, abbr = FALSE)
+month <- month(mdy(date), label = TRUE)
+day <- day(mdy(date))
+```
+
+---
+title: `r paste(weekday, ", ", month, " ", day, sep = "")`
+header-includes:
+  - \usepackage{array}
+  - \usepackage{booktabs}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, fig.align = "center", out.width = "100%", fig.width = 9, cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
+```
+
+```{r packages}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(kableExtra)
+```
+
+```{r utilities}
+source("../../utilities.R")
+```
+
+`r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](lecture-", date, ".pdf) copy of this lecture.", sep = ""), "")`
+
+## Dependent Samples
+
+With two **dependent samples**, the observations in the two samples are somehow "linked" between the samples by design (e.g., same unit observed twice, twins). Matched-pairs designs create dependent samples.
+
+**Example**: Consider the following data from a study of the effect of in-synchrony versus out-of-sychrony speech on infant attention.[^dodd]
+```{r}
+d <- trtools::synchrony
+d <- d[,c(1,3,2)]
+names(d) <- c("Infant", "Out", "In")
+d <- d %>% mutate(Diff = Out - In)
+ktbl(d) %>% add_header_above(c(" " = 1, "Synchrony" = 2, " " = 1))
+```
+The observations are of the percent time attending to the person speaking. The average difference is about `r with(d, round(mean(Out-In),1))`% and the standard deviation of the differences is about `r with(d, round(sd(Out-In),1))`%. 
+
+[^dodd]: Dodd, B. (1979). Lip reading in infants: Attention to speech presented in- and out-of-synchrony. *Cognitive Psychology*, *11*, 478--484.
+
+\pagebreak
+
+## Independent Samples
+
+With two **independent samples**, the observations in the two samples are *not* "linked" between the samples.
+
+**Example**: Had the study of the effect of in-synchrony versus out-of-synchrony speech used a *randomized design* in which each infant was assigned to *either* the in-synchrony or out-of-sychrony condition, it would produce independent samples that might look like this.
+```{r}
+set.seed(123)
+d <- data.frame(Infant = d$Infant, Synchrony = sample(rep(c("In","Out"), each = 6)))
+d$Attention <- NA
+for (i in 1:nrow(d)) {
+  if (d$Synchrony[i] == "In") {
+    d$Attention[i] <- trtools::synchrony$insync[i]
+  }
+  else {
+    d$Attention[i] <- trtools::synchrony$outsync[i]
+  }
+}
+ktbl(d)
+```
+The mean, standard deviation, and sample sizes for the two sample are given below.
+```{r}
+m <- d %>% group_by(Synchrony) %>% 
+  summarize(m = round(mean(Attention),1), 
+    s = round(sd(Attention),1), n = n())
+names(m)[2:4] <- c("$\\bar{x}$","$s$","$n$")
+ktbl(m)
+```
+
+\pagebreak
+
+<!-- Note: The sample sizes are backwards here but I left them as is since we did the example already. But the aspirin group has the larger n. Be sure to fix ALL the tables in the next lecture. -->
+
+**Example**: A large-scale randomized experiment investigated the effect of regular aspirin use on myocardial infarctions (i.e., heart attacks).[^aspirin]
+```{r}
+set.seed(124)
+d <- data.frame(Subject = 1:22071,
+  Treatment = sample(c("aspirin","control"), 22071, replace = TRUE), 
+  y = sample(c("yes","no"), 22071, replace = TRUE))
+names(d)[3] <- "Heart Attack?"
+ktbl(headtail(d, 10))
+```
+The data can be summarized as follows.
+```{r}
+d <- data.frame(Group = c("aspirin","control"), yes = c(104,189), no = c(11034-104,11037-189), Total = c(11034,11037))
+ktbl(d) %>% add_header_above(c(" " = 1, "Heart Attack?" = 2, " " = 1))
+```
+
+[^aspirin]: Steering Committee of the Physicians' Health Study Research Group. (1989). Final report on the aspirin component of the ongoing Physicians' Health Study. *New England Journal of Medicine*, *321*, 129--135.
+
+\pagebreak
+
+## Sampling Distribution of $\hat{p}_1 - \hat{p}_2$
+
+What do we know about the sampling distribution of $\hat{p}_1 - \hat{p}_2$?
+
+1. The *mean* of the sampling distribution is $p_1 - p_2$. 
+
+2. The *standard deviation* (i.e., standard error) is 
+$$
+  \sqrt{\frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}},
+$$
+assuming *independent* samples. Why? Because the variance of the *sum* or *difference* of two *indepedent* random variables is equal to the *sum of their variances*.
+
+3. The *shape* of the sampling distribution is approximately that of a normal probability distribution by an application of the central limit theorem. 
+
+\pagebreak
+
+## Confidence Interval for $p_1-p_2$
+
+A general "recipe" for a confidence interval is
+$$
+\text{point estimate} \pm \text{margin of error},
+$$
+where
+$$
+\text{margin of error} = \text{multiplier} \times \text{standard error}. 
+$$
+How then might we compute the point estimate, margin of error, and confidence interval for $p_1-p_2$, and how might we apply that to the results of the aspirin study?
+```{r}
+d <- data.frame(Group = c("aspirin","control"), yes = c(104,189), no = c(11034-104,11037-189), Total = c(11034,11037))
+ktbl(d) %>% add_header_above(c(" " = 1, "Heart Attack?" = 2, " " = 1))
+```
+
+\pagebreak
+
+## Statistical Test Concerning $p_1-p_2$
+
+A general "recipe" for a test statistic is
+$$
+\text{test statistic} = \frac{\text{point estimate} - \text{hypothesized mean}}{\text{standard error}}.
+$$
+How might we conduct a statistical test concerning $p_1-p_2$, and how might we apply that to the results of the aspirin study?
+```{r}
+d <- data.frame(Group = c("aspirin","control"), yes = c(104,189), no = c(11034-104,11037-189), Total = c(11034,11037))
+ktbl(d) %>% add_header_above(c(" " = 1, "Heart Attack?" = 2, " " = 1))
+```
+
+\pagebreak
+
+**Example**: A study published in *The New England Journal of Medicine* reported the results of a randomized experiment with 128 children and adolescents to investigate the effectiveness of the drug fluvoxamine in the treatment of anxiety disorders in young people.[^walkup] The study found that 48 out of 63 subjects that were given the drug showed a reduction in anxiety, in comparison to only 19 out of 65 subjects that were not given the drug. What can we infer about the effect of the fluvoxamine on anxiety reduction? 
+
+[^walkup]: Walkup, J. T. et al. (2001). Fluvoxamine for the treatment of anxiety disorders in children and adolescents. *The New England Journal of Medicine*, 344, 1279--1285.

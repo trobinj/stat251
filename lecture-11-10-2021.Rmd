@@ -1,0 +1,89 @@
+---
+output:
+  html_document:
+    theme: readable
+---
+
+```{r, echo = FALSE, message = FALSE}
+library(lubridate)
+date <- "11-10-2021"
+weekday <- wday(mdy(date), label = TRUE, abbr = FALSE)
+month <- month(mdy(date), label = TRUE)
+day <- day(mdy(date))
+```
+
+---
+title: `r paste(weekday, ", ", month, " ", day, sep = "")`
+header-includes:
+  - \usepackage{array}
+  - \usepackage{booktabs}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, fig.align = "center", out.width = "100%", fig.width = 9, cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
+```
+
+```{r packages}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(kableExtra)
+```
+
+```{r utilities}
+source("../../utilities.R")
+```
+
+`r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](lecture-", date, ".pdf) copy of this lecture.", sep = ""), "")`
+
+### (Mis)interpretations of P-Values
+
+1. The $p$-value is a probability, but a probability of [what](lecture-10-15-2021.html)? 
+
+2. The sampling distribution of a p-value often has a lot of variability. A replication of the same study can result in a very different p-value, and possibly a different conclusion.
+
+3. Significance levels are quite arbitrary, and a very small change in a p-value can result in a very different decision. For example, suppose $\alpha$ = 0.05. What would we do if the p-value was 0.049? What would we do if the p-value was 0.051? 
+
+### Not Rejecting the Null Hypothesis Doesn't Mean We Should Accept It
+
+Not rejecting $H_0$ is *not* necessarily good evidence that $H_0$ is true.
+
+1. Tests with low power have a high probability of *not* rejecting a false null hypothesis (i.e., a type II error). 
+
+0. The range of "acceptable" (i.e., not rejectable) null hypotheses may be relatively wide.
+
+### The Multiple Comparison Problem
+
+Using multiple tests to "dredge" for significance can be dangerous. The probability of a single type I error (i.e., rejecting a true null hypothesis) is usually low, but the probability of doing this *at least once* among several tests can be much higher.
+
+Suppose we conduct multiple independent tests where in each test the null hypothesis is true. If we use a significance level of $\alpha$ = 0.05, what is the probability of making *at least one type I error*? 
+```{r}
+x <- 1:20
+p <- 1 - (1 - 0.05)^x
+d <- data.frame(x = x, p = p)
+p <- ggplot(d, aes(x = x, y = p)) + theme_minimal() 
+p <- p + geom_point() + labs(x = "Number of Tests", y = "Probability of One or More Type I Errors")
+p <- p + scale_y_continuous(breaks = seq(0, 1, by = 0.05), limits = c(0,1), minor_breaks = NULL)
+p <- p + scale_x_continuous(breaks = 1:20, minor_breaks = NULL)
+plot(p)
+```
+
+<center>
+
+`r ifelse(knitr::is_html_output(), "![](http://imgs.xkcd.com/comics/significant.png)", "")`
+
+</center>
+
+### Beware the Significance Filter
+
+Results of studies are more likely to be disseminated when null hypotheses are rejected. This causes two problems.
+
+1. The proportion of test conclusions in *disseminated studies* that are type I errors is larger than we would expect ($\alpha$).
+
+0. Disseminated studies tend to *overestimate* effects because overestimated effects are more likely to result in statistical significance.
+
+### Statistical Versus Practical Significance
+
+1. Statistical significance doesn't imply that the result is important/useful.
+
+2. In practice many null hypotheses are almost certainly false. There are often other more important questions. 
