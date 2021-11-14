@@ -1,0 +1,207 @@
+---
+output:
+  html_document:
+    theme: readable
+---
+
+```{r, echo = FALSE, message = FALSE}
+library(lubridate)
+date <- "10-01-2021"
+weekday <- wday(mdy(date), label = TRUE, abbr = FALSE)
+month <- month(mdy(date), label = TRUE)
+day <- day(mdy(date))
+```
+
+---
+title: `r paste(weekday, ", ", month, " ", day, sep = "")`
+header-includes:
+  - \usepackage{array}
+  - \usepackage{booktabs}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, fig.align = "center", out.width = "100%", fig.width = 9, cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
+```
+
+```{r packages}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(kableExtra)
+```
+
+```{r utilities}
+source("../../utilities.R")
+```
+
+`r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](lecture-", date, ".pdf) copy of this lecture.", sep = ""), "")`
+
+## The Number of Observational Units
+
+Let $N$ denote the number of "observational units" in a population of observations. This can be infinite or finite. 
+
++ In an *experiment* the number of observational units is (theoretically) *infinite*.
+
++ In an *survey* the number of observational units is *finite*.
+
+When the number of observational units is *finite* we need to be concerned with if we are sampling *with* or *without* replacement.
+
+## Sampling With Replacement
+
+When **sampling *with* replacement**, it is possible to observe the same unit more than once.
+
+**Example**: Suppose we had a very small forest with $N$ = 3 trees with volumes of 10, 20, and 30 cubic feet. Assume we will obtain a sample of $n$ = 2 observations of tree volumes using sampling *with* replacement. We select trees one at a time, and each time we do every tree in the population has the same probability of being selected.
+```{r}
+x <- c(10,20,30)
+x <- expand.grid(x1 = x, x2 = x)
+d.space <- data.frame(Sample = apply(x, 1, function(z) paste(z, collapse = ",")), Probability = 1/9, Mean = apply(x, 1, mean))
+d.sampl <- d.space %>% group_by(Mean) %>% summarize(Probability = sum(Probability))
+
+m <- sum(d.space$Mean * d.space$Probability)
+s <- with(d.space, sqrt(sum((Mean - m)^2 * Probability)))
+
+d.space <- d.space %>% mutate(Probability = as.character(MASS::fractions(Probability)))
+d.sampl <- d.sampl %>% mutate(Probability = as.character(MASS::fractions(Probability)))
+d.sampl$Probability[d.sampl$Probability == "1/3"] <- "3/9"
+
+names(d.space)[3] <- "$\\bar{x}$"
+names(d.sampl)[1] <- "$\\bar{x}$"
+
+ktbl(d.space, caption = "Sample Space")
+ktbl(d.sampl, caption = "Sampling Distribution")
+```
+Here $\bar{x}$ has mean `r m` and standard deviation (i.e., standard error) of about `r round(s,2)`.
+
+\pagebreak
+
+## Sampling Without Replacement
+
+When **sampling *without* replacement**, it is *not* possible to observe the same unit more than once.
+
+**Example**: Suppose we had a very small forest with $N$ = 3 trees with volumes of 10, 20, and 30 cubic feet. Assume we will obtain a sample of $n$ = 2 observations of tree volumes using sampling *without* replacement. We select trees one at a time, and each time we do every tree in the population *that was not previously selected* has the same probability of being selected.
+```{r}
+x <- c(10,20,30)
+x <- t(combn(x,2))
+x <- rbind(x, x[,c(2,1)])
+x <- x[c(1,4,2,5,3,6),]
+d.space <- data.frame(Sample = apply(x, 1, function(z) paste(z, collapse = ",")), Probability = 1/6, Mean = apply(x, 1, mean))
+d.sampl <- d.space %>% group_by(Mean) %>% summarize(Probability = sum(Probability))
+
+m <- sum(d.space$Mean * d.space$Probability)
+s <- with(d.space, sqrt(sum((Mean - m)^2 * Probability)))
+
+d.space <- d.space %>% mutate(Probability = as.character(MASS::fractions(Probability)))
+d.sampl <- d.sampl %>% mutate(Probability = as.character(MASS::fractions(Probability)))
+
+names(d.space)[3] <- "$\\bar{x}$"
+names(d.sampl)[1] <- "$\\bar{x}$"
+
+ktbl(d.space, caption = "Sample Space")
+ktbl(d.sampl, caption = "Sampling Distribution")
+```
+
+The sampling distribution shows that $\bar{x}$ has mean `r m` and standard deviation (i.e., standard error) of about `r round(s,2)`. 
+
+**Example**: Now consider another forest with $N$ = 100 trees, of which 60 have a volume of 10 cubic feet, and 40 have a volume of 20 cubic feet, and suppose we select a random sample of $n$ = 5 trees by using sampling *without* replacement.
+```{r}
+d <- data.frame(Volume = c(10,20), Frequency = c(60,40), Probability = c(0.6, 0.4))
+ktbl(d, caption = "Population Distribution")
+d <- data.frame(Observation = 1:5, o1 = c("60/100","59/99","59/98","58/97","58/96"), 
+  o2 = c("40/100","40/99","39/98","39/97","38/96"),
+  Sample = c("10","10, 20","10, 20, 10","10, 20, 10, 10","10, 20, 10, 10, 20"))
+names(d)[2:3] <- c("10","20")
+ktbl(d, align = c("cccl")) %>% add_header_above(c(" " = 1, "Probability" = 2, " " = 1))
+```
+If we were sampling *with* replacement, the probability of the sample 10, 20, 10, 10, 20 would be
+$$
+  0.6 \times 0.4 \times 0.6 \times 0.6 \times 0.4 = `r 0.4^2 * 0.6^3`, 
+$$
+but because we were sampling *without* replacement, the probability of the sample is
+$$
+  0.6 \times 40/99 \times 59/98 \times 58/97 \times 39/96 \approx `r 0.6 * 40/99 * 59/98 * 58/97 * 39/98`.
+$$
+When sampling *without* replacement, the observations are *not independent*. Observations are independent only if the probabilities for one observation *do not depend on the other observations*.
+
+## Inferences for $\mu$ When Sampling Without Replacement
+
+Suppose we are estimating $\mu$ with $\bar{x}$. The standard error formula $s/\sqrt{n}$ assumes sampling *with* replacement. When sampling *without* replacement the correct formula for the standard error of $\bar{x}$ is
+$$
+  \frac{s}{\sqrt{n}}\sqrt{1 - \frac{n}{N}},
+$$
+where $N$ is the *population size*. The margin of error is then
+$$
+  t\frac{s}{\sqrt{n}}\sqrt{1 - \frac{n}{N}},
+$$
+and the confidence interval for estimating $\mu$ is
+$$
+  \bar{x} \pm t\frac{s}{\sqrt{n}}\sqrt{1 - \frac{n}{N}}.
+$$
+The term $1-n/N$ is sometimes called the **finite population correction** (FPC). 
+
+**Example**: The mean test score of a simple random sample \emph{without replacement} of 50 students from a school of 200 is 70 points, with a standard deviation of 10 points. What is the margin of error and confidence interval for the mean test score for all 200 students? 
+
+\vspace{2cm}
+
+```{r}
+d <- trtools::larkspur
+N <- 150
+n <- nrow(d)
+ybar <- round(mean(d$plants/d$area), 2)
+sdev <- round(sd(d$plants/d$area), 2)
+```
+
+**Example**: Conservation researchers conducted a survey to estimate the density and abundance of a species of "larkspur" (a flowering plant of the genus *Delphinium*) in a rectangular region. To survey the larkspur they divided the region into `r N` one-meter wide transects from north to south. The researchers selected a sample of `r n` transects using random sampling. The mean density of larkspur in these `r n` transects was `r ybar` larkspur per square meter, and the standard deviation was `r sdev` larkspur per square meter. What is the point estimate, margin of error, and confidence interval for the *mean density of larkspur in the region*?
+
+\vspace{2cm}
+
+**Question**: In some cases we might want to omit the finite population correction term $1-n/N$ by effectively setting $1-n/N = 1$ so that $\sqrt{1-n/N}$ "disappears" from our equations. Sometimes we do this to simplify calculations, but also we may need to do this if we do not know $N$. When would it be reasonable to omit the finite population correction term?
+
+\pagebreak
+
+## Estimating a Population Total ($\tau$)
+
+In survey sampling, the parameter $\mu$ is the *mean* of *all* units in the population, so that
+$$
+  \mu = \frac{x_1 + x_2 + \cdots + x_N}{N}.
+$$
+The parameter $\tau$ is the *total* of *all* units in the population, so that
+$$
+  \tau = x_1 + x_2 + \cdots + x_N.
+$$
+Note that $\mu = \tau/N$ and $\tau = N\mu$. 
+
+Examples of population totals that we might want to estimate:
+
+1. The total volume of $N$ trees in a forest.
+2. The number of trees in $N$ transects through a forest.
+3. The number of pottery fragments in $N$ grid squares over an archaeological site.
+4. The number of mental health counseling/therapy visits made by $N$ students or employees.
+5. The total expenditure on phone apps by $N$ consumers.
+
+The point estimate of $\tau$ is $N\bar{x}$ since $\tau = N\mu$ and $\bar{x}$ estimates $\mu$. The standard error of $N\bar{x}$ (assuming sampling without replacement) is
+$$
+  N\frac{s}{\sqrt{n}}\sqrt{1 - \frac{n}{N}},
+$$
+so the margin of error for estimating $\tau$ is
+$$
+  tN\frac{s}{\sqrt{n}}\sqrt{1 - \frac{n}{N}},
+$$
+and the confidence interval for $\tau$ is 
+$$
+  N\bar{x} \pm tN\frac{s}{\sqrt{n}}\sqrt{1 - \frac{n}{N}}.
+$$
+Note: We will always assume sampling without replacement when estimating $\tau$.
+
+**Example**: Based on a random sample (without replacement) of $n$ = 100 students at a university of $N$ = 1000 students, the mean expenditure per year on phone apps was $\bar{x}$ = 20 dollars with a standard deviation of $s$ = 10 dollars. What is the estimate of the *total* expenditure on phone apps per year for all of the students at the university?
+
+\vspace{2cm}
+
+```{r}
+d <- trtools::larkspur
+N <- 150
+n <- nrow(d)
+ybar <- round(mean(d$plants), 2)
+sdev <- round(sd(d$plants), 2)
+```
+
+**Example**: Conservation researchers conducted a survey to estimate the density and abundance of a species of "larkspur" (a flowering plant of the genus *Delphinium*) in a rectangular region. To survey the larkspur they divided the region into `r N` one-meter wide transects from north to south. The researchers selected a sample of `r n` transects using random sampling. The mean number of larkspur in these `r n` transects was `r ybar` larkspur, and the standard deviation was `r sdev` larkspur. What is the point estimate, margin of error, and confidence interval for the *total number of larkspur in the region*?

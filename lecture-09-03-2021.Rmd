@@ -1,0 +1,192 @@
+---
+output:
+  html_document:
+    theme: readable
+  pdf_document: default
+---
+
+```{r, echo = FALSE, message = FALSE}
+library(lubridate)
+date <- "09-03-2021"
+weekday <- wday(mdy(date), label = TRUE, abbr = FALSE)
+month <- month(mdy(date), label = TRUE)
+day <- day(mdy(date))
+```
+
+---
+title: `r paste(weekday, ", ", month, " ", day, sep = "")`
+header-includes:
+  - \usepackage{float}
+  - \usepackage{booktabs}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, fig.align = "center", out.width = "100%", fig.width = 9, cache = TRUE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
+```
+
+```{r packages}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(kableExtra)
+```
+
+```{r utilities}
+source("../../utilities.R")
+```
+
+`r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](lecture-", date, ".pdf) copy of this lecture.", sep = ""), "")`
+
+## Margin of Error --- Continued
+
+**Example**: Suppose we are studying the distance that a model trebuchet will throw an object. The first histogram shows the distribution of the distance from a million observations of a single throw. The second histogram shows the distribution of the means from a million samples of $n$ = 10 throws each.
+
+```{r, fig.height = 9, warning = FALSE}
+set.seed(123)
+
+pop <- data.frame(y = rlnorm(1000000, 1, 0.5)) %>% filter(y < 15) %>% mutate(y = y/mean(y) * 3)
+
+p <- ggplot(pop, aes(x = y, y = ..density.. * 0.125)) + theme_minimal()
+p <- p + geom_histogram(color = "black", fill = "white", boundary = 0, binwidth = 0.125)
+p <- p + labs(x = "Distance of One Throw (m)", y = "Relative Frequency") + ylim(0,0.05)
+p <- p + scale_x_continuous(breaks = seq(0, 15, by = 1), limits = c(0,12))
+p1 <- p
+
+smp <- rep(NA, 100000)
+for (i in 1:length(smp)) {
+   smp[i] <- mean(rlnorm(10, 1, 0.5)) 
+}
+smp <- data.frame(y = smp) %>% mutate(y = y/mean(y) * 3)
+
+p <- ggplot(smp, aes(x = y, y = ..density.. * 0.125)) + theme_minimal()
+p <- p + geom_histogram(color = "black", fill = "white", boundary = 0, binwidth = 0.125)
+p <- p + labs(x = "Mean Distance of a Sample of 10 Throws (m)", y = "Relative Frequency") + ylim(0,0.11)
+p <- p + scale_x_continuous(breaks = seq(0, 15, by = 1), limits = c(0,12))
+p2 <- p
+
+cowplot::plot_grid(p1, p2, ncol = 1, rel_heights = c(1,2))
+```
+Both distributions have a mean of 3 meters. The second distribution has a standard deviation of 0.5 meters. Suppose we were to *estimate* the mean distance the trebuchet will throw an object using the mean of a sample of $n$ = 10 observations. Where is our estimate likely to be? What is the margin of error?
+
+\pagebreak
+
+## Statistical Significance
+
+A [**statistically significant**](statisticallysignificant.jpg) result is one that is decidedly not due to "ordinary variation" (i.e., "not due to chance" or "not a coincidence").
+
+**Example**: Suppose I flipped a *fair* coin 200 times and observed the number of times it came up heads. Now suppose I did this a million times. The plot below shows the distribution of the number of times the coin comes up heads out of 200 flips.
+```{r, fig.width = 9, fig.height = 5}
+n <- 200
+p <- 0.5
+
+d <- data.frame(x = 0:n) %>% mutate(y = dbinom(x, n, p))
+
+m <- n*p
+s <- sqrt(n*p*(1-p))
+
+g <- ggplot(d, aes(x = x, y = y)) + theme_minimal()
+g <- g + geom_segment(aes(xend = x, yend = 0), alpha = 0.5)
+g <- g + geom_point() + labs(x = "Number of Heads", y = "Relative Frequency")
+g <- g + scale_x_continuous(breaks = seq(0, n, by = 10))
+g <- g + scale_y_continuous(breaks = seq(0, 1, by = 0.01))
+plot(g)
+```
+This distribution is clearly normal in shape, and it has a mean of `r m` and a standard deviation of `r rnd(s, 0)`. Now suppose we have the question of if a coin we found on the ground is fair, so we flip the coin 200 times and see what happens. Where is the number of heads likely to be *if the coin is fair*? Would we conclude that the coin is fair if the number of heads is 110, 120, or 130?
+
+\pagebreak
+
+**Example**: Consider data from a study of mate preference of platies.[^basolo]
+
+[^basolo]: Basolo, A. L. (1990). Female preference predates the evolution of the sword in swordtail fish. *Science*, *250*, 808--810.
+
+```{r, fig.height = 1.5, fig.width = 9}
+d <- Sleuth3::case0602
+m <- d %>% summarize(Percentage = mean(Percentage))
+p <- ggplot(Sleuth3::case0602, aes(x = 0, y = round(Percentage))) 
+p <- p + geom_dotplot(binaxis = "y", binwidth = 1) + coord_flip()
+p <- p + geom_point(aes(x = -0.2), pch = 17, size = 2, data = m)
+p <- p + labs(y = "Percent of Time Spent with Yellow-Tailed Male") + ylim(0,100) + theme_classic() + noyaxis
+plot(p)
+```
+Out of $n$ = `r nrow(Sleuth3::case0602)`, the mean percent of time females spent with yellow-tailed males is approximately $\bar{x}$ = `r round(mean(Sleuth3::case0602$Percentage),1)`. Is this result *statistically significant*?  
+
+Assume that female platies do not have a preference (or aversion) to yellow tails. The figure below shows the mean percent time spent with the yellow-tailed male from a million hypothetical studies under this assumption. This distribution has a mean of 50 and a standard deviation of 2. What is the *margin of error*? Did the study shown above produce an *outlier*? Was it *statistically significant*? 
+```{r, fig.height = 3, fig.width = 9}
+d <- data.frame(Percentage = rnorm(1000000, 50, 2))
+d$outlier <- FALSE
+d$outlier[d$Percentage > 50 + 4] <- TRUE
+d$outlier[d$Percentage < 50 - 4] <- TRUE
+p <- ggplot(d, aes(x = Percentage)) + theme_classic() + noyaxis
+p <- p + geom_histogram(aes(fill = outlier), color = "black", boundary = 50, binwidth = 0.5)
+p <- p + guides(fill = "none")
+p <- p + scale_fill_manual(values = c("white", grey(0.5)))
+p <- p + scale_x_continuous(breaks = seq(0, 100, by = 1))
+p <- p + geom_point(aes(x = mean(Sleuth3::case0602$Percentage), y = 0), shape = 16, size = 3)
+p <- p + labs(x = "Percent Time Spent with Yellow-Tailed Male")
+plot(p)
+```
+
+\pagebreak
+
+## Explanatory and Response Variables
+
+Frequently when looking at the relationship between two variables we consider the *distribution* of a **response variable** (also known as a ["dependent variable"](dependentvariable.jpg)) for *each value* of an **explanatory variable** (also known as an "independent variable"). The question we often have is if/how does the *distribution* of the response variable change when the *value* of the explanatory variable changes.
+
+**Example**: Dot plots of samples of observations of beak size from before (1976) and after (1978) a drought in 1977.
+```{r, fig.height = 3}
+tmp <- Sleuth3::ex0218 %>% group_by(Year) %>% summarize(mean = mean(Depth))
+p <- ggplot(Sleuth3::ex0218, aes(x = Depth)) + facet_grid(. ~ Year)
+p <- p + geom_dotplot(binwidth = 0.1, stackratio = 1.1, stackdir = "up", method = "histodot")
+p <- p + theme_minimal() + labs(x = "Beak Depth (mm)")
+p <- p + geom_point(aes(x = mean, y = -0.05), data = tmp, shape = 17, size = 2)
+p <- p + noyaxis
+plot(p)
+```
+What are the response and explanatory variables?
+
+**Example**: Creative writing students were "primed" with either extrinsic or intrinsic motivation. They were then asked to write a poem in the Haiku style about laughter. Each poem was then scored for "creativity" on a 40-point scale by judges.
+
+```{r, fig.height = 2.5}
+d <- Sleuth3::case0101 %>% mutate(Score = round(Score)) %>% group_by(Treatment, Score) %>% summarize(Frequency = n())
+
+d.extrinsic <- subset(d, Treatment == "Extrinsic")
+d.intrinsic <- subset(d, Treatment == "Intrinsic")
+
+p <- ggplot(subset(Sleuth3::case0101, Treatment == "Extrinsic"), aes(x = round(Score)))
+p <- p + geom_dotplot(binwidth = 1) + theme_classic()
+p <- p + noyaxis + nogrid + ggtitle("Extrinsic Motivation")
+p <- p + xlab("Creativity Score") + scale_x_continuous(breaks = 5:30, limits = c(5,30))
+plot(p)
+
+p <- ggplot(subset(Sleuth3::case0101, Treatment == "Intrinsic"), aes(x = round(Score)))
+p <- p + geom_dotplot(binwidth = 1) + theme_classic()
+p <- p + noyaxis + nogrid + ggtitle("Intrinsic Motivation")
+p <- p + xlab("Creativity Score") + scale_x_continuous(breaks = 5:30, limits = c(5,30))
+plot(p)
+```
+What are the response and explanatory variables?
+
+**Example**: The volume of the left hippocampus was measured for monozygotic (identical) twins discordant for schizophrenia.[^schizo]
+```{r, fig.height = 3}
+d <- Sleuth3::case0202 %>% mutate(pair = 1:n()) %>% pivot_longer(cols = c(Unaffected, Affected), names_to = "twin", values_to = "volume")
+
+p <- ggplot(d, aes(x = twin, y = volume)) + theme_minimal()
+p <- p + geom_line(aes(group = pair), color = grey(0.75))
+p <- p + geom_point(alpha = 0.5) + coord_flip()
+p <- p + labs(x = NULL, y = "Left Hippocampus Volume (square cm)")
+
+plot(p)
+```
+What are the response and explanatory variables?
+
+[^schizo]: Suddath, R. L., Christison, G. W., Torrey, E. F., Casanova, M. F. and Weinberger, D. R. (1990). Anatomical abnormalities in the brains of monozygotic twins discordant for schizophrenia. *New England Journal of Medicine*, *322(12)*. 789--794.
+
+## Types of Studies
+
+1. An **experiment** is a *controlled* study that has the purpose of investigating the relationship between an **explanatory variable** and a **response variable**.
+
+0. An **observational study** is an *uncontrolled* study that has the purpose of investigating the relationship between an **explanatory variable** and a **response variable**. 
+
+0. A **survey** is a study where we select a subset of units from a population of such units for the purpose of making inferences about the distribution of *all* units (i.e., the population distribution).
+
+We will clarify the distinction between an experiment and an observational study later in the course when we discuss the concept of *randomization*. But for now "controlled" means that the researchers control the explanatory variable in the sense that they determine the value of the variable for each experimental unit. 

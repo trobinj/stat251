@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Homework Problem Set 14: Inferences for \mu_1-\mu_2 from Independent Samples</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics 251</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="lectures.html">Lectures</a>
+</li>
+<li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Homework Problem Set 14: Inferences for <span class="math inline">\(\mu_1-\mu_2\)</span> from Independent Samples</h1>
+
+</div>
+
+
+<p>You can also download a <a href="homework-14.pdf">PDF</a> copy of this homework assignment.</p>
+<p><strong>Instructions</strong>: These homework problems will help familiarize you with how we can make inferences concerning the difference between two means (i.e., <span class="math inline">\(\mu_1 - \mu_2\)</span>). For statistical tests state appropriate null and alternative hypotheses, compute the test statistic, compute the p-value, and make a decision/conclusion. Use a significance level of <span class="math inline">\(\alpha\)</span> = 0.05. For confidence intervals use a confidence level of 95%. The solutions are given at the end.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<div id="bumpus-sparrows" class="section level2">
+<h2>Bumpus’ Sparrows</h2>
+<p>A famous <a href="https://amornithhistory.org/2018/03/05/professor-bumpus-and-his-sparrows">lecture</a> by biologist <a href="https://en.wikipedia.org/wiki/Hermon_Carey_Bumpus">Hermon Bumpus</a> demonstrated natural selection using data concerning the survival of house sparrows (<em>Passer domesticus</em>) after a severe winter storm.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> After the storm moribund sparrows were brought to the Anatomical Laboratory at Brown University. Some of these sparrows were revived, but many died. All of the sparrows that were brought in were examined with respect to a variety of anatomical characteristics. It is interesting to compare the anatomical characteristics of sparrows that survived versus those that did not. The distributions of humerus (upper wing bone) length in the samples of sparrows that survived and the sparrows that did not are shown below. <img src="homework-14_files/figure-html/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /> Of the sample of 72 observations for sparrows that survived, the mean humerus length was 0.74 in, and the standard deviation was 0.02 in. And of the sample of 64 observations for sparrows that died, the mean humerus length was 0.73 in, and the standard deviation was 0.03 in. Let <span class="math inline">\(\mu_s\)</span> denote the mean for the population distribution of humerus length for sparrows that would survive, and let <span class="math inline">\(\mu_d\)</span> denote the mean for the population distribution of humerus length for sparrows that would not survive. Bumpus would probably have pointed out that sparrows that survived tended to have a larger humerus length than those that did not. While this is true for his samples, it is not clear if we can infer from this that this is true <em>in general</em> (i.e., <span class="math inline">\(\mu_s &gt; \mu_d\)</span>). Conduct a statistical test to determine if the difference in the sample means is statistically significant or not using the hypotheses <span class="math inline">\(H_0: \mu_s-\mu_d = 0\)</span> versus <span class="math inline">\(H_a: \mu_s-\mu_d &gt; 0\)</span>. Also estimate the difference in mean humerus length (<span class="math inline">\(\mu_s-\mu_d\)</span>) using a confidence interval.</p>
+</div>
+<div id="experimental-investigation-of-the-peak-end-rule" class="section level2">
+<h2>Experimental Investigation of the Peak-End Rule</h2>
+The <a href="https://en.wikipedia.org/wiki/Peak-end_rule">peak-end rule</a> is a psychological heuristic where people tend to judge an experience disproportionately based on how the felt at the <em>peak</em> of the experience (i.e., at the point of maximum pleasure or pain/discomfort) and at the <em>end</em> of the experience. The phenomenon has many implications and potential applications. Do, Rupert, and Wolford (2008) conducted randomized experiments that demonstrate the peak-end rule.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> In one experiment subjects were contacted by email to tell them they had won a raffle they had entered after making a donation in a fundraiser. The fundraiser was a real but the “raffle” was organized by the researchers for the purpose of the study. Subjects that replied were randomly assigned to one of two treatment conditions. The reward for the raffle was to select a DVD from one or both of two lists. List <em>A</em> consisted of 10 movies that were all highly rated. List <em>B</em> consisted of a different 10 movies that were not so highly rated. In one treatment condition the subjects were first allowed to pick a movie from list <em>A</em>, and were then contacted in another email and allowed to select a movie from list <em>B</em> (denote this treatment condition as “<em>A+B</em>”). In the other treatment condition the subjects were only allowed to pick from list <em>A</em> (let this treatment condition be denoted simply as “<em>A</em>”). After selecting their DVD(s), subjects were contacted again by email and asked to rate the overall experience on an integer scale from 1 (least pleased) to 7 (most pleased). Of the 21 subjects who selected movies from both list <em>A</em> and <em>B</em>, the mean rating was 4.14 and the standard deviation was 1.19, but of the 29 subjects who selected movies from only list <em>A</em>, the mean rating was 5.21 and the standard deviation was 0.92. The sample sizes, means, and standard deviations (SD) are also shown in the table below.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Treatment
+</th>
+<th style="text-align:center;">
+Size
+</th>
+<th style="text-align:center;">
+Mean
+</th>
+<th style="text-align:center;">
+SD
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+A
+</td>
+<td style="text-align:center;">
+29
+</td>
+<td style="text-align:center;">
+5.21
+</td>
+<td style="text-align:center;">
+0.92
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+A+B
+</td>
+<td style="text-align:center;">
+21
+</td>
+<td style="text-align:center;">
+4.14
+</td>
+<td style="text-align:center;">
+1.19
+</td>
+</tr>
+</tbody>
+</table>
+<p>While objectively the <em>A+B</em> treatment condition rewards the subjects more, it has a less pleasurable end than the <em>A</em> treatment condition, which may lead people to tend to perceive the experience in <em>A</em> to be more pleasurable than that in <em>A+B</em>. Let <span class="math inline">\(\mu_a\)</span> and <span class="math inline">\(\mu_{ab}\)</span> denote the mean for two hypothetical population distributions of observations of ratings corresponding to the <em>A</em> and <em>A+B</em> treatment conditions, respectively. Conduct a statistical test with the alternative hypothesis that the peak-end rule results in higher ratings, on average, for treatment condition <em>A</em> than for treatment condition <em>A+B</em> (i.e., <span class="math inline">\(\mu_a &gt; \mu_{ab}\)</span>).</p>
+</div>
+<div id="age-of-onset-of-schizophrenia" class="section level2">
+<h2>Age of Onset of Schizophrenia</h2>
+<p>The German psychiatrist <a href="https://en.wikipedia.org/wiki/Emil_Kraepelin">Emil Kraepelin</a> published one of the early scientific treatments of what was at the time (incorrectly) labelled <em>dementia praecox</em> (i.e., premature dementia) but what later became known as schizophrenia.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> Some data from that work shows the age of onset in some women and men who had been diagnosed with dementia praecox.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> These data are shown in the figure below. <img src="homework-14_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /> For the sample of 99 women, the mean age of onset was 30.5 years and the standard deviation was 11.7 years. And for the sample of 152 men, the mean age of onset was 23.9 years and the standard deviation was 8.6 years. Let <span class="math inline">\(\mu_w\)</span> and <span class="math inline">\(\mu_m\)</span> represent the mean for the population distributions of age of onset for women and men, respectively. Compute a confidence interval for the difference between <span class="math inline">\(\mu_w\)</span> and <span class="math inline">\(\mu_m\)</span>.</p>
+</div>
+<div id="reproductive-success-of-polyandrous-female-pseudoscorpions" class="section level2">
+<h2>Reproductive Success of Polyandrous Female Pseudoscorpions</h2>
+<p><a href="https://en.wikipedia.org/wiki/Pseudoscorpion">Pseudoscorpions</a> (<em>Cordylochernes scorpioides</em>) are not scorpions but rather an arachnid that looks somewhat like a scorpion but without the segmented tail and stinger. A study by Newcomer, Zeh, and Zeh (1999) investigated the effects of polyandry on the reproductive success of female pseudoscorpions.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> Each of 36 female pseudoscorpions was randomly put into one of two groups. In one group the females each received two sperm packets from two <em>different</em> males, while in the other group the females received two sperm packets from the <em>same</em> male. The number of brood sacs (an external container of embryos) later produced by each female was counted. The researchers wanted to determine if the genetic benefits of receiving sperm packets from different males (as opposed to the same amount of sperm from one male) would result in greater reproductive success as quantified by the number of brood sacs produced. <img src="homework-14_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /> The average number of successful broods produced by females that received sperm from two <em>different</em> males was 3.62 brood sacs in comparison to 2.2 brood sacs produced by females that received sperm from the <em>same</em> male. The standard deviations were similar between the two treatments: 1.96 brood sacs for the females that received sperm from different males and 1.61 brood sacs for the females that received sperm from the same male. Conduct a statistical test to determine if there is evidence that females that receive sperm packets from two different males produce more brood sacs, on average, than females that receive the same number of sperm packs from the same male. (Note: To find the sample sizes, count the dots in the figure.)</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="bumpus-sparrows-solution" class="section level2">
+<h2>Bumpus’ Sparrows (Solution)</h2>
+<p>The test statistic is <span class="math inline">\(t\)</span> <span class="math inline">\(\approx\)</span> 2.26, which would yield a p-value of approximately 0.014. (Note that the p-value would be twice as large if a two-sided test had been used.) This would lead us to reject the null hypothesis and conclude that there is a statistically significant difference in the mean humerus length between sparrows that survived and those that did not. The confidence interval is approximately 0.01 <span class="math inline">\(\pm\)</span> 0.009 in.</p>
+</div>
+<div id="experimental-investigation-of-the-peak-end-rule-solution" class="section level2">
+<h2>Experimental Investigation of the Peak-End Rule (Solution)</h2>
+<p>The hypotheses are <span class="math inline">\(H_0\!: \mu_a - \mu_{ab} = 0\)</span> versus <span class="math inline">\(H_a\!: \mu_a - \mu_{ab} &gt; 0\)</span>. The test statistic is <span class="math inline">\(t\)</span> <span class="math inline">\(\approx\)</span> 3.44, yielding a p-value of approximately 0.001. (Note that the p-value for a two-sided test would be twice as large.) This would lead us to reject the null hypothesis and conclude that, on average, ratings are higher under the <em>A</em> treatment condition than under the <em>A+B</em> treatment condition.</p>
+</div>
+<div id="age-of-onset-of-schizophrenia-solution" class="section level2">
+<h2>Age of Onset of Schizophrenia (Solution)</h2>
+<p>You should obtain the confidence interval for <span class="math inline">\(\mu_w-\mu_m\)</span> of 6.6 <span class="math inline">\(\pm\)</span> 2.7 years.</p>
+</div>
+<div id="reproductive-success-of-polyandrous-female-pseudoscorpions-solution" class="section level2">
+<h2>Reproductive Success of Polyandrous Female Pseudoscorpions (Solution)</h2>
+<p>Let <span class="math inline">\(\mu_d\)</span> and <span class="math inline">\(\mu_s\)</span> denote the means of the population distributions of the number of brood sacs produced by females receiving sperm from two different males and the same male, respectively. Now consider a test of the hypotheses <span class="math inline">\(H_0\!: \mu_d - \mu_s = 0\)</span> versus <span class="math inline">\(H_a\!: \mu_d - \mu_s &gt; 0\)</span>. The test statistic is <span class="math inline">\(t\)</span> <span class="math inline">\(\approx\)</span> 2.34. This yields a p-value of approximately 0.017. The p-value for a two-sided test would be twice as large. The decision is to reject the null hypothesis and conclude the difference in the mean number of successful broods produced is statistically significant.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>In the solutions the reported values of test statistics and p-values have usually been rounded some. Rounding was only done for the final reported values. It was avoided in intermediate calculations (e.g., the value of the test statistic used to compute a p-value was <em>not</em> rounded).<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Bumpus, H. C. (1898). Eleventh lecture. The elimination of the unfit as illustrated by the introduced sparrow, Passer domesticus. (A fourth contribution to the study of variation.) Biological Lectures: Woods Hole Marine Biological Laboratory, 209–225.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Do, A. M., Rupert, A. V., &amp; Wolford, G. (2008). Evaluations of pleasurable experiences: The peak-end rule. <em>Psychonomic Bulletin &amp; Review</em>, <em>15(1)</em>, 96–998.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Kraepelin, E. (1919). <em>Dementia praecox and paraphrenia</em>. Edinburgh: Livingstone.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>Age of onset of disorders can be a difficult variable to assess. Sometimes a person’s ability to hide symptoms or their likelihood to be notice by others can affect the apparent age of onset. And when these become confounded with other variables, such as sex, it can make comparisons difficult.<a href="#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>Newcomer, S. D., Zeh, J. A., &amp; Zeh, D. W. (1999). Genetic benefits enhance the reproductive success of polyandrous females. <em>Proceedings of the National Academy of Sciences</em>, <em>96</em>, 10236–10241.<a href="#fnref6" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

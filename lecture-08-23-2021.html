@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Monday, Aug 23</title>
+
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics 251</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="lectures.html">Lectures</a>
+</li>
+<li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Monday, Aug 23</h1>
+
+</div>
+
+
+<p>You can also download a <a href="lecture-08-23-2021.pdf">PDF</a> copy of this lecture.</p>
+<div id="the-anatomy-of-typical-data" class="section level2">
+<h2>The “Anatomy” of (Typical) Data</h2>
+<p>What do data look like?</p>
+<p><strong>Example</strong>: The following are fictional data consisting of 20 observations of the Hobbits attending a party at the Prancing Pony Inn in the town of Bree.</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Observation
+</th>
+<th style="text-align:left;">
+Name
+</th>
+<th style="text-align:center;">
+Farthing
+</th>
+<th style="text-align:center;">
+Height
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:left;">
+Arbogastes Goodwort
+</td>
+<td style="text-align:center;">
+East
+</td>
+<td style="text-align:center;">
+104 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:left;">
+Britius Thornburrow
+</td>
+<td style="text-align:center;">
+East
+</td>
+<td style="text-align:center;">
+95 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:left;">
+Hamfast Fleetfoot
+</td>
+<td style="text-align:center;">
+East
+</td>
+<td style="text-align:center;">
+96 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:left;">
+Polo Chubb-Baggins
+</td>
+<td style="text-align:center;">
+South
+</td>
+<td style="text-align:center;">
+93 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:left;">
+Berengar Longbottom
+</td>
+<td style="text-align:center;">
+East
+</td>
+<td style="text-align:center;">
+86 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:left;">
+Meginhard Galpsi
+</td>
+<td style="text-align:center;">
+South
+</td>
+<td style="text-align:center;">
+109 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:left;">
+Fulrad Boffin
+</td>
+<td style="text-align:center;">
+South
+</td>
+<td style="text-align:center;">
+96 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:left;">
+Fortinbras Boffin
+</td>
+<td style="text-align:center;">
+South
+</td>
+<td style="text-align:center;">
+72 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:left;">
+Sigefroy Roper
+</td>
+<td style="text-align:center;">
+East
+</td>
+<td style="text-align:center;">
+99 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:left;">
+Dado Zaragamba
+</td>
+<td style="text-align:center;">
+North
+</td>
+<td style="text-align:center;">
+87 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+11
+</td>
+<td style="text-align:left;">
+Ingunde Proudfoot
+</td>
+<td style="text-align:center;">
+West
+</td>
+<td style="text-align:center;">
+81 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+12
+</td>
+<td style="text-align:left;">
+Taryn Zaragamba
+</td>
+<td style="text-align:center;">
+South
+</td>
+<td style="text-align:center;">
+89 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+13
+</td>
+<td style="text-align:left;">
+Vuldretrada Mugwort
+</td>
+<td style="text-align:center;">
+South
+</td>
+<td style="text-align:center;">
+81 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+14
+</td>
+<td style="text-align:left;">
+Bailey Hedgehopper
+</td>
+<td style="text-align:center;">
+North
+</td>
+<td style="text-align:center;">
+84 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+15
+</td>
+<td style="text-align:left;">
+Rose Smallburrow
+</td>
+<td style="text-align:center;">
+South
+</td>
+<td style="text-align:center;">
+85 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+16
+</td>
+<td style="text-align:left;">
+Merofled North-took
+</td>
+<td style="text-align:center;">
+East
+</td>
+<td style="text-align:center;">
+75 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+17
+</td>
+<td style="text-align:left;">
+Duenna Undertree
+</td>
+<td style="text-align:center;">
+West
+</td>
+<td style="text-align:center;">
+100 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+18
+</td>
+<td style="text-align:left;">
+Asphodel Swiftfoot
+</td>
+<td style="text-align:center;">
+North
+</td>
+<td style="text-align:center;">
+93 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+19
+</td>
+<td style="text-align:left;">
+Daisy Townsend
+</td>
+<td style="text-align:center;">
+East
+</td>
+<td style="text-align:center;">
+80 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+20
+</td>
+<td style="text-align:left;">
+Madeline Underfoot
+</td>
+<td style="text-align:center;">
+East
+</td>
+<td style="text-align:center;">
+104 cm
+</td>
+</tr>
+</tbody>
+</table>
+<strong>Example</strong>: The following are data from a study by Charles Darwin that compared the heights of seedlings produced by cross-fertilization versus self-fertilization.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Each observation is the heights (in inches) of a pair of seedlings from two flowers on the same parent plant, as well as the difference in the heights.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Fertilization
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+Obs
+</th>
+<th style="text-align:center;">
+Cross
+</th>
+<th style="text-align:center;">
+Self
+</th>
+<th style="text-align:center;">
+Difference
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+23.500
+</td>
+<td style="text-align:center;">
+17.375
+</td>
+<td style="text-align:center;">
+6.125
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+12.000
+</td>
+<td style="text-align:center;">
+20.375
+</td>
+<td style="text-align:center;">
+-8.375
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+21.000
+</td>
+<td style="text-align:center;">
+20.000
+</td>
+<td style="text-align:center;">
+1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+22.000
+</td>
+<td style="text-align:center;">
+20.000
+</td>
+<td style="text-align:center;">
+2.000
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+19.125
+</td>
+<td style="text-align:center;">
+18.375
+</td>
+<td style="text-align:center;">
+0.750
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+21.500
+</td>
+<td style="text-align:center;">
+18.625
+</td>
+<td style="text-align:center;">
+2.875
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+22.125
+</td>
+<td style="text-align:center;">
+18.625
+</td>
+<td style="text-align:center;">
+3.500
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+20.375
+</td>
+<td style="text-align:center;">
+15.250
+</td>
+<td style="text-align:center;">
+5.125
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+18.250
+</td>
+<td style="text-align:center;">
+16.500
+</td>
+<td style="text-align:center;">
+1.750
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+21.625
+</td>
+<td style="text-align:center;">
+18.000
+</td>
+<td style="text-align:center;">
+3.625
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+11
+</td>
+<td style="text-align:center;">
+23.250
+</td>
+<td style="text-align:center;">
+16.250
+</td>
+<td style="text-align:center;">
+7.000
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+12
+</td>
+<td style="text-align:center;">
+21.000
+</td>
+<td style="text-align:center;">
+18.000
+</td>
+<td style="text-align:center;">
+3.000
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+13
+</td>
+<td style="text-align:center;">
+22.125
+</td>
+<td style="text-align:center;">
+12.750
+</td>
+<td style="text-align:center;">
+9.375
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+14
+</td>
+<td style="text-align:center;">
+23.000
+</td>
+<td style="text-align:center;">
+15.500
+</td>
+<td style="text-align:center;">
+7.500
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+15
+</td>
+<td style="text-align:center;">
+12.000
+</td>
+<td style="text-align:center;">
+18.000
+</td>
+<td style="text-align:center;">
+-6.000
+</td>
+</tr>
+</tbody>
+</table>
+<p>The fundamental unit of data is the <strong>observation</strong> (one row of the table of data shown above). An observation will include the values of one or more <em>variables</em>.</p>
+<p><strong>Variables</strong> are characteristics of the observation. One basic distinction is between <strong>quantitative</strong> (i.e., numerical) and <strong>categorical</strong> variables (i.e., qualitative).</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="samples-and-populations" class="section level2">
+<h2>Samples and Populations</h2>
+<p>An important issue in statistics is that we often do not observe all possible observations.</p>
+<p>A <strong>sample</strong> is the set of <em>observed</em> observations.</p>
+<p>A <strong>population</strong> is the set of <em>all possible</em> observations — both observed and unobserved. A population can be <em>real</em> and <em>finite</em> (e.g., most surveys), or <em>hypothetical</em> and <em>infinite</em> (e.g., laboratory studies).</p>
+<p>Note: Sometimes the sample and population are defined in terms of the <em>objects</em> (e.g., Hobbits, seedling pairs) on which the observations are made. This is particularly true in surveys. But for greater generality we will define them in terms of observations.</p>
+<strong>Example</strong>: The observations in black below are the observed observations (i.e., the sample). The observations in grey below are the unobserved observations. We might define all 20 observations as the population.
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Observation
+</th>
+<th style="text-align:left;">
+Name
+</th>
+<th style="text-align:center;">
+Farthing
+</th>
+<th style="text-align:center;">
+Height
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:left;">
+<span style="     color: lightgray !important;">Arbogastes Goodwort</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">East</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">104 cm</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:left;">
+<span style="     color: lightgray !important;">Britius Thornburrow</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">East</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">95 cm</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:left;">
+<span style="     color: lightgray !important;">Hamfast Fleetfoot</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">East</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">96 cm</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:left;">
+<span style="     color: lightgray !important;">Polo Chubb-Baggins</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">South</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">93 cm</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:left;">
+<span style="     color: lightgray !important;">Berengar Longbottom</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">East</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">86 cm</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:left;">
+<span style="     color: lightgray !important;">Meginhard Galpsi</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">South</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">109 cm</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:left;">
+<span style="     color: lightgray !important;">Fulrad Boffin</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">South</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">96 cm</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:left;">
+<span style="     color: lightgray !important;">Fortinbras Boffin</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">South</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">72 cm</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:left;">
+<span style="     color: lightgray !important;">Sigefroy Roper</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">East</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">99 cm</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:left;">
+<span style="     color: lightgray !important;">Dado Zaragamba</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">North</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">87 cm</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+11
+</td>
+<td style="text-align:left;">
+<span style="     color: black !important;">Ingunde Proudfoot</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">West</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">81 cm</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+12
+</td>
+<td style="text-align:left;">
+<span style="     color: black !important;">Taryn Zaragamba</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">South</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">89 cm</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+13
+</td>
+<td style="text-align:left;">
+<span style="     color: lightgray !important;">Vuldretrada Mugwort</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">South</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">81 cm</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+14
+</td>
+<td style="text-align:left;">
+<span style="     color: black !important;">Bailey Hedgehopper</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">North</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">84 cm</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+15
+</td>
+<td style="text-align:left;">
+<span style="     color: lightgray !important;">Rose Smallburrow</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">South</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">85 cm</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+16
+</td>
+<td style="text-align:left;">
+<span style="     color: black !important;">Merofled North-took</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">East</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">75 cm</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+17
+</td>
+<td style="text-align:left;">
+<span style="     color: black !important;">Duenna Undertree</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">West</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">100 cm</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+18
+</td>
+<td style="text-align:left;">
+<span style="     color: lightgray !important;">Asphodel Swiftfoot</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">North</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">93 cm</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+19
+</td>
+<td style="text-align:left;">
+<span style="     color: lightgray !important;">Daisy Townsend</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">East</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">80 cm</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+20
+</td>
+<td style="text-align:left;">
+<span style="     color: lightgray !important;">Madeline Underfoot</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">East</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">104 cm</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The population includes <span class="math inline">\(N\)</span> = 20 observations. The sample (also shown below) contains <span class="math inline">\(n\)</span> = 5 observations. The symbols <span class="math inline">\(N\)</span> and <span class="math inline">\(n\)</span> are called the <em>size</em> of the population and sample, respectively (i.e., the number of observations in the population or sample).</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Observation
+</th>
+<th style="text-align:left;">
+Name
+</th>
+<th style="text-align:center;">
+Farthing
+</th>
+<th style="text-align:center;">
+Height
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:left;">
+Ingunde Proudfoot
+</td>
+<td style="text-align:center;">
+West
+</td>
+<td style="text-align:center;">
+81 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:left;">
+Taryn Zaragamba
+</td>
+<td style="text-align:center;">
+South
+</td>
+<td style="text-align:center;">
+89 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:left;">
+Bailey Hedgehopper
+</td>
+<td style="text-align:center;">
+North
+</td>
+<td style="text-align:center;">
+84 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:left;">
+Merofled North-took
+</td>
+<td style="text-align:center;">
+East
+</td>
+<td style="text-align:center;">
+75 cm
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:left;">
+Duenna Undertree
+</td>
+<td style="text-align:center;">
+West
+</td>
+<td style="text-align:center;">
+100 cm
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong>: Consider a rectangular-shaped piece of land that has been divided into 100 smaller rectangular units, each containing something of interest (e.g., trees, burrows, archaeological artifacts). A subset of 10 of those smaller units was selected and the number of objects in each of these units was counted. <img src="lecture-08-23-2021_files/figure-html/unnamed-chunk-6-1.png" width="480" style="display: block; margin: auto;" /> Here we have a population size of <span class="math inline">\(N\)</span> = 100 and a sample size of <span class="math inline">\(n\)</span> = 10.</p>
+<strong>Example</strong>: Consider Charles Darwin’s study of the difference in height of corn seedlings produced from cross-fertilization verses self-fertilization. There were two seedlings from each plant — one from a seed produced by cross-fertilization, and another from a seed produced by self-fertilization
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Height
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+Obs
+</th>
+<th style="text-align:center;">
+Cross
+</th>
+<th style="text-align:center;">
+Self
+</th>
+<th style="text-align:center;">
+Diff
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+<span style="     color: black !important;">1</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">23.500</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">17.375</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;"> 6.125</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span style="     color: black !important;">2</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">12.000</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">20.375</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">-8.375</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span style="     color: black !important;">3</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">21.000</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">20.000</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;"> 1.000</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span style="     color: black !important;">4</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">22.000</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">20.000</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;"> 2.000</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span style="     color: black !important;">5</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">19.125</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">18.375</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;"> 0.750</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span style="     color: black !important;">6</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">21.500</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">18.625</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;"> 2.875</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span style="     color: black !important;">7</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">22.125</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">18.625</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;"> 3.500</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span style="     color: black !important;">8</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">20.375</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">15.250</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;"> 5.125</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span style="     color: black !important;">9</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">18.250</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">16.500</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;"> 1.750</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span style="     color: black !important;">10</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">21.625</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">18.000</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;"> 3.625</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span style="     color: black !important;">11</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">23.250</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">16.250</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;"> 7.000</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span style="     color: black !important;">12</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">21.000</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">18.000</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;"> 3.000</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span style="     color: black !important;">13</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">22.125</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">12.750</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;"> 9.375</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span style="     color: black !important;">14</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">23.000</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">15.500</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;"> 7.500</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span style="     color: black !important;">15</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">12.000</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">18.000</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: black !important;">-6.000</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">16</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">18.125</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">18.250</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">-0.125</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">17</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">19.625</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">18.875</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;"> 0.750</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">18</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">26.250</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;">18.500</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;"> 7.750</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;"></span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;"></span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;"></span>
+</td>
+<td style="text-align:center;">
+<span style="     color: lightgray !important;"></span>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Note that here the sample size is <span class="math inline">\(n\)</span> = 15, but the population size is effectively infinite (i.e., <span class="math inline">\(N\)</span> = <span class="math inline">\(\infty\)</span>).</p>
+<!-- Maybe try introducing the concepts of statistic and parameter *after* introducing the concept of a distribution, so that they can be defined as describing a distribution? Actually maybe re-introduce these concepts and refine their definition. -->
+<div style="page-break-after: always;"></div>
+</div>
+<div id="statistics-and-parameters" class="section level2">
+<h2>Statistics and Parameters</h2>
+<p>A <strong>statistic</strong> is a description of the observations in a <em>sample</em>, or a description of the <em>distribution</em> of observations in a sample.</p>
+<p>A <strong>parameter</strong> is a description of the observations in a <em>population</em>, or a description of the <em>distribution</em> of observations in a population.</p>
+<p>Note: More formally, a statistic is anything that is a <em>function of the (distribution of) observations in a sample</em>, and a parameter is a <em>function of the (distribution of) observations in a population</em>.</p>
+<p>Note: We will consider what is meant by a “distribution” in the next lecture.</p>
+</div>
+<div id="descriptive-and-inferential-statistics" class="section level2">
+<h2>Descriptive and Inferential Statistics</h2>
+<p><strong>Descriptive statistics</strong> concerns <em>describing</em> the observations in a <em>sample</em> using <em>statistics</em>, or a <em>population</em> using <em>parameters</em>.</p>
+<p><strong>Inferential statistics</strong> (or <strong>statistical inference</strong>) concerns using a <em>sample</em> (usually a <em>statistic</em>) to make conclusions about a <em>population</em> (usually a <em>parameter</em>).</p>
+</div>
+<div id="the-big-picture" class="section level2">
+<h2>The “Big Picture”</h2>
+<p>The “big picture” illustrates the roles of population versus sample, design, parameter versus statistic, and description versus inference. The <strong>design</strong> of a study is the process of how we obtain a sample — i.e., how we <em>collect</em> data (more on that later).</p>
+<p><img src="big-picture.jpg" /></p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Darwin, C. (1876). <em>The Effect of Cross- and Self-fertilization in the Vegetable Kingdom, 2nd Ed</em>. London: John Murray.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
