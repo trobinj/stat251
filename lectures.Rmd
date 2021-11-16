@@ -116,7 +116,7 @@ i <- 0
 
 `r i <- i + 1; d[i]` [Goodness-of-fit tests](lecture-11-15-2021.html).
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Tests of independence](lecture-11-17-2021.html). A set of [homework problems] on goodness-of-fit tests and tests of independence is now available.
  
 `r i <- i + 1; d[i]` 
  
