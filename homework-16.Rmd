@@ -1,0 +1,106 @@
+---
+title: "Homework Problem Set 16: Mark-Recapture Designs"
+output: 
+  html_document: 
+    theme: readable
+header-includes:
+  - \usepackage{array}
+  - \usepackage{booktabs}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, out.width = "100%", fig.align = "center", 
+  cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "tikz"))
+```
+
+```{r packages}
+library(tidyverse)
+library(kableExtra)
+```
+
+```{r utilities}
+source("../../utilities.R")
+```
+
+`r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](homework-16.pdf) copy of this homework assignment.", sep = ""), "")`
+
+```{r}
+lp <- function(n1, n2, m) {
+  return(n1 * n2 / m)
+}
+se <- function(n1, n2, m, type) {
+  if (type == "direct") {
+    y <- sqrt(n1*n2*(n1-m)*(n2-m)/m^3)
+  }
+  if (type == "inverse") {
+    y <- sqrt(n1^2*n2*(n2-m)/(m^2*(m+1)))
+  }
+  return(y)
+}
+```
+
+**Instructions**: The following problems will test your understanding of the use of mark-recapture designs to estimate population size. When computing margins of error use a "multiplier" of $z$ = 1.96 for an approximate 95\% confidence level. The answers are given within each problem. You are asked to confirm these answers by computing them yourself. 
+
+```{r}
+n1 <- 320
+n2 <- 515
+m <- 90
+```
+
+1. Wildlife biologists used a mark-recapture design to estimate the size of the bobwhite quail population in part of Florida. Initially they trapped, tagged, and released `r n1` quail. Their second sample of `r n2` quail included `r m` tagged quail. The data can be summarized in the following table. 
+```{r}
+d <- data.frame(first = c("included","excluded","Total"),
+  included = c(m,n2-m,n2),
+  excluded = c(n1-m,"?","?"),
+  Total = c(n1,"?","$N$"))
+names(d)[1] <- c("First Sample")
+ktbl(d, align = "lccc") %>% add_header_above(c(" " = 1, "Second Sample" = 2, " " = 1)) %>% column_spec(1, bold = knitr::is_html_output())
+```
+Confirm that the estimate of the population size is `r rnd(lp(n1, n2, m))` quail. Also confirm that the margin of error would be `r rnd(1.96 * se(n1, n2, m, "direct"))` if the researchers had used *direct sampling*, and `r rnd(1.96 * se(n1, n2, m, "inverse"))` if the researchers had used *inverse sampling*.
+
+```{r}
+n1 <- 300
+n2 <- 400
+m <- 15
+```
+
+0. A student at the University of Idaho decides to estimate the number of undergraduate students at the University of Idaho. She recruits two popular students at the university, Beth and Wendy, who both have many fellow students as friends on Facebook. Beth has `r n1` friends on Facebook who are undergraduate University of Idaho students. Wendy has `r n2` friends on Facebook who are undergraduate University of Idaho students. When comparing the two sets of friends the she finds that these two students have `r m` friends in common who are students at the University of Idaho. The data can be summarized in the following table.
+```{r}
+d <- data.frame(first = c("included","excluded","Total"),
+  included = c(m,n2-m,n2),
+  excluded = c(n1-m,"?","?"),
+  Total = c(n1,"?","$N$"))
+names(d)[1] <- c("Beth's Friends List")
+ktbl(d, align = "lccc") %>% add_header_above(c(" " = 1, "Wendy's Friends List" = 2, " " = 1)) %>% column_spec(1, bold = knitr::is_html_output())
+```
+Confirm that the estimate of the number of students at the University of Idaho is `r rnd(lp(n1,n2,m))` students. 
+
+```{r}
+n1 <- 100
+n2 <- 200
+m <- 25
+```
+
+0. Suppose I wanted to estimate the number of jellybeans in a jar. From this jar I grab a handful of `r n1` jellybeans, paint each of these jellybeans black, and then replace them back into the jar. After shaking the jar I grab another handful of `r n2` jellybeans and notice that `r m` of these jellybeans are painted black. Confirm that the estimate of the number of jellybeans in the jar is `r rnd(lp(n1,n2,m))` jellybeans, and that the margin of error is `r rnd(1.96 * se(n1, n2, m, "direct"))` if I had used *direct sampling*, giving a confidence interval for the number of jellybeans in the jar of `r round(lp(n1,n2,m))` $\pm$ `r round(1.96 * se(n1, n2, m, "direct"))` jellybeans.
+
+```{r cr, echo = FALSE}
+n1 <- 1504 
+n2 <- 1535
+m <- 794
+```
+
+0. An early real example of mark-recapture methodology was a study from 1949 that estimated the number of births in an area near Calcutta, India. Like the Hobbit example from class and the Facebook example above, this study used lists of individuals rather than actually marking people. The researchers had access to two lists of births --- lists $A$ and $B$ (one of the lists was from the Maternity and Child Welfare Department, and the other was complied by the All-India Institute of Hygiene and Public Health). Neither list contained all births. List $A$ recorded `r n1` births, and list $B$ recorded `r n2` births. When the two lists were compared (births were recorded by name so common records could be identified), it was observed that there were `r m` births that were on *both* lists. The data can be summarized in a table tabulating the number of actual births that were present or absent from each list.
+```{r}
+d <- data.frame(first = c("included","excluded","Total"),
+  included = c(m,n2-m,n2),
+  excluded = c(n1-m,"?","?"),
+  Total = c(n1,"?","$N$"))
+names(d)[1] <- c("List A")
+ktbl(d, align = "lccc") %>% add_header_above(c(" " = 1, "List B" = 2, " " = 1)) %>% column_spec(1, bold = knitr::is_html_output())
+```
+Confirm that the estimate of the number of births is `r rnd(lp(n1, n2, m))` births. 
+
+```{r}
+rm(list = ls())
+```
+
