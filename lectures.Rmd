@@ -130,7 +130,7 @@ i <- 0
  
 ***
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Cramer's V and McNemar's test](lecture-11-29-2021.html). Instead of a homework assignment on these topics, assume that any computational problems on these topics on the examination will use the examples from lecture (but with different numbers). The [study guide](e6-studyguide.html) for the sixth examination is now available.
 
 `r i <- i + 1; d[i]` 
 

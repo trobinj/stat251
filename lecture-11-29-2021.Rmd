@@ -1,0 +1,465 @@
+---
+output:
+  html_document:
+    theme: readable
+---
+
+```{r, echo = FALSE, message = FALSE}
+library(lubridate)
+date <- "11-29-2021"
+weekday <- wday(mdy(date), label = TRUE, abbr = FALSE)
+month <- month(mdy(date), label = TRUE)
+day <- day(mdy(date))
+```
+
+---
+title: `r paste(weekday, ", ", month, " ", day, sep = "")`
+header-includes:
+  - \usepackage{array}
+  - \usepackage{booktabs}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, fig.align = "center", out.width = "100%", fig.width = 9, cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
+```
+
+```{r packages}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(kableExtra)
+```
+
+```{r utilities}
+source("../../utilities.R")
+```
+
+`r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](lecture-", date, ".pdf) copy of this lecture.", sep = ""), "")`
+
+## Cramer's V
+
+Consider the following data where a sample of 1398 children were classified with respect to tonsil size and carrier status of *Streptococcus pyogenes*.[^tonsil]
+
+```{r}
+d <- matrix(0, 4, 3)
+d[1:3,1:2] <- c(19,29,24,497,560,269)
+d[4,] <- apply(d, 2, sum)
+d[,3] <- apply(d, 1, sum)
+
+x <- chisq.test(d[1:3,1:2], correct = FALSE)$statistic
+v <- sqrt(round(x,2)/(min(3-1,2-1) * sum(d[1:3,1:2])))
+n <- d[nrow(d),ncol(d)]
+r <- nrow(d) - 1
+c <- ncol(d) - 1
+
+py <- rep(NA, 4)
+pn <- rep(NA, 4)
+for (i in 1:4) {
+  py[i] <- paste(d[i,1], " (", round(d[i,1]/d[i,3], 2), ")", sep = "")
+  pn[i] <- paste(d[i,2], " (", round(d[i,2]/d[i,3], 2), ")", sep = "")
+}
+d[,1] <- py
+d[,2] <- pn
+
+d <- cbind(c("small","medium","large","Total"), d)
+d <- as.data.frame(d)
+
+names(d) <- c("Size","yes","no","Total")
+ktbl(d, align = c("lccc")) %>% add_header_above(c(" " = 1, "Carrier" = 2, " " = 1)) %>% column_spec(1, bold = knitr::is_html_output())
+```
+The numbers in parentheses are the *proportions* of children of each tonsil size who are or are not carriers. The value of the test statistic for a test of independence is $X^2 \approx `r round(x,2)`$. We might decide tonsil size and carrier status are dependent. But can we *measure* the amount of dependence?
+
+**Cramer's V** is a *measure of association* between two categorical variables. It is defined as
+$$
+V = \sqrt{\frac{X^2/n}{\min(r-1,c-1)}},
+$$
+and is bounded such that $0 \le V \le 1$. It effectively measures the degree to which the observed counts deviate from the expected counts under the assumption of independence, and thus can be viewed as a measurement of the degree of dependence. 
+
+[^tonsil]: Holmes, M. C. & Williams, R. E. O. (1954). The distribution of carriers of Streptococcus pyogenes among 2413 healthy children. *Journal of Hygiene*, *52*, 165--179. 
+
+**Example**: For the data on tonsil size and carrier status, the value of Cramer's V is 
+$$
+\sqrt{\frac{`r round(x,2)`/`r d[nrow(d),ncol(d)]`}{\min(`r r` - 1, `r c` - 1)}} \approx
+`r round(v,2)`,
+$$
+which is a relatively *weak* association.
+
+\pagebreak
+
+Here are some hypothetical observed counts showing a *stronger* association.
+```{r}
+p <- c(0.05, 0.15, 0.25)
+d <- matrix(0, 4, 3)
+d[1:3,1:2] <- c(500*p[1], 600*p[2], 300*p[3], 500*(1-p[1]), 600*(1-p[2]), 300*(1-p[3]))
+d[4,] <- apply(d, 2, sum)
+d[,3] <- apply(d, 1, sum)
+
+x <- chisq.test(d[1:3,1:2], correct = FALSE)$statistic
+v <- sqrt(round(x,2)/(min(3-1,2-1) * sum(d[1:3,1:2])))
+n <- d[nrow(d),ncol(d)]
+r <- nrow(d) - 1
+c <- ncol(d) - 1
+
+py <- rep(NA, 4)
+pn <- rep(NA, 4)
+for (i in 1:4) {
+  py[i] <- paste(d[i,1], " (", round(d[i,1]/d[i,3], 2), ")", sep = "")
+  pn[i] <- paste(d[i,2], " (", round(d[i,2]/d[i,3], 2), ")", sep = "")
+}
+d[,1] <- py
+d[,2] <- pn
+
+d <- cbind(c("small","medium","large","Total"), d)
+d <- as.data.frame(d)
+
+names(d) <- c("Size","yes","no","Total")
+ktbl(d, align = c("lccc")) %>% add_header_above(c(" " = 1, "Carrier" = 2, " " = 1)) %>% column_spec(1, bold = knitr::is_html_output())
+```
+The test statistic is $X^2 \approx `r round(x,2)`$ and the measure of association is $V \approx `r round(v,2)`$.
+
+And here are some hypothetical observed counts showing an *even stronger* association.
+```{r}
+p <- c(0.05, 0.5, 0.95)
+d <- matrix(0, 4, 3)
+d[1:3,1:2] <- c(500*p[1], 600*p[2], 300*p[3], 500*(1-p[1]), 600*(1-p[2]), 300*(1-p[3]))
+d[4,] <- apply(d, 2, sum)
+d[,3] <- apply(d, 1, sum)
+
+x <- chisq.test(d[1:3,1:2], correct = FALSE)$statistic
+v <- sqrt(round(x,2)/(min(3-1,2-1) * sum(d[1:3,1:2])))
+n <- d[nrow(d),ncol(d)]
+r <- nrow(d) - 1
+c <- ncol(d) - 1
+
+py <- rep(NA, 4)
+pn <- rep(NA, 4)
+for (i in 1:4) {
+  py[i] <- paste(d[i,1], " (", round(d[i,1]/d[i,3], 2), ")", sep = "")
+  pn[i] <- paste(d[i,2], " (", round(d[i,2]/d[i,3], 2), ")", sep = "")
+}
+d[,1] <- py
+d[,2] <- pn
+
+d <- cbind(c("small","medium","large","Total"), d)
+d <- as.data.frame(d)
+
+names(d) <- c("Size","yes","no","Total")
+ktbl(d, align = c("lccc")) %>% add_header_above(c(" " = 1, "Carrier" = 2, " " = 1)) %>% column_spec(1, bold = knitr::is_html_output())
+```
+The test statistic is $X^2 \approx `r round(x,2)`$ and the measure of association is $V \approx `r round(v,2)`$.
+
+Here is an example of the *maximum degree of association*.
+```{r}
+p <- c(0.0, 0.0, 1.0)
+d <- matrix(0, 4, 3)
+d[1:3,1:2] <- c(500*p[1], 600*p[2], 300*p[3], 500*(1-p[1]), 600*(1-p[2]), 300*(1-p[3]))
+d[4,] <- apply(d, 2, sum)
+d[,3] <- apply(d, 1, sum)
+
+x <- chisq.test(d[1:3,1:2], correct = FALSE)$statistic
+v <- sqrt(round(x,2)/(min(3-1,2-1) * sum(d[1:3,1:2])))
+n <- d[nrow(d),ncol(d)]
+r <- nrow(d) - 1
+c <- ncol(d) - 1
+
+py <- rep(NA, 4)
+pn <- rep(NA, 4)
+for (i in 1:4) {
+  py[i] <- paste(d[i,1], " (", round(d[i,1]/d[i,3], 2), ")", sep = "")
+  pn[i] <- paste(d[i,2], " (", round(d[i,2]/d[i,3], 2), ")", sep = "")
+}
+d[,1] <- py
+d[,2] <- pn
+
+d <- cbind(c("small","medium","large","Total"), d)
+d <- as.data.frame(d)
+
+names(d) <- c("Size","yes","no","Total")
+ktbl(d, align = c("lccc")) %>% add_header_above(c(" " = 1, "Carrier" = 2, " " = 1)) %>% column_spec(1, bold = knitr::is_html_output())
+```
+The test statistic is $X^2 = `r round(x,2)`$ and the measure of association is $V = `r round(v,2)`$. 
+
+What about the *minimum* degree of association? 
+```{r}
+p <- c(0.05, 0.05, 0.05)
+d <- matrix(0, 4, 3)
+d[1:3,1:2] <- c(500*p[1], 600*p[2], 300*p[3], 500*(1-p[1]), 600*(1-p[2]), 300*(1-p[3]))
+d[4,] <- apply(d, 2, sum)
+d[,3] <- apply(d, 1, sum)
+
+x <- chisq.test(d[1:3,1:2], correct = FALSE)$statistic
+v <- sqrt(round(x,2)/(min(3-1,2-1) * sum(d[1:3,1:2])))
+n <- d[nrow(d),ncol(d)]
+r <- nrow(d) - 1
+c <- ncol(d) - 1
+
+py <- rep(NA, 4)
+pn <- rep(NA, 4)
+for (i in 1:4) {
+  py[i] <- paste(d[i,1], " (", round(d[i,1]/d[i,3], 2), ")", sep = "")
+  pn[i] <- paste(d[i,2], " (", round(d[i,2]/d[i,3], 2), ")", sep = "")
+}
+d[,1] <- py
+d[,2] <- pn
+
+d <- cbind(c("small","medium","large","Total"), d)
+d <- as.data.frame(d)
+
+names(d) <- c("Size","yes","no","Total")
+ktbl(d, align = c("lccc")) %>% add_header_above(c(" " = 1, "Carrier" = 2, " " = 1)) %>% column_spec(1, bold = knitr::is_html_output())
+```
+The test statistic is $X^2 = `r round(x,2)`$ and the measure of association is $V = `r round(v,2)`$. Here the observed counts would be *equal* to the expected counts. 
+
+\pagebreak
+
+**Example**: Consider the following data from a randomized experiment comparing two strategies for chemotherapy.[^tumor]
+```{r}
+d <- matrix(0, 3, 5)
+d[1:2,1:4] <- c(32,53,57,51,34,23,28,21)
+d[3,] <- apply(d, 2, sum)
+d[,5] <- apply(d, 1, sum)
+
+x <- chisq.test(d[1:2,1:4], correct = FALSE)$statistic
+v <- sqrt(round(x,2)/(min(2-1,4-1) * sum(d[1:2,1:4])))
+n <- d[nrow(d),ncol(d)]
+r <- nrow(d) - 1
+c <- ncol(d) - 1
+
+p <- matrix(NA, 3, 4)
+for (i in 1:3) {
+  for (j in 1:4) {
+    p[i,j] <- paste(d[i,j], " (", round(d[i,j]/d[i,5], 2), ")", sep = "")   
+  }  
+}  
+d[1:3,1:4] <- p
+
+d <- cbind(c("sequential","alternating","Total"), d)
+d <- as.data.frame(d)
+
+names(d) <- c("Strategy","progressive disease","no change","partial remission","complete remission","Total")
+ktbl(d, align = c("lccccc")) %>% add_header_above(c(" " = 1, "Tumor Response" = 4, " " = 1)) %>% column_spec(1, bold = knitr::is_html_output())
+```
+The test statistic is $X^2 \approx `r round(x,2)`$ and the measure of association is $V \approx `r round(v,2)`$.
+
+[^tumor]: Holtbrugge, W. & Schumacher, M. (1991). A comparison of regression models for the analysis of ordered categorical data. *Applied Statistics*, *40*, 249--259.
+
+Here is a weaker association with some hypothetical observed counts.
+```{r}
+d <- matrix(0, 3, 5)
+d[1,1:4] <- c(0.2, 0.4, 0.25, 0.15) * 200
+d[2,1:4] <- c(0.25, 0.42, 0.21, 0.12) * 200
+d[3,] <- apply(d, 2, sum)
+d[,5] <- apply(d, 1, sum)
+
+x <- chisq.test(d[1:2,1:4], correct = FALSE)$statistic
+v <- sqrt(round(x,2)/(min(2-1,4-1) * sum(d[1:2,1:4])))
+n <- d[nrow(d),ncol(d)]
+r <- nrow(d) - 1
+c <- ncol(d) - 1
+
+p <- matrix(NA, 3, 4)
+for (i in 1:3) {
+  for (j in 1:4) {
+    p[i,j] <- paste(d[i,j], " (", round(d[i,j]/d[i,5], 2), ")", sep = "")   
+  }  
+}  
+d[1:3,1:4] <- p
+
+d <- cbind(c("sequential","alternating","Total"), d)
+d <- as.data.frame(d)
+
+names(d) <- c("Strategy","progressive disease","no change","partial remission","complete remission","Total")
+ktbl(d, align = c("lccccc")) %>% add_header_above(c(" " = 1, "Tumor Response" = 4, " " = 1)) %>% column_spec(1, bold = knitr::is_html_output())
+```
+The test statistic is $X^2 \approx `r round(x,2)`$ and the measure of association is $V \approx `r round(v,2)`$.
+
+Here is a stronger association with some hypothetical observed counts.
+```{r}
+d <- matrix(0, 3, 5)
+d[1,1:4] <- c(0.3, 0.5, 0.1, 0.1) * 200
+d[2,1:4] <- c(0.1, 0.2, 0.5, 0.2) * 200
+d[3,] <- apply(d, 2, sum)
+d[,5] <- apply(d, 1, sum)
+
+x <- chisq.test(d[1:2,1:4], correct = FALSE)$statistic
+v <- sqrt(round(x,2)/(min(2-1,4-1) * sum(d[1:2,1:4])))
+n <- d[nrow(d),ncol(d)]
+r <- nrow(d) - 1
+c <- ncol(d) - 1
+
+p <- matrix(NA, 3, 4)
+for (i in 1:3) {
+  for (j in 1:4) {
+    p[i,j] <- paste(d[i,j], " (", round(d[i,j]/d[i,5], 2), ")", sep = "")   
+  }  
+}  
+d[1:3,1:4] <- p
+
+d <- cbind(c("sequential","alternating","Total"), d)
+d <- as.data.frame(d)
+
+names(d) <- c("Strategy","progressive disease","no change","partial remission","complete remission","Total")
+ktbl(d, align = c("lccccc")) %>% add_header_above(c(" " = 1, "Tumor Response" = 4, " " = 1)) %>% column_spec(1, bold = knitr::is_html_output())
+```
+The test statistic is $X^2 \approx `r round(x,2)`$ and the measure of association is $V \approx `r round(v,2)`$.
+
+Here is a very strong association with some hypothetical observed counts.
+```{r}
+d <- matrix(0, 3, 5)
+d[1,1:4] <- c(0.45, 0.5, 0.03, 0.02) * 200
+d[2,1:4] <- c(0.01, 0.09, 0.5, 0.4) * 200
+d[3,] <- apply(d, 2, sum)
+d[,5] <- apply(d, 1, sum)
+
+x <- chisq.test(d[1:2,1:4], correct = FALSE)$statistic
+v <- sqrt(round(x,2)/(min(2-1,4-1) * sum(d[1:2,1:4])))
+n <- d[nrow(d),ncol(d)]
+r <- nrow(d) - 1
+c <- ncol(d) - 1
+
+p <- matrix(NA, 3, 4)
+for (i in 1:3) {
+  for (j in 1:4) {
+    p[i,j] <- paste(d[i,j], " (", round(d[i,j]/d[i,5], 2), ")", sep = "")   
+  }  
+}  
+d[1:3,1:4] <- p
+
+d <- cbind(c("sequential","alternating","Total"), d)
+d <- as.data.frame(d)
+
+names(d) <- c("Strategy","progressive disease","no change","partial remission","complete remission","Total")
+ktbl(d, align = c("lccccc")) %>% add_header_above(c(" " = 1, "Tumor Response" = 4, " " = 1)) %>% column_spec(1, bold = knitr::is_html_output())
+```
+The test statistic is $X^2 \approx `r round(x,2)`$ and the measure of association is $V \approx `r round(v,2)`$.
+
+\pagebreak
+
+## McNemar's Test for Matched Pairs
+
+**Example**: A retrospective [case-control](https://en.wikipedia.org/wiki/Case-control_study) study was used to investigate the theory that tonsils protect the body against the invasion of the lymph nodes by the virus responsible for Hodgkin's disease. The study compared patients with Hodgkin's disease (the cases) with their siblings without the disease (the controls) with respect to whether or not they had a tonsillectomy in the past.[^johnson]
+```{r}
+set.seed(123)
+d <- rbind(
+  matrix(c("tonsillectomy","tonsillectomy"), 26, 2, byrow = TRUE),
+  matrix(c("no tonsillectomy","tonsillectomy"), 7, 2, byrow = TRUE),
+  matrix(c("tonsillectomy","no tonsillectomy"), 15, 2, byrow = TRUE),
+  matrix(c("no tonsillectomy","no tonsillectomy"), 37, 2, byrow = TRUE)
+)
+d <- cbind(1:nrow(d), d)
+d <- d[sample(1:nrow(d)),]
+d[,1] <- 1:nrow(d)
+d <- as.data.frame(d)
+names(d) <- c("Pair","Patient (Case)","Sibling (Control)")
+ktbl(headtail(d, 10))
+```
+Each *pair* can be classified in terms of whether or not the patient (case) had a tonsillectomy, and whether or not the sibling (control) had a tonsillectomy.
+```{r}
+d <- data.frame(Patient = c("tonsillectomy","no tonsillectomy", "Total"),
+  yes = c(26,7,33), no = c(15,37,52), Total = c(41,44,85))
+names(d)[1:3] <- c("Patient (Case)", "tonsillectomy", "no tonsillectomy")
+ktbl(d, align = "lccc") %>% column_spec(1, bold = TRUE) %>%
+  add_header_above(c(" " = 1, "Sibling (Control)" = 2, " " = 1))
+```
+Let $p_p$ be the probability that the patient (case) had a tonsillectomy, and let $p_s$ be the probability that the sibling (control) had a tonsillectomy. How can we test the null hypothesis $H_0\!: p_p = p_s$ versus $H_a\!: p_p \neq p_s$? It would be tempting to use the test statistic
+$$
+  z = \frac{\hat{p}_p - \hat{p}_s}{\sqrt{\hat{p}(1-\hat{p})(1/n_p + 1/n_s)}},
+$$
+where $\hat{p}_p = 41/85$, $\hat{p}_s = 33/85$, $n_p = 85$, $n_s = 85$, and $\hat{p} = (41+33)/(85+85)$. However this test statistic assumes that the samples are *independent*, but they are *not independent*. 
+
+\pagebreak
+
+### Derivation of McNemar's Test Statistic
+
+Let $p_a$, $p_b$, $p_c$, and $p_d$ denote the probabilities of each of the four possible sibling pairs.
+```{r}
+d <- data.frame(Patient = c("tonsillectomy","no tonsillectomy"),
+  yes = c("$p_a$","$p_c$"), no = c("$p_b$","$p_d$"))
+names(d) <- c("Patient (Case)", "tonsillectomy", "no tonsillectomy")
+ktbl(d, align = "lccc") %>% column_spec(1, bold = knitr::is_html_output()) %>%
+  add_header_above(c(" " = 1, "Sibling (Control)" = 2))
+```
+So the probability that the *patient* had a tonsillectomy is
+$$
+  p_p = p_a + p_b,
+$$
+and the probability that the *sibling* had a tonsillectomy is
+$$
+  p_s = p_a + p_c.
+$$
+If the null hypothesis is true then 
+$$
+  p_p = p_s \Rightarrow p_a + p_b = p_a + p_c \Rightarrow p_b = p_c.
+$$
+Now we don't know $p_b$ or $p_c$, but we can estimate them from the observed counts,
+```{r}
+d <- data.frame(Patient = c("tonsillectomy","no tonsillectomy", "Total"),
+  yes = c(26,7,33), no = c(15,37,52), Total = c(41,44,85))
+names(d)[1:3] <- c("Patient (Case)", "tonsillectomy", "no tonsillectomy")
+ktbl(d, align = "lccc") %>% column_spec(1, bold = knitr::is_html_output()) %>%
+  add_header_above(c(" " = 1, "Sibling (Control)" = 2, " " = 1))
+```
+The estimates of $p_b$ and $p_c$ are obtained by averaging the corresponding proportions because we assume that $p_b = p_c$ under the null hypothesis so that
+$$
+  \hat{p}_b = \frac{7/85+15/85}{2}, \ \ \hat{p}_c = \frac{7/85+15/85}{2}.
+$$
+Now these estimates can be used to compute two of the (estimated) expected counts corresponding to the bottom-left and top-right cells. 
+$$
+  n \times \hat{p}_b = 85 \times \frac{7/85+15/85}{2} = \frac{7+15}{2} = 11, \\ \\ 
+  n \times \hat{p}_c = 85 \times \frac{7/85+15/85}{2} = \frac{7+15}{2} = 11.
+$$
+The null hypothesis does not imply anything about the expected counts for the top-left and top-right cells, so we just use the observed counts as estimates of the expected counts in those cells. The expected counts for each cell are shown in the table below.
+```{r}
+d <- data.frame(Patient = c("tonsillectomy","no tonsillectomy", "Total"),
+  yes = c(26,"(7+15)/2",33), no = c("(7+15)/2",37,52), Total = c(41,44,85))
+names(d)[1:3] <- c("Patient (Case)", "tonsillectomy", "no tonsillectomy")
+ktbl(d, align = "lccc") %>% column_spec(1, bold = knitr::is_html_output()) %>%
+  add_header_above(c(" " = 1, "Sibling (Control)" = 2, " " = 1))
+```
+Now plugging the observed and expected counts into the formula for $X^2$ gives us
+$$
+  X^2 = \frac{(26-26)^2}{26} + \frac{[15-(7+15)/2]^2}{(7+15)/2} + \frac{[7-(7+15)/2]^2}{(7+15)/2} + \frac{(37-37)^2}{37} \approx `r round((7-15)^2/(7+15),2)`.
+$$
+Some algebra will show that this can be simplified considerably to
+$$
+  X^2 = \frac{(7-15)^2}{7+15} \approx `r round((7-15)^2/(7+15),2)`.
+$$
+In general, we can write the test statistic as 
+$$
+  X^2 = \frac{(O_{bl}-O_{tr})^2}{O_{bl} + O_{tr}}
+$$
+where $O_{bl}$ and $O_{tr}$ denote the bottom-left and top-right *observed counts*, respectively. The degrees of freedom for computing the $p$-value is always 1. 
+
+[^johnson]: Johnson, S. K. & Johnson, R. E. (1972). Tonsillectomy history in Hodgkin's disease. *New England Journal of Medicine*, *287*, 1122--1125.
+
+**Example**: An [enzyme-linked immunosorbent assay (ELISA)](https://en.wikipedia.org/wiki/ELISA) is an analytical biochemical procedure that can be used to detect the presence of antigens or antibodies, and so so it can be used to detect the presence of specific infections. A study applied two kinds of ELISA --- a standard version and the ABC-ELISA --- to each of 101 patients with hydatidosis (i.e., an infestation with *echinococcus*, a genus of tapeworms).[^shen] Each test will give a *positive* or *negative* test result for the presence of the disease. Let $p_{\text{abc}}$ and $p_{\text{s}}$ be the probability that a ABC-ELISA and standard ELISA, respectively, will produce a positive result when applied to someone with the disease (this probability is called the [*sensitivity*](https://en.wikipedia.org/wiki/Sensitivity_and_specificity) of the test). To determine if the two tests differ with respect to their sensitivity we could test the hypotheses $H_0\!: p_{\text{abc}} - p_{\text{s}} = 0$ versus $H_a\!: p_{\text{abc}} - p_{\text{s}} \neq 0$ using the test statistic
+$$
+  z = \frac{\hat{p}_{\text{abc}} - \hat{p}_{\text{s}}}{\sqrt{\hat{p}(1-\hat{p})(1/n_{\text{abc}} + 1/n_{\text{s}})}}.
+$$
+This is what was done in the original analysis, but it was later pointed out that this analysis is incorrect because the two samples are *dependent* because both assays were applied to the same patients.[^cruess] So how can we test the hypotheses $H_0\!: p_{\text{abc}} - p_{\text{s}} = 0$ versus $H_a\!: p_{\text{abc}} - p_{\text{s}} \neq 0$?
+
+```{r}
+d <- data.frame("ABCELISA" = c("positive","negative","Total"),
+  positive = c(82,6,88), negative = c(13,0,13), Total = c(95,6,101))
+names(d)[1] <- "ABC-ELISA"
+ktbl(d, align = "lccc") %>% column_spec(1, bold = knitr::is_html_output()) %>%
+  add_header_above(c(" " = 1, "Standard ELISA" = 2, " " = 1))
+```
+
+[^shen]: Shen, Z. Q., Feng, X. H., Qian, Z. X., Liu, R. L., & Yang, C. R. (1988). Application of biotinadvin system, determination of circulating immune complexes, and evaluation of antibody response in different hydatidosis patients. *American Journal of Tropical Medicine and Hygiene*. *39*, 93--96.
+
+[^cruess]: Cruess, D. F. (1989). Review of use of statistics in The American Journal of Tropical Medicine and Hygiene for January-December 1988. *American Journal of Tropical Medicine and Hygiene*, *41*, 619--626.
+
+\pagebreak
+
+**Example**: In educational testing, a simple measure of the "easiness" of an item is the proportion of examinees that get the question correct (similarly, a measure of the "difficulty" of an item is the proportion of examinees that get the question incorrect). Suppose a test has two items, $A$ and $B$, and let $p_A$ and $p_B$ denote the probability that a randomly selected examinee will get each item correct. The test was administered to $n=1000$ examinees. The responses of the examinees to these two items are summarized in the table below. 
+```{r}
+d <- data.frame("itema" = c("correct","incorrect","Total"),
+  correct = c(400,175,575), incorrect = c(125,300,425), Total = c(525,475,1000))
+names(d)[1] <- "Item A"
+ktbl(d, align = "lccc") %>% column_spec(1, bold = knitr::is_html_output()) %>%
+  add_header_above(c(" " = 1, "Item B" = 2, " " = 1))
+```
+Now consider a test of the hypotheses $H_0\!: p_A - p_B = 0$ versus $H_a\!: p_A - p_B \neq 0$. However the two samples of responses --- i.e., the samples of responses to item A and the sample of responses to item B --- are not independent. How then do we test these hypotheses? 
+
+
