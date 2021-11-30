@@ -1,0 +1,240 @@
+---
+output:
+  html_document:
+    theme: readable
+---
+
+```{r, echo = FALSE, message = FALSE}
+library(lubridate)
+date <- "12-01-2021"
+weekday <- wday(mdy(date), label = TRUE, abbr = FALSE)
+month <- month(mdy(date), label = TRUE)
+day <- day(mdy(date))
+```
+
+---
+title: `r paste(weekday, ", ", month, " ", day, sep = "")`
+header-includes:
+  - \usepackage{array}
+  - \usepackage{booktabs}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, fig.align = "center", out.width = "100%", fig.width = 9, cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
+```
+
+```{r packages}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(kableExtra)
+```
+
+```{r utilities}
+source("../../utilities.R")
+```
+
+`r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](lecture-", date, ".pdf) copy of this lecture.", sep = ""), "")`
+
+## Simpson's Paradox
+
+**Example**: The following data are from an observational study that compared open surgical methods with percutaneous nephrolithotomy with respect to success of removing a kidney stone.[^kidney]
+
+```{r}
+d <- trtools::kidneystones
+d$treatment <- as.character(d$treatment)
+d <- subset(d, !(d$treatment %in% c("ESWL","perc/nephro/ESWL","ureter")))
+d$treatment[d$treatment %in% c("pyelo","uretero","nephr/pyelo")] <- "open surgical method"
+d$treatment[d$treatment == "perc/nephro"] <- "percutaneous nephrolithotomy"
+
+d <- d %>% group_by(treatment) %>% summarize(success = sum(success), failure = sum(total) - sum(success), total = sum(total))
+d <- d %>% mutate(success = paste(success, " (", round(success/total,2), ")", sep = ""))
+d <- d %>% mutate(failure = paste(failure, " (", round(failure/total,2), ")", sep = ""))
+
+names(d)[c(1,4)] <- c("Treatment","Total")
+ktbl(d, align = "lccc") %>% add_header_above(c(" " = 1, "Outcome" = 2, " " = 1))
+```
+Now consider the same data but now also considering the *size* of the kidney stone. 
+```{r}
+d <- trtools::kidneystones
+d$treatment <- as.character(d$treatment)
+d <- subset(d, !(d$treatment %in% c("ESWL","perc/nephro/ESWL","ureter")))
+d$treatment[d$treatment %in% c("pyelo","uretero","nephr/pyelo")] <- "open surgical method"
+d$treatment[d$treatment == "perc/nephro"] <- "percutaneous nephrolithotomy"
+
+d <- d %>% group_by(size, treatment) %>% summarize(success = sum(success), failure = sum(total) - sum(success), total = sum(total))
+d <- d %>% mutate(success = paste(success, " (", round(success/total,2), ")", sep = ""))
+d <- d %>% mutate(failure = paste(failure, " (", round(failure/total,2), ")", sep = ""))
+
+names(d)[c(1,2,5)] <- c("Size","Treatment","Total")
+ktbl(d, align = "llccc") %>% add_header_above(c(" " = 2, "Outcome" = 2, " " = 1))
+```
+Why?
+
+**Simpson's Paradox**: A situation when the relationship between two variables "reverses" when conditioning upon a third confounding variable.
+
+[^kidney]: Charig, C. R., Webb, D. R., Payne, S. R., & Wickham, J. E. A. (1986). Comparison of treatment of renal calculi by open surgery, percutaneous nephrolithotomy, and extracorporeal shockwave lithotripsy. *British Medical Journal*, *292*, 879--882.
+
+**Example**: The data shown below are from an investigation of the relationship between the defendant's race and whether or not the death penalty was given in murder trials.
+```{r}
+d <- data.frame(Defendant = rep(c("white","black"), 3),
+  yes = c(53,15,53,11,0,4), no = c(430,176,414,37,16,139))
+d$total <- with(d, yes + no)
+d$yes <- with(d, paste(yes, " (", round(yes/total, 2), ")", sep = ""))
+d$no <- with(d, paste(no, " (", round(no/total, 2), ")", sep = ""))
+names(d)[4] <- "Total"
+ktbl(d, align = "lccc") %>% group_rows("White Victim", 3, 4) %>% group_rows("Black Victim", 5, 6) %>%
+  add_header_above(c(" " = 1, "Death Penalty" = 2, " " = 1))
+```
+
+**Example**: Consider data from a survey of women and an investigation of the relationship between smoking and mortality.  
+```{r, fig.height = 3}
+d <- reshape2::dcast(faraway::femsmoke, age + smoker ~ dead, value.var = "y")
+m <- d %>% group_by(smoker) %>% summarize(yes = sum(yes), no = sum(no))
+m$age <- "all"
+p <- ggplot(m, aes(x = smoker, y = yes/(yes + no)))
+p <- p + geom_point() + ylim(0, 1) + facet_wrap(~ age)
+p <- p + labs(x = "", y = "Proportion Deceased")
+p <- p + geom_line(aes(group = 1))
+p1 <- p + theme_minimal()
+p <- ggplot(d, aes(x = smoker, y = yes/(yes + no)))
+p <- p + geom_point() + facet_wrap(~ age, ncol = 7)
+p <- p + labs(x = "", y = "")
+p <- p + geom_line(aes(group = age))
+p2 <- p + theme_minimal()
+cowplot::plot_grid(p1, p2, align = "h", rel_widths = c(1,4))
+```
+
+<!-- **Example**: Consider data from a [study](https://en.wikipedia.org/wiki/Simpson%27s_paradox#UC_Berkeley_gender_bias) of sex bias in admissions to graduate school at the University of California Berkeley. -->
+
+## Berkson's Paradox
+
+**Berkson's paradox** is when an association between two variables is due (in part) to *selection bias* (i.e., that some units have a higher probability of being sampled than others). 
+
+**Example**: Suppose that an observational study of people from the general population does not reveal any relationship between diabetes and cholecystitis (an inflammation of the gallbladder). 
+```{r}
+x <- matrix(c(100,900,1900,17100), 2, 2, byrow = TRUE)
+d <- data.frame(Diabetes = c("yes","no","Total"),
+  yes = c(paste(x[1,1], " (", round(x[1,1]/sum(x[1,]), 2), ")", sep = ""), 
+         paste(x[2,1], " (", round(x[2,1]/sum(x[2,]), 2), ")", sep = ""), sum(x[,1])), 
+  no =  c(paste(x[1,2], " (", round(x[1,2]/sum(x[1,]), 2), ")", sep = ""), 
+         paste(x[2,2], " (", round(x[2,2]/sum(x[2,]), 2), ")", sep = ""), sum(x[,1])),
+  Total = c(sum(x[1,]), sum(x[2,]), sum(x)))
+ktbl(d) %>% add_header_above(c(" " = 1, "Cholecystitis" = 2, " " = 1)) %>% column_spec(1, bold = TRUE)
+```
+But if this study was based on *hospital records* then many people *without* diabetes *or* cholecystitis would not be sampled. This causes an apparent association between diabetes and cholecystitis, and appears to show that people with diabetes are *less likely* to have cholecystitis.
+```{r}
+x[2,2] <- x[2,2] - 15000
+d <- data.frame(Diabetes = c("yes","no","Total"),
+  yes = c(paste(x[1,1], " (", round(x[1,1]/sum(x[1,]), 2), ")", sep = ""), 
+         paste(x[2,1], " (", round(x[2,1]/sum(x[2,]), 2), ")", sep = ""), sum(x[,1])), 
+  no =  c(paste(x[1,2], " (", round(x[1,2]/sum(x[1,]), 2), ")", sep = ""), 
+         paste(x[2,2], " (", round(x[2,2]/sum(x[2,]), 2), ")", sep = ""), sum(x[,1])),
+  Total = c(sum(x[1,]), sum(x[2,]), sum(x)))
+ktbl(d) %>% add_header_above(c(" " = 1, "Cholecystitis" = 2, " " = 1)) %>% column_spec(1, bold = TRUE)
+```
+
+**Example**: A study published in the [*Journal of Internal Medicine*](https://onlinelibrary.wiley.com/doi/full/10.1111/joim.12363) of individuals aged 19 years or younger who received emergency medical care in Ontario, Canada, following an off‐road vehicle crash showed that those that were wearing a helmet were associated with a *greater* injury severity and necessity for more medical care than those not wearing a helmet.
+
+```{r}
+x <- matrix(c(945, 9862-945, 1652, 25340-1652), 2, 2, byrow = TRUE)
+d <- data.frame(Helmet = c("yes","no","Total"),
+  yes = c(paste(x[1,1], " (", round(x[1,1]/sum(x[1,]), 2), ")", sep = ""), 
+         paste(x[2,1], " (", round(x[2,1]/sum(x[2,]), 2), ")", sep = ""), sum(x[,1])), 
+  no =  c(paste(x[1,2], " (", round(x[1,2]/sum(x[1,]), 2), ")", sep = ""), 
+         paste(x[2,2], " (", round(x[2,2]/sum(x[2,]), 2), ")", sep = ""), sum(x[,1])),
+  Total = c(sum(x[1,]), sum(x[2,]), sum(x)))
+ktbl(d) %>% add_header_above(c(" " = 1, "Hospitalized" = 2, " " = 1)) %>% column_spec(1, bold = TRUE)
+```
+
+But individuals who *did not* receive emergency medical care (either because they were fine or because they died at the scene) are not included. What happens if we include them?
+
+Suppose that there were 10000 cases where an individual was wearing a helmet but did not require emergency medical care, and 50 cases where an individual was not wearing a helmet but did not require emergency medical care.
+```{r}
+x[1,2] <- x[1,2] + 10000
+x[2,2] <- x[2,2] + 50
+d <- data.frame(Helmet = c("yes","no","Total"),
+  yes = c(paste(x[1,1], " (", round(x[1,1]/sum(x[1,]), 2), ")", sep = ""), 
+         paste(x[2,1], " (", round(x[2,1]/sum(x[2,]), 2), ")", sep = ""), sum(x[,1])), 
+  no =  c(paste(x[1,2], " (", round(x[1,2]/sum(x[1,]), 2), ")", sep = ""), 
+         paste(x[2,2], " (", round(x[2,2]/sum(x[2,]), 2), ")", sep = ""), sum(x[,1])),
+  Total = c(sum(x[1,]), sum(x[2,]), sum(x)))
+ktbl(d) %>% add_header_above(c(" " = 1, "Hospitalized" = 2, " " = 1)) %>% column_spec(1, bold = TRUE)
+```
+
+## Ecological Fallacy
+
+The **ecological fallacy** is the misconception that an association at the *group* level implies a similar association at the *individual* level.
+
+**Example**: Research in Europe in the 19th century showed that suicide was more common in *regions* that were predominantly Protestant in comparison to areas that were predominantly Catholic. Would we conclude that within any given area the suicide rate is higher among Protestant *people* than Catholic *people*?
+
+**Example**: Hobbit *villages* with higher pipe weed consumption also tend to have higher rates of foot lice. Would we conclude that within a given village that foot lice is more common among *individual* Hobbits that smoke in comparison to those who do not? 
+
+## Suppressor Variables
+
+A **suppressor variable** is a variable that, if not conditioned upon, will "suppress" (i.e., reduce in magnitude) the relationship between two variables.
+
+**Example**: Consider a study of the relationship between participation in a Head Start program and academic success.
+```{r}
+library(MASS)
+
+set.seed(123)
+
+rho <- 0.9
+s <- diag(2)
+s[1,2] <- rho
+s[2,1] <- rho
+x <- mvrnorm(1000, c(0,0), s)
+y <- 1*x[,1] - 1*x[,2] + rnorm(length(x))
+y <- data.frame(ac = y > 0, hs = x[,1] > 0, pv = x[,2] > 0)
+
+y$hs <- ifelse(y$hs, "yes", "no")
+y$pv <- ifelse(y$pv, "low", "high")
+
+d <- y %>% group_by(hs) %>% summarize(yes = sum(ac), no = sum(!ac), total = n())
+d$no <- with(d, paste(no, " (", round(no/total,2), ")", sep = ""))
+d$yes <- with(d, paste(yes, " (", round(yes/total,2), ")", sep = ""))
+names(d)[c(1,4)] <- c("Head Start","Total")
+ktbl(d, align = "cccc") %>% add_header_above(c(" " = 1, "Success" = 2, " " = 1))
+```
+
+```{r}
+d <- y %>% group_by(pv, hs) %>% summarize(yes = sum(ac), no = sum(!ac), total = n())
+d$no <- with(d, paste(no, " (", round(no/total,2), ")", sep = ""))
+d$yes <- with(d, paste(yes, " (", round(yes/total,2), ")", sep = ""))
+names(d)[c(1,2,4)] <- c("SES","Head Start","Total")
+ktbl(d, align = "ccccc") %>% add_header_above(c(" " = 2, "Success" = 2, " " = 1))
+```
+
+## Spurious Relationships
+
+A **spurious relationship** is when the apparent association between two variables disappears when conditioning on a third variable.
+
+**Example**: Consider data from an observational study of the relationship between smoking and forced expiratory volume (FEV) and children and adolescents. 
+```{r, fig.height = 4}
+data(fev, package = "tmle")
+fev$sex <- factor(fev$sex, labels = c("female","male"))
+fev$smoke <- factor(fev$smoke, labels = c("Non-Smokers","Smokers"))
+
+m <- fev %>% group_by(smoke) %>% summarize(fev = mean(fev))
+
+p <- ggplot(fev, aes(x = fev)) + facet_wrap(~ smoke) 
+p <- p + geom_dotplot(binwidth = 0.1, dotsize = 0.9)
+p <- p + theme_minimal()
+p <- p + theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
+p <- p + labs(x = "FEV (liters/second)", y = "")
+p <- p + geom_point(aes(x = fev, y = -0.05), data = m, shape = 17)
+plot(p)
+```
+Now suppose we examine the data but take into consideration *height*.
+```{r, fig.height = 4}
+data(fev, package = "tmle")
+fev$sex <- factor(fev$sex, labels = c("female","male"))
+fev$smoke <- factor(fev$smoke, labels = c("no","yes"))
+p <- ggplot(fev, aes(x = ht, y = fev, fill = smoke))
+p <- p + geom_point(alpha = 0.5, shape = 21)
+p <- p + scale_fill_manual(values = c("white","black"))
+p <- p + labs(x = "Height (in)", y = "FEV (liters/second)", fill = "Smoker")
+p <- p + theme_minimal() + theme(legend.position = c(0.1,0.8))
+plot(p)
+```
