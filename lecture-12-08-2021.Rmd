@@ -1,0 +1,263 @@
+---
+output:
+  html_document:
+    theme: readable
+---
+
+```{r, echo = FALSE, message = FALSE}
+library(lubridate)
+date <- "12-08-2021"
+weekday <- wday(mdy(date), label = TRUE, abbr = FALSE)
+month <- month(mdy(date), label = TRUE)
+day <- day(mdy(date))
+```
+
+---
+title: `r paste(weekday, ", ", month, " ", day, sep = "")`
+header-includes:
+  - \usepackage{array}
+  - \usepackage{booktabs}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, fig.align = "center", out.width = "100%", fig.width = 9, cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
+```
+
+```{r packages}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(kableExtra)
+```
+
+```{r utilities}
+source("../../utilities.R")
+```
+
+`r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](lecture-", date, ".pdf) copy of this lecture.", sep = ""), "")`
+
+
+```{r, fig.height = 4}
+library(ggnormalviolin)
+d <- Sleuth3::case0101
+m <- d %>% group_by(Treatment) %>% summarize(mu = mean(Score), sd = sd(Score))
+p <- ggplot(d, aes(x = Treatment))
+p <- p + geom_normalviolin(aes(mu = mu, sigma = sd), data = m, face_left = FALSE)
+p <- p + geom_dotplot(aes(y = Score), method = "histodot", binaxis = "y", binwidth = 0.5)
+p <- p + labs(y = "Poem Creativity Score", x = "Type of Motivation")
+p <- p + theme_classic() + ggtitle("Data and Population Distributions")
+plot(p)
+```
+
+```{r, fig.height = 4, warning = FALSE}
+library(ggridges)
+
+d <- trtools::daphniastrat
+d$layer <- factor(d$layer, levels = c("hypolimnion","thermocline","epilimnion"))
+p <- ggplot(d, aes(x = layer, y = count))
+p <- p + geom_dotplot(binaxis = "y", binwidth = 1)
+p <- p + xlab("Layer") + ylab("Number of Daphnia")
+p <- p + ggtitle("Data Distributions") + ylim(-0.5,40)
+p <- p + theme_classic()
+p1 <- p 
+
+m <- glm(count ~ layer, family = poisson, data = d)
+d <- data.frame(layer = levels(d$layer))
+d$mu <- predict(m, newdata = d, type = "response")
+
+u <- d
+u$x <- c(1,2,3)
+
+d <- merge(d, 1:100000)
+d$y <- with(d, rpois(nrow(d), mu))
+d$layer <- factor(d$layer, levels = c("hypolimnion","thermocline","epilimnion"))
+
+p <- ggplot(d, aes(x = y, y = layer)) + coord_flip()
+p <- p + geom_density_ridges2(aes(height = ..density..), stat = "binline", alpha = 0.5, binwidth = 1, scale = 0.75, draw_baseline = FALSE)
+p <- p + ggtitle("Population Distributions") + xlim(-0.5,40)
+p <- p + xlab("Number of Daphnia") + ylab("Layer")
+p <- p + geom_point(aes(y = layer, x = mu), data = u)
+p <- p + theme_classic()
+p2 <- p
+
+gridExtra::grid.arrange(p1, p2, ncol = 2)
+```
+
+```{r, fig.height = 4}
+m <- lm(Volume ~ Girth, data = trees)
+trees$yhat <- predict(m)
+
+d <- data.frame(Girth = unique(trees$Girth))
+d$mu <- predict(m, newdata = d)
+d$sigma <- summary(m)$sigma
+
+p <- ggplot(trees, aes(x = Girth, y = Volume))
+p <- p + geom_normalviolin(aes(mu = mu, sigma = sigma, y = NULL), data = d, face_left = FALSE)
+p <- p + geom_line(aes(y = yhat), size = 0.25)
+p <- p + geom_point(size = 0.5)
+p <- p + theme_classic() + ggtitle("Data and Population Distributions")
+plot(p)
+```
+
+## The Linear Regression Model
+
+The linear regression **model** has the form
+$$
+  \mu_y = \alpha + \beta x,
+$$
+where $\mu_y$ is the *mean of the population distribution of the response variable $y$* (e.g., mean tree volume), and $x$ is the *value of the explanatory variable* (e.g., tree girth). The quantities $\alpha$ and $\beta$ are the intercept and slope *parameters*, respectively. 
+
+**Study Question**: What do the four symbols in $\mu_y = \alpha + \beta x$ represent?
+
+**Example**: The plot below shows the data from a study of the relationship between the number of chromosomal abnormalities per cell ($\mu_y$) and the rate of exposure to gamma radiation ($x$). But this relationship was studied at three different total dose amounts. Three linear regression models are used here. 
+```{r, fig.height = 4}
+m <- lm(ca/(cells*100) ~ factor(doseamt) * log2(doserate), data = faraway::dicentric)
+d <- expand.grid(doseamt = c(1,2.5,5), doserate = seq(0.10, 4, length = 1000))
+d$yhat <- predict(m, newdata = d)
+p <- ggplot(faraway::dicentric, aes(x = log2(doserate), y = ca/(cells*100), color = factor(doseamt)))
+p <- p + geom_point() + labs(x = "Dose Rate (base-2 logarithm of grays/hour)", y = "Abnormalities Per Cell", color = "Dose Amount (Grays)", size = "Number of Cells")
+p <- p + geom_line(aes(y = yhat), data = d) + theme_classic()
+p <- p + theme(legend.position = c(0.2, 0.75)) 
+plot(p)
+```
+
+## Multiple Linear Regression
+
+The **multiple linear regression model** has the form
+$$
+  \mu_y = \alpha + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_k x_k
+$$
+where $x_1, x_2, \dots x_k$ are the values of $k$ explanatory variables. For example, we might have
+$$
+  \mu_y = \alpha + \beta_1 x_1 + \beta_2 x_2
+$$
+where $\mu_y$ is the *mean of the population distribution of the response variable $y$* (e.g., mean tree volume), $x_1$ is the *value of one explanatory variable* (e.g., tree girth), and $x_2$ is the *value of a second explanatory variable* (e.g., tree height). 
+
+The generic term **linear regression** is usually used to refer to the case where there is one or more explanatory variables. The case where there is only one explanatory variable is sometimes referred to as **simple linear regression**. 
+
+**Study Question**: How is *multiple linear regression* different from *simple linear regression*? 
+
+## Nonlinear Regression
+
+A **nonlinear regression model** is any regression model that cannot be written as 
+$$
+  \mu_y = \alpha + \beta x
+$$
+or 
+$$
+  \mu_y = \alpha + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_k x_k.
+$$
+
+**Study Question**: What is *nonlinear regression*?
+
+**Example**: In biochemistry, the relationship between the mean reaction rate ($\mu_y$) and the concentration of a substrate ($x$) is often modeled as 
+$$
+  \mu_y = \frac{\delta x}{\gamma + x}.
+$$
+Here $\delta$ is the maximum achievable mean reaction rate, and $\gamma$ is the substrate concentration that yields a mean reaction rate half way between 0 and $\delta$.
+```{r, fig.height = 4}
+m <- nls(rate ~ ifelse(state == "treated", t1*conc/(t3+conc), t2*conc/(t4 + conc)),
+         data = Puromycin, start = c(t1 = 190, t2 = 190, t3 = 0.06, t4 = 0.06))
+
+d <- expand.grid(conc = seq(0, 1.10, length = 100), state = c("treated","untreated"))
+d$yhat <- predict(m, newdata = d)
+
+u <- expand.grid(conc = unique(Puromycin$conc), state = unique(Puromycin$state))
+u$mu <- predict(m, newdata = u)
+u$sigma <- summary(m)$sigma
+
+p <- ggplot(Puromycin, aes(x = conc, y = rate, color = state))
+p <- p + geom_normalviolin(aes(mu = mu, sigma = sigma, y = NULL, fill = state), 
+  alpha = 0.2, face_left = FALSE, data = u)
+p <- p + geom_point() + labs(color = "Cell State")
+p <- p + geom_line(aes(y = yhat), data = d) 
+p <- p + xlab("Substrate Concentration (x)") + ylab("Reaction Rate (y)")
+p <- p + theme_classic() + theme(legend.position = c(0.9,0.15)) + guides(fill = "none")
+plot(p)
+```
+
+**Example**: In fisheries science, a nonlinear regression model (the *von Bertalanffy model*) is used to model the relationship between mean length ($\mu_y$) and age ($x$) of fish. This model can be written as
+$$
+  \mu_y = \alpha + (\delta - \alpha)e^{-x\log(2)/\gamma}.
+$$
+Here $\alpha$ is the maximum value of $\mu_y$ that we approach as fish age, $\delta$ is the value of $\mu_y$ before they reach one year of age, and $\gamma$ is how many years it takes for $\mu_y$ to be half way between $\delta$ and $\alpha$.
+```{r, fig.height = 4}
+myfish <- alr4::walleye
+myfish$period <- factor(myfish$period, labels = c("pre 1990", "1991-1996", "1997-2000"))
+myfish$d1 <- ifelse(myfish$period == "1991-1996", 1, 0)
+myfish$d2 <- ifelse(myfish$period == "1997-2000", 1, 0)
+
+m <- nls(length ~ alpha0 + d1*alpha1 + d2*alpha2 + (delta - (alpha0 + d1 * alpha1 + d2*alpha2)) * exp(-age * log(2)/gamma), data = myfish, start = c(alpha0 = 500, alpha1 = 0, alpha2 = 0, delta = 200, gamma = 7))
+
+d <- expand.grid(period = levels(myfish$period), age = seq(0, 14, length = 50))
+d$d1 <- ifelse(d$period == "1991-1996", 1, 0)
+d$d2 <- ifelse(d$period == "1997-2000", 1, 0)
+d$yhat <- predict(m, newdata = d)
+
+p <- ggplot(myfish, aes(x = age, y = length))
+p <- p + geom_point(alpha = 0.25, size = 0.5)
+p <- p + facet_wrap(~ period)
+p <- p + labs(x = "Age (years)", y = "Length (mm)")
+p <- p + geom_line(aes(y = yhat), data = d) + theme_minimal()
+plot(p)
+```
+
+## Categorical Explanatory Variables
+
+What if we have one or more *categorical* explanatory variables? Regression can accommodate categorical explanatory variables using some tricks. But often the statistical methodology is described as the *analysis of variance* (ANOVA).
+
+**Example**: The dot plots below show four samples of observations of the variable *anger reduction*. The four samples correspond to four levels of a categorical treatment variable of *anger management exercises* (none, physical, behavioral, and both physical and behavioral). 
+```{r, fig.height = 2}
+d <- restriktor::AngerManagement
+levels(d$Group)[3] <- "None"
+d$Group <- factor(d$Group, levels = c("None", "Physical", "Behavioral", "Both"))
+
+# <- d %>% mutate(Physical = ifelse(Group %in% c("Physical","Both"), "yes", "no"), Behavioral = ifelse(Group %in% c("Behavioral","Both"), "yes", "no"))
+
+p <- ggplot(d, aes(x = Anger)) + theme_minimal() + 
+  geom_dotplot(method = "histodot", binwidth = 1) +
+  facet_wrap(~ Group, ncol = 4) + labs(x = "Anger Reduction") + 
+  theme(axis.title.y = element_blank(), axis.text.y = element_blank(), 
+        axis.ticks.y = element_blank(), axis.line.y = element_blank())
+plot(p)
+```
+Here are some descriptive statistics for each group. 
+```{r}
+d <- d %>% group_by(Group) %>% summarize(n = n(), mean = mean(Anger), sd = round(sd(Anger), 1))
+d %>% ktbl()
+```
+Possible research questions to address using statistical inference:
+
+1. Are physical exercises effective for anger reduction?
+0. Are behavioral exercises effective for anger reduction? 
+0. Is one type of exercise more effective than the other?
+0. Is it useful to use both types of exercises rather than just one?
+
+**Example**: The histograms below show data from an observational study of the effect of warning signs on car speed. Here there are *two* categorical explanatory variables: warning (yes or no) and period (before, short, and long). 
+```{r}
+d <- boot::amis %>% mutate(period = factor(period, levels = 1:3, 
+  labels = c("before","short","long")), 
+  warning = factor(warning, levels = 1:2, labels = c("yes","no")))
+
+p <- ggplot(d, aes(x = speed)) + theme_minimal() +
+  geom_histogram(fill = "white", color = "black", center = 0, binwidth = 1) +
+  facet_grid(period ~ warning, labeller = 
+    labeller(.rows = label_both, .cols = label_both)) + 
+  theme(axis.title.y = element_blank(), axis.text.y = element_blank(), 
+        axis.ticks.y = element_blank(), axis.line.y = element_blank()) + 
+  labs(x = "Speed (miles/hour)")
+  
+plot(p)
+```
+Here are some descriptive statistics for each group. 
+```{r}
+d <- d %>% group_by(warning, period) %>%
+  summarize(n = n(), mean = round(mean(speed), 1), sd = round(sd(speed), 1))
+d %>% ktbl()
+```
+Possible research questions to address using statistical inference:
+
+1. How much (if at all) does a warning sign decrease average speed?
+0. How does time affect the effectiveness of a warning sign on reducing speed?
+
+**Study Question**: When would a researcher use an *analysis of variance*? 

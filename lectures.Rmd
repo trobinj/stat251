@@ -140,9 +140,9 @@ i <- 0
 
 `r i <- i + 1; d[i]` [Correlation](lecture-12-06-2021.html). The [study guide](final-studyguide.html) for the final examination is now available.
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Regression and the analysis of variance](lecture-12-08-2021.html). 
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` No class, but I will be available during my office hours if you want to drop by with questions. I may relocate to the classroom if several students request it so that they can ask questions about the material for the final examination. If this happens I will send out an email. 
  
 ***
 
