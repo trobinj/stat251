@@ -287,7 +287,7 @@ $$
 $$
 where $\hat{y}$ is the *predicted* volume, and $x$ is girth. Here $a$ and $b$ are the *parameters* of the equation known as the "intercept" and "slope" of the equation, respectively. How should we choose $a$ and $b$? 
 
-**Study Question**: What do the four symbols in $\hat{y} = a + bx$ represent?
+~~**Study Question**: What do the four symbols in $\hat{y} = a + bx$ represent?~~
 
 The correlation is related to $a$ and $b$. The *method of least squares* can be used to choose $a$ and $b$ such that the $\hat{y}$'s and the $y$'s are "close" in the sense that
 $$
@@ -300,7 +300,7 @@ a = \bar{y} - b\bar{x},
 $$
 where $s_y$ and $s_x$ are the standard deviations of $y$ (volume) and $x$ (girth), respectively, and $\bar{y}$ and $\bar{x}$ are their means. 
 
-**Study Question**: What is the relationship between $r$ and $b$? 
+~~**Study Question**: What is the relationship between $r$ and $b$?~~
 
 The correlation can also be used to compute the *standard error of prediction* which can be viewed as the average squared difference between $y$ and $\hat{y}$. This is
 $$
@@ -308,4 +308,4 @@ $$
 $$
 So larger values of $r$ (in absolute value) lead to smaller prediction errors (on average).  
 
-**Study Question**: How is $r$ related to how well we can predict $y$ from $x$?
+~~**Study Question**: How is $r$ related to how well we can predict $y$ from $x$?~~

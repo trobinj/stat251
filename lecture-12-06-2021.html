@@ -417,10 +417,10 @@ Gas
 Before
 </td>
 <td style="text-align:center;">
-9.1
+2.9
 </td>
 <td style="text-align:center;">
-3.1
+5.8
 </td>
 </tr>
 <tr>
@@ -431,10 +431,10 @@ Before
 Before
 </td>
 <td style="text-align:center;">
-6
+7
 </td>
 <td style="text-align:center;">
-4.9
+3.9
 </td>
 </tr>
 <tr>
@@ -445,10 +445,10 @@ Before
 Before
 </td>
 <td style="text-align:center;">
-7.6
+6
 </td>
 <td style="text-align:center;">
-3.5
+4.3
 </td>
 </tr>
 <tr>
@@ -473,10 +473,10 @@ Before
 Before
 </td>
 <td style="text-align:center;">
-6
+6.2
 </td>
 <td style="text-align:center;">
-4.4
+4.5
 </td>
 </tr>
 <tr>
@@ -487,10 +487,10 @@ Before
 After
 </td>
 <td style="text-align:center;">
-3.1
+4.2
 </td>
 <td style="text-align:center;">
-3.2
+3.5
 </td>
 </tr>
 <tr>
@@ -501,10 +501,10 @@ After
 After
 </td>
 <td style="text-align:center;">
-4.3
+9.7
 </td>
 <td style="text-align:center;">
-3.5
+1.5
 </td>
 </tr>
 <tr>
@@ -515,10 +515,10 @@ After
 After
 </td>
 <td style="text-align:center;">
-1
+4
 </td>
 <td style="text-align:center;">
-4.7
+3.7
 </td>
 </tr>
 <tr>
@@ -543,10 +543,10 @@ After
 After
 </td>
 <td style="text-align:center;">
-8.8
+4.6
 </td>
 <td style="text-align:center;">
-1.3
+3.7
 </td>
 </tr>
 </tbody>
@@ -899,18 +899,18 @@ Speeded Discrimination (SpD)
 <p><strong>Example</strong>: Consider the problem of trying to <em>predict</em> tree volume using its girth. <img src="lecture-12-06-2021_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /> Perhaps we could use an equation like <span class="math display">\[
   \hat{y} = a + bx,
 \]</span> where <span class="math inline">\(\hat{y}\)</span> is the <em>predicted</em> volume, and <span class="math inline">\(x\)</span> is girth. Here <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are the <em>parameters</em> of the equation known as the “intercept” and “slope” of the equation, respectively. How should we choose <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>?</p>
-<p><strong>Study Question</strong>: What do the four symbols in <span class="math inline">\(\hat{y} = a + bx\)</span> represent?</p>
+<p><del><strong>Study Question</strong>: What do the four symbols in <span class="math inline">\(\hat{y} = a + bx\)</span> represent?</del></p>
 <p>The correlation is related to <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. The <em>method of least squares</em> can be used to choose <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> such that the <span class="math inline">\(\hat{y}\)</span>’s and the <span class="math inline">\(y\)</span>’s are “close” in the sense that <span class="math display">\[
   \sum (y - \hat{y})^2 = (y_1 - \hat{y}_1)^2 + (y_2 - \hat{y}_2)^2 + \cdots + (y_n - \hat{y}_n)^2
 \]</span> is as small as possible. The values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> that achieve this are given by <span class="math display">\[
 b = r\frac{s_y}{s_x}, \ \ \
 a = \bar{y} - b\bar{x},
 \]</span> where <span class="math inline">\(s_y\)</span> and <span class="math inline">\(s_x\)</span> are the standard deviations of <span class="math inline">\(y\)</span> (volume) and <span class="math inline">\(x\)</span> (girth), respectively, and <span class="math inline">\(\bar{y}\)</span> and <span class="math inline">\(\bar{x}\)</span> are their means.</p>
-<p><strong>Study Question</strong>: What is the relationship between <span class="math inline">\(r\)</span> and <span class="math inline">\(b\)</span>?</p>
+<p><del><strong>Study Question</strong>: What is the relationship between <span class="math inline">\(r\)</span> and <span class="math inline">\(b\)</span>?</del></p>
 <p>The correlation can also be used to compute the <em>standard error of prediction</em> which can be viewed as the average squared difference between <span class="math inline">\(y\)</span> and <span class="math inline">\(\hat{y}\)</span>. This is <span class="math display">\[
   s_e = s_y\sqrt{1 - r^2}.
 \]</span> So larger values of <span class="math inline">\(r\)</span> (in absolute value) lead to smaller prediction errors (on average).</p>
-<p><strong>Study Question</strong>: How is <span class="math inline">\(r\)</span> related to how well we can predict <span class="math inline">\(y\)</span> from <span class="math inline">\(x\)</span>?</p>
+<p><del><strong>Study Question</strong>: How is <span class="math inline">\(r\)</span> related to how well we can predict <span class="math inline">\(y\)</span> from <span class="math inline">\(x\)</span>?</del></p>
 </div>
 
 
