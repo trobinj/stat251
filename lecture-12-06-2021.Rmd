@@ -261,7 +261,7 @@ It is possible to (a) compute a confidence interval for $\rho$ based on $r$ and 
 
 ## Correlation and Prediction by Linear Regression
 
-**Study Question**: How is the correlation coefficient ($r$) involved in using one variable to predict another using linear regression?
+~~**Study Question**: How is the correlation coefficient ($r$) involved in using one variable to predict another using linear regression?~~
 
 **Example**: Consider the problem of trying to *predict* tree volume using its girth. 
 ```{r, fig.height = 4}
