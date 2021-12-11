@@ -129,3 +129,32 @@ $$
 
 See the lectures for study guide questions on correlation and regression.
 
+### Equations 
+
+$$
+  \bar{x} = \frac{\sum_{i=1}^n x_i}{n} \ \ \ s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}
+  \ \ \ s = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}}
+$$
+
+$$z = \frac{x-\bar{x}}{s}$$
+
+$$\mu = \sum_x xP(x) \ \ \ \ \ \ \sigma^2 = \sum_x (x - \mu)^2 P(x) \ \ \ \ \ \ \sigma = \sqrt{\sum_x (x - \mu)^2 P(x)} $$
+
+$$\sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}} \ \ \ \ \ \ \sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$$
+
+$$\hat{p} \pm z \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \ \ \ \ \ \ \bar{x} \pm t \frac{s}{\sqrt{n}} $$
+
+$$ z = \frac{\hat{p} - p}{\sqrt{\frac{p(1-p)}{n}}} \ \ \ \ \ \ t = \frac{\bar{x} - \mu}{s/\sqrt{n}} $$
+
+$$ \hat{p}_1 - \hat{p}_2 \pm z \sqrt{\hat{p}_1(1-\hat{p}_1)/n_1 + \hat{p}_2(1-\hat{p}_2)/n_2} $$
+
+$$ \bar{x}_1 - \bar{x}_2 \pm t \sqrt{s_1^2/n_1 + s_2^2/n_2} $$
+
+$$ z = \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{\hat{p}(1-\hat{p})(1/n_1 + 1/n_2)}} \ \ \ \ \ \ t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{s_1^2/n_1 + s_2^2/n_2}}$$
+
+$$ \text{expected count} = n \times \text{probability} \ \ \ \ \ \ \text{expected count} =  \frac{R \times C}{T}$$
+
+$$ X^2 = \sum \frac{(\mbox{observed count} - \mbox{expected count})^2}{\mbox{expected count}}$$
+
+$$ \hat{N} = \frac{n_1 n_2}{m} \ \ \ \ \ \ V = \sqrt{\frac{X^2/n}{\min(r-1,c-1)}} \ \ \ \ \ \ X^2 = \frac{(O_{bl}-O_{tr})^2}{O_{bl} + O_{tr}} $$
+
