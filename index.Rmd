@@ -7,11 +7,12 @@ output:
 
 Course material for Dr. Johnson's *Statistical Methods* (Stat 251, Section 02) at the University of Idaho for the spring semester of 2022.
 
+***
+
 <center>
 
-![https://xkcd.com/557](http://imgs.xkcd.com/comics/students.png)
+![https://xkcd.com/2443](https://imgs.xkcd.com/comics/immune_response.png)
 
 ***
 
-See the [University of Idaho COVID-19 Vaccine information page](https://www.uidaho.edu/vandal-health-clinic/coronavirus/vaccine) for how to get vaccinated. 
 
