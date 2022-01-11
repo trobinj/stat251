@@ -13,6 +13,8 @@ Course material for Dr. Johnson's *Statistical Methods* (Stat 251, Section 02) a
 
 ![https://xkcd.com/2443](https://imgs.xkcd.com/comics/immune_response.png)
 
+</center>
+
 ***
 
 
