@@ -20,7 +20,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [Introduction and the "big picture"](lecture-01-12-2022.html).
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Distributions, graphical depictions of distributions (i.e., histograms and dot plots), and summary measures](lecture-01-14-2022.html). A set of [homework problems](homework-01.html) on describing distributions in now available.
 
 ***
 

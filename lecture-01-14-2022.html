@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Friday, Jan 14</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics 251</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="lectures.html">Lectures</a>
+</li>
+<li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Friday, Jan 14</h1>
+
+</div>
+
+
+<p>You can also download a <a href="lecture-01-14-2022.pdf">PDF</a> copy of this lecture.</p>
+<div id="distributions" class="section level2">
+<h2>Distributions</h2>
+<p>The <strong>distribution</strong> of the observations of a variable gives (a) the values that occur and (b) how often each value occurs. The concept of a distribution is a useful way to characterize the observations in a sample or population.</p>
+<p><strong>Example</strong>: The following is a hypothetical set of observations of examination scores</p>
+<center>
+<p>8, 6, 8, 6, 5, 10, 7, 6, 7, 8</p>
+</center>
+<p>The “how often” is usually described using <em>frequency</em> (i.e., how often the value occurs) or <em>relative frequency</em> (i.e., the proportion of the observations assume that value). Later we will make use of <em>cumulative relative frequency</em> (i.e., the proportion of observations <em>equal to or less than that observation</em>).</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Score
+</th>
+<th style="text-align:center;">
+Frequency
+</th>
+<th style="text-align:center;">
+Relative Frequency
+</th>
+<th style="text-align:center;">
+Cumulative Relative Frequency
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+5
+</td>
+<td style="text-align:center;width: 2cm; ">
+1
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.1
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.1
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+6
+</td>
+<td style="text-align:center;width: 2cm; ">
+3
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.3
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.4
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+7
+</td>
+<td style="text-align:center;width: 2cm; ">
+2
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.6
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+8
+</td>
+<td style="text-align:center;width: 2cm; ">
+3
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.3
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.9
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+10
+</td>
+<td style="text-align:center;width: 2cm; ">
+1
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.1
+</td>
+<td style="text-align:center;width: 2cm; ">
+1.0
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong>: Consider the following 200 observations of the number of deaths due to horse or mule kicks in Prussian army units between 1875 and 1894.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<center>
+<p>0, 1, 1, 0, 0, 2, 2, 0, 1, 0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 2, 2, 1, 0, 0, 1, 0, 1, 1, 2, 0, 0, 2, 2, 0, 1, 0, 2, 3, 0, 0, 0, 3, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0, 1, 0, 0, 2, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 2, 4, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 2, 1, 1, 1, 2, 2, 2, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 2, 1, 1, 0, 2, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 2, 1, 0, 1, 1, 1, 2, 0, 1, 1, 0, 0, 0, 1, 2, 0, 0, 1, 0, 0, 1, 1</p>
+</center>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Deaths
+</th>
+<th style="text-align:center;">
+Frequency
+</th>
+<th style="text-align:center;">
+Relative Frequency
+</th>
+<th style="text-align:center;">
+Cumulative Relative Frequency
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+0
+</td>
+<td style="text-align:center;width: 2cm; ">
+109
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.545
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.545
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+1
+</td>
+<td style="text-align:center;width: 2cm; ">
+65
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.325
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.870
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+2
+</td>
+<td style="text-align:center;width: 2cm; ">
+22
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.110
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.980
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+3
+</td>
+<td style="text-align:center;width: 2cm; ">
+3
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.015
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.995
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+4
+</td>
+<td style="text-align:center;width: 2cm; ">
+1
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.005
+</td>
+<td style="text-align:center;width: 2cm; ">
+1.000
+</td>
+</tr>
+</tbody>
+</table>
+<p>We can talk about the distribution of a <em>categorical</em> variable as well, although we may not use cumulative relative frequency if there is no natural order to the variable values.</p>
+<p><strong>Example</strong>: In one of Gregor Mendel’s classic studies, he bred 8023 pea plants and observed the color of the pea pods.</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Color
+</th>
+<th style="text-align:center;">
+Frequency
+</th>
+<th style="text-align:center;">
+Relative Frequency
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+green
+</td>
+<td style="text-align:center;">
+2001
+</td>
+<td style="text-align:center;">
+0.249
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+yellow
+</td>
+<td style="text-align:center;">
+6022
+</td>
+<td style="text-align:center;">
+0.751
+</td>
+</tr>
+</tbody>
+</table>
+<p>Note: Relative frequency has been rounded to the third decimal place.</p>
+</div>
+<div id="graphical-depictions-of-distributions" class="section level2">
+<h2>Graphical Depictions of Distributions</h2>
+<p>There are a variety of ways to graph a distribution.</p>
+<p><strong>Example</strong>: Graphical depiction of the distribution of the variable in the first example above.</p>
+<p><img src="lecture-01-14-2022_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>Example</strong>: Grapical depiction of the distribution of color from Mendel’s pea plant study.</p>
+<p><img src="lecture-01-14-2022_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Another useful method is what is called a <strong>dot plot</strong>.</p>
+<strong>Example</strong>: Consider a sample of observations of eruption duration of <a href="https://en.wikipedia.org/wiki/Old_Faithful">Old Faithful</a>.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Time
+</th>
+<th style="text-align:center;">
+Frequency
+</th>
+<th style="text-align:center;">
+Relative Frequency
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+1.6
+</td>
+<td style="text-align:center;width: 2cm; ">
+1
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.004
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+1.7
+</td>
+<td style="text-align:center;width: 2cm; ">
+3
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.011
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+1.8
+</td>
+<td style="text-align:center;width: 2cm; ">
+22
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.081
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+1.9
+</td>
+<td style="text-align:center;width: 2cm; ">
+18
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.066
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+2
+</td>
+<td style="text-align:center;width: 2cm; ">
+16
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.059
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:center;width: 2cm; ">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:center;width: 2cm; ">
+<span class="math inline">\(\vdots\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+5.1
+</td>
+<td style="text-align:center;width: 2cm; ">
+2
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.007
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="lecture-01-14-2022_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="lecture-01-14-2022_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>Example</strong>: Dot plots of samples of observations of beak size for <a href="https://en.wikipedia.org/wiki/Darwin%27s_finches">Finches on Daphne Major (Galapagos Islands)</a> from before (1976) and after (1978) a drought in 1977.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> <img src="lecture-01-14-2022_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>Example</strong>: Creative writing students were “primed” with either extrinsic or intrinsic motivation.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> They were then asked to write a poem in the Haiku style about laughter. Each poem was then scored for “creativity” on a 40-point scale by judges.</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Treatment
+</th>
+<th style="text-align:center;">
+Score
+</th>
+<th style="text-align:center;">
+Frequency
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Extrinsic
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Extrinsic
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Extrinsic
+</td>
+<td style="text-align:center;">
+11
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Extrinsic
+</td>
+<td style="text-align:center;">
+24
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Treatment
+</th>
+<th style="text-align:center;">
+Score
+</th>
+<th style="text-align:center;">
+Frequency
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Intrinsic
+</td>
+<td style="text-align:center;">
+12
+</td>
+<td style="text-align:center;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Intrinsic
+</td>
+<td style="text-align:center;">
+13
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Intrinsic
+</td>
+<td style="text-align:center;">
+14
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Intrinsic
+</td>
+<td style="text-align:center;">
+30
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="lecture-01-14-2022_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /><img src="lecture-01-14-2022_files/figure-html/unnamed-chunk-13-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="histograms" class="section level2">
+<h2>Histograms</h2>
+<p>A <strong>histogram</strong> is a specialized type of bar graph for showing the distribution of a <em>quantitative variable</em>. I have written a more detailed <a href="histograms.html">tutorial</a> on how to create a histogram “by hand” with a manageable number of observations.</p>
+<p><strong>Example</strong>: Here are the “raw” data from the sample of observations of eruption time of Old Faithful, sorted in increasing order for convenience.</p>
+<p>1.6, 1.7, 1.7, 1.7, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.9, 1.9, 1.9, 1.9, 1.9, 1.9, 1.9, 1.9, 1.9, 1.9, 1.9, 1.9, 1.9, 1.9, 1.9, 1.9, 1.9, 1.9, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2.1, 2.1, 2.1, 2.1, 2.1, 2.1, 2.1, 2.1, 2.2, 2.2, 2.2, 2.2, 2.2, 2.2, 2.2, 2.2, 2.2, 2.2, 2.2, 2.3, 2.3, 2.3, 2.3, 2.3, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.5, 2.6, 2.6, 2.8, 2.9, 2.9, 3.1, 3.3, 3.3, 3.3, 3.4, 3.4, 3.5, 3.5, 3.5, 3.6, 3.6, 3.6, 3.6, 3.6, 3.6, 3.7, 3.7, 3.7, 3.8, 3.8, 3.8, 3.8, 3.8, 3.8, 3.8, 3.8, 3.8, 3.9, 3.9, 3.9, 3.9, 3.9, 3.9, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.1, 4.2, 4.2, 4.2, 4.2, 4.2, 4.2, 4.2, 4.2, 4.2, 4.2, 4.2, 4.2, 4.2, 4.2, 4.2, 4.2, 4.2, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.4, 4.4, 4.4, 4.4, 4.4, 4.4, 4.4, 4.4, 4.4, 4.4, 4.4, 4.4, 4.4, 4.4, 4.4, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.6, 4.6, 4.6, 4.6, 4.6, 4.6, 4.6, 4.6, 4.6, 4.6, 4.6, 4.6, 4.6, 4.6, 4.6, 4.6, 4.7, 4.7, 4.7, 4.7, 4.7, 4.7, 4.7, 4.7, 4.7, 4.7, 4.7, 4.8, 4.8, 4.8, 4.8, 4.8, 4.8, 4.8, 4.8, 4.8, 4.8, 4.8, 4.8, 4.8, 4.8, 4.9, 4.9, 4.9, 4.9, 4.9, 4.9, 5, 5, 5.1, 5.1</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Time
+</th>
+<th style="text-align:center;">
+Frequency
+</th>
+<th style="text-align:center;">
+Relative Frequency
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+1.5 to 2
+</td>
+<td style="text-align:center;width: 2cm; ">
+60
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.22
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+2 to 2.5
+</td>
+<td style="text-align:center;width: 2cm; ">
+32
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.12
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+2.5 to 3
+</td>
+<td style="text-align:center;width: 2cm; ">
+5
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.02
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+3 to 3.5
+</td>
+<td style="text-align:center;width: 2cm; ">
+9
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.03
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+3.5 to 4
+</td>
+<td style="text-align:center;width: 2cm; ">
+37
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.14
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+4 to 4.5
+</td>
+<td style="text-align:center;width: 2cm; ">
+78
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.29
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+4.5 to 5
+</td>
+<td style="text-align:center;width: 2cm; ">
+49
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.18
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+5 to 5.5
+</td>
+<td style="text-align:center;width: 2cm; ">
+2
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.01
+</td>
+</tr>
+</tbody>
+</table>
+<p>Note: The intervals used are a matter of choice. But they should all be of the same width (here 0.5 minutes). Also we need a convention for when an observation falls on the border between two intervals. In my histograms such observations are always put in the <em>lower</em> interval.</p>
+<p>The histogram is then drawn with the horizontal position of the bars corresponding to the interval, and the height of the bars corresponding to frequency <em>or</em> relative frequency. <img src="lecture-01-14-2022_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>Example</strong>: Here are some histograms of the finch data.</p>
+<p><img src="lecture-01-14-2022_files/figure-html/unnamed-chunk-16-1.png" width="864" style="display: block; margin: auto;" /></p>
+</div>
+<div id="summary-measures-of-a-distribution" class="section level2">
+<h2>Summary Measures of a Distribution</h2>
+<p>A couple of properties of a distribution that we often want to measure are <em>location</em> and <em>variability</em>. Such properties are statistics (if the distribution is of the observations in a sample) or parameters (if the distribution is of the observations in a population).</p>
+<div id="measures-of-location" class="section level3">
+<h3>Measures of Location</h3>
+<p>The (arithmetic) <strong>mean</strong> is simply the average of the observations. This can be written as <span class="math display">\[
+  \bar{x} = \frac{x_1 + x_2 + \dots + x_n}{n} = \frac{\sum_{i=1}^n x_i}{n}
+\]</span> or <span class="math display">\[
+  \bar{x} = \frac{1}{n}\sum_{i=1}^n x_i.
+\]</span></p>
+<p>An alternative formula based on frequencies or relative frequencies can be written as <span class="math display">\[
+  \bar{x} = \frac{1}{n} \sum_x x f(x) \ \ \ \text{or} \ \ \ \bar{x} = \sum_x x r(x)
+\]</span> where the summation is over all <em>distinct</em> values of the variable, and <span class="math inline">\(f(x)\)</span> is the <em>frequency</em> of the value of <span class="math inline">\(x\)</span>, and <span class="math inline">\(r(x)\)</span> is the <em>relative frequency</em> of the value <span class="math inline">\(x\)</span>.</p>
+<strong>Example</strong>: Consider again the distribution of the number of deaths due to horse and mule kicks in Prussian army units.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Deaths
+</th>
+<th style="text-align:center;">
+Frequency
+</th>
+<th style="text-align:center;">
+Relative Frequency
+</th>
+<th style="text-align:center;">
+Deaths <span class="math inline">\(\times\)</span> Relative Frequency
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+0
+</td>
+<td style="text-align:center;width: 2cm; ">
+109
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.545
+</td>
+<td style="text-align:center;width: 2cm; ">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+1
+</td>
+<td style="text-align:center;width: 2cm; ">
+65
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.325
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.325
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+2
+</td>
+<td style="text-align:center;width: 2cm; ">
+22
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.11
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.22
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+3
+</td>
+<td style="text-align:center;width: 2cm; ">
+3
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.015
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.045
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+4
+</td>
+<td style="text-align:center;width: 2cm; ">
+1
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.005
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.02
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 2cm; ">
+Total
+</td>
+<td style="text-align:center;width: 2cm; ">
+200
+</td>
+<td style="text-align:center;width: 2cm; ">
+1
+</td>
+<td style="text-align:center;width: 2cm; ">
+0.61
+</td>
+</tr>
+</tbody>
+</table>
+<p>The mean is <span class="math inline">\(\bar{x}\)</span> = 0.61.</p>
+<p>Note: The mean can be interpreted as the “balance point” of the distribution.</p>
+<div style="page-break-after: always;"></div>
+<p>The <strong>median</strong> is defined as the “middle” value when the observations are sorted in increasing order, or the average of the two middle values if the number of observations is even.</p>
+<p><strong>Example</strong>: Consider the following 9 observations of a quantitative variable.</p>
+<center>
+<p>6, 6, 6, 7, 7, 8, 9, 9, 10</p>
+</center>
+<p><strong>Example</strong>: Consider the following 10 observations of a quantitative variable.</p>
+<center>
+<p>6, 6, 6, 7, 7, 8, 9, 9, 9, 10</p>
+</center>
+<p>The <strong>mode</strong> is the value with the largest (relative) frequency.</p>
+<ol style="list-style-type: decimal">
+<li>The mode can be used with <em>categorical</em> variables, but the median and mean cannot.</li>
+<li>The mode may not be unique if there are two or more most frequent values.</li>
+</ol>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Source: L. von Bortkiewicz (1898). <em>Das Gesertz der kleinen Zhalen</em>. Teubner, Leipzig.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Grant, P. (1986). <em>Ecology and evolution of Darwin’s finches</em>. Princeton, N.J.: Princeton University Press.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Amabile, T. (1985). Motivation and creativity: Effects of motivational orientation on creative writers. <em>Journal of Personality and Social Psychology</em>, <em>48(2)</em>, 393–399.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
