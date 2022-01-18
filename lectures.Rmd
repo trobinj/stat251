@@ -26,7 +26,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` **Holiday**.
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Summary measures --- continued, cumulative distributions, and box plots](lecture-01-19-2022.html). A set of [homework problems](homework-02.html) on these topics is now available.
 
 `r i <- i + 1; d[i]` 
  
