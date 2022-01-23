@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Monday, Jan 24</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics 251</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="lectures.html">Lectures</a>
+</li>
+<li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Monday, Jan 24</h1>
+
+</div>
+
+
+<p>You can also download a <a href="lecture-01-24-2022.pdf">PDF</a> copy of this lecture.</p>
+<p>An <strong>outlier</strong> is an observation of a variable that is “extreme” <em>relative</em> to a given distribution. The question then is how do we identify which observation(s) is/are outliers?</p>
+<div id="identifying-outliers-using-percentiles" class="section level3">
+<h3>Identifying Outliers Using Percentiles</h3>
+<p>We might define an outlier as any observation below a relatively small percentile, or above a relatively large percentile. One common definition is to identify the “middle 95%” of observations as <em>not</em> being outliers. So we can define an outlier as any observation that meets <em>either</em> of the following criteria.</p>
+<ol style="list-style-type: decimal">
+<li>The observation is below the 2.5th percentile.</li>
+<li>The observation is above the 97.5th percentile.</li>
+</ol>
+<div style="page-break-after: always;"></div>
+<p><strong>Example</strong>: The following plot shows the cumulative distribution of a sample of observations of eruption durations for Old Faithful. (Note: This plot looks slightly different from one we saw earlier because this time I did not round the durations to the nearest 10th of a minute.) <img src="lecture-01-24-2022_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Below I have “zoomed-in” on the 2.5th and 97.5th percentiles. <img src="lecture-01-24-2022_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div style="page-break-after: always;"></div>
+<p><strong>Example</strong>: Cumulative distributions and box plots of the data from the study on creativity and motivation. What scores would be outliers for each distribution if we use the 2.5th and 97.5th percentiles? <img src="lecture-01-24-2022_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="identifying-outliers-using-the-empirical-rule" class="section level3">
+<h3>Identifying Outliers Using the Empirical Rule</h3>
+<p>For an approximately normal distribution, we can use the empirical rule to find the “middle 95%” of observations as those observations within two standard deviations of the mean. So an outlier is any observation that meets <em>either</em> of the following two criteria.</p>
+<ol style="list-style-type: decimal">
+<li>The observation is less than <span class="math inline">\(\bar{x} - 2s\)</span> (i.e., <span class="math inline">\(x &lt; \bar{x} - 2s\)</span>).</li>
+<li>The observation is greater than <span class="math inline">\(\bar{x} + 2s\)</span> (i.e., <span class="math inline">\(x &gt; \bar{x} + 2s\)</span>).</li>
+</ol>
+<p><strong>Example</strong>: Consider the following approximately normal distribution of a variable <span class="math inline">\(x\)</span>. The distribution has a mean of 50 and a standard deviation of 10. How do we know that, say, 25 and 72 are outliers, but that 36 and 62 are not? <img src="lecture-01-24-2022_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Example</strong>: Consider the following distribution of a quantitative variable <span class="math inline">\(x\)</span>. The distribution has a mean of 100 and a standard deviation of 12. <img src="lecture-01-24-2022_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" /> Which observations are outliers?</p>
+<p><strong>Example</strong>: Suppose that the distribution of the heights of Hobbits in the Shire is approximately normal/bell-shaped with a mean of 90 cm and a standard deviation of 10 cm. Frodo is 107 cm tall, and Pippin (after consuming Ent-draughts) is 137 cm. Are either of these Hobbits outliers? How short or tall would a Hobbit need to be to be an outlier?</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="identifying-outliers-using-the-five-number-summary" class="section level3">
+<h3>Identifying Outliers Using the Five Number Summary</h3>
+<p>The empirical rule only applies to approximately normal distributions. For a non-normal distribution a similar approach we can use is based on the five number summary. Here an outlier is any observation that meets either of the following two criteria.</p>
+<ol style="list-style-type: decimal">
+<li>The observation is less than <span class="math inline">\(Q_1 - 1.5(Q_3-Q_1)\)</span>. That is, <span class="math inline">\(x\)</span> is an outlier if <span class="math inline">\(x &lt; Q_1 - 1.5(Q_3-Q_1)\)</span>.</li>
+<li>The observation is greater than <span class="math inline">\(Q_3 + 1.5(Q_3-Q_1)\)</span>. That is, <span class="math inline">\(x\)</span> is an outlier if <span class="math inline">\(x &gt; Q_3 + 1.5(Q_3 - Q_1)\)</span>.</li>
+</ol>
+<p>Recall that <span class="math inline">\(Q_3-Q_1\)</span> is the <em>interquartile range</em> (a measure of variability).</p>
+<p><strong>Example</strong>: Consider the following distribution of a variable <span class="math inline">\(x\)</span>. The first quartile is <span class="math inline">\(Q_1 =\)</span> 9.6 and the third quartile is <span class="math inline">\(Q_3 =\)</span> 10.85. Which observations are outliers? <img src="lecture-01-24-2022_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Example</strong>: Consider the following distribution of a variable <span class="math inline">\(x\)</span>. The first quartile is <span class="math inline">\(Q_1\)</span> = 49.6 and the third quartile is <span class="math inline">\(Q_3\)</span> = 50.85. Which observations are outliers? <img src="lecture-01-24-2022_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Example</strong>: Consider the following distribution of a quantitative variable <span class="math inline">\(x\)</span>. The first quartile is <span class="math inline">\(Q_1\)</span> = 6 and the third quartile is <span class="math inline">\(Q_3\)</span> = 14. Which observations are outliers? <img src="lecture-01-24-2022_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="resistant-and-non-resistant-summary-measures" class="section level2">
+<h2>Resistant (and Non-Resistant) Summary Measures</h2>
+<p>To say that a summary measure is <strong>resistant</strong> means that it is not (much) influenced by extreme outliers.</p>
+<p><em>Resistant</em> summary measures include the <em>median</em> and <em>interquartile range</em>.</p>
+<p>Summary measures that are <em>not</em> resistant include the <em>mean</em>, <em>variance</em>, <em>standard deviation</em>, and <em>range</em>.</p>
+</div>
+<div id="margin-of-error" class="section level2">
+<h2>Margin of Error</h2>
+<p><strong>Example</strong>: Consider a forestry survey to estimate the mean volume of trees in a given region. The goal of such a survey would be to use the mean from the <em>sample</em> of observations of tree volume (a <em>statistic</em>) as an <em>estimate</em> of the mean from the <em>population</em> of observations of tree volume (a <em>parameter</em>). This is an example of <em>statistical inference</em>.</p>
+<p><img src="lecture-01-24-2022_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>The means for each distribution are shown by the triangles. The distribution of observations in the <em>population</em> has a mean of 30. The distribution of observations in the <em>sample</em> has a mean of 26.5.</p>
+<p>But clearly the estimate we get would depends on the sample. We could <em>in theory</em> consider a <em>distribution of estimates from many samples</em>. This is an approximation of what is called a <em>sampling distribution</em> (more on that later).</p>
+<p><img src="lecture-01-24-2022_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="lecture-01-24-2022_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /> This distribution has a mean of 30 and a standard deviation of 4. Notice that the mean of this distribution is equal to the parameter being estimated. According to the empirical rule, between what two values would we find about 95% of the estimates?</p>
+<p>The <strong>margin of error</strong> is the largest distance between the parameter and an estimate that is <em>not an outlier</em>. What is the margin of error here?</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
