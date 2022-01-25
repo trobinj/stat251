@@ -34,7 +34,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [Outlier identification, margin of error](lecture-01-24-2022.html). A set of [homework problems](homework-03.html) on normal distributions and outliers is now available. The [study guide](e1-studyguide.html) for the first examination is also now available.
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Margin of error --- continued, statistical significance, explanatory and response variables, types of studies](lecture-01-26-2022.html).
 
 `r i <- i + 1; d[i]` **First examination**.
  
