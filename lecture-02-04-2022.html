@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Friday, Feb 4</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics 251</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="lectures.html">Lectures</a>
+</li>
+<li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Friday, Feb 4</h1>
+
+</div>
+
+
+<p>You can also download a <a href="lecture-02-04-2022.pdf">PDF</a> copy of this lecture.</p>
+<div id="deriving-a-sampling-distribution-the-five-step-method" class="section level2">
+<h2>Deriving a Sampling Distribution (the “Five-Step Method”)</h2>
+<p>We can derive the probability distribution of a statistic (i.e., a <em>sampling distribution</em>) given the probability distribution of a single observation (i.e., a <em>population distribution</em>) by using the following steps.</p>
+<ol style="list-style-type: decimal">
+<li><p>Create the sample space which consists of all possible samples.</p></li>
+<li><p>Compute the probability of each sample in the sample space.</p></li>
+<li><p>Compute the value of the statistic for each sample in the sample space.</p></li>
+<li><p>Create a table of the possible values of the statistic.</p></li>
+<li><p>Compute the probability of each value of the statistic.</p></li>
+</ol>
+<p>A <strong>sample space</strong> is the set of all possible samples of observations.</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="sampling-distribution-of-a-mean" class="section level2">
+<h2>Sampling Distribution of a Mean</h2>
+<p><strong>Example</strong>: Suppose we have a forest of trees of which 60% have a volume of 20 cubic feet, and 40% have a volume of 30 cubic feet. What would be the sampling distribution of the mean volume based on a random sample of the <span class="math inline">\(n\)</span> = 2 trees? (Note: We are going to assume for now that we are <em>sampling with replacement</em>, meaning that we could select the same tree more than once.)</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Population Distribution
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(x\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(x)\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+20
+</td>
+<td style="text-align:center;">
+0.6
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+30
+</td>
+<td style="text-align:center;">
+0.4
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Sample Space
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+Sample
+</th>
+<th style="text-align:center;">
+Probability
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(\bar{x}\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+20, 20
+</td>
+<td style="text-align:center;">
+0.6 <span class="math inline">\(\times\)</span> 0.6 = 0.36
+</td>
+<td style="text-align:center;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+20, 30
+</td>
+<td style="text-align:center;">
+0.6 <span class="math inline">\(\times\)</span> 0.4 = 0.24
+</td>
+<td style="text-align:center;">
+25
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+30, 20
+</td>
+<td style="text-align:center;">
+0.4 <span class="math inline">\(\times\)</span> 0.6 = 0.24
+</td>
+<td style="text-align:center;">
+25
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+30, 30
+</td>
+<td style="text-align:center;">
+0.4 <span class="math inline">\(\times\)</span> 0.4 = 0.16
+</td>
+<td style="text-align:center;">
+30
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Sampling Distribution
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(\bar{x}\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(x)\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+20
+</td>
+<td style="text-align:center;">
+0.36
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+25
+</td>
+<td style="text-align:center;">
+0.24 + 0.24 = 0.48
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+30
+</td>
+<td style="text-align:center;">
+0.16
+</td>
+</tr>
+</tbody>
+</table>
+<p>Note: We are using two properties of probabilities from probability theory here.</p>
+<ol style="list-style-type: decimal">
+<li><p>The probability of two or more events happening together (e.g., A <em>and</em> B) equals the <em>product</em> of their probabilities <em>if</em> the events are <em>independent</em>, meaning that the probability of each event does not change depending on if the other events have or have not occurred.</p></li>
+<li><p>The probability that at least one of two or more events happening (e.g., A <em>or</em> B) equals the <em>sum</em> of their probabilities <em>if</em> the events are <em>mutually exclusive</em>, meaning that the events cannot both occur at the same time.</p></li>
+</ol>
+<div style="page-break-after: always;"></div>
+<p><strong>Example</strong>: What is the sampling distribution of the mean of a sample of <span class="math inline">\(n\)</span> = 2 observations of the throwing distance of the trebuchet?</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Population Distribution
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(x\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(x)\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0.1
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+0.3
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+0.6
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Sample Space
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+Sample
+</th>
+<th style="text-align:center;">
+Probability
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(\bar{x}\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1, 1
+</td>
+<td style="text-align:center;">
+0.01
+</td>
+<td style="text-align:center;">
+1.0
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+1, 2
+</td>
+<td style="text-align:center;">
+0.03
+</td>
+<td style="text-align:center;">
+1.5
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+1, 3
+</td>
+<td style="text-align:center;">
+0.06
+</td>
+<td style="text-align:center;">
+2.0
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2, 1
+</td>
+<td style="text-align:center;">
+0.03
+</td>
+<td style="text-align:center;">
+1.5
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2, 2
+</td>
+<td style="text-align:center;">
+0.09
+</td>
+<td style="text-align:center;">
+2.0
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2, 3
+</td>
+<td style="text-align:center;">
+0.18
+</td>
+<td style="text-align:center;">
+2.5
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3, 1
+</td>
+<td style="text-align:center;">
+0.06
+</td>
+<td style="text-align:center;">
+2.0
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3, 2
+</td>
+<td style="text-align:center;">
+0.18
+</td>
+<td style="text-align:center;">
+2.5
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3, 3
+</td>
+<td style="text-align:center;">
+0.36
+</td>
+<td style="text-align:center;">
+3.0
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Sampling Distribution
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(\bar{x}\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(\bar{x})\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1.0
+</td>
+<td style="text-align:center;">
+0.01
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+1.5
+</td>
+<td style="text-align:center;">
+0.06
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2.0
+</td>
+<td style="text-align:center;">
+0.21
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2.5
+</td>
+<td style="text-align:center;">
+0.36
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3.0
+</td>
+<td style="text-align:center;">
+0.36
+</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+<p><strong>Example</strong>: We can find the sampling distribution of any statistic in the same way. What is the sampling distribution of the sample variance (<span class="math inline">\(s^2\)</span>) based on a sample of <span class="math inline">\(n\)</span> = 2 observations?</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Sample Space
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+Sample
+</th>
+<th style="text-align:center;">
+Probability
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(s^2\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1, 1
+</td>
+<td style="text-align:center;">
+0.01
+</td>
+<td style="text-align:center;">
+0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+1, 2
+</td>
+<td style="text-align:center;">
+0.03
+</td>
+<td style="text-align:center;">
+0.5
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+1, 3
+</td>
+<td style="text-align:center;">
+0.06
+</td>
+<td style="text-align:center;">
+2.0
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2, 1
+</td>
+<td style="text-align:center;">
+0.03
+</td>
+<td style="text-align:center;">
+0.5
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2, 2
+</td>
+<td style="text-align:center;">
+0.09
+</td>
+<td style="text-align:center;">
+0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2, 3
+</td>
+<td style="text-align:center;">
+0.18
+</td>
+<td style="text-align:center;">
+0.5
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3, 1
+</td>
+<td style="text-align:center;">
+0.06
+</td>
+<td style="text-align:center;">
+2.0
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3, 2
+</td>
+<td style="text-align:center;">
+0.18
+</td>
+<td style="text-align:center;">
+0.5
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3, 3
+</td>
+<td style="text-align:center;">
+0.36
+</td>
+<td style="text-align:center;">
+0.0
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Sampling Distribution
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(s^2\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(s^2)\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+0.0
+</td>
+<td style="text-align:center;">
+0.46
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+0.5
+</td>
+<td style="text-align:center;">
+0.42
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2.0
+</td>
+<td style="text-align:center;">
+0.12
+</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="sampling-distribution-of-a-proportion" class="section level2">
+<h2>Sampling Distribution of a Proportion</h2>
+<p><strong>Example</strong>: What is the sampling distribution of the <em>proportion</em> of female platies preferring the yellow-tailed male from a sample of <span class="math inline">\(n\)</span> = 3 observations?</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Population Distribution
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(x\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(x)\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+C
+</td>
+<td style="text-align:center;">
+0.3
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Y
+</td>
+<td style="text-align:center;">
+0.7
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Sample Space
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+Sample
+</th>
+<th style="text-align:center;">
+Probability
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(\hat{p}\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Y, Y, Y
+</td>
+<td style="text-align:center;">
+0.343
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+C, Y, Y
+</td>
+<td style="text-align:center;">
+0.147
+</td>
+<td style="text-align:center;">
+2/3
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Y, C, Y
+</td>
+<td style="text-align:center;">
+0.147
+</td>
+<td style="text-align:center;">
+2/3
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Y, Y, C
+</td>
+<td style="text-align:center;">
+0.147
+</td>
+<td style="text-align:center;">
+2/3
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Y, C, C
+</td>
+<td style="text-align:center;">
+0.063
+</td>
+<td style="text-align:center;">
+1/3
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+C, Y, C
+</td>
+<td style="text-align:center;">
+0.063
+</td>
+<td style="text-align:center;">
+1/3
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+C, C, Y
+</td>
+<td style="text-align:center;">
+0.063
+</td>
+<td style="text-align:center;">
+1/3
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+C, C, C
+</td>
+<td style="text-align:center;">
+0.027
+</td>
+<td style="text-align:center;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Sampling Distribution
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(\hat{p}\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(\hat{p})\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0.027
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+1/3
+</td>
+<td style="text-align:center;">
+0.189
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2/3
+</td>
+<td style="text-align:center;">
+0.441
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0.343
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note</strong>: We will denote a proportion from a sample as <span class="math inline">\(\hat{p}\)</span>.</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="the-binomial-distribution" class="section level2">
+<h2>The Binomial Distribution</h2>
+Assume that each observation has a probability distribution with two possible values — a “success” (<span class="math inline">\(S\)</span>) and a “failure” (<span class="math inline">\(F\)</span>). Assume the probability of a success is <span class="math inline">\(p\)</span> and the probability of a failure is thus <span class="math inline">\(1-p\)</span>. Finally assume that the observations are <em>independent</em> meaning that the probabilities of a success or failure of any one observation does not depend on the other observations.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(x\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(x)\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(S\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(p\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(F\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(1-p\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<strong>Example</strong>: Assume the following distribution of one observation for the platy preference.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(x\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(x)\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Y
+</td>
+<td style="text-align:center;">
+0.7
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+C
+</td>
+<td style="text-align:center;">
+0.3
+</td>
+</tr>
+</tbody>
+</table>
+<p>Here we are defining <span class="math inline">\(Y\)</span> as a success and <span class="math inline">\(C\)</span> as a failure, so <span class="math inline">\(p\)</span> = 0.7 and <span class="math inline">\(1-p\)</span> = 0.3.</p>
+<p>The <em>sampling distribution</em> of the <em>number of successes</em> (<span class="math inline">\(s\)</span>) in a sample will be a <em>binomial distribution</em>. The sampling distribution of <span class="math inline">\(s\)</span> is given by the following equation.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> <span class="math display">\[
+  P(s) = \frac{n!}{s!(n-s)!}p^s(1-p)^{n-s}.
+\]</span> Two mathematical details to remember when using this formula:</p>
+<ol style="list-style-type: decimal">
+<li><p>The <span class="math inline">\(!\)</span> symbol is the <em>factorial operation</em>. For example, <span class="math display">\[\begin{align*}
+  5! &amp; = 5 \times 4 \times 3 \times 2 \times 1 = 120,  \\
+  4! &amp; = 4 \times 3 \times 2 \times 1 = 24, \\
+  3! &amp; = 3 \times 2 \times 1 = 6, \\
+  2! &amp; = 2 \times 1 = 2, \\
+  1! &amp; = 1, \\
+  0! &amp; = 1. 
+\end{align*}\]</span> Note that <span class="math inline">\(0! = 1\)</span>, which is perhaps not intuitive.</p></li>
+<li><p>For powers remember that any number raised to the power of 1 is that number (i.e., <span class="math inline">\(p^1 = p\)</span> and <span class="math inline">\((1-p)^1 = 1-p\)</span>), and any number raised to the power of zero is one (i.e., <span class="math inline">\(p^0 = 1\)</span> and <span class="math inline">\((1-p)^0 = 1\)</span>).</p></li>
+</ol>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="sampling-distribution-of-a-proportion-revisited" class="section level2">
+<h2>Sampling Distribution of a Proportion Revisited</h2>
+<p><strong>Example</strong>: What is the sampling distribution of the <em>proportion</em> of female platies preferring the yellow-tailed male from a sample of <span class="math inline">\(n\)</span> = 3 observations?</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Population Distribution
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(x\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(x)\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+C
+</td>
+<td style="text-align:center;">
+0.3
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Y
+</td>
+<td style="text-align:center;">
+0.7
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Sampling Distribution
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(s\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(\hat{p}\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(\hat{p})\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0.027
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1/3
+</td>
+<td style="text-align:center;">
+0.189
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+2/3
+</td>
+<td style="text-align:center;">
+0.441
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0.343
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note</strong>: We will denote a proportion from a sample as <span class="math inline">\(\hat{p}\)</span>.</p>
+Here is how we can compute the probabilities in the sampling distribution of <span class="math inline">\(\hat{p}\)</span>. <span class="math display">\[\begin{align*}
+P(0) &amp; = \underbrace{\frac{3!}{0!(3-0)!}}_{1}\underbrace{0.7^0(1-0.7)^{3-0}}_{0.027} = 1 \times 0.027 = 0.027 \\
+P(1) &amp; = \underbrace{\frac{3!}{1!(3-1)!}}_{3}\underbrace{0.7^1(1-0.7)^{3-1}}_{0.063} = 3 \times 0.063 = 0.189 \\
+P(2) &amp; = \underbrace{\frac{3!}{2!(3-2)!}}_{3}\underbrace{0.7^2(1-0.7)^{3-2}}_{0.147} = 3 \times 0.147 = 0.441 \\
+P(3) &amp; = \underbrace{\frac{3!}{3!(3-3)!}}_{1}\underbrace{0.7^3(1-0.7)^{3-3}}_{0.343} = 1 \times 0.343 = 0.343 
+\end{align*}\]</span> Note that the formula computes two parts — the number of samples that produce <span class="math inline">\(s\)</span> successes out of <span class="math inline">\(n\)</span> observations, and the probability of each sample. These can be seen when we look at the sample space.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Sample Space
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+Sample
+</th>
+<th style="text-align:center;">
+Probability
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(s\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(\hat{p}\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Y, Y, Y
+</td>
+<td style="text-align:center;">
+0.7 <span class="math inline">\(\times\)</span> 0.7 <span class="math inline">\(\times\)</span> 0.7 = 0.343
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+C, Y, Y
+</td>
+<td style="text-align:center;">
+0.3 <span class="math inline">\(\times\)</span> 0.7 <span class="math inline">\(\times\)</span> 0.7 = 0.147
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+2/3
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Y, C, Y
+</td>
+<td style="text-align:center;">
+0.7 <span class="math inline">\(\times\)</span> 0.3 <span class="math inline">\(\times\)</span> 0.7 = 0.147
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+2/3
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Y, Y, C
+</td>
+<td style="text-align:center;">
+0.7 <span class="math inline">\(\times\)</span> 0.7 <span class="math inline">\(\times\)</span> 0.3 = 0.147
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+2/3
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Y, C, C
+</td>
+<td style="text-align:center;">
+0.7 <span class="math inline">\(\times\)</span> 0.3 <span class="math inline">\(\times\)</span> 0.3 = 0.063
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1/3
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+C, Y, C
+</td>
+<td style="text-align:center;">
+0.3 <span class="math inline">\(\times\)</span> 0.7 <span class="math inline">\(\times\)</span> 0.3 = 0.063
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1/3
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+C, C, Y
+</td>
+<td style="text-align:center;">
+0.3 <span class="math inline">\(\times\)</span> 0.3 <span class="math inline">\(\times\)</span> 0.7 = 0.063
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1/3
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+C, C, C
+</td>
+<td style="text-align:center;">
+0.3 <span class="math inline">\(\times\)</span> 0.3 <span class="math inline">\(\times\)</span> 0.3 = 0.027
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Sometimes we write this as <span class="math display">\[
+  P(s) = \binom{n}{s}p^s(1-p)^{n-s},
+\]</span> because <span class="math inline">\(\binom{n}{s} = \frac{n!}{s!(n-s)!}\)</span>. The <span class="math inline">\(\binom{n}{s}\)</span> is called the <em>binomial coefficient</em>. Also usually this formula is written with <span class="math inline">\(x\)</span> in place of <span class="math inline">\(s\)</span>, but I have used <span class="math inline">\(s\)</span> to emphasize that the the formula computes the probability of the number of <em>successes</em>.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
