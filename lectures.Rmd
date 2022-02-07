@@ -44,7 +44,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [Computing probabilities from discrete and continuous probability distributions](lecture-02-02-2022.html). A set of [homework problems](homework-04.html) on probability distributions is now available.
 
-`r i <- i + 1; d[i]` [Deriving sampling distributions](lecture-02-04-2022.html). A set of [homework problems](homework-05-html) on deriving sampling distributions is now available.
+`r i <- i + 1; d[i]` [Deriving sampling distributions](lecture-02-04-2022.html). A set of [homework problems](homework-05.html) on deriving sampling distributions is now available.
  
 ***
 
