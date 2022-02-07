@@ -48,7 +48,7 @@ i <- 1
  
 ***
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Sampling distributions of $\bar{x}$ and $\hat{p}$](lecture-02-07-2022.html).
 
 `r i <- i + 1; d[i]` 
 
