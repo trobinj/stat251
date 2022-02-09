@@ -50,7 +50,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [Sampling distributions of $\bar{x}$ and $\hat{p}$](lecture-02-07-2022.html).
 
-`r i <- i + 1; d[i]` [Sampling distributions and the central limit theorem](lecture-02-09-2022.html). A set of [homework problems](homework-05.html) concerning the sampling distributions of $\bar{x}$ and $\hat{p}$ is now available. Also the [study guide](e2-studyguide.html) for the second examination is now available.
+`r i <- i + 1; d[i]` [Sampling distributions and the central limit theorem](lecture-02-09-2022.html). A set of [homework problems](homework-06.html) concerning the sampling distributions of $\bar{x}$ and $\hat{p}$ is now available. Also the [study guide](e2-studyguide.html) for the second examination is now available.
 
 `r i <- i + 1; d[i]`
  
