@@ -60,7 +60,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [Introduction to confidence intervals](lecture-02-16-2022.html). 
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Confidence intervals for $\mu$ and $p$](lecture-02-18-2022.html). A set of [homework problems](homework-07.Rmd) on confidence intervals for $\mu$ and $p$ is now available. 
  
 ***
 
