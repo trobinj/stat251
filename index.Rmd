@@ -11,7 +11,7 @@ Course material for Dr. Johnson's *Statistical Methods* (Stat 251, Section 02) a
 
 <center>
 
-![https://xkcd.com/2110](http://imgs.xkcd.com/comics/error_bars.png)
+![https://xkcd.com/1999](http://imgs.xkcd.com/comics/selection_effect.png)
 
 </center>
 
