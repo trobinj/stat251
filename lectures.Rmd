@@ -74,7 +74,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [Choosing a sample size](lecture-02-28-2022.html). A set of [homework problems](homework-09.html) on these topics is now available.
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Assumptions](lecture-03-02-2022.html). The [study guide](e3-studyguide.html) for the third examination is now available.
 
 `r i <- i + 1; d[i]` 
  
