@@ -7,8 +7,8 @@ output:
 
 <center>
 
-![https://xkcd.com/2142](http://imgs.xkcd.com/comics/dangerous_fields.png)
 
+![https://xkcd.com/2576](https://imgs.xkcd.com/comics/control_group.png)
 
 ![https://xkcd.com/314](http://imgs.xkcd.com/comics/dating_pools.png)
 
