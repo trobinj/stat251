@@ -13,7 +13,7 @@
 
 <title>Homework Problem Set 9: Choosing a Sample Size</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
@@ -60,6 +60,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -80,6 +81,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -232,7 +236,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -301,14 +305,14 @@ resulted in a margin of error of approximately 6.192 meters. Now suppose
 we wanted to conduct another study that would produce a smaller margin
 of error.</p>
 <ol style="list-style-type: decimal">
-<li><p>Confirm that the sample size necessary for a margin of error to
+<li><p>Confirm that the sample size necessary for a margin of error of
 approximately 3 meters with the same confidence level (95%) is
 approximately 96 if we use the sample standard deviation from this
 previous study as an estimate of <span
 class="math inline">\(\sigma\)</span>. That is, we would need to fire
 the trebuchet approximately 96 times to produce a margin of error of 3
 meters.</p></li>
-<li><p>Confirm that the sample size necessary for a margin of error to
+<li><p>Confirm that the sample size necessary for a margin of error of
 approximately one meter with the same confidence level (95%) is
 approximately 864 if we use the sample standard deviation from this
 previous study as an estimate of <span

@@ -45,9 +45,9 @@ m <- 250
 
 Recall the study of the trebuchet at Château des Baux described in a [previous set](homework-07.html) of homework problems. In that study they fired the trebuchet `r n` times and observed a mean distance of `r m` meters with a standard deviation of `r s` meters. This resulted in a margin of error of approximately `r round(qt(0.975, df = n - 1), 3) * s / sqrt(n)` meters. Now suppose we wanted to conduct another study that would produce a smaller margin of error. 
 
-1. Confirm that the sample size necessary for a margin of error to approximately 3 meters with the same confidence level (95%) is approximately `r round(1.96^2 * s^2 / 9)` if we use the sample standard deviation from this previous study as an estimate of $\sigma$. That is, we would need to fire the trebuchet approximately `r round(1.96^2 * s^2 / 9)` times to produce a margin of error of 3 meters.
+1. Confirm that the sample size necessary for a margin of error of approximately 3 meters with the same confidence level (95%) is approximately `r round(1.96^2 * s^2 / 9)` if we use the sample standard deviation from this previous study as an estimate of $\sigma$. That is, we would need to fire the trebuchet approximately `r round(1.96^2 * s^2 / 9)` times to produce a margin of error of 3 meters.
 
-0. Confirm that the sample size necessary for a margin of error to approximately one meter with the same confidence level (95%) is approximately `r round(1.96^2 * s^2 / 1)` if we use the sample standard deviation from this previous study as an estimate of $\sigma$. That is, we would need to fire the trebuchet approximately `r round(1.96^2 * s^2 / 1)` times to produce a margin of error of one meter.
+0. Confirm that the sample size necessary for a margin of error of approximately one meter with the same confidence level (95%) is approximately `r round(1.96^2 * s^2 / 1)` if we use the sample standard deviation from this previous study as an estimate of $\sigma$. That is, we would need to fire the trebuchet approximately `r round(1.96^2 * s^2 / 1)` times to produce a margin of error of one meter.
 
 ```{r}
 rm(list = ls())
