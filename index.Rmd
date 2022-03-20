@@ -11,7 +11,7 @@ Course material for Dr. Johnson's *Statistical Methods* (Stat 251, Section 02) a
 
 <center>
 
-![https://xkcd.com/539](https://imgs.xkcd.com/comics/boyfriend.png)
+![https://xkcd.com/1347](http://imgs.xkcd.com/comics/t_distribution.png)
 
 </center>
 
