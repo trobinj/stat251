@@ -1,0 +1,481 @@
+---
+output:
+  html_document:
+    theme: readable
+  pdf_document: default
+---
+
+```{r, echo = FALSE, message = FALSE}
+library(lubridate)
+date <- "03-28-2022"
+weekday <- wday(mdy(date), label = TRUE, abbr = FALSE)
+month <- month(mdy(date), label = TRUE)
+day <- day(mdy(date))
+```
+
+---
+title: `r paste(weekday, ", ", month, " ", day, sep = "")`
+header-includes:
+  - \usepackage{float}
+  - \usepackage{booktabs}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, out.width = "100%", fig.width = 9, fig.align = "center", cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
+```
+
+```{r packages}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(kableExtra)
+```
+
+```{r utilities}
+source("../../utilities.R")
+```
+
+`r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](lecture-", date, ".pdf) copy of this lecture.", sep = ""), "")`
+
+## Power
+
+The **power** of a significance test is the probability that it will *reject* the null hypothesis when it is *false*. Power is therefore the probability of *not* making a type II error when the null hypothesis is false (recall that a type II error is failing to reject a false null hypothesis).
+
+Note: The following can also be explored dynamically using [this application](https://trobinj.shinyapps.io/shinyapps/).
+
+**Example**: Suppose we have the hypotheses $H_0\!: \mu = 0$ versus $H_a\!: \mu > 0$ and so will use the test statistic
+$$
+  t = \frac{\bar{x}-\mu}{s/\sqrt{n}}.
+$$
+with a sample of $n$ = 10 observations. 
+
+Suppose that $H_0$ is *false*. What can we do to increase the probability of *rejecting* $H_0$? That is, how do we increase *power*? 
+
+In the following figures, the *solid* line shows the sampling distribution of the test statistic when the null hypothesis is false, and the *dotted* line shows the sampling distribution of the test statistic under the assumption that the null hypothesis is true. The *light* grey area is power, and the *dark* grey area is the probability of making a type II error.
+
+\pagebreak
+
+## Effect of $\alpha$ on Power
+
+```{r, fig.height = 2.5}
+n <- 10
+a <- 0.01
+m0 <- 0
+m1 <- 0.75
+tc <- qt(1-a, df = n-1)
+t <- sort(c(tc, seq(-5, 10, length = 1000)))
+v <- 1
+d0 <- dt(t, df = n-1)
+d1 <- dt(t, df = n-1, ncp = (m1-m0)*sqrt(n)/v)
+t.acc <- c(t[t <= tc])
+t.rej <- c(t[t >= tc])
+
+par(mai = c(0.75, 0, 0, 0), cex = 0.9)
+
+plot(t, d0, type = "l", bty = "n", yaxt = "n", ylab = "", xaxt = "n", xlab = "", ylim = c(0, max(c(d0,d1))), lty = 2)
+lines(t, d1)
+axis(1, lwd.tick=0, labels=FALSE)
+axis(1, at = c(0, tc), labels = c("0", round(tc, 3)))
+polygon(x = c(t.acc, tc), y = c(dt(t.acc, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0), col = scales::alpha(grey(0.5), 0.5))
+polygon(x = c(t.rej, max(t.rej), tc), y = c(dt(t.rej, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0, 0), col = scales::alpha(grey(0.75), 0.5))
+
+if (knitr::is_html_output()) {
+  text(7, 0.25, bquote(alpha == .(a)))
+} else{
+  text(7, 0.25, paste("$\\alpha =", a, "$"))
+}
+```
+```{r, fig.height = 2.5}
+n <- 10
+a <- 0.05
+m0 <- 0
+m1 <- 0.75
+tc <- qt(1-a, df = n-1)
+t <- sort(c(tc, seq(-5, 10, length = 1000)))
+v <- 1
+d0 <- dt(t, df = n-1)
+d1 <- dt(t, df = n-1, ncp = (m1-m0)*sqrt(n)/v)
+t.acc <- c(t[t <= tc])
+t.rej <- c(t[t >= tc])
+
+par(mai = c(0.75, 0, 0, 0), cex = 0.9)
+
+plot(t, d0, type = "l", bty = "n", yaxt = "n", ylab = "", xaxt = "n", xlab = "", ylim = c(0, max(c(d0,d1))), lty = 2)
+lines(t, d1)
+axis(1, lwd.tick=0, labels=FALSE)
+axis(1, at = c(0, tc), labels = c("0", round(tc, 3)))
+polygon(x = c(t.acc, tc), y = c(dt(t.acc, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0), col = scales::alpha(grey(0.5), 0.5))
+polygon(x = c(t.rej, max(t.rej), tc), y = c(dt(t.rej, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0, 0), col = scales::alpha(grey(0.75), 0.5))
+
+if (knitr::is_html_output()) {
+  text(7, 0.25, bquote(alpha == .(a)))
+} else{
+  text(7, 0.25, paste("$\\alpha =", a, "$"))
+}
+```
+```{r, fig.height = 2.5}
+n <- 10
+a <- 0.1
+m0 <- 0
+m1 <- 0.75
+tc <- qt(1-a, df = n-1)
+t <- sort(c(tc, seq(-5, 10, length = 1000)))
+v <- 1
+d0 <- dt(t, df = n-1)
+d1 <- dt(t, df = n-1, ncp = (m1-m0)*sqrt(n)/v)
+t.acc <- c(t[t <= tc])
+t.rej <- c(t[t >= tc])
+
+par(mai = c(0.75, 0, 0, 0), cex = 0.9)
+
+plot(t, d0, type = "l", bty = "n", yaxt = "n", ylab = "", xaxt = "n", xlab = "", ylim = c(0, max(c(d0,d1))), lty = 2)
+lines(t, d1)
+axis(1, lwd.tick=0, labels=FALSE)
+axis(1, at = c(0, tc), labels = c("0", round(tc, 3)))
+polygon(x = c(t.acc, tc), y = c(dt(t.acc, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0), col = scales::alpha(grey(0.5), 0.5))
+polygon(x = c(t.rej, max(t.rej), tc), y = c(dt(t.rej, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0, 0), col = scales::alpha(grey(0.75), 0.5))
+
+if (knitr::is_html_output()) {
+  text(7, 0.25, bquote(alpha == .(a)))
+} else{
+  text(7, 0.25, paste("$\\alpha =", a, "$"))
+}
+```
+
+<!-- Increasing $\alpha$ increases power. -->
+
+\pagebreak
+
+## Effect of $n$ on Power
+
+```{r, fig.height = 2.5}
+n <- 10
+a <- 0.05
+m0 <- 0
+m1 <- 0.75
+tc <- qt(1-a, df = n-1)
+t <- sort(c(tc, seq(-5, 10, length = 1000)))
+v <- 1
+d0 <- dt(t, df = n-1)
+d1 <- dt(t, df = n-1, ncp = (m1-m0)*sqrt(n)/v)
+t.acc <- c(t[t <= tc])
+t.rej <- c(t[t >= tc])
+
+par(mai = c(0.75, 0, 0, 0), cex = 0.9)
+
+plot(t, d0, type = "l", bty = "n", yaxt = "n", ylab = "", xaxt = "n", xlab = "", ylim = c(0, max(c(d0,d1))), lty = 2)
+lines(t, d1)
+axis(1, lwd.tick=0, labels=FALSE)
+axis(1, at = c(0, tc), labels = c("0", round(tc, 3)))
+polygon(x = c(t.acc, tc), y = c(dt(t.acc, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0), col = scales::alpha(grey(0.5), 0.5))
+polygon(x = c(t.rej, max(t.rej), tc), y = c(dt(t.rej, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0, 0), col = scales::alpha(grey(0.75), 0.5))
+
+if (knitr::is_html_output()) {
+  text(7, 0.25, paste("n =", n))
+} else{
+  text(7, 0.25, paste("$n =", n, "$"))
+}
+```
+```{r, fig.height = 2.5}
+n <- 20
+a <- 0.05
+m0 <- 0
+m1 <- 0.75
+tc <- qt(1-a, df = n-1)
+t <- sort(c(tc, seq(-5, 10, length = 1000)))
+v <- 1
+d0 <- dt(t, df = n-1)
+d1 <- dt(t, df = n-1, ncp = (m1-m0)*sqrt(n)/v)
+t.acc <- c(t[t <= tc])
+t.rej <- c(t[t >= tc])
+
+par(mai = c(0.75, 0, 0, 0), cex = 0.9)
+
+plot(t, d0, type = "l", bty = "n", yaxt = "n", ylab = "", xaxt = "n", xlab = "", ylim = c(0, max(c(d0,d1))), lty = 2)
+lines(t, d1)
+axis(1, lwd.tick=0, labels=FALSE)
+axis(1, at = c(0, tc), labels = c("0", round(tc, 3)))
+polygon(x = c(t.acc, tc), y = c(dt(t.acc, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0), col = scales::alpha(grey(0.5), 0.5))
+polygon(x = c(t.rej, max(t.rej), tc), y = c(dt(t.rej, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0, 0), col = scales::alpha(grey(0.75), 0.5))
+
+if (knitr::is_html_output()) {
+  text(7, 0.25, paste("n =", n))
+} else{
+  text(7, 0.25, paste("$n =", n, "$"))
+}
+```
+```{r, fig.height = 2.5}
+n <- 30
+a <- 0.05
+m0 <- 0
+m1 <- 0.75
+tc <- qt(1-a, df = n-1)
+t <- sort(c(tc, seq(-5, 10, length = 1000)))
+v <- 1
+d0 <- dt(t, df = n-1)
+d1 <- dt(t, df = n-1, ncp = (m1-m0)*sqrt(n)/v)
+t.acc <- c(t[t <= tc])
+t.rej <- c(t[t >= tc])
+
+par(mai = c(0.75, 0, 0, 0), cex = 0.9)
+
+plot(t, d0, type = "l", bty = "n", yaxt = "n", ylab = "", xaxt = "n", xlab = "", ylim = c(0, max(c(d0,d1))), lty = 2)
+lines(t, d1)
+axis(1, lwd.tick=0, labels=FALSE)
+axis(1, at = c(0, tc), labels = c("0", round(tc, 3)))
+polygon(x = c(t.acc, tc), y = c(dt(t.acc, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0), col = scales::alpha(grey(0.5), 0.5))
+polygon(x = c(t.rej, max(t.rej), tc), y = c(dt(t.rej, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0, 0), col = scales::alpha(grey(0.75), 0.5))
+
+if (knitr::is_html_output()) {
+  text(7, 0.25, paste("n =", n))
+} else{
+  text(7, 0.25, paste("$n =", n, "$"))
+}
+```
+
+<!-- Increasing $n$ increases power. -->
+
+\pagebreak
+
+## Effect of $\mu$ on Power
+
+```{r, fig.height = 2.5}
+n <- 10
+a <- 0.05
+m0 <- 0
+m1 <- 0.75
+tc <- qt(1-a, df = n-1)
+t <- sort(c(tc, seq(-5, 10, length = 1000)))
+v <- 1
+d0 <- dt(t, df = n-1)
+d1 <- dt(t, df = n-1, ncp = (m1-m0)*sqrt(n)/v)
+t.acc <- c(t[t <= tc])
+t.rej <- c(t[t >= tc])
+
+par(mai = c(0.75, 0, 0, 0), cex = 0.9)
+
+plot(t, d0, type = "l", bty = "n", yaxt = "n", ylab = "", xaxt = "n", xlab = "", ylim = c(0, max(c(d0,d1))), lty = 2)
+lines(t, d1)
+axis(1, lwd.tick=0, labels=FALSE)
+axis(1, at = c(0, tc), labels = c("0", round(tc, 3)))
+polygon(x = c(t.acc, tc), y = c(dt(t.acc, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0), col = scales::alpha(grey(0.5), 0.5))
+polygon(x = c(t.rej, max(t.rej), tc), y = c(dt(t.rej, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0, 0), col = scales::alpha(grey(0.75), 0.5))
+
+if (knitr::is_html_output()) {
+  text(7, 0.25, bquote(mu == .(m1)))
+} else{
+  text(7, 0.25, paste("$\\mu =", m1, "$"))
+}
+```
+```{r, fig.height = 2.5}
+n <- 10
+a <- 0.05
+m0 <- 0
+m1 <- 1
+tc <- qt(1-a, df = n-1)
+t <- sort(c(tc, seq(-5, 10, length = 1000)))
+v <- 1
+d0 <- dt(t, df = n-1)
+d1 <- dt(t, df = n-1, ncp = (m1-m0)*sqrt(n)/v)
+t.acc <- c(t[t <= tc])
+t.rej <- c(t[t >= tc])
+
+par(mai = c(0.75, 0, 0, 0), cex = 0.9)
+
+plot(t, d0, type = "l", bty = "n", yaxt = "n", ylab = "", xaxt = "n", xlab = "", ylim = c(0, max(c(d0,d1))), lty = 2)
+lines(t, d1)
+axis(1, lwd.tick=0, labels=FALSE)
+axis(1, at = c(0, tc), labels = c("0", round(tc, 3)))
+polygon(x = c(t.acc, tc), y = c(dt(t.acc, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0), col = scales::alpha(grey(0.5), 0.5))
+polygon(x = c(t.rej, max(t.rej), tc), y = c(dt(t.rej, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0, 0), col = scales::alpha(grey(0.75), 0.5))
+
+if (knitr::is_html_output()) {
+  text(7, 0.25, bquote(mu == .(m1)))
+} else{
+  text(7, 0.25, paste("$\\mu =", m1, "$"))
+}
+```
+```{r, fig.height = 2.5}
+n <- 10
+a <- 0.05
+m0 <- 0
+m1 <- 1.25
+tc <- qt(1-a, df = n-1)
+t <- sort(c(tc, seq(-5, 10, length = 1000)))
+v <- 1
+d0 <- dt(t, df = n-1)
+d1 <- dt(t, df = n-1, ncp = (m1-m0)*sqrt(n)/v)
+t.acc <- c(t[t <= tc])
+t.rej <- c(t[t >= tc])
+
+par(mai = c(0.75, 0, 0, 0), cex = 0.9)
+
+plot(t, d0, type = "l", bty = "n", yaxt = "n", ylab = "", xaxt = "n", xlab = "", ylim = c(0, max(c(d0,d1))), lty = 2)
+lines(t, d1)
+axis(1, lwd.tick=0, labels=FALSE)
+axis(1, at = c(0, tc), labels = c("0", round(tc, 3)))
+polygon(x = c(t.acc, tc), y = c(dt(t.acc, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0), col = scales::alpha(grey(0.5), 0.5))
+polygon(x = c(t.rej, max(t.rej), tc), y = c(dt(t.rej, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0, 0), col = scales::alpha(grey(0.75), 0.5))
+
+if (knitr::is_html_output()) {
+  text(7, 0.25, bquote(mu == .(m1)))
+} else{
+  text(7, 0.25, paste("$\\mu  =", m1, "$"))
+}
+```
+
+<!-- Increasing the *distance* between the true and assumed (under the null) value of $\mu$ (i.e., the "effect size") will increase power. -->
+
+\pagebreak
+
+## Effect of $\sigma$ on Power
+
+```{r, fig.height = 2.5}
+n <- 10
+a <- 0.05
+m0 <- 0
+m1 <- 0.75
+tc <- qt(1-a, df = n-1)
+t <- sort(c(tc, seq(-5, 10, length = 1000)))
+v <- 1
+d0 <- dt(t, df = n-1)
+d1 <- dt(t, df = n-1, ncp = (m1-m0)*sqrt(n)/v)
+t.acc <- c(t[t <= tc])
+t.rej <- c(t[t >= tc])
+
+par(mai = c(0.75, 0, 0, 0), cex = 0.9)
+
+plot(t, d0, type = "l", bty = "n", yaxt = "n", ylab = "", xaxt = "n", xlab = "", ylim = c(0, max(c(d0,d1))), lty = 2)
+lines(t, d1)
+axis(1, lwd.tick=0, labels=FALSE)
+axis(1, at = c(0, tc), labels = c("0", round(tc, 3)))
+polygon(x = c(t.acc, tc), y = c(dt(t.acc, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0), col = scales::alpha(grey(0.5), 0.5))
+polygon(x = c(t.rej, max(t.rej), tc), y = c(dt(t.rej, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0, 0), col = scales::alpha(grey(0.75), 0.5))
+
+if (knitr::is_html_output()) {
+  text(7, 0.25, bquote(sigma == .(v)))
+} else{
+  text(7, 0.25, paste("$\\sigma =", v, "$"))
+}
+```
+```{r, fig.height = 2.5}
+n <- 10
+a <- 0.05
+m0 <- 0
+m1 <- 0.75
+tc <- qt(1-a, df = n-1)
+t <- sort(c(tc, seq(-5, 10, length = 1000)))
+v <- 0.75
+d0 <- dt(t, df = n-1)
+d1 <- dt(t, df = n-1, ncp = (m1-m0)*sqrt(n)/v)
+t.acc <- c(t[t <= tc])
+t.rej <- c(t[t >= tc])
+
+par(mai = c(0.75, 0, 0, 0), cex = 0.9)
+
+plot(t, d0, type = "l", bty = "n", yaxt = "n", ylab = "", xaxt = "n", xlab = "", ylim = c(0, max(c(d0,d1))), lty = 2)
+lines(t, d1)
+axis(1, lwd.tick=0, labels=FALSE)
+axis(1, at = c(0, tc), labels = c("0", round(tc, 3)))
+polygon(x = c(t.acc, tc), y = c(dt(t.acc, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0), col = scales::alpha(grey(0.5), 0.5))
+polygon(x = c(t.rej, max(t.rej), tc), y = c(dt(t.rej, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0, 0), col = scales::alpha(grey(0.75), 0.5))
+
+if (knitr::is_html_output()) {
+  text(7, 0.25, bquote(sigma == .(v)))
+} else{
+  text(7, 0.25, paste("$\\sigma =", v, "$"))
+}
+```
+```{r, fig.height = 2.5}
+n <- 10
+a <- 0.05
+m0 <- 0
+m1 <- 0.75
+tc <- qt(1-a, df = n-1)
+t <- sort(c(tc, seq(-5, 10, length = 1000)))
+v <- 0.5
+d0 <- dt(t, df = n-1)
+d1 <- dt(t, df = n-1, ncp = (m1-m0)*sqrt(n)/v)
+t.acc <- c(t[t <= tc])
+t.rej <- c(t[t >= tc])
+
+par(mai = c(0.75, 0, 0, 0), cex = 0.9)
+
+plot(t, d0, type = "l", bty = "n", yaxt = "n", ylab = "", xaxt = "n", xlab = "", ylim = c(0, max(c(d0,d1))), lty = 2)
+lines(t, d1)
+axis(1, lwd.tick=0, labels=FALSE)
+axis(1, at = c(0, tc), labels = c("0", round(tc, 3)))
+polygon(x = c(t.acc, tc), y = c(dt(t.acc, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0), col = scales::alpha(grey(0.5), 0.5))
+polygon(x = c(t.rej, max(t.rej), tc), y = c(dt(t.rej, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0, 0), col = scales::alpha(grey(0.75), 0.5))
+
+if (knitr::is_html_output()) {
+  text(7, 0.25, bquote(sigma == .(v)))
+} else{
+  text(7, 0.25, paste("$\\sigma =", v, "$"))
+}
+```
+
+<!-- Decreasing $\sigma$ will increase power. -->
+
+\pagebreak
+
+## Effect of One- Versus Two-Sided Tests on Power
+
+```{r, fig.height = 2.5}
+n <- 10
+a <- 0.05
+m0 <- 0
+m1 <- 0.75
+tc <- qt((1-a/2), df = n-1)
+t <- sort(c(tc, seq(-5, 10, length = 1000)))
+v <- 1
+d0 <- dt(t, df = n-1)
+d1 <- dt(t, df = n-1, ncp = (m1-m0)*sqrt(n)/v)
+t.acc <- c(t[t <= tc])
+t.rej <- c(t[t >= tc])
+
+par(mai = c(0.75, 0, 0, 0), cex = 0.9)
+
+plot(t, d0, type = "l", bty = "n", yaxt = "n", ylab = "", xaxt = "n", xlab = "", ylim = c(0, max(c(d0,d1))), lty = 2)
+lines(t, d1)
+axis(1, lwd.tick=0, labels=FALSE)
+axis(1, at = c(-tc, 0, tc), labels = c(-round(tc, 3), "0", round(tc, 3)))
+polygon(x = c(t.acc, tc), y = c(dt(t.acc, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0), col = scales::alpha(grey(0.5), 0.5))
+polygon(x = c(t.rej, max(t.rej), tc), y = c(dt(t.rej, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0, 0), col = scales::alpha(grey(0.75), 0.5))
+
+if (knitr::is_html_output()) {
+  text(7, 0.25, expression(paste("Alternative Hypothesis: ", mu != 0)))
+} else{
+  text(7, 0.25, paste("Alternative Hypothesis: $\\mu \\neq 0$"))
+}
+```
+```{r, fig.height = 2.5}
+n <- 10
+a <- 0.05
+m0 <- 0
+m1 <- 0.75
+tc <- qt(1-a, df = n-1)
+t <- sort(c(tc, seq(-5, 10, length = 1000)))
+v <- 1
+d0 <- dt(t, df = n-1)
+d1 <- dt(t, df = n-1, ncp = (m1-m0)*sqrt(n)/v)
+t.acc <- c(t[t <= tc])
+t.rej <- c(t[t >= tc])
+
+par(mai = c(0.75, 0, 0, 0), cex = 0.9)
+
+plot(t, d0, type = "l", bty = "n", yaxt = "n", ylab = "", xaxt = "n", xlab = "", ylim = c(0, max(c(d0,d1))), lty = 2)
+lines(t, d1)
+axis(1, lwd.tick=0, labels=FALSE)
+axis(1, at = c(0, tc), labels = c("0", round(tc, 3)))
+polygon(x = c(t.acc, tc), y = c(dt(t.acc, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0), col = scales::alpha(grey(0.5), 0.5))
+polygon(x = c(t.rej, max(t.rej), tc), y = c(dt(t.rej, df = n-1, ncp = (m1-m0)*sqrt(n)/v), 0, 0), col = scales::alpha(grey(0.75), 0.5))
+
+if (knitr::is_html_output()) {
+  text(7, 0.25, expression(paste("Alternative Hypothesis: ", mu > 0)))
+} else{
+  text(7, 0.25, "Alternative Hypothesis: $\\mu > 0$")
+}
+```
+
+<!-- Power is higher for a one-sided test than a two-sided test (assuming you have the correct side). -->

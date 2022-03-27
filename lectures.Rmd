@@ -104,7 +104,7 @@ i <- 1
  
 ***
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Power](lecture-03-28-2022.html).
 
 `r i <- i + 1; d[i]` **Fourth examination**.
 
