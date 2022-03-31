@@ -9,9 +9,13 @@ Course material for Dr. Johnson's *Statistical Methods* (Stat 251, Section 02) a
 
 ***
 
+You may be familiar with some of [Timothée Chalamet's](https://en.wikipedia.org/wiki/Timoth%C3%A9e_Chalamet) filmography such as the new [Dune](https://youtu.be/n9xhJrPXop4) movie, but have you seen his early work?
+
 <center>
 
-![https://xkcd.com/1347](http://imgs.xkcd.com/comics/t_distribution.png)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BvWefB4NGGI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Apparently he enjoyed his statistics course.
 
 </center>
 
