@@ -1,0 +1,199 @@
+---
+title: "Homework Problem Set 14: Inferences for $\\mu_1-\\mu_2$ from Independent Samples"
+output: 
+  html_document: 
+    theme: readable
+  pdf_document: default
+header-includes:
+  - \usepackage{array}
+  - \usepackage{booktabs}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, out.width = "100%", fig.align = "center", 
+  cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
+```
+
+```{r packages}
+library(tidyverse)
+library(kableExtra)
+```
+
+```{r utilities}
+source("../../utilities.R")
+```
+
+`r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](homework-14.pdf) copy of this homework assignment.", sep = ""), "")`
+
+```{r functions}
+stat <- function(x, s, n) {
+  x1 <- x[1]
+  x2 <- x[2]
+  s1 <- s[1]
+  s2 <- s[2]
+  n1 <- n[1]
+  n2 <- n[2]
+  return((x1-x2)/sqrt(s1^2/n1 + s2^2/n2))
+}
+
+serr <- function(s, n) {
+  s1 <- s[1]
+  s2 <- s[2]
+  n1 <- n[1]
+  n2 <- n[2]
+  return(sqrt(s1^2/n1 + s2^2/n2))
+}
+
+pval <- function(t, df = Inf, side = "two") {
+  switch(side, 
+    two = 2 * pt(-abs(t), df),
+    left = pt(t, df),
+    right = 1 - pt(t, df))
+}
+
+elst <- function(x) {
+  n <- length(x)
+  y <- paste(x[1:(n-1)], collapse = ", ")
+  y <- paste(y, ", and ", x[n], sep = "")
+  return(y)
+}
+```
+
+**Instructions**: These homework problems will help familiarize you with how we can make inferences concerning the difference between two means (i.e., $\mu_1 - \mu_2$). For statistical tests state appropriate null and alternative hypotheses, compute the test statistic, compute the p-value, and make a decision/conclusion. Use a significance level of $\alpha$ = 0.05. For confidence intervals use a confidence level of 95%. The solutions are given at the end.[^rounding]
+
+[^rounding]: In the solutions the reported values of test statistics and p-values have usually been rounded some. Rounding was only done for the final reported values. It was avoided in intermediate calculations (e.g., the value of the test statistic used to compute a p-value was *not* rounded). 
+
+## Bumpus' Sparrows
+
+A famous [lecture](https://amornithhistory.org/2018/03/05/professor-bumpus-and-his-sparrows) by biologist [Hermon Bumpus](https://en.wikipedia.org/wiki/Hermon_Carey_Bumpus) demonstrated natural selection using data concerning the survival of house sparrows (*Passer domesticus*) after a severe winter storm.[^bumpus] After the storm moribund sparrows were brought to the Anatomical Laboratory at Brown University. Some of these sparrows were revived, but many died. All of the sparrows that were brought in were examined with respect to a variety of anatomical characteristics. It is interesting to compare the anatomical characteristics of sparrows that survived versus those that did not. The distributions of humerus (upper wing bone) length in the samples of sparrows that survived and the sparrows that did not are shown below. 
+```{r, fig.height = 1.5}
+d <- trtools::bumpus
+d$survival <- factor(d$survival, labels = c("no","yes"))
+
+b <- d %>% group_by(survival) %>% 
+  summarize(mean = mean(humerus), sd = sd(humerus), n = length(humerus)) 
+
+p <- ggplot(d, aes(x = humerus, fill = survival)) + theme_classic()
+p <- p + geom_dotplot(binwidth = 0.001, method = "histodot", stackgroups = TRUE)
+p <- p + scale_fill_manual(values = c("black","white"))
+p <- p + labs(x = "Humerus Length (in)", y = NULL, fill = "Survival:")
+p <- p + scale_x_continuous(breaks = seq(0.65, 0.8, by = 0.01))
+p <- p + theme(legend.position = "top") + noyaxis
+plot(p)
+```
+Of the sample of `r with(b, n[2])` observations for sparrows that survived, the mean humerus length was `r with(b, round(mean[2], 2))` in, and the standard deviation was `r with(b, round(sd[2], 2))` in. And of the sample of `r with(b, n[1])` observations for sparrows that died, the mean humerus length was `r with(b, round(mean[1],2))` in, and the standard deviation was `r with(b, round(sd[1],2))` in. Let $\mu_s$ denote the mean for the population distribution of humerus length for sparrows that would survive, and let $\mu_d$ denote the mean for the population distribution of humerus length for sparrows that would not survive. Bumpus would probably have pointed out that sparrows that survived tended to have a larger humerus length than those that did not. While this is true for his samples, it is not clear if we can infer from this that this is true *in general* (i.e., $\mu_s > \mu_d$). Conduct a statistical test to determine if the difference in the sample means is statistically significant or not using the hypotheses $H_0: \mu_s-\mu_d = 0$ versus $H_a: \mu_s-\mu_d > 0$. Also estimate the difference in mean humerus length ($\mu_s-\mu_d$) using a confidence interval.
+
+[^bumpus]: Bumpus, H. C. (1898). Eleventh lecture. The elimination of the unfit as illustrated by the introduced sparrow, Passer domesticus. (A fourth contribution to the study of variation.) Biological Lectures: Woods Hole Marine Biological Laboratory, 209--225.
+
+## Experimental Investigation of the Peak-End Rule
+
+```{r}
+na <- 29
+ma <- 5.21
+sa <- 0.92
+nab <- 21
+mab <- 4.14
+sab <- 1.19
+```
+
+The [peak-end rule](https://en.wikipedia.org/wiki/Peak-end_rule) is a psychological heuristic where people tend to judge an experience disproportionately based on how the felt at the *peak* of the experience (i.e., at the point of maximum pleasure or pain/discomfort) and at the *end* of the experience. The phenomenon has many implications and potential applications. Do, Rupert, and Wolford (2008) conducted randomized experiments that demonstrate the peak-end rule.[^do] In one experiment subjects were contacted by email to tell them they had won a raffle they had entered after making a donation in a fundraiser. The fundraiser was a real but the "raffle" was organized by the researchers for the purpose of the study. Subjects that replied were randomly assigned to one of two treatment conditions. The reward for the raffle was to select a DVD from one or both of two lists. List *A* consisted of 10 movies that were all highly rated. List *B* consisted of a different 10 movies that were not so highly rated. In one treatment condition the subjects were first allowed to pick a movie from list *A*, and were then contacted in another email and allowed to select a movie from list *B* (denote this treatment condition as "*A+B*"). In the other treatment condition the subjects were only allowed to pick from list *A* (let this treatment condition be denoted simply as "*A*"). After selecting their DVD(s), subjects were contacted again by email and asked to rate the overall experience on an integer scale from 1 (least pleased) to 7 (most pleased). Of the `r nab` subjects who selected movies from both list *A* and *B*, the mean rating was `r mab` and the standard deviation was `r sab`, but of the `r na` subjects who selected movies from only list *A*, the mean rating was `r ma` and the standard deviation was `r sa`. The sample sizes, means, and standard deviations (SD) are also shown in the table below.
+```{r}
+treatment <- c("A","A+B")
+n <- c(na,nab)
+m <- c(ma,mab)
+s <- c(sa,sab)
+d <- data.frame(treatment, n, m, s)
+names(d) <- c("Treatment","Size","Mean","SD")
+ktbl(d)
+```
+While objectively the *A+B* treatment condition rewards the subjects more, it has a less pleasurable end than the *A* treatment condition, which may lead people to tend to perceive the experience in *A* to be more pleasurable than that in *A+B*. Let $\mu_a$ and $\mu_{ab}$ denote the mean for two hypothetical population distributions of observations of ratings corresponding to the *A* and *A+B* treatment conditions, respectively. Conduct a statistical test with the alternative hypothesis that the peak-end rule results in higher ratings, on average, for treatment condition *A* than for treatment condition *A+B* (i.e., $\mu_a > \mu_{ab}$).
+
+[^do]: Do, A. M., Rupert, A. V., & Wolford, G. (2008). Evaluations of pleasurable experiences: The peak-end rule. *Psychonomic Bulletin & Review*, *15(1)*, 96--998.
+
+## Age of Onset of Schizophrenia
+
+The German psychiatrist [Emil Kraepelin](https://en.wikipedia.org/wiki/Emil_Kraepelin) published one of the early scientific treatments of what was at the time (incorrectly) labelled *dementia praecox* (i.e., premature dementia) but what later became known as schizophrenia.[^kraepelin] Some data from that work shows the age of onset in some women and men who had been diagnosed with dementia praecox.[^onset] These data are shown in the figure below. 
+```{r, fig.height = 2}
+d <- HSAUR3::schizophrenia
+levels(d$gender) <- c("women","men")
+b <- d %>% group_by(gender) %>% summarize(n = length(age), mean = mean(age), sd = sd(age))
+p <- ggplot(d, aes(x = age)) + facet_wrap(~ gender)
+p <- p + geom_dotplot(binwidth = 1)
+p <- p + labs(x = "Age of Onset") + theme_minimal() + noyaxis
+p <- p + geom_point(aes(x = mean, y = -0.05), data = b, pch = 17, size = 2)
+p <- p + scale_x_continuous(breaks = seq(5, 60, by = 5))
+plot(p)
+```
+For the sample of `r with(b, n[1])` women, the mean age of onset was `r with(b, round(mean[1],1))` years and the standard deviation was `r with(b, round(sd[1],1))` years. And for the sample of `r with(b, n[2])` men, the mean age of onset was `r with(b, round(mean[2],1))` years and the standard deviation was `r with(b, round(sd[2],1))` years. Let $\mu_w$ and $\mu_m$ represent the mean for the population distributions of age of onset for women and men, respectively. Compute a confidence interval for the difference between $\mu_w$ and $\mu_m$.  
+
+[^kraepelin]: Kraepelin, E. (1919). *Dementia praecox and paraphrenia*. Edinburgh: Livingstone. 
+[^onset]: Age of onset of disorders can be a difficult variable to assess. Sometimes a person's ability to hide symptoms or their likelihood to be notice by others can affect the apparent age of onset. And when these become confounded with other variables, such as sex, it can make comparisons difficult.
+
+## Reproductive Success of Polyandrous Female Pseudoscorpions
+
+[Pseudoscorpions](https://en.wikipedia.org/wiki/Pseudoscorpion) (*Cordylochernes scorpioides*) are not scorpions but rather an arachnid that looks somewhat like a scorpion but without the segmented tail and stinger. A study by Newcomer, Zeh, and Zeh (1999) investigated the effects of polyandry on the reproductive success of female pseudoscorpions.[^newcomer] Each of 36 female pseudoscorpions was randomly put into one of two groups. In one group the females each received two sperm packets from two *different* males, while in the other group the females received two sperm packets from the *same* male. The number of brood sacs (an external container of embryos) later produced by each female was counted. The researchers wanted to determine if the genetic benefits of receiving sperm packets from different males (as opposed to the same amount of sperm from one male) would result in greater reproductive success as quantified by the number of brood sacs produced. 
+```{r, fig.height = 4}
+d <- abd::Pseudoscorpions
+names(d)[2] <- "broods"
+levels(d$treatment) <- c("Different Males","Same Male")
+b <- d %>% group_by(treatment) %>% summarize(n = length(broods), mean = mean(broods), sd = sd(broods))
+p <- ggplot(d, aes(x = broods)) + facet_wrap(~ treatment)
+p <- p + geom_dotplot(binwidth = 1)
+p <- p + labs(x = "Number of Brood Sacs") + theme_minimal() + noyaxis
+p <- p + scale_x_continuous(breaks = seq(0, 7, by = 1))
+plot(p)
+```
+The average number of successful broods produced by females that received sperm from two *different* males was `r with(b, round(mean[1],2))` brood sacs in comparison to `r with(b, round(mean[2],2))` brood sacs produced by females that received sperm from the *same* male. The standard deviations were similar between the two treatments: `r with(b, round(sd[1],2))` brood sacs for the females that received sperm from different males and `r with(b, round(sd[2],2))` brood sacs for the females that received sperm from the same male. Conduct a statistical test to determine if there is evidence that females that receive sperm  packets from two different males produce more brood sacs, on average, than females that receive the same number of sperm packs from the same male. (Note: To find the sample sizes, count the dots in the figure.)
+
+[^newcomer]: Newcomer, S. D., Zeh, J. A., & Zeh, D. W. (1999). Genetic benefits enhance the reproductive success of polyandrous females. *Proceedings of the National Academy of Sciences*, *96*, 10236--10241.
+
+\pagebreak
+
+## Bumpus' Sparrows (Solution)
+
+```{r}
+d <- trtools::bumpus
+d$survival <- factor(d$survival, labels = c("no","yes"))
+b <- d %>% group_by(survival) %>% summarize(mean = round(mean(humerus),2), sd = round(sd(humerus),2), n = length(humerus))
+```
+
+The test statistic is $t$ $\approx$ `r with(b, round(-stat(mean, sd, n),2))`, which would yield a p-value of approximately `r with(b, round(pval(-stat(mean, sd, n), df = min(n[1]-1,n[2]-1), side = "right"),3))`. (Note that the p-value would be twice as large if a two-sided test had been used.) This would lead us to reject the null hypothesis and conclude that there is a statistically significant difference in the mean humerus length between sparrows that survived and those that did not. The confidence interval is approximately `r with(b, mean[2]-mean[1])` $\pm$ `r with(b, round(-qt(0.025, df = min(n[1]-1, n[2]-1)) * serr(sd, n),3))` in. 
+
+## Experimental Investigation of the Peak-End Rule (Solution)
+
+```{r}
+na <- 29
+ma <- 5.21
+sa <- 0.92
+nab <- 21
+mab <- 4.14
+sab <- 1.19
+```
+
+The hypotheses are $H_0\!: \mu_a - \mu_{ab} = 0$ versus $H_a\!: \mu_a - \mu_{ab} > 0$. The test statistic is $t$ $\approx$ `r with(b, round(stat(c(ma,mab),c(sa,sab),c(na,nab)),2))`, yielding a p-value of approximately `r with(b, round(pval(with(b, stat(c(ma,mab),c(sa,sab),c(na,nab))), df = min(na-1,nab-1), side = "right"), 3))`. (Note that the p-value for a two-sided test would be twice as large.) This would lead us to reject the null hypothesis and conclude that, on average, ratings are higher under the *A* treatment condition than under the *A+B* treatment condition. 
+
+## Age of Onset of Schizophrenia (Solution)
+
+```{r, fig.height = 3}
+d <- HSAUR3::schizophrenia
+levels(d$gender) <- c("women","men")
+b <- d %>% group_by(gender) %>% summarize(n = length(age), mean = round(mean(age),1), sd = round(sd(age),1))
+```
+
+You should obtain the confidence interval for $\mu_w-\mu_m$ of `r with(b, mean[1]-mean[2])` $\pm$ `r with(b, round(-qt(0.025, df = min(n-1)) * serr(sd, n), 1))` years.
+
+## Reproductive Success of Polyandrous Female Pseudoscorpions (Solution)
+
+```{r}
+d <- abd::Pseudoscorpions
+names(d)[2] <- "broods"
+levels(d$treatment) <- c("Different Males","Same Male")
+b <- d %>% group_by(treatment) %>% summarize(n = length(broods), mean = round(mean(broods),2), sd = round(sd(broods),2))
+```
+
+Let $\mu_d$ and $\mu_s$ denote the means of the population distributions of the number of brood sacs produced by females receiving sperm from two different males and the same male, respectively. Now consider a test of the hypotheses $H_0\!: \mu_d - \mu_s = 0$ versus $H_a\!: \mu_d - \mu_s > 0$. The test statistic is $t$ $\approx$ `r with(b, round(stat(mean, sd, n),2))`. This yields a p-value of approximately `r round(with(b, pval(stat(mean, sd, n), df = min(n-1), side = "right")),3)`. The p-value for a two-sided test would be twice as large. The decision is to reject the null hypothesis and conclude the difference in the mean number of successful broods produced is statistically significant. 
+
+```{r}
+rm(list = ls())
+```
+
