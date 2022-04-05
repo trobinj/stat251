@@ -114,7 +114,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [Inferences for $\mu_1-\mu_2$ from independent samples](lecture-04-04-2022.html). A set of [homework problems](homework-14.html) concerning inferences for $\mu_1 - \mu_2$ is now available.  
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Advantages of dependent samples, the other standard error for $\bar{x}_1 - \bar{x}_2$](lecture-04-06-2022.html).
  
 `r i <- i + 1; d[i]` 
  
