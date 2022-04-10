@@ -1,0 +1,41 @@
+---
+title: "Fifth Examination Study Guide"
+output:
+  html_document:
+    theme: readable
+  pdf_document: default
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+`r ifelse(knitr::is_html_output(), "You can also download a [PDF](e5-studyguide.pdf) copy of this study guide.", "")`
+
+1. Understand the difference between *independent* and *dependent* samples. 
+
+0. Understand how to conduct a statistical test concerning $p_1-p_2$.
+
+0. Understand how to compute a confidence interval to estimate $p_1-p_2$. 
+
+0. Understand how to conduct a statistical test concerning $\mu_1-\mu_2$.
+
+0. Understand how to compute a confidence interval to estimate $\mu_1-\mu_2$. 
+
+0. Understand the advantages of dependent (matched) samples.
+
+0. Understand the concepts we discussed concerning causal inference including *confounding variables*, *conditioning*, *randomization*, *instrumental variables*, the *placebo effect*, the *observer-expectancy effect*, *single-blind* studies, and *double-blind* studies. You might find it useful to understand these concepts in terms of the causal diagrams.
+
+0. Understand the survey sampling designs covered in lecture: *simple random sampling*, *stratified random sampling*, and *cluster sampling* (one- and two-stage), and *systematic sampling*. Also understand the advantages and/or disadvantages of these designs. 
+
+0. Understand the misconceptions and limitations of statistical tests discussed in lecture. 
+
+Formulas/expressions you should understand when and how to use.
+
+$$ \hat{p}_1 - \hat{p}_2 \pm z \sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \frac{\hat{p}_2(1-\hat{p}_2)}{n_2}} $$
+
+$$ z = \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{\hat{p}(1-\hat{p})\left(\frac{1}{n_1} + \frac{1}{n_2}\right)}} $$
+
+$$ \bar{x}_1 - \bar{x}_2 \pm t \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} $$
+
+$$ t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}} $$

@@ -120,7 +120,7 @@ i <- 1
  
 ***
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Survey sampling designs](lecture-04-11-2022.html). The [study guide](e5-studyguide.html) for the fifth examination is now available.
 
 `r i <- i + 1; d[i]` 
 
