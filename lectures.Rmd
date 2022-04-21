@@ -132,7 +132,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [Goodness-of-fit tests and tests of independence](lecture-04-20-2022.html). A set of [homework problems](homework-15.html) on goodness-of-fit tests and tests of independence is now available.
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Mark-recapture designs](lecture-04-22-2022.html). A set of [homework problems](homework-16.html) on mark-recapture designs is now available.
  
 ***
 

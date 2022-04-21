@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Friday, Apr 22</title>
+
+<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics 251</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="lectures.html">Lectures</a>
+</li>
+<li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Friday, Apr 22</h1>
+
+</div>
+
+
+<p>You can also download a <a href="lecture-04-22-2022.pdf">PDF</a> copy
+of this lecture.</p>
+<div id="mark-recapture-designs" class="section level2">
+<h2>Mark-Recapture Designs</h2>
+<p>The simplest mark-recapture design involves two steps.</p>
+<ol style="list-style-type: decimal">
+<li>Select a sample of <span class="math inline">\(n_1\)</span> units.
+All of these units are <em>marked</em> and <em>replaced</em> into the
+population.</li>
+<li>Select a sample of <span class="math inline">\(n_2\)</span> units
+and count the number of marked units (<span
+class="math inline">\(m\)</span>) in the sample.</li>
+</ol>
+<p><img src="lecture-04-22-2022_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+Every unit in the population could be classified in terms of whether it
+was included or excluded from each sample.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Second Sample
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+First Sample
+</th>
+<th style="text-align:center;">
+included
+</th>
+<th style="text-align:center;">
+excluded
+</th>
+<th style="text-align:center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+included
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(m\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(n_1-m\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(n_1\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+excluded
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(n_2-m\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(N-n_1-n_2+m\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(N-n_1\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Total
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(n_2\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(N-n_2\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(N\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<strong>Example</strong>: A sample of <span
+class="math inline">\(n_1\)</span> = 300 deer are captured, tagged, and
+released. A second sample of <span class="math inline">\(n_2\)</span> =
+200 deer includes <span class="math inline">\(m\)</span> = 62 tagged
+deer.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Second Sample
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+First Sample
+</th>
+<th style="text-align:center;">
+included
+</th>
+<th style="text-align:center;">
+excluded
+</th>
+<th style="text-align:center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+included
+</td>
+<td style="text-align:center;">
+62
+</td>
+<td style="text-align:center;">
+238
+</td>
+<td style="text-align:center;">
+300
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+excluded
+</td>
+<td style="text-align:center;">
+138
+</td>
+<td style="text-align:center;">
+?
+</td>
+<td style="text-align:center;">
+?
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Total
+</td>
+<td style="text-align:center;">
+200
+</td>
+<td style="text-align:center;">
+?
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(N\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p>If we <em>assume</em> that inclusion/exclusion in the two samples are
+<em>independent</em>, then the <em>expected count</em> for a unit being
+included in <em>both</em> samples is <span class="math display">\[
+  \frac{R \times C}{T} = \frac{n_1n_2}{N}.
+\]</span> If the sample sizes are not too small, the expected and
+observed counts for the number of units in both samples will tend to be
+approximately equal (assuming independence), so we can write <span
+class="math display">\[
+  m \approx \frac{n_1n_2}{N} \Rightarrow N \approx \frac{n_1n_2}{m},
+\]</span> which gives the “Lincoln-Petersen” estimator of <span
+class="math inline">\(N\)</span>, <span class="math display">\[
+  \hat{N} = \frac{n_1n_2}{m}.
+\]</span> Another way to motivate this estimator is to observe that the
+proportion of marked units in the second sample (<span
+class="math inline">\(m/n_2\)</span>) estimates the proportion of marked
+units in the population (<span class="math inline">\(n_1/N\)</span>). So
+if we write <span class="math display">\[
+  \frac{m}{n_2} \approx \frac{n_1}{N},
+\]</span> and “solve” for <span class="math inline">\(N\)</span> we get
+<span class="math display">\[
+  N \approx \frac{n_1 n_2}{m}
+\]</span> which implies the Lincoln-Peterson estimator <span
+class="math inline">\(\hat{N} = n_1 n_2 / m\)</span>. </p>
+<p><strong>Example</strong>: Assuming independence of
+inclusion/exclusion in the two samples, what is our estimate of the
+number of deer in the mark-recapture study described earlier?</p>
+<strong>Example</strong>: Merry and Pippin want to estimate the number
+of Hobbits that attended Bilbo’s 111-th birthday party. They each made a
+list of the Hobbits that they talked with at the party. There were 72
+Hobbits on Merry’s list, 100 Hobbits on Pippin’s list, and 50 on both
+lists.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Merry’s List
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Pippin’s List
+</th>
+<th style="text-align:center;">
+included
+</th>
+<th style="text-align:center;">
+excluded
+</th>
+<th style="text-align:center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+included
+</td>
+<td style="text-align:center;">
+50
+</td>
+<td style="text-align:center;">
+50
+</td>
+<td style="text-align:center;">
+100
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+excluded
+</td>
+<td style="text-align:center;">
+22
+</td>
+<td style="text-align:center;">
+?
+</td>
+<td style="text-align:center;">
+?
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Total
+</td>
+<td style="text-align:center;">
+72
+</td>
+<td style="text-align:center;">
+?
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(N\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p>What is the estimate of the number of Hobbits that attended the
+party?</p>
+<blockquote>
+<p>“The invitations were limited to twelve dozen (a number also called
+by the hobbits one Gross, though the word was not considered proper to
+use of people); and the guests were selected from all the families to
+which Bilbo and Frodo were related, with the addition of a few special
+unrelated friends (such as Gandalf).” — J. R. R. Tolkien, <em>The
+Fellowship of the Ring</em></p>
+</blockquote>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="violations-of-independence" class="section level2">
+<h2>Violations of Independence</h2>
+<p>In practice, the independence may be violated at least a couple of
+ways.</p>
+<ol style="list-style-type: decimal">
+<li>Capture/marking increases or decreases the probability of
+recapture.</li>
+<li>Units vary with respect to their probability of (re)capture.</li>
+</ol>
+</div>
+<div id="sampling-design-and-standard-errors" class="section level2">
+<h2>Sampling Design and Standard Errors</h2>
+<p>A confidence interval for <span class="math inline">\(N\)</span> can
+be written in general as <span class="math display">\[
+    \hat{N} \pm \underbrace{z \times
+    \text{standard error of $\hat{N}$}}_{\text{margin of error}}.
+\]</span> But the standard error <em>depends on the sampling design
+used</em>.</p>
+<p><strong>Direct Sampling</strong>: The second sample is selected to
+obtain <span class="math inline">\(n_2\)</span> units. The size of the
+second sample (<span class="math inline">\(n_2\)</span>) is
+<em>fixed</em> while the number of marked units in that sample (<span
+class="math inline">\(m\)</span>) is <em>random</em>.</p>
+<p><strong>Example</strong>: A sample of 300 deer are captured, tagged,
+and released. A second random sample of 200 deer is selected using
+direct sampling. It includes 62 tagged deer. The standard error is <span
+class="math display">\[
+\sqrt{\frac{n_1n_2(n_1-m)(n_2-m)}{m^3}} = \sqrt{\frac{300 \times
+200(300-62)(200-62)}{62^3}} \approx 91.
+\]</span> So the confidence interval for <span
+class="math inline">\(N\)</span> would be approximately <span
+class="math display">\[
+   968 \pm 1.96 \times 91 \Rightarrow 968 \pm 178 \Leftrightarrow (790,
+1146).
+\]</span></p>
+<p><strong>Inverse Sampling</strong>: Units sampled until <span
+class="math inline">\(m\)</span> marked units are observed. The size of
+the second sample (<span class="math inline">\(n_2\)</span>) is
+<em>random</em> while the number of marked units in that sample (<span
+class="math inline">\(m\)</span>) is <em>fixed</em>.</p>
+<p><strong>Example</strong>: A sample of 300 deer are captured, tagged,
+and released. Then deer are observed until 62 tagged dear are observed
+using inverse sampling. This requires observing 200 deer. The standard
+error is <span class="math display">\[
+\sqrt{\frac{n_1^2n_2(n_2-m)}{m^2(m+1)}} = \sqrt{\frac{300^2 \times
+200(200-62)}{62^2(62+1)}} \approx 101.
+\]</span> So the confidence interval for <span
+class="math inline">\(N\)</span> would be <span class="math display">\[
+   968 \pm 1.96 \times 101 \Rightarrow 968 \pm 199 \Leftrightarrow (769,
+1167).
+\]</span></p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
