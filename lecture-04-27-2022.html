@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Wednesday, Apr 27</title>
+
+<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics 251</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="lectures.html">Lectures</a>
+</li>
+<li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Wednesday, Apr 27</h1>
+
+</div>
+
+
+<p>You can also download a <a href="lecture-04-27-2022.pdf">PDF</a> copy
+of this lecture.</p>
+<div id="simpsons-paradox" class="section level2">
+<h2>Simpson’s Paradox</h2>
+<p><strong>Example</strong>: The following data are from an
+observational study that compared open surgical methods with
+percutaneous nephrolithotomy with respect to success of removing a
+kidney stone.<a href="#fn1" class="footnote-ref"
+id="fnref1"><sup>1</sup></a></p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Outcome
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Treatment
+</th>
+<th style="text-align:center;">
+success
+</th>
+<th style="text-align:center;">
+failure
+</th>
+<th style="text-align:center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+open surgical method
+</td>
+<td style="text-align:center;">
+273 (0.78)
+</td>
+<td style="text-align:center;">
+77 (0.22)
+</td>
+<td style="text-align:center;">
+350
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+percutaneous nephrolithotomy
+</td>
+<td style="text-align:center;">
+289 (0.83)
+</td>
+<td style="text-align:center;">
+61 (0.17)
+</td>
+<td style="text-align:center;">
+350
+</td>
+</tr>
+</tbody>
+</table>
+Now consider the same data but now also considering the <em>size</em> of
+the kidney stone.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="2">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Outcome
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Size
+</th>
+<th style="text-align:left;">
+Treatment
+</th>
+<th style="text-align:center;">
+success
+</th>
+<th style="text-align:center;">
+failure
+</th>
+<th style="text-align:center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+large
+</td>
+<td style="text-align:left;">
+open surgical method
+</td>
+<td style="text-align:center;">
+192 (0.73)
+</td>
+<td style="text-align:center;">
+71 (0.27)
+</td>
+<td style="text-align:center;">
+263
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+large
+</td>
+<td style="text-align:left;">
+percutaneous nephrolithotomy
+</td>
+<td style="text-align:center;">
+55 (0.69)
+</td>
+<td style="text-align:center;">
+25 (0.31)
+</td>
+<td style="text-align:center;">
+80
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+small
+</td>
+<td style="text-align:left;">
+open surgical method
+</td>
+<td style="text-align:center;">
+81 (0.93)
+</td>
+<td style="text-align:center;">
+6 (0.07)
+</td>
+<td style="text-align:center;">
+87
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+small
+</td>
+<td style="text-align:left;">
+percutaneous nephrolithotomy
+</td>
+<td style="text-align:center;">
+234 (0.87)
+</td>
+<td style="text-align:center;">
+36 (0.13)
+</td>
+<td style="text-align:center;">
+270
+</td>
+</tr>
+</tbody>
+</table>
+<p>Why?</p>
+<p><strong>Simpson’s Paradox</strong>: A situation when the relationship
+between two variables “reverses” when conditioning upon a third
+confounding variable.</p>
+<strong>Example</strong>: The data shown below are from an investigation
+of the relationship between the defendant’s race and whether or not the
+death penalty was given in murder trials.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Death Penalty
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Defendant
+</th>
+<th style="text-align:center;">
+yes
+</th>
+<th style="text-align:center;">
+no
+</th>
+<th style="text-align:center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+white
+</td>
+<td style="text-align:center;">
+53 (0.11)
+</td>
+<td style="text-align:center;">
+430 (0.89)
+</td>
+<td style="text-align:center;">
+483
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+black
+</td>
+<td style="text-align:center;">
+15 (0.08)
+</td>
+<td style="text-align:center;">
+176 (0.92)
+</td>
+<td style="text-align:center;">
+191
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>White Victim</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+white
+</td>
+<td style="text-align:center;">
+53 (0.11)
+</td>
+<td style="text-align:center;">
+414 (0.89)
+</td>
+<td style="text-align:center;">
+467
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+black
+</td>
+<td style="text-align:center;">
+11 (0.23)
+</td>
+<td style="text-align:center;">
+37 (0.77)
+</td>
+<td style="text-align:center;">
+48
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>Black Victim</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+white
+</td>
+<td style="text-align:center;">
+0 (0)
+</td>
+<td style="text-align:center;">
+16 (1)
+</td>
+<td style="text-align:center;">
+16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+black
+</td>
+<td style="text-align:center;">
+4 (0.03)
+</td>
+<td style="text-align:center;">
+139 (0.97)
+</td>
+<td style="text-align:center;">
+143
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong>: Consider data from a survey of women and an
+investigation of the relationship between smoking and mortality.<br />
+<img src="lecture-04-27-2022_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<!-- **Example**: Consider data from a [study](https://en.wikipedia.org/wiki/Simpson%27s_paradox#UC_Berkeley_gender_bias) of sex bias in admissions to graduate school at the University of California Berkeley. -->
+</div>
+<div id="berksons-paradox" class="section level2">
+<h2>Berkson’s Paradox</h2>
+<p><strong>Berkson’s paradox</strong> is when an association between two
+variables is due (in part) to <em>selection bias</em> (i.e., that some
+units have a higher probability of being sampled than others).</p>
+<strong>Example</strong>: Suppose that an observational study of people
+from the general population does not reveal any relationship between
+diabetes and cholecystitis (an inflammation of the gallbladder).
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Cholecystitis
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+Diabetes
+</th>
+<th style="text-align:center;">
+yes
+</th>
+<th style="text-align:center;">
+no
+</th>
+<th style="text-align:center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+yes
+</td>
+<td style="text-align:center;">
+100 (0.1)
+</td>
+<td style="text-align:center;">
+900 (0.9)
+</td>
+<td style="text-align:center;">
+1000
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+no
+</td>
+<td style="text-align:center;">
+1900 (0.1)
+</td>
+<td style="text-align:center;">
+17100 (0.9)
+</td>
+<td style="text-align:center;">
+19000
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+Total
+</td>
+<td style="text-align:center;">
+2000
+</td>
+<td style="text-align:center;">
+2000
+</td>
+<td style="text-align:center;">
+20000
+</td>
+</tr>
+</tbody>
+</table>
+But if this study was based on <em>hospital records</em> then many
+people <em>without</em> diabetes <em>or</em> cholecystitis would not be
+sampled. This causes an apparent association between diabetes and
+cholecystitis, and appears to show that people with diabetes are
+<em>less likely</em> to have cholecystitis.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Cholecystitis
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+Diabetes
+</th>
+<th style="text-align:center;">
+yes
+</th>
+<th style="text-align:center;">
+no
+</th>
+<th style="text-align:center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+yes
+</td>
+<td style="text-align:center;">
+100 (0.1)
+</td>
+<td style="text-align:center;">
+900 (0.9)
+</td>
+<td style="text-align:center;">
+1000
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+no
+</td>
+<td style="text-align:center;">
+1900 (0.48)
+</td>
+<td style="text-align:center;">
+2100 (0.52)
+</td>
+<td style="text-align:center;">
+4000
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+Total
+</td>
+<td style="text-align:center;">
+2000
+</td>
+<td style="text-align:center;">
+2000
+</td>
+<td style="text-align:center;">
+5000
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong>: A study published in the <a
+href="https://onlinelibrary.wiley.com/doi/full/10.1111/joim.12363"><em>Journal
+of Internal Medicine</em></a> of individuals aged 19 years or younger
+who received emergency medical care in Ontario, Canada, following an
+off‐road vehicle crash showed that those that were wearing a helmet were
+associated with a <em>greater</em> injury severity and necessity for
+more medical care than those not wearing a helmet.</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Hospitalized
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+Helmet
+</th>
+<th style="text-align:center;">
+yes
+</th>
+<th style="text-align:center;">
+no
+</th>
+<th style="text-align:center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+yes
+</td>
+<td style="text-align:center;">
+945 (0.1)
+</td>
+<td style="text-align:center;">
+8917 (0.9)
+</td>
+<td style="text-align:center;">
+9862
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+no
+</td>
+<td style="text-align:center;">
+1652 (0.07)
+</td>
+<td style="text-align:center;">
+23688 (0.93)
+</td>
+<td style="text-align:center;">
+25340
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+Total
+</td>
+<td style="text-align:center;">
+2597
+</td>
+<td style="text-align:center;">
+2597
+</td>
+<td style="text-align:center;">
+35202
+</td>
+</tr>
+</tbody>
+</table>
+<p>But individuals who <em>did not</em> receive emergency medical care
+(either because they were fine or because they died at the scene) are
+not included. What happens if we include them?</p>
+Suppose that there were 10000 cases where an individual was wearing a
+helmet but did not require emergency medical care, and 50 cases where an
+individual was not wearing a helmet but did not require emergency
+medical care.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Hospitalized
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+Helmet
+</th>
+<th style="text-align:center;">
+yes
+</th>
+<th style="text-align:center;">
+no
+</th>
+<th style="text-align:center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+yes
+</td>
+<td style="text-align:center;">
+945 (0.05)
+</td>
+<td style="text-align:center;">
+18917 (0.95)
+</td>
+<td style="text-align:center;">
+19862
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+no
+</td>
+<td style="text-align:center;">
+1652 (0.07)
+</td>
+<td style="text-align:center;">
+23738 (0.93)
+</td>
+<td style="text-align:center;">
+25390
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+Total
+</td>
+<td style="text-align:center;">
+2597
+</td>
+<td style="text-align:center;">
+2597
+</td>
+<td style="text-align:center;">
+45252
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="ecological-fallacy" class="section level2">
+<h2>Ecological Fallacy</h2>
+<p>The <strong>ecological fallacy</strong> is the misconception that an
+association at the <em>group</em> level implies a similar association at
+the <em>individual</em> level.</p>
+<p><strong>Example</strong>: Research in Europe in the 19th century
+showed that suicide was more common in <em>regions</em> that were
+predominantly Protestant in comparison to areas that were predominantly
+Catholic. Would we conclude that within any given area the suicide rate
+is higher among Protestant <em>people</em> than Catholic
+<em>people</em>?</p>
+<p><strong>Example</strong>: Hobbit <em>villages</em> with higher pipe
+weed consumption also tend to have higher rates of foot lice. Would we
+conclude that within a given village that foot lice is more common among
+<em>individual</em> Hobbits that smoke in comparison to those who do
+not?</p>
+</div>
+<div id="suppressor-variables" class="section level2">
+<h2>Suppressor Variables</h2>
+<p>A <strong>suppressor variable</strong> is a variable that, if not
+conditioned upon, will “suppress” (i.e., reduce in magnitude) the
+relationship between two variables.</p>
+<strong>Example</strong>: Consider a study of the relationship between
+participation in a Head Start program and academic success.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Success
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+Head Start
+</th>
+<th style="text-align:center;">
+yes
+</th>
+<th style="text-align:center;">
+no
+</th>
+<th style="text-align:center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+no
+</td>
+<td style="text-align:center;">
+471 (0.47)
+</td>
+<td style="text-align:center;">
+533 (0.53)
+</td>
+<td style="text-align:center;">
+1004
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+yes
+</td>
+<td style="text-align:center;">
+509 (0.51)
+</td>
+<td style="text-align:center;">
+487 (0.49)
+</td>
+<td style="text-align:center;">
+996
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="2">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Success
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+SES
+</th>
+<th style="text-align:center;">
+Head Start
+</th>
+<th style="text-align:center;">
+yes
+</th>
+<th style="text-align:center;">
+Total
+</th>
+<th style="text-align:center;">
+total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+high
+</td>
+<td style="text-align:center;">
+no
+</td>
+<td style="text-align:center;">
+426 (0.5)
+</td>
+<td style="text-align:center;">
+422 (0.5)
+</td>
+<td style="text-align:center;">
+848
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+high
+</td>
+<td style="text-align:center;">
+yes
+</td>
+<td style="text-align:center;">
+101 (0.78)
+</td>
+<td style="text-align:center;">
+29 (0.22)
+</td>
+<td style="text-align:center;">
+130
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+low
+</td>
+<td style="text-align:center;">
+no
+</td>
+<td style="text-align:center;">
+45 (0.29)
+</td>
+<td style="text-align:center;">
+111 (0.71)
+</td>
+<td style="text-align:center;">
+156
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+low
+</td>
+<td style="text-align:center;">
+yes
+</td>
+<td style="text-align:center;">
+408 (0.47)
+</td>
+<td style="text-align:center;">
+458 (0.53)
+</td>
+<td style="text-align:center;">
+866
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="spurious-relationships" class="section level2">
+<h2>Spurious Relationships</h2>
+<p>A <strong>spurious relationship</strong> is when the apparent
+association between two variables disappears when conditioning on a
+third variable.</p>
+<p><strong>Example</strong>: Consider data from an observational study
+of the relationship between smoking and forced expiratory volume (FEV)
+and children and adolescents.
+<img src="lecture-04-27-2022_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" />
+Now suppose we examine the data but take into consideration
+<em>height</em>.
+<img src="lecture-04-27-2022_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Charig, C. R., Webb, D. R., Payne, S. R., &amp; Wickham,
+J. E. A. (1986). Comparison of treatment of renal calculi by open
+surgery, percutaneous nephrolithotomy, and extracorporeal shockwave
+lithotripsy. <em>British Medical Journal</em>, <em>292</em>, 879–882.<a
+href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
