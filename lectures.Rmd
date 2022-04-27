@@ -138,7 +138,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [McNemar's V and Cramer's test](lecture-04-25-2022.html). The [study guide](e6-studyguide.html) for the sixth examination is now available.
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Simpson's paradox, Berkson's paradox, the ecological fallacy, suppressor variables, and spurious relationships](lecture-04-27-2022.html).
 
 `r i <- i + 1; d[i]` **Sixth examination**.
  
