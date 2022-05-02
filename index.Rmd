@@ -11,7 +11,7 @@ Course material for Dr. Johnson's *Statistical Methods* (Stat 251, Section 02) a
 
 <center>
 
-![](mendelspeas.jpg)
+![https://xkcd.com/557](http://imgs.xkcd.com/comics/students.png)
 
 </center>
 

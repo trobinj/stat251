@@ -144,11 +144,11 @@ i <- 1
  
 ***
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Correlation](lecture-05-02-2022.html). A [study guide](findal-studyguide.html) with other information about the final examination is now available.
 
 `r i <- i + 1; d[i]` 
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` **No class**. I will be in my office (Brink 417) during class time if you have questions about the final examination. 
 
 ***
 

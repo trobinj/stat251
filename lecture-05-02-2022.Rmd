@@ -1,0 +1,304 @@
+---
+output:
+  html_document:
+    theme: readable
+  pdf_document: default
+---
+
+```{r, echo = FALSE, message = FALSE}
+library(lubridate)
+date <- "05-02-2022"
+weekday <- wday(mdy(date), label = TRUE, abbr = FALSE)
+month <- month(mdy(date), label = TRUE)
+day <- day(mdy(date))
+```
+
+---
+title: `r paste(weekday, ", ", month, " ", day, sep = "")`
+header-includes:
+  - \usepackage{float}
+  - \usepackage{booktabs}
+  - \usepackage{array}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, out.width = "100%", fig.width = 9, fig.align = "center", cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "pdf"), warning = FALSE)
+```
+
+```{r packages}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(kableExtra)
+```
+
+```{r utilities}
+source("../../utilities.R")
+```
+
+`r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](lecture-", date, ".pdf) copy of this lecture.", sep = ""), "")`
+
+## Correlation
+
+**Study Question**: How is the *correlation coefficient* ($r$) related to the association between two quantitative variables?
+
+**Example**: Consider a sample of 31 observations of the girth (in), height (ft), and volume (cubic feet) of black cherry trees from Allegheny National Forest. 
+```{r}
+d <- data.frame(Tree = 1:nrow(trees))
+d <- cbind(d, trees)
+ktbl(headtail(d, 5))
+```
+The *joint* distribution of any two variables can be visualized using a *scatter plot*. 
+```{r, fig.height = 4}
+r1 <- with(trees, round(cor(Girth, Volume), 2))
+r2 <- with(trees, round(cor(Height, Volume), 2))
+
+p <- ggplot(trees, aes(x = Girth, y = Volume))
+p <- p + geom_point(size = 1) + theme_classic()
+p <- p + labs(x = "Girth (in)", y = "Volume (cubic feet)")
+p <- p + annotate("text", 12, 70, label = paste("r =", r1))
+p1 <- p + theme_classic()
+
+p <- ggplot(trees, aes(x = Height, y = Volume))
+p <- p + geom_point(size = 1) + theme_classic()
+p <- p + labs(x = "Height (ft)", y = "Volume (cubic feet)")
+p <- p + annotate("text", 70, 70, label = paste("r =", r2))
+p2 <- p + theme_classic()
+
+cowplot::plot_grid(p1, p2, align = "v")
+```
+
+**Example**: The data below record the average outdoor temperature (C) and gas consumption (1000s of cubic feet) to heat a home for a week. But note that between the 26th and 28th weeks cavity-wall insulation was added. 
+```{r}
+d.before <- subset(MASS::whiteside, Insul == "Before")
+d.after <- subset(MASS::whiteside, Insul == "After")
+d.before <- d.before[sample(1:nrow(d.before)),]
+d.after <- d.after[sample(1:nrow(d.after)),]
+d.day <- data.frame(Week = c(1:26,28:(nrow(MASS::whiteside)+1)))
+d <- cbind(d.day, rbind(d.before, d.after))
+rownames(d) <- NULL
+names(d)[2] <- "Insulation"
+ktbl(rbind(headtail(subset(d, Insulation == "Before"), 3), headtail(subset(d, Insulation == "After"), 3)))
+```
+Again a scatter plot with some color coding to indicate whether the observation was before or after insulation was added is useful.
+```{r}
+library(MASS)
+
+cb <- round(with(subset(whiteside, Insul == "Before"), cor(Gas, Temp)), 2)
+ca <- round(with(subset(whiteside, Insul == "After"), cor(Gas, Temp)), 2)
+cb <- paste("r =", cb)
+ca <- paste("r =", ca)
+mydat <- data.frame(Temp = c(1.5, 7.5), Gas = c(3, 5), Insul = c("After", "Before"), cor = c(ca,cb))
+
+p <- ggplot(whiteside, aes(x = Temp, y = Gas, color = Insul))
+p <- p + geom_point(size = 0.75) + xlab("Temperature (C)") + ylab("Gas Consumption\n(1000s of cubic feet)")
+p <- p + guides(color = guide_legend(title = "Insulation"))
+p <- p + geom_text(aes(label = cor), show.legend = FALSE, data = mydat)
+p <- p + theme_minimal()
+p <- p + theme(legend.position = c(0.9,0.9))
+p + theme(legend.key = element_blank())
+```
+
+## The Correlation Coefficient
+
+The **correlation coefficient** measures the *direction* and *strength* of the *linear* association between two *quantitative* variables. The correlation is symbolized by $r$ when it is a statistic (i.e., describing a sample of observations) and $\rho$ when it is a parameter (i.e., describing the population distribution of the variables).
+```{r, warning = FALSE}
+library(MASS)
+
+s <- diag(2)
+
+s[1,2] <- -0.9
+s[2,1] <- -0.9
+x1 <- mvrnorm(1000, c(50, 50), s)
+
+s[1,2] <- -0.7
+s[2,1] <- -0.7
+x2 <- mvrnorm(1000, c(50, 50), s)
+
+s[1,2] <- -0.5
+s[2,1] <- -0.5
+x3 <- mvrnorm(1000, c(50, 50), s)
+
+s[1,2] <- -0.3
+s[2,1] <- -0.3
+x4 <- mvrnorm(1000, c(50, 50), s)
+
+s[1,2] <- -0.1
+s[2,1] <- -0.1
+x5 <- mvrnorm(1000, c(50, 50), s)
+
+s[1,2] <-  0.1
+s[2,1] <-  0.1
+x6 <- mvrnorm(1000, c(50, 50), s)
+
+s[1,2] <-  0.3
+s[2,1] <-  0.3
+x7 <- mvrnorm(1000, c(50, 50), s)
+
+s[1,2] <-  0.5
+s[2,1] <-  0.5
+x8 <- mvrnorm(1000, c(50, 50), s)
+
+s[1,2] <-  0.7
+s[2,1] <-  0.7
+x9 <- mvrnorm(1000, c(50, 50), s)
+
+s[1,2] <-  0.9
+s[2,1] <-  0.9
+x10 <- mvrnorm(1000, c(50, 50), s)
+
+x <- rbind(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10)
+x <- as.data.frame(x)
+names(x) <- c("x","y")
+x$r <- rep(c(-0.9,-0.7,-0.5,-0.3,-0.1,0.1,0.3,0.5,0.7,0.9), each = 1000)
+
+p <- ggplot(x, aes(x = x, y = y)) + geom_point(shape = 16, alpha = 0.25, size = 1) + facet_wrap(~r, ncol = 5) + coord_fixed()
+p <- p + theme_minimal() + theme(plot.margin = unit(c(0,0,0,0), "cm")) + xlim(46,54) + ylim(46,54)
+p
+```
+
+**Example**: Consider the correlations among nine test scores of seventh- and eigth-grade children. 
+```{r}
+library(lavaan)
+data(HolzingerSwineford1939)
+tmp <- subset(HolzingerSwineford1939, school == "Grant-White")
+r <- cor(tmp[,c(7,8,9,10,11,12,13,14,15)])
+r <- round(r,2)
+
+rownames(r) <- c("Visual Perception","Cubes","Lozenges","Paragraph Comprehension","Sentence Completion",
+  "Word Meaning","Speeded Addition","Speeded Counting","Speeded Discrimination")
+colnames(r) <- c("ViP","Cub","Loz","PaC","SeC","WoM","SpA","SpC","SpD")
+rownames(r) <- paste(rownames(r), " (", colnames(r), ")", sep = "")
+ktbl(r) %>% column_spec(1, bold = TRUE)
+```
+The relative strengths of such correlations have been used to study intelligence. 
+
+**Example**: Correlation of BMI for monozygotic (i.e., identical) and dizygotic (i.e., fraternal) twins. 
+```{r, warning = FALSE}
+require(mets)
+require(reshape2)
+
+data(twinbmi)
+tmp <- table(twinbmi$tvparnr)
+tmp <- names(tmp)[tmp == 2]
+
+bmi <- twinbmi[twinbmi$tvparnr %in% tmp,]
+bmi <- bmi[order(bmi$tvparnr),]
+bmi.x <- bmi[seq(1, nrow(bmi), by = 2),]
+bmi.y <- bmi[seq(2, nrow(bmi), by = 2),]
+bmi <- data.frame(pair = unique(bmi$tvparnr), 
+  x = bmi.x$bmi, y = bmi.y$bmi, age = bmi.x$age, gender = bmi.x$gender, 
+  type = bmi.x$zyg)
+
+levels(bmi$type) <- c("Dizygotic (Fraternal)", "Monozygotic (Identical)")
+
+r.dz <- with(subset(bmi, type == "Dizygotic (Fraternal)"), 
+	cor(x, y, use = "complete.obs"))
+r.mz <- with(subset(bmi, type == "Monozygotic (Identical)"), 
+	cor(x, y, use = "complete.obs"))
+	
+r.dz <- round(r.dz, 2)
+r.mz <- round(r.mz, 2)
+
+tmp <- data.frame(r = paste("r =", c(r.dz, r.mz)), type = levels(bmi$type),
+  x = 35, y = 17)
+
+p <- ggplot(bmi, aes(x = x, y = y))
+p <- p + geom_point(size = 0.5, alpha = 0.25) + facet_wrap(~type) + coord_fixed()
+p <- p + xlab("BMI of Twin A") + ylab("BMI of Twin B")
+p <- p + geom_text(aes(x = x, y = y, label = r), data = tmp)
+p <- p + theme_minimal()
+p
+```
+Falconer's formula of $2(r_{mz} - r_{dz}) = 2(0.68 - 0.37) = 0.62$ has been used as a (crude) estimate of heritability.
+
+**Example**: Suppose we had a matched-pairs design using genetically-related individuals (e.g., cousins, siblings, or identical twins) for a study like that that investigated the relationship between schizophrenia and left hippocampus volume. 
+```{r, fig.height = 4}
+rho <- function(v, rho) {
+  y <- diag(v)
+  for (i in 1:nrow(y)) {
+    for (j in 1:ncol(y)) {
+      if (i != j) {
+        y[i,j] <- sqrt(y[i,i]) * sqrt(y[j,j]) * rho   
+      }
+    }
+  }
+  return(y)
+}
+
+n <- 100
+
+set.seed(101)
+
+m <- apply(Sleuth3::case0202, 2, mean)
+v <- apply(Sleuth3::case0202, 2, var)
+
+y1 <- MASS::mvrnorm(n, m, rho(v,0.3))
+y2 <- MASS::mvrnorm(n, m, rho(v,0.8))
+y3 <- MASS::mvrnorm(n, m, rho(v,0.95))
+
+d <- data.frame(rbind(y1,y2,y3))
+names(d) <- c("x1","x2")
+d$r <- rep(c(0.0,0.7,0.9), each = n)
+d$r <- factor(d$r, labels = paste("$\\rho=", unique(d$r), "$", sep = ""))
+levels(d$r) <- c("Correlation: 0.3","Correlation: 0.8","Correlation: 0.95")
+
+p <- ggplot(d, aes(x = x1, y = x2)) + facet_wrap(~r)
+p <- p + geom_point(size = 0.5) + coord_fixed()
+p <- p + labs(x = "Unaffected Volume", y = "Affected Volume")
+p <- p + theme_minimal() + coord_fixed()
+plot(p)
+```
+The standard error of $\bar{x}_d = \bar{x}_1-\bar{x}_2$ is
+$$
+\sqrt{\frac{\sigma_1^2}{n} + \frac{\sigma_2^2}{n} - \rho\frac{2\sigma_1\sigma_2}{n}},
+$$
+where $\rho$ is the *correlation coefficient* for the population distribution. 
+
+**Study Question**: How does $\rho$ affect the standard error of $\bar{x}_d = \bar{x}_1 - \bar{x}_2$ when using dependent samples? 
+
+## Correlation and Prediction by Linear Regression
+
+**Study Question**: How is the correlation coefficient ($r$) involved in using one variable to predict another using linear regression?
+
+**Example**: Consider the problem of trying to *predict* tree volume using its girth. 
+```{r, fig.height = 4}
+r1 <- with(trees, round(cor(Girth, Volume), 2))
+r2 <- with(trees, round(cor(Height, Volume), 2))
+
+m <- lm(Volume ~ Girth, data = trees)
+trees$yhat <- predict(m)
+
+p <- ggplot(trees, aes(x = Girth, y = Volume))
+p <- p + geom_line(aes(y = yhat), size = 0.25)
+p <- p + geom_segment(aes(yend = yhat, xend = Girth), size = 0.25)
+p <- p + geom_point(size = 1) + theme_classic()
+p <- p + labs(x = "Girth (in)", y = "Volume (cubic feet)")
+p <- p + annotate("text", 12, 70, label = paste("r =", r1))
+p <- p + theme_minimal()
+
+plot(p)
+``` 
+Perhaps we could use an equation like
+$$
+  \hat{y} = a + bx,
+$$
+where $\hat{y}$ is the *predicted* volume, and $x$ is girth. Here $a$ and $b$ are the *parameters* of the equation known as the "intercept" and "slope" of the equation, respectively. How should we choose $a$ and $b$? 
+
+The correlation is related to $a$ and $b$. The *method of least squares* can be used to choose $a$ and $b$ such that the $\hat{y}$'s and the $y$'s are "close" in the sense that
+$$
+  \sum (y - \hat{y})^2 = (y_1 - \hat{y}_1)^2 + (y_2 - \hat{y}_2)^2 + \cdots + (y_n - \hat{y}_n)^2
+$$
+is as small as possible. The values of $a$ and $b$ that achieve this are given by
+$$
+b = r\frac{s_y}{s_x}, \ \ \
+a = \bar{y} - b\bar{x},
+$$
+where $s_y$ and $s_x$ are the standard deviations of $y$ (volume) and $x$ (girth), respectively, and $\bar{y}$ and $\bar{x}$ are their means. 
+
+The correlation can also be used to compute the *standard error of prediction* which can be viewed as the average squared difference between $y$ and $\hat{y}$. This is
+$$
+  s_e = s_y\sqrt{1 - r^2}.
+$$
+So larger values of $r$ (in absolute value) lead to smaller prediction errors (on average).  
+
