@@ -1,0 +1,156 @@
+---
+title: "Lectures"
+output: 
+  html_document: 
+    theme: readable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, message = FALSE}
+library(lubridate)
+d <- dmy("09-01-2023","11-01-2023","13-01-2023") + rep(7 * c(0:17), each = 3)
+d <- paste(wday(d, label = TRUE, abbr = FALSE), ", ", 
+  month(d, label = TRUE), " ", day(d), ".", sep = "")
+i <- 1
+```
+
+&nbsp;
+
+`r i <- i + 1; d[i]` [Introduction and the "big picture"](lecture-01-11-2023.html).
+
+`r i <- i + 1; d[i]` 
+
+***
+
+`r i <- i + 1; d[i]` **Holiday**
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]` 
+ 
+***
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]` **Exam 1**
+ 
+***
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]` 
+ 
+***
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]` 
+ 
+***
+
+`r i <- i + 1; d[i]` **Exam 2**
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]` 
+ 
+***
+
+`r i <- i + 1; d[i]` **Holiday**
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]` 
+ 
+***
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]` **Exam 3**
+ 
+***
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]` 
+ 
+***
+
+`r i <- i + 1; d[i]` **Spring Recess**
+
+`r i <- i + 1; d[i]` **Spring Recess**
+
+`r i <- i + 1; d[i]` **Spring Recess**
+ 
+***
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]`  
+
+`r i <- i + 1; d[i]` 
+ 
+***
+
+`r i <- i + 1; d[i]` **Exam 4**
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]` 
+ 
+***
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]` 
+ 
+`r i <- i + 1; d[i]` 
+ 
+***
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]` **Exam 5**
+
+`r i <- i + 1; d[i]` 
+ 
+***
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]` 
+ 
+***
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]` **Exam 6**
+ 
+***
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]` 
+
+`r i <- i + 1; d[i]`
+
+*** 
+
+Tuesday, May 9. **Final Examination, 10:15 to 12:15**
