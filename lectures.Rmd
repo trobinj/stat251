@@ -21,7 +21,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [Introduction and the "big picture"](lecture-01-11-2023.html).
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Describing distributions](lecture-01-13-2023.html). The [first homework set](homework-01.html) on describing distributions is now available. 
 
 ***
 
