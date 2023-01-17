@@ -27,7 +27,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` **Holiday**
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Summary measures continued --- measures of variability, cumulative distributions, percentiles, box plots](lecture-01-18-2023.html). The [second homework set](homework-02.html) that concerns cumulative distributions, percentiles, and box plots is now available.
 
 `r i <- i + 1; d[i]` 
  
