@@ -11,7 +11,7 @@
 
 
 
-<title>Lectures</title>
+<title>Friday, Jan 20</title>
 
 <script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -260,89 +260,114 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Lectures</h1>
+<h1 class="title toc-ignore">Friday, Jan 20</h1>
 
 </div>
 
 
-<p> </p>
-<p>Wednesday, Jan 11. <a href="lecture-01-11-2023.html">Introduction and
-the “big picture”</a>.</p>
-<p>Friday, Jan 13. <a href="lecture-01-13-2023.html">Describing
-distributions</a>. The <a href="homework-01.html">first homework set</a>
-on describing distributions is now available.</p>
-<hr />
-<p>Monday, Jan 16. <strong>Holiday</strong></p>
-<p>Wednesday, Jan 18. <a href="lecture-01-18-2023.html">Summary measures
-continued — measures of variability, cumulative distributions,
-percentiles, box plots</a>. The <a href="homework-02.html">second
-homework set</a> that concerns cumulative distributions, percentiles,
-and box plots is now available.</p>
-<p>Friday, Jan 20. <a href="lecture-01-20-2023.html">Normal-shaped
-distributions, <em>z</em>-scores</a>.</p>
-<hr />
-<p>Monday, Jan 23.</p>
-<p>Wednesday, Jan 25.</p>
-<p>Friday, Jan 27. <strong>Exam 1</strong></p>
-<hr />
-<p>Monday, Jan 30.</p>
-<p>Wednesday, Feb 1.</p>
-<p>Friday, Feb 3.</p>
-<hr />
-<p>Monday, Feb 6.</p>
-<p>Wednesday, Feb 8.</p>
-<p>Friday, Feb 10.</p>
-<hr />
-<p>Monday, Feb 13. <strong>Exam 2</strong></p>
-<p>Wednesday, Feb 15.</p>
-<p>Friday, Feb 17.</p>
-<hr />
-<p>Monday, Feb 20. <strong>Holiday</strong></p>
-<p>Wednesday, Feb 22.</p>
-<p>Friday, Feb 24.</p>
-<hr />
-<p>Monday, Feb 27.</p>
-<p>Wednesday, Mar 1.</p>
-<p>Friday, Mar 3. <strong>Exam 3</strong></p>
-<hr />
-<p>Monday, Mar 6.</p>
-<p>Wednesday, Mar 8.</p>
-<p>Friday, Mar 10.</p>
-<hr />
-<p>Monday, Mar 13. <strong>Spring Recess</strong></p>
-<p>Wednesday, Mar 15. <strong>Spring Recess</strong></p>
-<p>Friday, Mar 17. <strong>Spring Recess</strong></p>
-<hr />
-<p>Monday, Mar 20.</p>
-<p>Wednesday, Mar 22.</p>
-<p>Friday, Mar 24.</p>
-<hr />
-<p>Monday, Mar 27. <strong>Exam 4</strong></p>
-<p>Wednesday, Mar 29.</p>
-<p>Friday, Mar 31.</p>
-<hr />
-<p>Monday, Apr 3.</p>
-<p>Wednesday, Apr 5.</p>
-<p>Friday, Apr 7.</p>
-<hr />
-<p>Monday, Apr 10.</p>
-<p>Wednesday, Apr 12. <strong>Exam 5</strong></p>
-<p>Friday, Apr 14.</p>
-<hr />
-<p>Monday, Apr 17.</p>
-<p>Wednesday, Apr 19.</p>
-<p>Friday, Apr 21.</p>
-<hr />
-<p>Monday, Apr 24.</p>
-<p>Wednesday, Apr 26.</p>
-<p>Friday, Apr 28. <strong>Exam 6</strong></p>
-<hr />
-<p>Monday, May 1.</p>
-<p>Wednesday, May 3.</p>
-<p>Friday, May 5.</p>
-<hr />
-<p>Tuesday, May 9. <strong>Final Examination, 10:15 to
-12:15</strong></p>
+<p>You can also download a <a href="lecture-01-20-2023.pdf">PDF</a> copy
+of this lecture.</p>
+<div id="normal-bell-shaped-distributions" class="section level2">
+<h2>Normal (“Bell-Shaped”) Distributions</h2>
+<p><strong>Example</strong>: Consider the distribution of the
+observations of the heights of Hobbits from the East and West
+Farthings.</p>
+<ol style="list-style-type: decimal">
+<li><p>For Hobbits from the <strong>East Farthing</strong> the mean and
+standard deviation would be about 1.1 and 0.2 meters,
+respectively.</p></li>
+<li><p>For Hobbits from the <strong>West Farthing</strong> the mean and
+standard deviation would be about 0.9 and 0.1 meters,
+respectively.</p></li>
+</ol>
+<p>Also those distributions would be approximately <em>normal</em> or
+<em>bell-shaped</em> (or sometimes <em>Gaussian</em>).</p>
+<p><img src="lecture-01-20-2023_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div style="page-break-after: always;"></div>
+<div id="relationship-with-mean-and-standard-deviation"
+class="section level3">
+<h3>Relationship with Mean and Standard Deviation</h3>
+<p>The <em>shape</em> of a normal distribution is related to its mean
+and standard deviation.</p>
+<ol style="list-style-type: decimal">
+<li><p>The mean is located where the (relative) frequency is at its
+peak.</p></li>
+<li><p>The standard deviation is the distance from the mean to the value
+of the variable where the (relative) frequency is a little more than
+half way (actually about 61%) to its maximum.</p></li>
+</ol>
+<p><strong>Example</strong>: Consider the distributions of the heights
+of Hobbits from the East and West Farthings.
+<img src="lecture-01-20-2023_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Example</strong>: Suppose that the distribution of Hobbit
+height for Hobbits from the <em>North Farthing</em> is normal in shape
+with a mean of 1 meter and a standard deviation of 0.2 meters. What
+would this look like?</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="the-empirical-rule-for-normal-distributions"
+class="section level3">
+<h3>The “Empirical Rule” for Normal Distributions</h3>
+<p><img src="lecture-01-20-2023_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>If a distribution is normal then we know the following.</p>
+<ol style="list-style-type: decimal">
+<li>Approximately 68% of observations are within <em>one</em> standard
+deviation of the mean.</li>
+<li>Approximately 95% of observations are within <em>two</em> standard
+deviations of the mean.</li>
+<li>Approximately 100% of observations are within <em>three</em>
+standard deviations of the mean.</li>
+</ol>
+<p><strong>Example</strong>: Where are the middle 95% of observations of
+the heights of Hobbits from the East Farthing?</p>
+<p><strong>Example</strong>: Where are the middle 95% of observations of
+the heights of Hobbits from the West Farthing?</p>
+<div style="page-break-after: always;"></div>
+<p>The percents stated in the empirical rule are based on percentiles.
+<img src="lecture-01-20-2023_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div style="page-break-after: always;"></div>
+<p><strong>Example</strong>: Suppose I flipped a coin 200 times and
+observed the number of times it came up heads. Now suppose I did this
+many thousands of times to get a sample of observations of the number of
+times the coin comes up heads when flipped 200 times. The plot below
+shows the distribution of the number of times the coin comes up heads
+out of 200 flips.
+<img src="lecture-01-20-2023_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" />
+This distribution is clearly normal in shape, and it has a mean of 100
+and a standard deviation of approximately 7. What does the empirical
+rule tell us about where we would expect (or not expect) about the
+number of heads out of 200 flips?</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="standard-scores-i.e.-z-scores" class="section level3">
+<h3>Standard Scores (i.e., <em>z</em>-Scores)</h3>
+<p>A <span class="math inline">\(z\)</span>-score is computed as <span
+class="math display">\[
+  z = \frac{x - \bar{x}}{s}.
+\]</span> It is the number of standard deviations <span
+class="math inline">\(x\)</span> is above (if <span
+class="math inline">\(z\)</span> &gt; 0) or below (if <span
+class="math inline">\(z\)</span> &lt; 0) the mean.</p>
+<p><strong>Example</strong>: Ingitrude Proudfoot is from the East
+Farthing. They are 1.4 meters tall. Merimac Lightfoot is from the West
+Farthing. They are 1.1 meters tall. Who is taller <em>relative</em> to
+the Hobbits in their Farthing?</p>
+<p><strong>Example</strong>: Two Hobbits, one from the East Farthing and
+the other from the West Farthing, are both 0.4 meters <em>above
+average</em> relative to the Hobbits from their Farthing. Which Hobbit
+is taller <em>relative</em> to the Hobbits from their Farthing?</p>
+<p><strong>Example</strong>: Consider again the sample of coin flips,
+but now suppose that we look at the <em>proportion</em> of flips that
+come up heads, and we do so out of 100 flips and again out of 400 flips.
+The distribution for 100 flips has a mean of 0.5 and a standard
+deviation of 0.05, while the distribution of 400 flips has a mean of 0.5
+and a standard deviation of 0.025. What is the <span
+class="math inline">\(z\)</span>-score for each distribution if we
+observe that the coin comes up heads on 55% of the trials (i.e., a
+proportion of 0.55)?</p>
+<p><img src="lecture-01-20-2023_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
 
 
 

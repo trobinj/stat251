@@ -1,0 +1,238 @@
+---
+output:
+  html_document: 
+    theme: readable
+  pdf_document: default
+---
+
+```{r, echo = FALSE, message = FALSE}
+library(lubridate)
+date <- "01-20-2023"
+weekday <- wday(mdy(date), label = TRUE, abbr = FALSE)
+month <- month(mdy(date), label = TRUE)
+day <- day(mdy(date))
+```
+
+---
+title: `r paste(weekday, ", ", month, " ", day, sep = "")`
+output:
+  html_document: 
+    theme: readable
+  pdf_document: default
+header-includes:
+  - \usepackage{float}
+  - \usepackage{booktabs}
+  - \usepackage{array}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, out.width = "100%", fig.align = "center", cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
+```
+
+```{r packages}
+library(tidyverse)
+suppressWarnings(library(kableExtra))
+```
+
+```{r utilities}
+source("../../utilities.R")
+```
+
+`r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](lecture-", date, ".pdf) copy of this lecture.", sep = ""), "")`
+
+## Normal ("Bell-Shaped") Distributions
+
+```{r}
+m <- c(1.1, 0.9)
+s <- c(0.2, 0.1)
+```
+
+**Example**: Consider the distribution of the observations of the heights of Hobbits from the East and West Farthings.
+
+1. For Hobbits from the **East Farthing** the mean and standard deviation would be about `r m[1]` and `r s[1]` meters, respectively.
+
+2. For Hobbits from the **West Farthing** the mean and standard deviation would be about `r m[2]` and `r s[2]` meters, respectively.
+
+Also those distributions would be approximately *normal* or *bell-shaped* (or sometimes *Gaussian*). 
+
+```{r, fig.height = 3, fig.width = 9, warning = FALSE}
+set.seed(101)
+n <- 100000
+d <- data.frame(height = c(scale(rnorm(n))*s[1] + m[1], scale(rnorm(n))*s[2] + m[2]), Farthing = rep(c("East","West"), each = n))
+breaks <- with(d, seq(floor(min(height)), ceiling(max(height)), by = 0.05))
+p <- ggplot(d, aes(x = height, y = ..density.. * 0.05, fill = Farthing))
+p <- p + geom_histogram(breaks = breaks, color = "black", alpha = 0.5, position = "identity")
+p <- p + labs(x = "Height (in)", y = "Relative Frequency", fill = "Farthing")
+p <- p + theme_classic() + xlim(min(d$height), max(d$height))
+plot(p)
+```
+
+\pagebreak
+
+### Relationship with Mean and Standard Deviation
+
+The *shape* of a normal distribution is related to its mean and standard deviation. 
+
+1. The mean is located where the (relative) frequency is at its peak.
+
+0. The standard deviation is the distance from the mean to the value of the variable where the (relative) frequency is a little more than half way (actually about 61%) to its maximum.
+
+**Example**: Consider the distributions of the heights of Hobbits from the East and West Farthings.
+```{r, fig.height = 7, fig.width = 9, warning = FALSE}
+ugh <- data.frame(height = seq(min(d$height), max(d$height), length = 1000))
+ugh$y <- dnorm(ugh$height, m[1], s[1])
+
+p <- ggplot(subset(d, Farthing == "East"), aes(x = height, y = ..density.. * 0.05))
+p <- p + geom_histogram(breaks = breaks, color = "black", alpha = 0.5, position = "identity", fill = "#F8766D")
+p <- p + labs(x = "Height (in)", y = "Relative Frequency", fill = "Farthing")
+p <- p + theme_classic()
+p <- p + scale_x_continuous(breaks = c(m[1] + c(-1,0,1)*s[1]), limits = c(min(d$height), max(d$height)))
+p <- p + geom_density(adjust = 2)
+pm <- p + ylim(0, 0.2)
+
+ugh <- data.frame(height = seq(min(d$height), max(d$height), length = 1000))
+ugh$y <- dnorm(ugh$height, m[2], s[2])
+
+p <- ggplot(subset(d, Farthing == "West"), aes(x = height, y = ..density.. * 0.05))
+p <- p + geom_histogram(breaks = breaks, color = "black", alpha = 0.5, position = "identity", fill = "#00BFC4")
+p <- p + labs(x = "Height (in)", y = "Relative Frequency", fill = "Farthing")
+p <- p + theme_classic()
+p <- p + scale_x_continuous(breaks = c(m[2] + c(-1,0,1)*s[2]), limits = c(min(d$height), max(d$height)))
+p <- p + geom_density(adjust = 2)
+pw <- p + ylim(0, 0.2)
+
+cowplot::plot_grid(pm, pw, nrow = 2, align = "v")
+```
+
+**Example**: Suppose that the distribution of Hobbit height for Hobbits from the *North Farthing* is normal in shape with a mean of 1 meter and a standard deviation of 0.2 meters. What would this look like?
+
+\vspace{3cm}
+
+\pagebreak
+
+### The "Empirical Rule" for Normal Distributions
+
+```{r}
+tmp <- c("$\\bar{x} - 3s$", "$\\bar{x} - 2s$", "$\\bar{x} - s$", "$\\bar{x}$", 
+          "$\\bar{x} + s$", "$\\bar{x} + 2s$", "$\\bar{x}+3s$")
+lbls <- rep(NA, length(tmp))
+for (i in 1:7) {
+  lbls[i] <- latex2exp::TeX(tmp[i])
+}
+
+d <- data.frame(x = seq(-3.5, 3.5, length = 1000)) %>% 
+  mutate(y = dnorm(x))
+
+u <- data.frame(x = -3:3) %>% mutate(y = dnorm(x))
+
+p <- ggplot(d, aes(x = x, y = y)) + theme_minimal()
+p <- p + geom_segment(aes(xend = x, yend = 0), linetype = 3, data = u)
+p <- p + geom_line() + coord_cartesian(xlim = c(-3.5, 3.5))
+p <- p + scale_x_continuous(breaks = -3:3, labels = lbls)
+p <- p + scale_y_continuous(labels = NULL) + labs(x = latex2exp::TeX("$x$"), y = "Relative Frequency")
+p1 <- p
+
+d <- data.frame(x = seq(-3.5, 3.5, length = 1000)) %>% 
+  mutate(y = pnorm(x))
+
+u <- data.frame(x = -3:3) %>% mutate(y = pnorm(x))
+
+p <- ggplot(d, aes(x = x, y = y)) + theme_minimal()
+p <- p + geom_segment(aes(xend = x, yend = 0), linetype = 3, data = u)
+p <- p + geom_segment(aes(yend = y, xend = -10), linetype = 3, data = u)
+p <- p + geom_line() + coord_cartesian(xlim = c(-3.5, 3.5))
+p <- p + scale_x_continuous(breaks = -3:3, labels = lbls)
+p <- p + scale_y_continuous(breaks = u$y, labels = round(u$y, 3), minor_breaks = NULL)
+p <- p + labs(x = latex2exp::TeX("$x$"), y = "Cumulative Relative Frequency")
+p2 <- p
+```
+
+```{r, fig.height = 5, fig.width = 9}
+plot(p1)
+```
+
+If a distribution is normal then we know the following.
+
+1. Approximately 68% of observations are within *one* standard deviation of the mean.
+2. Approximately 95% of observations are within *two* standard deviations of the mean.
+3. Approximately 100% of observations are within *three* standard deviations of the mean.
+
+**Example**: Where are the middle 95% of observations of the heights of Hobbits from the East Farthing?
+
+\vspace{2cm}
+
+**Example**: Where are the middle 95% of observations of the heights of Hobbits from the West Farthing?
+
+\vspace{2cm}
+
+\pagebreak
+
+The percents stated in the empirical rule are based on percentiles.
+```{r, fig.height = 9, fig.width = 9}
+plot(p2)
+```
+
+\pagebreak
+
+**Example**: Suppose I flipped a coin 200 times and observed the number of times it came up heads. Now suppose I did this many thousands of times to get a sample of observations of the number of times the coin comes up heads when flipped 200 times. The plot below shows the distribution of the number of times the coin comes up heads out of 200 flips.
+```{r, fig.width = 9, fig.height = 5}
+n <- 200
+p <- 0.5
+
+d <- data.frame(x = 0:n) %>% mutate(y = dbinom(x, n, p))
+
+m <- n*p
+s <- sqrt(n*p*(1-p))
+
+g <- ggplot(d, aes(x = x, y = y)) + theme_minimal()
+g <- g + geom_segment(aes(xend = x, yend = 0), alpha = 0.5)
+g <- g + geom_point() + labs(x = "Number of Heads", y = "Relative Frequency")
+g <- g + scale_x_continuous(breaks = seq(0, n, by = 10))
+g <- g + scale_y_continuous(breaks = seq(0, 1, by = 0.01))
+plot(g)
+```
+This distribution is clearly normal in shape, and it has a mean of `r m` and a standard deviation of `r rnd(s, 0)`. What does the empirical rule tell us about where we would expect (or not expect) about the number of heads out of 200 flips?
+
+\pagebreak
+
+### Standard Scores (i.e., *z*-Scores)
+
+A $z$-score is computed as 
+$$
+  z = \frac{x - \bar{x}}{s}.
+$$
+It is the number of standard deviations $x$ is above (if $z$ > 0) or below (if $z$ < 0) the mean.
+
+**Example**: Ingitrude Proudfoot is from the East Farthing. They are 1.4 meters tall. Merimac Lightfoot is from the West Farthing. They are 1.1 meters tall. Who is taller *relative* to the Hobbits in their Farthing?
+
+\vspace{3cm}
+
+**Example**: Two Hobbits, one from the East Farthing and the other from the West Farthing, are both 0.4 meters *above average* relative to the Hobbits from their Farthing. Which Hobbit is taller *relative* to the Hobbits from their Farthing?
+
+\vspace{3cm}
+
+**Example**: Consider again the sample of coin flips, but now suppose that we look at the *proportion* of flips that come up heads, and we do so out of 100 flips and again out of 400 flips. The distribution for 100 flips has a mean of 0.5 and a standard deviation of 0.05, while the distribution of 400 flips has a mean of 0.5 and a standard deviation of 0.025. What is the $z$-score for each distribution if we observe that the coin comes up heads on 55% of the trials (i.e., a proportion of 0.55)?
+
+```{r, warning = FALSE}
+n <- 400
+p <- 0.5
+
+d1 <- data.frame(x = 0:n) %>% mutate(y = dbinom(x, n, p)) %>% 
+  mutate(x = x/n, n = paste(n, "flips"))
+
+n <- 100
+
+d2 <- data.frame(x = 0:n) %>% mutate(y = dbinom(x, n, p)) %>% 
+  mutate(x = x/n, n = paste(n, "flips"))
+
+d <- rbind(d1, d2)
+
+g <- ggplot(d, aes(x = x, y = y)) + theme_minimal() + facet_wrap(~ n)
+g <- g + geom_segment(aes(xend = x, yend = 0), alpha = 0.5)
+g <- g + geom_point() + 
+  labs(x = "Proportion of Flips that Come Up Heads", y = "Relative Frequency", color = "Flips")
+g <- g + scale_y_continuous(breaks = seq(0, 1, by = 0.01), limits = c(0, 0.08))
+g <- g + scale_x_continuous(breaks = seq(0, 1, by = 0.05), limits = c(0.35, 0.65))
+plot(g)
+```
+
