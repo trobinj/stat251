@@ -47,7 +47,7 @@ m <- c(1.1, 0.9)
 s <- c(0.2, 0.1)
 ```
 
-**Example**: Consider the distribution of the observations of the heights of Hobbits from the East and West Farthings.
+**Example**: Consider the distribution of observations of the heights of Hobbits from the East and West Farthings.
 
 1. For Hobbits from the **East Farthing** the mean and standard deviation would be about `r m[1]` and `r s[1]` meters, respectively.
 
