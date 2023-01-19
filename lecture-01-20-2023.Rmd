@@ -117,7 +117,7 @@ tmp <- c("$\\bar{x} - 3s$", "$\\bar{x} - 2s$", "$\\bar{x} - s$", "$\\bar{x}$",
           "$\\bar{x} + s$", "$\\bar{x} + 2s$", "$\\bar{x}+3s$")
 lbls <- rep(NA, length(tmp))
 for (i in 1:7) {
-  lbls[i] <- latex2exp::TeX(tmp[i])
+  lbls[i] <- tex(tmp[i])
 }
 
 d <- data.frame(x = seq(-3.5, 3.5, length = 1000)) %>% 
@@ -129,7 +129,7 @@ p <- ggplot(d, aes(x = x, y = y)) + theme_minimal()
 p <- p + geom_segment(aes(xend = x, yend = 0), linetype = 3, data = u)
 p <- p + geom_line() + coord_cartesian(xlim = c(-3.5, 3.5))
 p <- p + scale_x_continuous(breaks = -3:3, labels = lbls)
-p <- p + scale_y_continuous(labels = NULL) + labs(x = latex2exp::TeX("$x$"), y = "Relative Frequency")
+p <- p + scale_y_continuous(labels = NULL) + labs(x = tex("$x$"), y = "Relative Frequency")
 p1 <- p
 
 d <- data.frame(x = seq(-3.5, 3.5, length = 1000)) %>% 
@@ -143,7 +143,7 @@ p <- p + geom_segment(aes(yend = y, xend = -10), linetype = 3, data = u)
 p <- p + geom_line() + coord_cartesian(xlim = c(-3.5, 3.5))
 p <- p + scale_x_continuous(breaks = -3:3, labels = lbls)
 p <- p + scale_y_continuous(breaks = u$y, labels = round(u$y, 3), minor_breaks = NULL)
-p <- p + labs(x = latex2exp::TeX("$x$"), y = "Cumulative Relative Frequency")
+p <- p + labs(x = tex("$x$"), y = "Cumulative Relative Frequency")
 p2 <- p
 ```
 
