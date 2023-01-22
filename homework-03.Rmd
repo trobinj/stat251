@@ -1,0 +1,287 @@
+---
+title: "Homework Problem Set 3: Normal Distributions & Outliers"
+output: 
+  html_document: 
+    theme: readable
+header-includes:
+  - \usepackage{array}
+  - \usepackage{booktabs}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, out.width = "100%", fig.align = "center", 
+  cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
+```
+
+```{r packages}
+library(tidyverse)
+library(kableExtra)
+```
+
+```{r utilities}
+source("../../utilities.R")
+```
+
+`r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](homework-03.pdf) copy of this homework assignment.", sep = ""), "")`
+
+Solutions for some problems are given at the end. For problems that ask you to "confirm" something, the answer is given within the problem.
+
+## Means and Standard Deviations of Normal Distributions
+
+The figure below shows four normal/bell-shaped distributions.
+```{r, fig.height = 6}
+x <- seq(40, 160, length = 1000)
+y1 <- dnorm(x, 80, 10)
+y2 <- dnorm(x, 120, 10)
+y3 <- dnorm(x, 80, 20)
+y4 <- dnorm(x, 120, 20)
+d <- data.frame(x = rep(x, 4), y = c(y1,y2,y3,y4), plot = rep(letters[1:4], each = 1000))
+p <- ggplot(d, aes(x = x, y = y)) + theme_minimal()
+p <- p + geom_line() + theme(legend.position = c(0.9, 0.8)) + noyaxis + facet_wrap(~ plot, ncol = 2)
+p <- p + labs(linetype = NULL) + scale_x_continuous(breaks = seq(40, 160, by = 10))
+plot(p)
+```
+Each distribution has a mean of either 80 or 120, and a standard deviation of either 10 or 20. Label each distribution by its mean and standard deviation. The solution is given at the end.
+
+## Normal Distributions and the Empirical Rule
+
+```{r, fig.height = 3}
+set.seed(123)
+d <- data.frame(height = rnorm(100000, 0, 1))
+d$Farthing <- rep(c("North","South"), each = nrow(d)/2)
+
+m.north <- 100
+s.north <- 5
+m.south <- 85
+s.south <- 10
+
+d$height[d$Farthing == "North"] <- d$height[d$Farthing == "North"] * s.north + m.north
+d$height[d$Farthing == "South"] <- d$height[d$Farthing == "South"] * s.south + m.south
+```
+
+The figure below shows two distributions: the distribution of the heights of Hobbits living in the North Farthing, and the distribution of the heights of Hobbits living in the South Farthing. Both distributions are normal/bell-shaped. The distribution of heights for Hobbits living in the North Farthing has a mean of `r m.north` and a standard deviation of `r s.north`, and the distribution of Hobbits living in the South Farthing has a mean of `r m.south` and a standard deviation of `r s.south`. Box plots representing each distribution are also shown. Note that the five-number summary for each distribution is shown below the corresponding box plot.
+```{r, warning = FALSE}
+breaks <- seq(floor(min(d$height)), ceiling(max(d$height)), by = 2)
+p <- ggplot(d, aes(x = height, y = ..density.., fill = Farthing))
+p <- p + geom_histogram(breaks = breaks, alpha = 0.5, position = "identity", color = "black")
+p <- p + theme_classic() + theme(legend.position = "none")
+#p <- p + scale_fill_manual(values = c(grey(0.5), grey(0.5)))
+p <- p + labs(x = "Height (cm)") + noyaxis
+p <- p + scale_x_continuous(breaks = seq(40, 130, by = 5), limits = c(40, 130))
+ph <- p
+
+f <- function(x) {
+  r <- round(quantile(x, probs = c(0, 0.25, 0.5, 0.75, 1), type = 2))
+  names(r) <- c("ymin", "lower", "middle", "upper", "ymax")
+  return(r)
+}
+ 
+x.north <- as.vector(f(subset(d, Farthing == "North")$height))
+x.south <- as.vector(f(subset(d, Farthing == "South")$height))
+
+p <- ggplot(subset(d, Farthing == "North"), aes(x = 1, y = height)) + theme_classic()
+p <- p + stat_summary(fun.data = f, geom = "boxplot", fatten = 1, color = "#F8766D") + coord_flip() + labs(y = "Height (cm)")
+p <- p + scale_y_continuous(breaks = x.north, limits = c(40, 130))
+p <- p + annotate("text", y = 50, x = 1.25, label = "North Farthing")
+pb.north <- p + noyaxis
+
+p <- ggplot(subset(d, Farthing == "South"), aes(x = 1, y = height)) + theme_classic()
+p <- p + stat_summary(fun.data = f, geom = "boxplot", fatten = 1, color = "#00BFC4") + coord_flip() + labs(y = "Height (cm)")
+p <- p + scale_y_continuous(breaks = x.south, limits = c(40, 130))
+p <- p + annotate("text", y = 50, x = 1.25, label = "South Farthing")
+pb.south <- p + noyaxis
+
+cowplot::plot_grid(ph, pb.north, pb.south, nrow = 3, align = "v", rel_heights = c(2,1,1))
+```
+Use the information above to answer the following questions.
+
+1. Confirm that of the Hobbits from the North Farthing, about 68% are between `r m.north-1*s.north` cm and `r m.north+1*s.north` cm, and about 95% are between `r m.north-2*s.north` cm and `r m.north+2*s.north` cm. Also confirm that of the Hobbits from the South Farthing, about 68% are between `r m.south-1*s.south` cm and `r m.south+1*s.south` cm, and about 95% are between `r m.south-2*s.south` cm and `r m.south+2*s.south` cm.
+
+0. Two Hobbits, Marigold and Pimpernel, are both 105 cm tall. But Marigold is from the North Farthing, and Pimpernel is from the South Farthing. But suppose we want to know how they compare *relative* to the distribution of Hobbit heights in their home Farthing. Confirm that Merigold has a $z$-score of `r (105-m.north)/s.north` and that Pimpernel has a $z$-score of `r (105-m.south)/s.south`, so Pimpernel is taller *relative* to the Hobbits in her home Farthing. 
+
+0. Using the box plots, confirm that of the Hobbits from the South Farthing, about 25% are less than `r x.south[2]` cm, and about 50% are between `r x.south[2]` cm and `r x.south[4]` cm. 
+
+## Outlier Identification
+
+```{r}
+set.seed(124)
+n <- 100
+d <- data.frame(x = round(rt(n, df = 5) + 50, 1))
+d$outlier <- FALSE
+q1 <- quantile(d$x, 0.25, type = 1)
+q3 <- quantile(d$x, 0.75, type = 1)
+d$outlier[d$x < q1 - 1.5 * (q3 - q1)] <- TRUE
+d$outlier[d$x > q3 + 1.5 * (q3 - q1)] <- TRUE
+d$outlier <- FALSE
+```
+
+1. The dot plot and box plot below show the distribution of a variable $x$. Note that the five number summary is given below the box plot. Identify the observations that are outliers using the criteria based on the five number summary.  
+```{r, fig.height = 2}
+f <- function(x) {
+  r <- quantile(x, probs = c(0, 0.25, 0.5, 0.75, 1), type = 1)
+  names(r) <- c("ymin", "lower", "middle", "upper", "ymax")
+  return(r)
+}
+
+labels <- seq(46, 55, by = 0.1)
+for (i in 1:length(labels)) {
+  if (labels[i] %% 1) {
+    labels[i] <- NA
+  }
+}
+labels[is.na(labels)] <- ""
+
+p <- ggplot(d, aes(x = x, fill = outlier)) + theme_classic()
+p <- p + geom_dotplot(binwidth = 0.1, method = "histodot")
+p <- p + scale_fill_manual(values = c("white","black"))
+p <- p + scale_x_continuous(breaks = seq(46, 55, by = 0.1), labels = labels, limits = c(floor(min(d$x)), ceiling(max(d$x))))
+p <- p + theme(legend.position = "none") + noyaxis
+pd <- p
+
+p <- ggplot(d, aes(x = 2, y = x)) + theme_classic() + coord_flip()
+p <- p + stat_summary(fun.data = f, geom = "boxplot", fatten = 1) + noyaxis
+p <- p + scale_y_continuous(breaks = as.vector(quantile(d$x, c(0, 0.25, 0.5, 0.75, 1), type = 1)), limits = c(floor(min(d$x)), ceiling(max(d$x))))
+p <- p + xlim(1.5,2.5)
+pb <- p
+
+cowplot::plot_grid(pd, pb, ncol = 1, align = "v", rel_heights = c(1,1))
+```
+
+
+```{r}
+set.seed(125)
+n <- 100
+d <- data.frame(x = round(rgamma(n, 3, 1/4)))
+d$outlier <- FALSE
+q1 <- quantile(d$x, 0.25, type = 2)
+q3 <- quantile(d$x, 0.75, type = 2)
+d$outlier[d$x < q1 - 1.5 * (q3 - q1)] <- TRUE
+d$outlier[d$x > q3 + 1.5 * (q3 - q1)] <- TRUE
+d$outlier <- FALSE
+```
+
+\pagebreak
+
+2. Consider the following distribution of a variable $x$. The first quartile is `r q1` and the third quartile is `r q3`. Which observations are outliers using the criteria based on the five number summary.
+```{r, fig.height = 3}
+p <- ggplot(d, aes(x = x, fill = outlier)) + theme_classic()
+p <- p + geom_dotplot(binwidth = 1, method = "histodot")
+p <- p + scale_x_continuous(breaks = seq(0, max(d$x), by = 1), limits = c(0, max(d$x)))
+p <- p + theme(legend.position = "none") + noyaxis
+p <- p + scale_fill_manual(values = c("white","black"))
+plot(p)
+```
+
+```{r}
+set.seed(123)
+n <- 500
+m <- 100
+s <- 10
+```
+3. Consider the following bell/normal-shaped distribution of a variable $x$. The distribution has a mean of `r m` and a standard deviation of `r s`. Which observations are outliers using the criteria based on the empirical rule? 
+```{r, fig.height = 4}
+d <- data.frame(x = round(rnorm(n, m, s)))
+d$outlier <- FALSE
+#d$outlier[abs((d$x - m)/s) > 2] <- TRUE
+low <- floor(min(d$x))
+upp <- ceiling(max(d$x))
+labels <- seq(low, upp, by = 1)
+for (i in 1:length(labels)) {
+  if (labels[i] %% 5) {
+    labels[i] <- NA
+  }
+}
+labels[is.na(labels)] <- ""
+p <- ggplot(d, aes(x = x, fill = outlier)) + theme_classic()
+p <- p + geom_dotplot(binwidth = 1, method = "histodot")
+p <- p + theme(legend.position = "none") + noyaxis
+p <- p + scale_x_continuous(breaks = seq(low, upp, by = 1), labels = labels)
+p <- p + scale_fill_manual(values = c("white","black"))
+plot(p)
+```
+
+4. Recall the distributions of the heights of Hobbits from the North and South Farthings shown in the **Normal Distributions and the Empirical Rule** problems earlier. Based on the empirical rule criteria, how short or tall would a Hobbit need to be to be considered an outlier in each Farthing?
+
+\pagebreak
+
+## Means and Standard Deviations of Normal Distributions (Solution)
+
+Distributions *a* and *c* have means of 80, while distributions *b* and *d* have means of 120. Distributions *a* and *b* have standard deviations of 10, while distributions *c* and *d* have standard deviations of 20. 
+
+## Outlier Identification (Solutions)
+
+1. The plot below shows the observations that are outliers. 
+```{r, fig.height = 1.5}
+set.seed(124)
+n <- 100
+d <- data.frame(x = round(rt(n, df = 5) + 50, 1))
+d$outlier <- FALSE
+q1 <- quantile(d$x, 0.25, type = 1)
+q3 <- quantile(d$x, 0.75, type = 1)
+d$outlier[d$x < q1 - 1.5 * (q3 - q1)] <- TRUE
+d$outlier[d$x > q3 + 1.5 * (q3 - q1)] <- TRUE
+
+f <- function(x) {
+  r <- quantile(x, probs = c(0, 0.25, 0.5, 0.75, 1), type = 1)
+  names(r) <- c("ymin", "lower", "middle", "upper", "ymax")
+  return(r)
+}
+
+p <- ggplot(d, aes(x = x, fill = outlier)) + theme_classic()
+p <- p + geom_dotplot(binwidth = 0.1, method = "histodot")
+p <- p + scale_fill_manual(values = c("white","black"))
+p <- p + scale_x_continuous(breaks = seq(floor(min(d$x)), ceiling(max(d$x)), by = 1), limits = c(floor(min(d$x)), ceiling(max(d$x))))
+p <- p + theme(legend.position = "none") + noyaxis
+plot(p)
+```
+
+2. The plot below shows the observations that are outliers.
+```{r, fig.height = 3}
+set.seed(125)
+n <- 100
+d <- data.frame(x = round(rgamma(n, 3, 1/4)))
+d$outlier <- FALSE
+q1 <- quantile(d$x, 0.25, type = 1)
+q3 <- quantile(d$x, 0.75, type = 1)
+d$outlier[d$x < q1 - 1.5 * (q3 - q1)] <- TRUE
+d$outlier[d$x > q3 + 1.5 * (q3 - q1)] <- TRUE
+p <- ggplot(d, aes(x = x, fill = outlier)) + theme_classic()
+p <- p + geom_dotplot(binwidth = 1, method = "histodot")
+p <- p + scale_x_continuous(breaks = seq(0, max(d$x), by = 1), limits = c(0, max(d$x)))
+p <- p + theme(legend.position = "none") + noyaxis
+p <- p + scale_fill_manual(values = c("white","black"))
+plot(p)
+```
+
+3. The plot below shows the observations that are outliers.
+```{r, fig.height = 4}
+set.seed(123)
+n <- 500
+m <- 100
+s <- 10
+d <- data.frame(x = round(rnorm(n, m, s)))
+d$outlier <- FALSE
+d$outlier[abs((d$x - m)/s) > 2] <- TRUE
+low <- floor(min(d$x))
+upp <- ceiling(max(d$x))
+labels <- seq(low, upp, by = 1)
+for (i in 1:length(labels)) {
+  if (labels[i] %% 5) {
+    labels[i] <- NA
+  }
+}
+labels[is.na(labels)] <- ""
+p <- ggplot(d, aes(x = x, fill = outlier)) + theme_classic()
+p <- p + geom_dotplot(binwidth = 1, method = "histodot")
+p <- p + theme(legend.position = "none") + noyaxis
+p <- p + scale_x_continuous(breaks = seq(low, upp, by = 1), labels = labels)
+p <- p + scale_fill_manual(values = c("white","black"))
+plot(p)
+```
+
+4. In the North Farthing heights less than `r m.north - 2*s.north` cm or greater than `r m.north + 2*s.north` cm would be outliers, while in the South Farthing heights less than `r m.south - 2*s.south` cm or greater than `r m.south + 2*s.south` cm would be outliers.
+
+```{r}
+rm(list = ls())
+```
+
