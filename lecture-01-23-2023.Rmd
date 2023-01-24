@@ -40,6 +40,7 @@ source("../../utilities.R")
 
 `r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](lecture-", date, ".pdf) copy of this lecture.", sep = ""), "")`
 
+<!-- This is not a full lecture, and a little dull. Maybe add discussion of trimmed mean, with the idea is that it is a compromise between the mean and median, with each of those as limiting cases. Could also cover trimean. See Hogg and Tanis.  -->
 
 An **outlier** is an observation of a variable that is "extreme" *relative* to a given distribution. The question then is how do we identify which observation(s) is/are outliers?
 
