@@ -35,7 +35,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [Identifying outliers, margin of error](lecture-01-23-2023.html). The [third homework set](homework-03.html) is now available. The [study guide](e1-studyguide.html) for the first examination is also now available.
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Margin of error --- continued, statistical significance, explanatory and response variables, types of studies](lecture-01-25-2023.html).
 
 `r i <- i + 1; d[i]` **Exam 1**
  
