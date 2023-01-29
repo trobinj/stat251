@@ -41,7 +41,7 @@ i <- 1
  
 ***
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Introduction to probability, random variables, and probability distributions](lecture-01-30-2023.html).
 
 `r i <- i + 1; d[i]` 
 
