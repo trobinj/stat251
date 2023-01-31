@@ -43,7 +43,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [Introduction to probability, random variables, and probability distributions](lecture-01-30-2023.html).
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Computing probabilities from probability distributions](lecture-02-01-2023.html). A [homework assignment](homework-04.html) on working with probability distributions is now available.
 
 `r i <- i + 1; d[i]` 
  
