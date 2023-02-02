@@ -45,7 +45,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [Computing probabilities from probability distributions](lecture-02-01-2023.html). A [homework assignment](homework-04.html) on working with probability distributions is now available.
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Deriving sampling distributions](lecture-02-03-2023.html). A [homework assignment](homework-05.html) on deriving sampling distributions is now available.
  
 ***
 

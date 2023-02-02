@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Homework Problem Set 5: Deriving Sampling Distributions</title>
+
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics 251</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="lectures.html">Lectures</a>
+</li>
+<li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Homework Problem Set 5: Deriving Sampling
+Distributions</h1>
+
+</div>
+
+
+<p>You can also download a <a href="homework-05.pdf">PDF</a> copy of
+this homework assignment.</p>
+<p>Solutions are given at the end.</p>
+<div id="sampling-distribution-of-a-mean" class="section level2">
+<h2>Sampling Distribution of a Mean</h2>
+Consider again the probability distribution for a single observation for
+the tree volume survey from lecture (i.e., a <em>population
+distribution</em>), but with different probabilities. Here <span
+class="math inline">\(x\)</span> denotes the volume of a randomly
+selected tree.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(x\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(x)\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+20
+</td>
+<td style="text-align:center;">
+0.7
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+30
+</td>
+<td style="text-align:center;">
+0.3
+</td>
+</tr>
+</tbody>
+</table>
+<p>Use the five-step method to derive <em>two</em> sampling
+distributions of the mean from a sample of observations (<span
+class="math inline">\(\bar{x}\)</span>): one based on a sample size of
+<span class="math inline">\(n\)</span> = 2, and a second based on a
+sample size of <span class="math inline">\(n\)</span> = 3. (Hint: When
+<span class="math inline">\(n\)</span> = 2 there are four possible
+samples in the sample space, and one of these samples is 20, 30. But
+when <span class="math inline">\(n\)</span> = 3 there are eight possible
+samples, and one of these samples is 20, 20, 30.)</p>
+</div>
+<div id="sampling-distribution-of-a-median" class="section level2">
+<h2>Sampling Distribution of a Median</h2>
+<p>In the previous problem you derived the sampling distribution of the
+<em>mean</em> volume of a random sample of <span
+class="math inline">\(n\)</span> = 3 observations of the volumes of
+trees. Now use the five-step method to derive the sampling distribution
+of the <em>median</em> volume of a random sample of <span
+class="math inline">\(n\)</span> = 3 observations of the volumes of
+trees. Recall that the median is defined as the middle observation when
+the observations are arranged in increasing order. (Hint: You can use
+the same sample space that you obtained when you were deriving the
+sampling distribution of the mean.)</p>
+</div>
+<div id="sampling-distribution-of-a-proportion" class="section level2">
+<h2>Sampling Distribution of a Proportion</h2>
+<ol style="list-style-type: decimal">
+<li><p>Consider again the population distribution from lecture for the
+preference of one female platy fish, but with different
+probabilities.</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<p><span class="math inline">\(x\)</span></p>
+</th>
+<th style="text-align:center;">
+<p><span class="math inline">\(P(x)\)</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+<p>C</p>
+</td>
+<td style="text-align:center;">
+<p>0.4</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>Y</p>
+</td>
+<td style="text-align:center;">
+<p>0.6</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Here <span class="math inline">\(C\)</span> and <span
+class="math inline">\(Y\)</span> represent a preference for the
+clear-tailed and the yellow-tailed male, respectively. Use the five-step
+method to derive the sampling distribution of the proportion (<span
+class="math inline">\(\hat{p}\)</span>) of platy fish in a sample of
+<span class="math inline">\(n\)</span> = 2 observations that show a
+preference for the yellow-tailed male. Then use the five-step method to
+derive the sampling distribution when the sample size is <span
+class="math inline">\(n\)</span> = 3.</p></li>
+<li><p>The <em>number</em> of observations on which the female platy
+prefers the yellow-tailed male has a <em>binomial distribution</em>.
+Note that we define a “success” as a female preferring the yellow-tailed
+male, and so the probability of a success is as given by the population
+distribution. Derive the sampling distribution for the proportion of
+observations out of <span class="math inline">\(n\)</span> = 2 on which
+the female platy prefers the yellow-tailed male using the formula for
+the binomial distribution. Then use the binomial distribution formula to
+derive the sampling distribution for a sample size of <span
+class="math inline">\(n\)</span> = 3. Note that you should get the same
+sampling distributions using the formula for the binomial distribution
+as you did when you used the five-step method in the previous
+problem.</p></li>
+</ol>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="sampling-distribution-of-a-mean-solution"
+class="section level2">
+<h2>Sampling Distribution of a Mean (Solution)</h2>
+The sampling distribution of <span
+class="math inline">\(\bar{x}\)</span> when <span
+class="math inline">\(n\)</span> = 2 is shown in the following table.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(\bar{x}\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(\bar{x})\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+20
+</td>
+<td style="text-align:center;">
+0.49
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+25
+</td>
+<td style="text-align:center;">
+0.42
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+30
+</td>
+<td style="text-align:center;">
+0.09
+</td>
+</tr>
+</tbody>
+</table>
+The sampling distribution of <span
+class="math inline">\(\bar{x}\)</span> when <span
+class="math inline">\(n\)</span> = 3 is shown in the following table.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(\bar{x}\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(\bar{x})\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+20.00
+</td>
+<td style="text-align:center;">
+0.343
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+23.33
+</td>
+<td style="text-align:center;">
+0.441
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+26.67
+</td>
+<td style="text-align:center;">
+0.189
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+30.00
+</td>
+<td style="text-align:center;">
+0.027
+</td>
+</tr>
+</tbody>
+</table>
+<p>Note that the sample mean has been rounded in the case when <span
+class="math inline">\(n\)</span> = 3.</p>
+</div>
+<div id="sampling-distribution-of-a-median-solution"
+class="section level2">
+<h2>Sampling Distribution of a Median (Solution)</h2>
+The following table shows the sampling distribution of the median. Here
+I am using <span class="math inline">\(m\)</span> to represent the
+median.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(m\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(m)\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+20
+</td>
+<td style="text-align:center;">
+0.784
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+30
+</td>
+<td style="text-align:center;">
+0.216
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="sampling-distribution-of-a-proportion-solution"
+class="section level2">
+<h2>Sampling Distribution of a Proportion (Solution)</h2>
+The following table shows the sampling distribution of the proportion
+when <span class="math inline">\(n\)</span> = 2.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(\hat{p}\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(\hat{p})\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+0.0
+</td>
+<td style="text-align:center;">
+0.16
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+0.5
+</td>
+<td style="text-align:center;">
+0.48
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+1.0
+</td>
+<td style="text-align:center;">
+0.36
+</td>
+</tr>
+</tbody>
+</table>
+The following table shows the sampling distribution of the proportion
+when <span class="math inline">\(n\)</span> = 3.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(\hat{p}\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(\hat{p})\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0.064
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+1/3
+</td>
+<td style="text-align:center;">
+0.288
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2/3
+</td>
+<td style="text-align:center;">
+0.432
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0.216
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
