@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Homework Problem Set 4: Probability Distributions</title>
+
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics 251</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="lectures.html">Lectures</a>
+</li>
+<li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Homework Problem Set 4: Probability
+Distributions</h1>
+
+</div>
+
+
+<pre><code>## Warning in !is.null(rmarkdown::metadata$output) &amp;&amp; rmarkdown::metadata$output
+## %in% : &#39;length(x) = 2 &gt; 1&#39; in coercion to &#39;logical(1)&#39;</code></pre>
+<p>You can also download a <a href="homework-04.pdf">PDF</a> copy of
+this homework assignment.</p>
+<p>Note: The solutions are given within each problem by asking you to
+confirm the answer.</p>
+<div id="means-and-standard-deviations-of-discrete-random-variables"
+class="section level2">
+<h2>Means and Standard Deviations of Discrete Random Variables</h2>
+<ol style="list-style-type: decimal">
+<li><p>Consider a survey of tree volume. Suppose that in the population
+of trees 10% have a volume of 10 cubic feet, 20% have a volume of 20
+cubic feet, 30% have a volume of 30 cubic feet, and 40% have a volume of
+40 cubic feet. Let <span class="math inline">\(x\)</span> denote the
+volume of a randomly selected tree, assuming that every tree has an
+equal chance of being selected. The probability distribution of <span
+class="math inline">\(x\)</span> is given in the table below.</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<p><span class="math inline">\(x\)</span></p>
+</th>
+<th style="text-align:center;">
+<p><span class="math inline">\(P(x)\)</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+<p>10</p>
+</td>
+<td style="text-align:center;">
+<p>0.1</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>20</p>
+</td>
+<td style="text-align:center;">
+<p>0.2</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>30</p>
+</td>
+<td style="text-align:center;">
+<p>0.3</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>40</p>
+</td>
+<td style="text-align:center;">
+<p>0.4</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>This is what we would call a <em>population distribution</em> since
+it is the probability distribution of a single observation (and also
+happens to correspond to the distribution of observations in the
+population if we think of the probabilities as relative frequencies).
+Confirm that <span class="math inline">\(x\)</span> has a mean of <span
+class="math inline">\(\mu\)</span> = 30 cubic feet and a standard
+deviation of <span class="math inline">\(\sigma\)</span> = 10 cubic feet
+by computing them yourself.</p></li>
+<li><p>Now consider the probability distribution of the <em>mean
+volume</em> (<span class="math inline">\(\bar{x}\)</span>) of the
+observed volumes of <span class="math inline">\(n\)</span> = 2 trees,
+selected at random based on the distribution given above. Recall that
+the probability distribution of a <em>statistic</em>, like <span
+class="math inline">\(\bar{x}\)</span>, is called a <em>sampling
+distribution</em>. This probability distribution is shown in the table
+below.</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<p><span class="math inline">\(\bar{x}\)</span></p>
+</th>
+<th style="text-align:center;">
+<p><span class="math inline">\(P(\bar{x})\)</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+<p>10</p>
+</td>
+<td style="text-align:center;">
+<p>0.01</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>15</p>
+</td>
+<td style="text-align:center;">
+<p>0.04</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>20</p>
+</td>
+<td style="text-align:center;">
+<p>0.10</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>25</p>
+</td>
+<td style="text-align:center;">
+<p>0.20</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>30</p>
+</td>
+<td style="text-align:center;">
+<p>0.25</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>35</p>
+</td>
+<td style="text-align:center;">
+<p>0.24</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>40</p>
+</td>
+<td style="text-align:center;">
+<p>0.16</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Confirm that the mean, variance, and standard deviation of <span
+class="math inline">\(\bar{x}\)</span> are 30, 50, and approximately
+7.07, respectively.</p></li>
+<li><p>Recall the example from class where we observe whether a female
+platy prefers the yellow-tailed or the clear-tailed male. Let <span
+class="math inline">\(x\)</span> denote the preference and assume the
+following probability distribution.</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<p><span class="math inline">\(x\)</span></p>
+</th>
+<th style="text-align:center;">
+<p><span class="math inline">\(P(x)\)</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+<p>clear</p>
+</td>
+<td style="text-align:center;">
+<p>0.3</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>yellow</p>
+</td>
+<td style="text-align:center;">
+<p>0.7</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>If we observe a sample of <span class="math inline">\(n\)</span> = 2
+observations and compute the proportion of those observations in which
+the yellow-tailed male is preferred (which we denote as <span
+class="math inline">\(\hat{p}\)</span>), then the sampling distribution
+of <span class="math inline">\(\hat{p}\)</span> is as follows.</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<p><span class="math inline">\(\hat{p}\)</span></p>
+</th>
+<th style="text-align:center;">
+<p><span class="math inline">\(P(\hat{p})\)</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+<p>0.0</p>
+</td>
+<td style="text-align:center;">
+<p>0.09</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>0.5</p>
+</td>
+<td style="text-align:center;">
+<p>0.42</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>1.0</p>
+</td>
+<td style="text-align:center;">
+<p>0.49</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Confirm that the mean of <span class="math inline">\(\hat{p}\)</span>
+is 0.7, and that the standard deviation of <span
+class="math inline">\(\hat{p}\)</span> is approximately 0.32.</p></li>
+</ol>
+</div>
+<div
+id="computing-probabilities-from-discrete-probability-distributions"
+class="section level2">
+<h2>Computing Probabilities from Discrete Probability Distributions</h2>
+<ol style="list-style-type: decimal">
+<li><p>Consider again the sampling distribution of the mean volume
+(<span class="math inline">\(\bar{x}\)</span>) of a sample of <span
+class="math inline">\(n\)</span> = 2 trees.</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<p><span class="math inline">\(\bar{x}\)</span></p>
+</th>
+<th style="text-align:center;">
+<p><span class="math inline">\(P(\bar{x})\)</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+<p>10</p>
+</td>
+<td style="text-align:center;">
+<p>0.01</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>15</p>
+</td>
+<td style="text-align:center;">
+<p>0.04</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>20</p>
+</td>
+<td style="text-align:center;">
+<p>0.10</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>25</p>
+</td>
+<td style="text-align:center;">
+<p>0.20</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>30</p>
+</td>
+<td style="text-align:center;">
+<p>0.25</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>35</p>
+</td>
+<td style="text-align:center;">
+<p>0.24</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>40</p>
+</td>
+<td style="text-align:center;">
+<p>0.16</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Use this distribution to confirm that the probability that <span
+class="math inline">\(\bar{x}\)</span> is less than 20 is 0.05, the
+probability that <span class="math inline">\(\bar{x}\)</span> is greater
+than 30 is 0.4, and that the probability that <span
+class="math inline">\(\bar{x}\)</span> is both greater than 15 and less
+than 35 is 0.55.</p></li>
+<li><p>Suppose a fair coin is flipped 10 times and compute the
+proportion of flips on which the coin comes up heads. We can think of
+this proportion, <span class="math inline">\(\hat{p}\)</span>, as a
+statistic for a sample of <span class="math inline">\(n\)</span> = 10
+observations. The sampling distribution of this statistic is shown below
+using a plot and also a table.
+<img src="homework-04_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<p><span class="math inline">\(\hat{p}\)</span></p>
+</th>
+<th style="text-align:center;">
+<p><span class="math inline">\(P(\hat{p})\)</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+<p>0.0</p>
+</td>
+<td style="text-align:center;">
+<p>0.001</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>0.1</p>
+</td>
+<td style="text-align:center;">
+<p>0.010</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>0.2</p>
+</td>
+<td style="text-align:center;">
+<p>0.044</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>0.3</p>
+</td>
+<td style="text-align:center;">
+<p>0.117</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>0.4</p>
+</td>
+<td style="text-align:center;">
+<p>0.205</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>0.5</p>
+</td>
+<td style="text-align:center;">
+<p>0.246</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>0.6</p>
+</td>
+<td style="text-align:center;">
+<p>0.205</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>0.7</p>
+</td>
+<td style="text-align:center;">
+<p>0.117</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>0.8</p>
+</td>
+<td style="text-align:center;">
+<p>0.044</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>0.9</p>
+</td>
+<td style="text-align:center;">
+<p>0.010</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>1.0</p>
+</td>
+<td style="text-align:center;">
+<p>0.001</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Use this distribution to confirm that the probability that the
+proportion of heads is between 0.3 and 0.7 (meaning that it is greater
+than 0.3 and less than 0.7) is 0.656, the probability that the
+proportion of heads is between 0.2 and 0.8 (meaning that it is greater
+than 0.2 and less than 0.8) is 0.89, the probability that the proportion
+of heads is greater than 0.6 is 0.172, and the probability that the
+proportion of heads is greater than 0.7 is 0.055.</p></li>
+</ol>
+</div>
+<div
+id="computing-probabilities-from-continuous-probability-distributions"
+class="section level2">
+<h2>Computing Probabilities from Continuous Probability
+Distributions</h2>
+<p>The figure below shows the probability distribution of a
+<em>continuous</em> random variable <span
+class="math inline">\(x\)</span>.
+<img src="homework-04_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" />
+Use this figure to confirm the following probabilities by computing them
+yourself.</p>
+<ol style="list-style-type: decimal">
+<li>The probability of <span class="math inline">\(x &lt; 2\)</span> is
+0.2.</li>
+<li>The probability of <span class="math inline">\(x &gt; 2\)</span> is
+0.8.</li>
+<li>The probability of <span class="math inline">\(2 &lt; x &lt;
+4\)</span> is 0.4.</li>
+<li>The probability of <span class="math inline">\(4 &lt; x &lt;
+6\)</span> is 0.3.</li>
+<li>The probability of <span class="math inline">\(2 &lt; x &lt;
+6\)</span> is 0.7.</li>
+<li>The probability of <span class="math inline">\(3 &lt; x &lt;
+5\)</span> is 0.35.</li>
+<li>The probability of <span class="math inline">\(x &gt; 5\)</span> is
+0.25.</li>
+<li>The probability of <span class="math inline">\(x = 3\)</span> is
+0.</li>
+<li>The probability of <span class="math inline">\(0 &lt; x &lt;
+0.5\)</span> is 0.05.</li>
+<li>The probability of <span class="math inline">\(x &gt; 6.5\)</span>
+is 0.075.</li>
+</ol>
+<p>The figure below shows the probability distribution of a continuous
+random variable <span class="math inline">\(x\)</span>.
+<img src="homework-04_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" />
+The vertical dotted line segments divide the total area under the curve
+into 20 areas of equal size, so each slice has an area of 1/20 = 0.05.
+Use the figure to confirm the following probabilities.</p>
+<ol style="list-style-type: decimal">
+<li><p>The probability of <span class="math inline">\(x &lt; 3\)</span>
+is 0.1.</p></li>
+<li><p>The probability of <span class="math inline">\(x &lt; 8\)</span>
+is 0.7.</p></li>
+<li><p>The probability of <span class="math inline">\(x &gt; 3\)</span>
+is 0.9.</p></li>
+<li><p>The probability of <span class="math inline">\(x &gt; 8\)</span>
+is 0.3.</p></li>
+<li><p>The probability of <span class="math inline">\(3 &lt; x &lt;
+8\)</span> is 0.6.</p></li>
+</ol>
+<p>The figure below shows what is sometimes called a <em>triangular
+distribution</em>.
+<img src="homework-04_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" />
+Use this figure to confirm the following probabilities. (Hint: The area
+of a right triangle is base times height divided by two.)</p>
+<ol style="list-style-type: decimal">
+<li><p>The probability of <span class="math inline">\(x &lt; 1\)</span>
+is 0.25.</p></li>
+<li><p>The probability of <span class="math inline">\(x &gt; 1\)</span>
+is 0.75.</p></li>
+<li><p>The probability of <span class="math inline">\(x &lt;
+0.5\)</span> is 0.0625.</p></li>
+<li><p>The probability of <span class="math inline">\(x &gt;
+2.5\)</span> is 0.1875.</p></li>
+<li><p>The probability of <span class="math inline">\(0.5 &lt; x &lt;
+2.5\)</span> is 0.75.</p></li>
+</ol>
+</div>
+<div
+id="quartiles-of-the-probability-distribution-of-a-continuous-random-variable"
+class="section level2">
+<h2>Quartiles of the Probability Distribution of a Continuous Random
+Variable</h2>
+<p>The figure below shows the probability distribution of a
+<em>continuous</em> random variable <span
+class="math inline">\(x\)</span>.
+<img src="homework-04_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" />
+Consider the problem of finding the quartiles. By definition, the first
+quartile is a number <span class="math inline">\(Q_1\)</span> such that
+the probability of <span class="math inline">\(x &lt; Q_1\)</span> is
+0.25. Similarly we can define the second and third quartiles by the fact
+that the probability of <span class="math inline">\(x &lt; Q_2\)</span>
+is 0.5, and that the probability of <span class="math inline">\(x &lt;
+Q_3\)</span> is 0.75 (also the probability of <span
+class="math inline">\(x &gt; Q_1\)</span> is 0.75, the probability of
+<span class="math inline">\(x &gt; Q_2\)</span> is 0.5, and the
+probability of <span class="math inline">\(x &gt; Q_3\)</span> is 0.25).
+For example, in the first problem in this section <span
+class="math inline">\(Q_3 = 5\)</span> because there the probability of
+<span class="math inline">\(x &gt; 5\)</span> is 0.25. Find the
+quartiles. (Hint: You will know if you have the correct numbers if the
+probabilities described above are correct for those numbers. For
+example, you will know if you have found <span
+class="math inline">\(Q_1\)</span> if the probability of <span
+class="math inline">\(x &lt; Q_1\)</span> is 0.25. Also, all three
+quartiles are whole numbers for this distribution.)</p>
+</div>
+<div id="computing-probabilities-from-the-normal-distribution"
+class="section level2">
+<h2>Computing Probabilities from the Normal Distribution</h2>
+<p>Consider a survey of black cherry trees in a forest where the
+variable of interest is the heights of the trees (in feet). Let <span
+class="math inline">\(x\)</span> denote the height of a single tree is
+randomly selected from the forest, and suppose that the probability
+distribution of <span class="math inline">\(x\)</span> (i.e., the
+<em>population distribution</em>) is approximately normal in shape with
+mean 75 and standard deviation 4. Let <span
+class="math inline">\(\bar{x}\)</span> denote the mean height of the
+trees in a sample of <span class="math inline">\(n\)</span> = 4 trees
+selected at random. The probability distribution of <span
+class="math inline">\(\bar{x}\)</span> (i.e., the <em>sampling
+distribution</em>) is also approximately normal with a mean of 75 and a
+standard deviation of 2. The figure below shows these two distributions.
+<img src="homework-04_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" />
+Use the <em>population distribution</em> described above to confirm the
+following probabilities. You can use <a
+href="http://www.statdistributions.com">statdistributions.com</a> to
+compute probabilities based on <span
+class="math inline">\(z\)</span>-scores.</p>
+<ol style="list-style-type: decimal">
+<li><p>The probability that <span class="math inline">\(x\)</span> is
+between 73 and 77 is approximately 0.38.</p></li>
+<li><p>The probability that <span class="math inline">\(x\)</span> is
+between 71 and 79 is approximately 0.68.</p></li>
+<li><p>The probability that <span class="math inline">\(x\)</span> is
+between 70 and 80 is approximately 0.79.</p></li>
+<li><p>The probability that <span class="math inline">\(x\)</span> is
+greater than 77 is approximately 0.31.</p></li>
+<li><p>The probability that <span class="math inline">\(x\)</span> is
+greater than 80 is approximately 0.11.</p></li>
+</ol>
+<p>Use the <em>sampling distribution</em> described above to confirm the
+following probabilities. You can use <a
+href="http://www.statdistributions.com">statdistributions.com</a> to
+compute probabilities based on <span
+class="math inline">\(z\)</span>-scores.</p>
+<ol style="list-style-type: decimal">
+<li><p>The probability that <span class="math inline">\(\bar{x}\)</span>
+is between 73 and 77 is approximately 0.68.</p></li>
+<li><p>The probability that <span class="math inline">\(\bar{x}\)</span>
+is between 71 and 79 is approximately 0.95.</p></li>
+<li><p>The probability that <span class="math inline">\(\bar{x}\)</span>
+is between 70 and 80 is approximately 0.99.</p></li>
+<li><p>The probability that <span class="math inline">\(\bar{x}\)</span>
+is greater than 77 is approximately 0.16.</p></li>
+<li><p>The probability that <span class="math inline">\(\bar{x}\)</span>
+is greater than 80 is approximately 0.01.</p></li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
