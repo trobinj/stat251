@@ -121,8 +121,8 @@ names(samp) <- c("$\\bar{x}$","$P(\\bar{x})$")
 
 ```{r}
 ktbl(popd, caption = "Population Distribution")
-#ktbl(outc, caption = "Sample Space")
-#ktbl(samp, caption = "Sampling Distribution")
+ktbl(outc, caption = "Sample Space")
+ktbl(samp, caption = "Sampling Distribution")
 ```
 
 \pagebreak
