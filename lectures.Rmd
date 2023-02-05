@@ -49,7 +49,7 @@ i <- 1
  
 ***
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Sampling distributions of $\bar{x}$ and $\hat{p}$](lecture-02-06-2023.html). A [set of homework problems](homework-06.html) concerning the sampling distributions of $\bar{x}$ and $\hat{p}$ is now available.
 
 `r i <- i + 1; d[i]` 
 

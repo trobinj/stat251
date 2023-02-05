@@ -1,0 +1,528 @@
+---
+output:
+  html_document: 
+    theme: readable
+  pdf_document: default
+---
+
+```{r, echo = FALSE, message = FALSE}
+library(lubridate)
+date <- "02-06-2023"
+weekday <- wday(mdy(date), label = TRUE, abbr = FALSE)
+month <- month(mdy(date), label = TRUE)
+day <- day(mdy(date))
+```
+
+---
+title: `r paste(weekday, ", ", month, " ", day, sep = "")`
+output:
+  html_document: 
+    theme: readable
+  pdf_document: default
+header-includes:
+  - \usepackage{float}
+  - \usepackage{booktabs}
+  - \usepackage{array}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, out.width = "100%", fig.align = "center", cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
+```
+
+```{r packages}
+library(tidyverse)
+suppressWarnings(library(kableExtra))
+```
+
+```{r utilities}
+source("../../utilities.R")
+```
+
+`r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](lecture-", date, ".pdf) copy of this lecture.", sep = ""), "")`
+
+## Population and Sampling Distributions
+
+A **population distribution** is the probability distribution of *one observation* of a random variable (i.e., $x$). 
+
+A **sampling distribution** is the probability distribution of a *statistic* (e.g., $\bar{x}$ or $\hat{p}$) which is a function of a sample of observations of a random variable (i.e., $x_1, x_2, \dots, x_n$).
+
+The sampling distribution depends on (a) the population distribution and (b) the design.
+
+## Properties of the Sampling Distribution of $\bar{x}$
+
+Assume (a) that we have a population distribution of a quantitative variable $x$ with mean $\mu_x$ and standard deviation $\sigma_x$, and (b) we observe a sample of $n$ observations and compute the mean ($\bar{x}$) from this sample. Note that I will use a subscript on $\mu$ and $\sigma$ to make explicit the variable in question. 
+
+**Example**: Consider the following population distribution, and several sampling distributions of $\bar{x}$ based on samples of $n$ = 2, 3, or 4 observations.
+
+```{r}
+x <- c(20,30)
+p <- c(0.6,0.4)
+m <- crossprod(x,p)[1,1]
+s <- sqrt(crossprod((x-m)^2,p)[1,1])
+
+d.mean <- expand.grid(x1 = x, x2 = x)
+d.prob <- expand.grid(p1 = p, p2 = p)
+d <- data.frame(mean = apply(d.mean, 1, mean), prob = apply(d.prob, 1, prod))
+d <- d %>% group_by(mean) %>% summarize(prob = sum(prob))
+
+d2 <- d
+d2$n <- 2
+
+d.mean <- expand.grid(x1 = x, x2 = x, x3 = x)
+d.prob <- expand.grid(p1 = p, p2 = p, p3 = p)
+d <- data.frame(mean = apply(d.mean, 1, mean), prob = apply(d.prob, 1, prod))
+d <- d %>% group_by(mean) %>% summarize(prob = sum(prob))
+
+d3 <- d
+d3$n <- 3
+
+d.mean <- expand.grid(x1 = x, x2 = x, x3 = x, x4 = x)
+d.prob <- expand.grid(p1 = p, p2 = p, p3 = p, p4 = p)
+d <- data.frame(mean = apply(d.mean, 1, mean), prob = apply(d.prob, 1, prod))
+d <- d %>% group_by(mean) %>% summarize(prob = sum(prob))
+
+d4 <- d
+d4$n <- 4
+
+d <- rbind(d2,d3,d4)
+```
+
+```{r}
+popd <- data.frame(x = x, Probability = p)
+names(popd) <- c("$x$","$P(x)$")
+m <- as.numeric(crossprod(x, p))
+s <- sqrt(crossprod((x - m)^2, p))
+ktbl(popd, caption = "Population Distribution")
+```
+\begin{align*}
+  \mu_{x} & = `r m` \\
+  \sigma_{x} & \approx `r round(s,2)`
+\end{align*}
+
+***
+
+\pagebreak
+
+```{r}
+dn <- subset(d, n == 2)
+m <- as.numeric(crossprod(dn$mean, dn$prob))
+s <- sqrt(crossprod((dn$mean - m)^2, dn$prob))
+dn$n <- NULL
+names(dn) <- c("$\\bar{x}$","$P(\\bar{x})$")
+ktbl(dn, caption = "Sampling Distribution of $\\bar{x}$, $n$ = 2")
+```
+\begin{align*}
+  \mu_{\bar{x}} & = `r m` \\
+  \sigma_{\bar{x}} & \approx `r round(s,2)`
+\end{align*}
+
+***
+
+```{r}
+dn <- subset(d, n == 3)
+m <- as.numeric(crossprod(dn$mean, dn$prob))
+s <- sqrt(crossprod((dn$mean - m)^2, dn$prob))
+dn$n <- NULL
+dn$mean <- round(dn$mean, 2)
+names(dn) <- c("$\\bar{x}$","$P(\\bar{x})$")
+ktbl(dn, caption = "Sampling Distribution of $\\bar{x}$, $n$ = 3")
+```
+\begin{align*}
+  \mu_{\bar{x}} & = `r m` \\
+  \sigma_{\bar{x}} & \approx `r round(s,2)`
+\end{align*}
+
+***
+
+```{r}
+dn <- subset(d, n == 4)
+m <- as.numeric(crossprod(dn$mean, dn$prob))
+s <- sqrt(crossprod((dn$mean - m)^2, dn$prob))
+dn$n <- NULL
+names(dn) <- c("$\\bar{x}$","$P(\\bar{x})$")
+ktbl(dn, caption = "Sampling Distribution of $\\bar{x}$, $n$ = 4")
+```
+\begin{align*}
+  \mu_{\bar{x}} & = `r m` \\
+  \sigma_{\bar{x}} & \approx `r round(s,2)`
+\end{align*}
+
+***
+
+\pagebreak
+
+```{r,fig.height = 4, fig.width = 9}
+p <- ggplot(data.frame(x = c(20,30), prob = c(0.6,0.4)), aes(x = x, y = prob))
+p <- p + geom_point() + geom_segment(aes(xend = x, yend = 0))
+p <- p + theme_minimal() + labs(y = "Probability", x = tex("$x$"))
+p <- p + scale_x_continuous(breaks = seq(20, 30, by = 2))
+p <- p + scale_y_continuous(breaks = seq(0, 0.6, by = 0.1))
+p <- p + ggtitle("Population Distribution") 
+ppop <- p
+
+d$n <- paste("n =", d$n)
+p <- ggplot(d, aes(x = mean, y = prob)) + facet_wrap(~ n)
+p <- p + geom_point() + geom_segment(aes(xend = mean, yend = 0))
+p <- p + theme_minimal() + labs(y = NULL, x = tex("$\\bar{x}$"))
+p <- p + scale_x_continuous(breaks = seq(20, 30, by = 2))
+p <- p + scale_y_continuous(breaks = seq(0, 0.6, by = 0.1), limits = c(0,0.55))
+p <- p + ggtitle("Sampling Distributions") 
+psmp <- p
+
+cowplot::plot_grid(ppop, psmp, axis = "blr", align = "h", rel_widths = c(0.3,0.7))
+```
+
+\pagebreak
+
+### Mean and Standard Deviation of $\bar{x}$
+
+Assume that $x$ has a mean of $\mu$ and a standard deviation of $\sigma$, and assume a sample of $n$ observations.
+
+1. The *mean* of the $\bar{x}$ is $\mu_x$ --- i.e., $\mu_{\bar{x}} = \mu_x$.
+2. The *standard deviation* of $\bar{x}$ is $\sigma_x/\sqrt{n}$ --- i.e., $\sigma_{\bar{x}} = \sigma_x/\sqrt{n}$). 
+
+**Example**: Assuming that $\mu_x$ = 24 and $\sigma_x \approx$ 4.9, what are the mean and standard deviation of $\bar{x}$ based on a sample of $n$ = 16 observations? What about $n$ = 25 observations?
+
+\pagebreak
+
+```{r, fig.height = 4, fig.width = 9}
+n <- c(2,5,15)
+pop.y <- vector(mode = "list", n[1])
+pop.p <- vector(mode = "list", n[1])
+for (i in 1:length(pop.y)) {
+  pop.y[[i]] <- c(20,30)
+  pop.p[[i]] <- c(0.6,0.4)
+}
+y <- expand.grid(pop.y)
+y <- apply(y, 1, mean)
+
+p <- expand.grid(pop.p)
+p <- apply(p, 1, prod)
+
+z1 <- aggregate(p ~ y, FUN = "sum")
+z1$n <- n[1]
+
+pop.y <- vector(mode = "list", n[2])
+pop.p <- vector(mode = "list", n[2])
+for (i in 1:length(pop.y)) {
+  pop.y[[i]] <- c(20,30)
+  pop.p[[i]] <- c(0.6,0.4)
+}
+y <- expand.grid(pop.y)
+y <- apply(y, 1, mean)
+
+p <- expand.grid(pop.p)
+p <- apply(p, 1, prod)
+
+z2 <- aggregate(p ~ y, FUN = "sum")
+z2$n <- n[2]
+
+pop.y <- vector(mode = "list", n[3])
+pop.p <- vector(mode = "list", n[3])
+for (i in 1:length(pop.y)) {
+  pop.y[[i]] <- c(20,30)
+  pop.p[[i]] <- c(0.6,0.4)
+}
+y <- expand.grid(pop.y)
+y <- apply(y, 1, mean)
+
+p <- expand.grid(pop.p)
+p <- apply(p, 1, prod)
+
+z3 <- aggregate(p ~ y, FUN = "sum")
+z3$n <- n[3]
+
+z <- rbind(z1,z2,z3)
+
+z$n <- factor(z$n, labels = paste("n =", n))
+
+p <- ggplot(z, aes(x = y, y = p))
+p <- p + geom_point() + facet_grid(. ~ n, scales = "free")
+p <- p + geom_segment(aes(x = y, xend = y, y = 0, yend = p))
+p <- p + theme_minimal() + ylab("Probability") 
+p <- p + xlab(tex("$\\bar{x}$"))
+p <- p + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+p <- p + ggtitle("Sampling Distributions for Different Sample Sizes")
+plot(p)
+```
+
+```{r, fig.height = 4, fig.width = 9}
+n <- c(15,15,15)
+prb <- c(0.8,0.6,0.4)
+
+pop.y <- vector(mode = "list", n[1])
+pop.p <- vector(mode = "list", n[1])
+for (i in 1:length(pop.y)) {
+  pop.y[[i]] <- c(20,30)
+  pop.p[[i]] <- c(prb[1],1-prb[1])
+}
+y <- expand.grid(pop.y)
+y <- apply(y, 1, mean)
+
+p <- expand.grid(pop.p)
+p <- apply(p, 1, prod)
+
+z1 <- aggregate(p ~ y, FUN = "sum")
+z1$m <- 1
+
+pop.y <- vector(mode = "list", n[2])
+pop.p <- vector(mode = "list", n[2])
+for (i in 1:length(pop.y)) {
+  pop.y[[i]] <- c(20,30)
+  pop.p[[i]] <- c(prb[2],1-prb[2])
+}
+y <- expand.grid(pop.y)
+y <- apply(y, 1, mean)
+
+p <- expand.grid(pop.p)
+p <- apply(p, 1, prod)
+
+z2 <- aggregate(p ~ y, FUN = "sum")
+z2$m <- 2
+
+pop.y <- vector(mode = "list", n[3])
+pop.p <- vector(mode = "list", n[3])
+for (i in 1:length(pop.y)) {
+  pop.y[[i]] <- c(20,30)
+  pop.p[[i]] <- c(prb[3],1-prb[3])
+}
+y <- expand.grid(pop.y)
+y <- apply(y, 1, mean)
+
+p <- expand.grid(pop.p)
+p <- apply(p, 1, prod)
+
+z3 <- aggregate(p ~ y, FUN = "sum")
+z3$m <- 3
+
+z <- rbind(z1,z2,z3)
+z$m <- factor(z$m, labels = c("22","24","26"))
+
+p <- ggplot(z, aes(x = y, y = p))
+p <- p + geom_point() + facet_grid(. ~ m, scales = "free")
+p <- p + geom_segment(aes(x = y, xend = y, y = 0, yend = p))
+p <- p + theme_minimal() + ylab("Probability")
+p <- p + xlab(tex("$\\bar{x}$"))
+p <- p + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+p <- p + ggtitle("Sampling Distributions for Different Means (n = 15)")
+plot(p)
+```
+
+## Properties of the Sampling Distribution of $\hat{p}$
+
+Assume (a) that we have a population distribution where $x$ has only two values, "success" and "failure," and the probability of a success is $p$, and assume (b) we observe a sample of $n$ observations and compute the proportion ($\hat{p}$) of observations in the sample that are "successes."
+
+**Example**: Consider the following population distribution, and several sampling distributions of $\hat{p}$ based on samples of $n$ = 3, 4, or 5 observations.
+
+```{r}
+popd <- data.frame(Preference = c("$Y$","$C$"), p = c(0.7,0.3))
+names(popd) <- c("$x$", "$P(x)$")
+ktbl(popd, caption = "Population Distribution")
+```
+
+Note: Here we define $Y$ as a "success" because our proportions will be based on the number of $Y$'s out of $n$. 
+
+***
+
+\pagebreak
+
+```{r}
+p <- 0.7
+n <- 3
+samp <- data.frame(x = as.character(MASS::fractions(c(0:n)/n)), y = dbinom(0:n, n, 0.7))
+names(samp) <- c("$\\hat{p}$", "$P(\\hat{p})$")
+ktbl(samp, caption = "Sampling Distribution of $\\hat{p}$, $n$ = 3")
+```
+\begin{align*}
+  \mu_{\hat{p}} & = `r p` \\
+  \sigma_{\hat{p}} & \approx `r round(sqrt(p*(1-p)/n), 2)`
+\end{align*}
+
+***
+
+```{r}
+p <- 0.7
+n <- 4
+samp <- data.frame(x = as.character(MASS::fractions(c(0:n)/n)), y = dbinom(0:n, n, 0.7))
+names(samp) <- c("$\\hat{p}$", "$P(\\hat{p})$")
+ktbl(samp, caption = "Sampling Distribution of $\\hat{p}$, $n$ = 4")
+```
+\begin{align*}
+  \mu_{\hat{p}} & = `r p` \\
+  \sigma_{\hat{p}} & \approx `r round(sqrt(p*(1-p)/n), 2)`
+\end{align*}
+
+***
+
+```{r}
+p <- 0.7
+n <- 5
+samp <- data.frame(x = as.character(MASS::fractions(c(0:n)/n)), y = dbinom(0:n, n, 0.7))
+names(samp) <- c("$\\hat{p}$", "$P(\\hat{p})$")
+ktbl(samp, caption = "Sampling Distribution of $\\hat{p}$, $n$ = 5")
+```
+\begin{align*}
+  \mu_{\hat{p}} & = `r p` \\
+  \sigma_{\hat{p}} & \approx `r round(sqrt(p*(1-p)/n), 2)`
+\end{align*}
+
+***
+
+\pagebreak
+
+```{r, fig.height = 4, fig.width = 9}
+p <- ggplot(data.frame(x = 0:1, prob = c(0.3,0.7)), aes(x = x, y = prob))
+p <- p + geom_point() + geom_segment(aes(xend = x, yend = 0))
+p <- p + theme_minimal() + labs(y = "Probability", x = tex("$x$"))
+p <- p + ggtitle("Population Dist.")
+p <- p + scale_x_continuous(breaks = 0:1, labels = c("C","Y"))
+ppop <- p
+
+d3 <- data.frame(x = c(0:3)/3, prob = dbinom(0:3, 3, 0.7), n = 3)
+d4 <- data.frame(x = c(0:4)/4, prob = dbinom(0:4, 4, 0.7), n = 4)
+d5 <- data.frame(x = c(0:5)/5, prob = dbinom(0:5, 5, 0.7), n = 5)
+
+d <- rbind(d3,d4,d5)
+d$n <- factor(d$n)
+levels(d$n) <- paste("n =", c(3,4,5))
+
+p <- ggplot(d, aes(x = x, y = prob)) + facet_wrap(~ n)
+p <- p + geom_point() + geom_segment(aes(xend = x, yend = 0))
+p <- p + theme_minimal() + labs(y = NULL, x = tex("$\\hat{p}$"))
+p <- p + scale_y_continuous(limits = c(0, 0.635))
+p <- p + scale_x_continuous(breaks = seq(0, 1, by = 0.25), labels = c(0,0.25,0.5,0.75,1))
+p <- p + ggtitle("Sampling Distributions")
+psmp <- p
+
+cowplot::plot_grid(ppop, psmp, axis = "blr", align = "h", rel_widths = c(0.3,0.7))
+```
+
+\pagebreak
+
+### Mean and Standard Deviation of $\hat{p}$
+
+Assume (a) that we have a population distribution where $x$ has only two values, "success" and "failure," and the probability of a success is $p$, and assume a sample of $n$ observations. 
+
+1. The *mean* of $\hat{p}$ is $p$ --- i.e., $\mu_{\hat{p}} = p$.
+2. The *standard deviation* of $\hat{p}$ is $\sqrt{p(1-p)/n}$ --- i.e., $\sigma_{\hat{p}} = \sqrt{p(1-p)/n}$.
+
+**Example**: Assuming the population distribution given above with $p$ = 0.7, what are the mean and standard deviation of $\hat{p}$ based on a sample of $n$ = 16 observations? What about $n$ = 25 observations?
+
+\pagebreak
+
+```{r, fig.height = 4, fig.width = 9}
+n1 <- 3
+n2 <- 10
+n3 <- 40
+p1 <- 0:n1
+p2 <- 0:n2
+p3 <- 0:n3
+y1 <- dbinom(p1, n1, 0.7)
+y2 <- dbinom(p2, n2, 0.7)
+y3 <- dbinom(p3, n3, 0.7)
+mydata <- data.frame(x = c(p1/n1,p2/n2,p3/n3), y = c(y1,y2,y3), n = rep(c(n1,n2,n3), c(length(p1),length(p2),length(p3))))
+mydata$n <- factor(mydata$n)
+levels(mydata$n) <- paste("n = ", sort(unique(mydata$n)))
+p <- ggplot(mydata, aes(x = x, y = y))
+p <- p + geom_point(size = 0.75) + facet_grid(. ~ n, scales = "free")
+p <- p + geom_segment(aes(x = x, xend = x, y = 0, yend = y))
+p <- p + theme_minimal() + labs(y = "Probability", x = tex("$\\hat{p}$"))
+p <- p + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+p <- p + ggtitle("Sampling Distributions for Different Sample Sizes")
+plot(p)
+```
+
+```{r, fig.height = 4, fig.width = 9}
+n1 <- 20
+n2 <- 20
+n3 <- 20
+p1 <- 0:n1
+p2 <- 0:n2
+p3 <- 0:n3
+y1 <- dbinom(p1, n1, 0.2)
+y2 <- dbinom(p2, n2, 0.5)
+y3 <- dbinom(p3, n3, 0.8)
+mydata <- data.frame(x = c(p1/n1,p2/n2,p3/n3),
+                     y = c(y1,y2,y3),
+                     p = rep(c(0.2,0.5,0.8), c(length(p1),length(p2),length(p3))))
+mydata$p <- factor(mydata$p)
+levels(mydata$p) <- c(0.2, 0.5, 0.8)
+p <- ggplot(mydata, aes(x = x, y = y))
+p <- p + geom_point(size = 0.75) + facet_grid(. ~ p, scales = "free")
+p <- p + geom_segment(aes(x = x, xend = x, y = 0, yend = y))
+p <- p + theme_minimal() + labs(y = "Probability", x = tex("$\\hat{p}$"))
+p <- p + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+p <- p + ggtitle("Sampling Distributions for Different Values of p (n = 20)")
+plot(p)
+```
+
+*** 
+
+\pagebreak
+
+```{r}
+p <- 0.6
+n <- 50
+
+d <- data.frame(x = 1:3, p = dbinom(0:2, 2, p))
+
+m.pop <- with(d, sum(x*p))
+s.pop <- with(d, sqrt(sum((x - m.pop)^2 * p)))
+
+p1 <- ggplot(d, aes(x = x, y = p)) + theme_minimal()
+p1 <- p1 + geom_segment(aes(xend = x, yend = 0)) + geom_point()
+p1 <- p1 + ggtitle("Population Distribution")
+p1 <- p1 + labs(x = tex("$x$"), y = "Probability")
+
+d <- data.frame(x = 0:(2*n), p = dbinom(0:(2*n), 2*n, p)) %>% mutate(x = (x + n)/n)
+
+m.smp <- with(d, sum(x*p))
+s.smp <- with(d, sqrt(sum((x - m.smp)^2 * p)))
+
+p2 <- ggplot(d, aes(x = x, y = p)) + theme_minimal()
+p2 <- p2 + geom_segment(aes(xend = x, yend = 0)) + geom_point()
+p2 <- p2 + ggtitle("Sampling Distribution")
+p2 <- p2 + labs(x = tex("$\\bar{x}$"), y = "Probability")
+```
+
+**Example**: Consider again the trebuchet experiment, but this time with a slightly different population distribution, which is shown below. The mean and standard deviation of $x$ are $\mu_x$ = `r m.pop` and $\sigma_x$ $\approx$ `r round(s.pop, 2)`, respectively. A researcher would probably not know $\mu_x$, but could estimate it by firing the trebuchet to create a sample of observations and use $\bar{x}$ to *estimate* $\mu_x$. The sampling distribution of $\bar{x}$ based on a sample of $n$ = `r n` observations is also shown below.
+```{r, fig.height = 6, fig.width = 9}
+cowplot::plot_grid(p1, p2, align = "v", ncol = 1)
+```
+What are the mean and the standard deviation of $\bar{x}$ for such an experiment? Also what is the interval that has approximately a 0.95 probability of containing $\bar{x}$?
+
+\pagebreak
+
+***
+
+```{r}
+p <- 0.2
+n <- 100
+
+d <- data.frame(x = 0:1, p = dbinom(0:1, 1, p))
+
+p1 <- ggplot(d, aes(x = x, y = p)) + theme_minimal()
+p1 <- p1 + geom_segment(aes(xend = x, yend = 0)) + geom_point()
+p1 <- p1 + ggtitle("Population Distribution")
+p1 <- p1 + labs(x = tex("$x$"), y = "Probability")
+p1 <- p1 + scale_x_continuous(breaks = 0:1, labels = c("no parasite (0)", "parasite (1)"))
+
+d <- data.frame(x = c(0:n)/n, p = dbinom(0:n, n, p))
+
+m.smp <- with(d, sum(x*p))
+s.smp <- with(d, sqrt(sum((x - m.smp)^2 * p)))
+
+p2 <- ggplot(d, aes(x = x, y = p)) + theme_minimal()
+p2 <- p2 + geom_segment(aes(xend = x, yend = 0)) + geom_point()
+p2 <- p2 + ggtitle("Sampling Distribution")
+p2 <- p2 + labs(x = tex("$\\hat{p}$"), y = "Probability")
+```
+
+**Example**: Imagine a survey of fish in a lake where `r p*100`% of the fish in the lake are infected with a parasite. Let $x$ be whether or not a randomly selected fish has a parasite. The population distribution is shown below. A researcher would probably not know that `r p*100`% of the fish in the lake are infected, but could *estimate* the proportion of infected fish in the lake (`r p`) using the proportion of infected fish from a sample of observations ($\hat{p}$). The sampling distribution of $\hat{p}$ based on a sample of $n$ = `r n` observations is also shown below. 
+```{r, fig.height = 6, fig.width = 9}
+cowplot::plot_grid(p1, p2, align = "v", ncol = 1)
+```
+What are the mean and standard deviation of $\hat{p}$ from such a survey? Also what is the interval that has approximately a 0.95 probability of containing $\hat{p}$?
+
+
+

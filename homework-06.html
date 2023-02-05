@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Homework Problem Set 6: Sampling Distributions of \bar{x} and \hat{p}</title>
+
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics 251</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="lectures.html">Lectures</a>
+</li>
+<li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Homework Problem Set 6: Sampling
+Distributions of <span class="math inline">\(\bar{x}\)</span> and <span
+class="math inline">\(\hat{p}\)</span></h1>
+
+</div>
+
+
+<p>You can also download a <a href="homework-06.pdf">PDF</a> copy of
+this homework assignment.</p>
+<p>Answers are given at the end.</p>
+<div id="darwins-fertilization-study" class="section level2">
+<h2>Darwin’s Fertilization Study</h2>
+<p>Charles Darwin conducted a study of the heights of corn seedlings
+produced from cross- versus self-fertilization.<a href="#fn1"
+class="footnote-ref" id="fnref1"><sup>1</sup></a> In that study
+seedlings were obtained from seeds from the same plant, but one seedling
+was obtained from a flower that had been cross-fertilized and the other
+produced from a flower that had been self-fertilized. A single
+observation is based on the difference in the heights of the pair of
+seedlings produced by each pair of seeds. His study used only 15
+observations. Suppose we were to replicate his study today, but using a
+larger sample size.</p>
+<ol style="list-style-type: decimal">
+<li><p>Suppose we observe the difference in the heights of each pair of
+seedlings by subtracting the height of the seedling produced from
+self-fertilization from the height of the seedling produced from
+cross-fertilization. We will let <span class="math inline">\(x\)</span>
+denote this variable. Assume that this variable has a mean of 3 inches
+and a standard deviation of 5 inches. What are the mean and standard
+deviation of the mean (<span class="math inline">\(\bar{x}\)</span>)
+computed from a sample of 25 observations? And what is the interval that
+has a probability of approximately 0.95 of containing <span
+class="math inline">\(\bar{x}\)</span>?</p></li>
+<li><p>Suppose that rather than observing the difference in seedling
+heights we simply observe whether or not the seedling produced from
+cross-fertilization is taller. If we let <span
+class="math inline">\(x\)</span> denote this observation and suppose
+that the probability of that the seedling produced from
+cross-fertilization is taller is 0.8. We can summarize the population
+distribution in the following table.<a href="#fn2" class="footnote-ref"
+id="fnref2"><sup>2</sup></a></p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<p><span class="math inline">\(x\)</span></p>
+</th>
+<th style="text-align:center;">
+<p><span class="math inline">\(P(x)\)</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+<p>cross</p>
+</td>
+<td style="text-align:center;">
+<p>0.8</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<p>self</p>
+</td>
+<td style="text-align:center;">
+<p>0.2</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Let <span class="math inline">\(\hat{p}\)</span> denote the
+proportion of observations in a sample of 25 observations where the
+seedling produced from cross-fertilization is taller. What are the mean
+and standard deviation of <span class="math inline">\(\hat{p}\)</span>?
+And what is the interval that has a probability of approximately 0.95 of
+containing <span class="math inline">\(\hat{p}\)</span>?</p></li>
+</ol>
+</div>
+<div id="trebuchet-or-6-sided-die" class="section level2">
+<h2>Trebuchet or 6-Sided Die</h2>
+Suppose we have a model trebuchet like the one I brought to lecture. Let
+<span class="math inline">\(x\)</span> be the distance, rounded to the
+nearest meter, that the trebuchet will throw an object. Suppose that the
+distribution of <span class="math inline">\(x\)</span> is as given in
+the table below.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(x\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(x)\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1/6
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+1/6
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+1/6
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+1/6
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+1/6
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+1/6
+</td>
+</tr>
+</tbody>
+</table>
+<p>This is our <em>population distribution</em>. Using the formulas
+<span class="math inline">\(\mu = \sum_x xP(x)\)</span> and <span
+class="math inline">\(\sigma = \sqrt{\sum_x (x-\mu)^2 P(x)}\)</span> it
+can be shown that this distribution has a mean of <span
+class="math inline">\(\mu\)</span> = 3.5 and a standard deviation of
+<span class="math inline">\(\sigma \approx\)</span> 1.71. This
+distribution is the same as that as a fair 6-sided die.</p>
+<ol style="list-style-type: decimal">
+<li><p>Consider the <em>sampling distribution</em> for the mean (<span
+class="math inline">\(\bar{x}\)</span>) of a sample of five
+observations. This would be equivalent to the distribution of the mean
+of five rolls of a fair 6-sided die. I derived this distribution using
+the five-step method (but with a computer). It is shown below.
+<img src="homework-06_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" />
+What are the mean and standard deviation of <span
+class="math inline">\(\bar{x}\)</span>? What is the interval that has a
+probability of approximately 0.95 of containing <span
+class="math inline">\(\bar{x}\)</span>?</p></li>
+<li><p>Now suppose we increase the sample size to 25. For a larger
+sample size like this we can depict the sampling distribution more
+abstractly using a curve as shown below rather than using points as used
+in the previous problem.
+<img src="homework-06_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" />
+What are the mean and standard deviation of <span
+class="math inline">\(\bar{x}\)</span>, and what is the interval that
+has a probability of approximately 0.95 of containing <span
+class="math inline">\(\bar{x}\)</span>?</p></li>
+</ol>
+</div>
+<div id="ambivalent-platys-or-a-coin-flip" class="section level2">
+<h2>Ambivalent Platys or a Coin Flip</h2>
+Recall the experiment on the preferences of female platys for yellow-
+versus clear-tailed males. Suppose that there is no genetic
+predisposition among female platys to prefer or be averse to a yellow
+versus a clear tail. In that case the <em>population distribution</em>
+of which male is preferred would be as shown below.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(x\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(x)\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+yellow
+</td>
+<td style="text-align:center;">
+0.5
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+clear
+</td>
+<td style="text-align:center;">
+0.5
+</td>
+</tr>
+</tbody>
+</table>
+<p>This would be analogous to flipping a fair coin with “heads” instead
+of “yellow” and “tails” instead of “clear.”</p>
+<ol style="list-style-type: decimal">
+<li><p>Consider the <em>sampling distribution</em> of the proportion
+(<span class="math inline">\(\hat{p}\)</span>) of observations out of a
+sample of 25 observations where the female platy appears to prefer the
+yellow-tailed male. This would be equivalent to flipping a fair coin 25
+times and computing the proportion flips on which the coin came up
+heads. I derived this distribution using the formula for the binomial
+distribution (with the help of a computer). It is shown below.
+<img src="homework-06_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" />
+What are the mean and standard deviation of <span
+class="math inline">\(\hat{p}\)</span>?</p></li>
+<li><p>Now suppose we increase the sample size to 100. For a larger
+sample size like this we can depict the sampling distribution more
+abstractly using a curve as shown below rather than using points as used
+in the previous problem.
+<img src="homework-06_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" />
+The points <span class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span> denote the interval that has a
+probability of approximately 0.95 of containing <span
+class="math inline">\(\hat{p}\)</span>. What is this interval — that is,
+what are <span class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span>? (Note: You will need to first find the
+mean and standard deviation of the sampling distribution to find this
+interval.)</p></li>
+</ol>
+</div>
+<div id="mendels-peas" class="section level2">
+<h2>Mendel’s Peas</h2>
+<a href="https://en.wikipedia.org/wiki/Gregor_Mendel">Gregor Mendel</a>
+was a 19th century Augustinian friar who conducted experiments with pea
+plants to investigating heredity. In one classic experiment he bred pea
+plants by crossing plants from a strain that only produced green peas
+with another strain that only produced yellow peas. The first-generation
+offspring from this crossbreeding then produced a strain of pea plants
+that were presumed to carried the genes for both yellow and green peas —
+one from each parent. However these plants only had yellow seeds because
+it was assumed that the yellow genes are dominant in the sense that an
+offspring with at least one gene for yellow peas will always have yellow
+peas. The only way for a plant to have green peas is if both genes were
+for green peas. The plants from the first-generation offspring were then
+crossed with themselves to produce the second-generation offspring.
+Based on assumptions about how inheritance works, Mendel hypothesized
+that the probability of a second-generation offspring having yellow peas
+is 0.75, while the probability of green peas is 0.25. This implies the
+following population distribution.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(x\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(x)\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+yellow
+</td>
+<td style="text-align:center;">
+0.75
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+green
+</td>
+<td style="text-align:center;">
+0.25
+</td>
+</tr>
+</tbody>
+</table>
+<p>Mendel checked his hypothesis by observing many offspring and
+computing the proportion of offspring that had yellow peas, which we
+would call <span class="math inline">\(\hat{p}\)</span>. The idea is
+that if that proportion is relatively close to 0.75, then it would
+support his hypothesis. Mendel bred 8023 offspring in his study.
+Assuming Mendel is correct in that the probability that a single
+offspring will have yellow peas is 0.75, what are the mean and standard
+deviation of <span class="math inline">\(\hat{p}\)</span> based on a
+sample of 8023 observations? And what is the interval that has a
+probability of approximately 0.95 of containing <span
+class="math inline">\(\hat{p}\)</span>?</p>
+</div>
+<div id="twin-study-of-anatomical-differences-in-schizophrenics"
+class="section level2">
+<h2>Twin Study of Anatomical Differences in Schizophrenics</h2>
+A twin study was conducted to investigate anatomical differences between
+people affected and unaffected by schizophrenia.<a href="#fn3"
+class="footnote-ref" id="fnref3"><sup>3</sup></a> This study used 15
+pairs of identical twins where one twin was affected but the other was
+unaffected. One variable the researchers considered was the volume of
+the left hippocampus (in cubic cm). The data are shown below.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Twin
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+Pair
+</th>
+<th style="text-align:center;">
+Unaffected
+</th>
+<th style="text-align:center;">
+Affected
+</th>
+<th style="text-align:center;">
+Difference
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1.94
+</td>
+<td style="text-align:center;">
+1.27
+</td>
+<td style="text-align:center;">
+0.67
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+1.44
+</td>
+<td style="text-align:center;">
+1.63
+</td>
+<td style="text-align:center;">
+-0.19
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+1.56
+</td>
+<td style="text-align:center;">
+1.47
+</td>
+<td style="text-align:center;">
+0.09
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+1.58
+</td>
+<td style="text-align:center;">
+1.39
+</td>
+<td style="text-align:center;">
+0.19
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+2.06
+</td>
+<td style="text-align:center;">
+1.93
+</td>
+<td style="text-align:center;">
+0.13
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+15
+</td>
+<td style="text-align:center;">
+2.08
+</td>
+<td style="text-align:center;">
+1.97
+</td>
+<td style="text-align:center;">
+0.11
+</td>
+</tr>
+</tbody>
+</table>
+<p>Here we will consider observations of the variable <span
+class="math inline">\(x\)</span>, representing the difference in the
+hippocampus volume of a pair of twins. Suppose that there is no
+relationship between schizophrenia and left hippocampus volume. Then the
+mean of the population distribution of <span
+class="math inline">\(x\)</span> would be zero. Assume also that the
+population distribution of <span class="math inline">\(x\)</span> has a
+standard deviation of 0.25 cubic cm. Let <span
+class="math inline">\(\bar{x}\)</span> denote the mean difference in a
+sample of 15 observations. What are the mean and standard deviation of
+<span class="math inline">\(\bar{x}\)</span>? And what is the interval
+that has a probability of approximately 0.95 of containing <span
+class="math inline">\(\bar{x}\)</span>?</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="darwins-fertilization-study-solution" class="section level2">
+<h2>Darwin’s Fertilization Study (Solution)</h2>
+<ol style="list-style-type: decimal">
+<li><p>The sampling distribution has a mean of 3 inches and a standard
+deviation of 1 inch. The interval is 1 to 5 inches.</p></li>
+<li><p>The sampling distribution has a mean of 0.8 and a standard
+deviation of 0.08. The interval is 0.64 to 0.96.</p></li>
+</ol>
+</div>
+<div id="trebuchet-or-6-sided-die-solution" class="section level2">
+<h2>Trebuchet or 6-Sided Die (Solution)</h2>
+<ol style="list-style-type: decimal">
+<li><p>The mean is 3.5 meters and the standard deviation is
+approximately 0.76 meters. The interval is approximately 1.97 to 5.03
+meters.</p></li>
+<li><p>The mean is 3.5 meters and the standard deviation is
+approximately 0.34 meters. The interval is approximately 2.82 to 4.18
+meters.</p></li>
+</ol>
+</div>
+<div id="ambivalent-platys-or-a-coin-flip-solution"
+class="section level2">
+<h2>Ambivalent Platys or a Coin Flip (Solution)</h2>
+<ol style="list-style-type: decimal">
+<li><p>The mean is 0.5 and the standard deviation is 0.1. The interval
+is 0.3 to 0.7.</p></li>
+<li><p>The mean is 0.5 and the standard deviation is 0.05. The interval
+is 0.4 to 0.6.</p></li>
+</ol>
+</div>
+<div id="mendels-peas-solution" class="section level2">
+<h2>Mendel’s Peas (Solution)</h2>
+<p>The mean is 0.75 and the standard deviation is approximately 0.005.
+The interval is approximately 0.74 to 0.76.</p>
+</div>
+<div
+id="twin-study-of-anatomical-differences-in-schizophrenics-solution"
+class="section level2">
+<h2>Twin Study of Anatomical Differences in Schizophrenics
+(Solution)</h2>
+<p>The mean is 0 cubic cm and the standard deviation is approximately
+0.06 cubic cm. The interval is approximately -0.13 to 0.13 cubic cm.</p>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Darwin, C. (1876). <em>The Effect of Cross- and
+Self-fertilization in the Vegetable Kingdom, 2nd Ed</em>. London: John
+Murray.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Assume that we measure height accurately enough so that
+there will not be any seedling pairs where both seedlings are exactly
+the same height.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Suddath, R. L., Christison, G. W., Torrey, E. F.,
+Casanova, M. F. &amp; Weinberger, D. R. (1990). Anatomical abnormalities
+in the brains of monozygotic twins discordant for schizophrenia. <em>New
+England Journal of Medicine</em>, <em>322(12)</em>, 789–794.<a
+href="#fnref3" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
