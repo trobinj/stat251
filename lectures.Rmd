@@ -53,7 +53,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [The central limit theorem, estimation](lecture-02-08-2023.html). The [study guide](e2-studyguide.html) for the second examination is now available.
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Estimation and sampling distributions](lecture-02-10-2023.html). 
  
 ***
 
