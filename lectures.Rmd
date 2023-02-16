@@ -61,7 +61,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [Sampling distributions, estimation, and an introduction to confidence intervals](lecture-02-15-2023.html). 
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Confidence intervals for $p$ and $\mu$](lecture-02-17-2023.html). 
  
 ***
 
