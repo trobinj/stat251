@@ -67,7 +67,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` **Holiday**
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Sampling with versus without replacement and estimating totals](lecture-02-22-2023.html). A [set of homework problems](homework-08.html) on this topic is now available.
 
 `r i <- i + 1; d[i]` 
  
