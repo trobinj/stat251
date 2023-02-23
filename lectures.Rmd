@@ -69,7 +69,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [Sampling with versus without replacement and estimating totals](lecture-02-22-2023.html). A [set of homework problems](homework-08.html) on this topic is now available.
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Choosing a sample size](lecture-02-24-2023.html). A [set of homework problems](homework-09.html) on sample size selection is now available.
  
 ***
 
