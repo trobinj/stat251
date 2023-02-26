@@ -1,0 +1,125 @@
+---
+output:
+  html_document: 
+    theme: readable
+  pdf_document: default
+---
+
+```{r, echo = FALSE, message = FALSE}
+library(lubridate)
+date <- "02-27-2023"
+weekday <- wday(mdy(date), label = TRUE, abbr = FALSE)
+month <- month(mdy(date), label = TRUE)
+day <- day(mdy(date))
+```
+
+---
+title: `r paste(weekday, ", ", month, " ", day, sep = "")`
+output:
+  html_document: 
+    theme: readable
+  pdf_document: default
+header-includes:
+  - \usepackage{float}
+  - \usepackage{booktabs}
+  - \usepackage{array}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, out.width = "100%", fig.align = "center", cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
+```
+
+```{r packages}
+library(tidyverse)
+suppressWarnings(library(kableExtra))
+```
+
+```{r utilities}
+source("../../utilities.R")
+```
+
+`r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](lecture-", date, ".pdf) copy of this lecture.", sep = ""), "")`
+
+## Inference Equations
+
+```{r}
+parameter <- c("$\\mu$", "$p$", "$\\mu$", "$\\tau$")
+estimator <- c("$\\bar{x}$", "$\\hat{p}$", "$\\bar{x}$", "$N\\bar{x}$")
+se <- c("$\\frac{s}{\\sqrt{n}}$", "$\\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}$", 
+  "$\\frac{s}{\\sqrt{n}}\\sqrt{1-\\frac{n}{N}}$",    "$N\\frac{s}{\\sqrt{n}}\\sqrt{1-\\frac{n}{N}}$")
+me <- c("$t\\frac{s}{\\sqrt{n}}$", "$z\\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}$",
+        "$t\\frac{s}{\\sqrt{n}}\\sqrt{1-\\frac{n}{N}}$",    "$tN\\frac{s}{\\sqrt{n}}\\sqrt{1-\\frac{n}{N}}$")
+ci <- c("$\\bar{x} \\pm t\\frac{s}{\\sqrt{n}}$", "$\\hat{p} \\pm z\\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}$", "$\\bar{x} \\pm t\\frac{s}{\\sqrt{n}}\\sqrt{1-\\frac{n}{N}}$",    "$N\\bar{x} \\pm tN\\frac{s}{\\sqrt{n}}\\sqrt{1-\\frac{n}{N}}$")
+swr <- c("A","A","B","B")
+d <- data.frame(Parameter = parameter, Estimate = estimator, 
+  se = se, me = me, ci = ci, swr = swr)
+d <- d[c(2,1,3,4),]
+rownames(d) <- NULL
+names(d)[2] <- "Point Estimate"
+names(d)[3] <- "Standard Error"
+names(d)[4] <- "Margin of Error"
+names(d)[5] <- "Confidence Interval"
+names(d)[6] <- "Design"
+ktbl(d)
+```
+
+Design A: Sampling *with replacement*, an infinite number of observational units, or $n/N$ is very small. 
+
+Design B: Sampling *without replacement*. 
+
+## Assumptions when Using these Equations
+
+We are making certain *assumptions* about the *sampling distribution* of a point estimate when using the equations above. We assume that the statistic is *unbiased*, that we can compute (approximately) the correct *standard error*, and that the *shape of the sampling distribution is approximately normal*.
+
+### The Mean of the Statistic
+
+A statistic is **unbiased** if *its mean equals the parameter being estimated*, otherwise the statistic is said to be **biased**. 
+
+Sources of bias:
+
+1. **Sampling bias**: Failure to account for the fact that some units are more or less likely to be included in the sample. 
+
+2. **Non-response bias**: Failure to observe some observational units that were intended to be observed.
+
+3. **Response bias**: Errors in observation/measurement of the variable of interest.  
+
+In surveys, *sampling bias* can be eliminated through the use of a *random sampling* design (aka "probability sampling" or "scientific sampling"). One example is what is known as a **simple random sampling** design where *every possible sample of $n$ units is equally likely*. Our formulas assume that the survey sampling design is simple random sampling. 
+
+### The Standard Deviation of the Statistic
+
+Recall that the *standard deviation of a statistic* is also called the **standard error**, which is used to compute the *margin of error*, the *confidence interval*, and *test statistics* (which we will discuss after the third examination).
+
+The *design* can affect the standard error (e.g., sampling with versus without replacement).
+
+### The Shape of the Statistic's Sampling Distribution
+
+To have a sampling distribution that is (approximately) normal in shape, we need *at least one* of the following two conditions:
+
+1. The population distribution is (approximately) normal in shape.
+
+2. The sample size ($n$) is sufficiently large.
+
+#### Shape of the Sampling Distribution of $\hat{p}$
+
+1. The population distribution is *never* normal in shape. Why?
+
+2. The sampling distribution is "sufficiently large" if both $n\hat{p} \ge 15$ and  $n(1-\hat{p}) \ge 15$. We can explore [why](http://digitalfirst.bfwpub.com/stats_applet/stats_applet_20_ciprop.html) this is necessary.
+
+**Example**: A researcher obtains 100 seeds from a distributor. She plants those seeds and finds that 70 out of the 100 seeds germinate. She wants to estimate the probability that a seed obtained form this distributor will germinate using a confidence interval. Is the sample size large enough? What if she obtained 10 seeds and observed that 7 out of 10 germinated?
+
+\vspace{2cm}
+
+#### Shape of the Sampling Distribution of $\bar{x}$
+
+1. The population distribution *might* be approximately normal in shape.
+
+2. The sampling distribution will be approximately normal if $n$ is large enough.
+
+**Example**: Here is a sample of $n$ = `r nrow(faithful)` observations of the eruption duration of Old Faithful. Would we conclude that the *population distribution* is approximately normal? Would we conclude that the *sampling distribution* is approximately normal? Why or why not?
+```{r, fig.height = 3.25}
+p <- ggplot(faithful, aes(x = round(eruptions,1))) 
+p <- p + geom_dotplot(binwidth = 0.05)
+p <- p + labs(x = "Eruption Duration (min)")
+p <- p + theme_classic() + noyaxis
+plot(p)
+```
