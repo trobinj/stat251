@@ -75,7 +75,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [Assumptions](lecture-02-27-2023.html). The [study guide](e3-studyguide.html) for the third examination is now available.
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [The randomized response method](lecture-03-01-2023.html). 
 
 `r i <- i + 1; d[i]` **Exam 3**
  
