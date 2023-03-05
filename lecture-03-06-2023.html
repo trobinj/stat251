@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Monday, Mar 6</title>
+
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics 251</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="lectures.html">Lectures</a>
+</li>
+<li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Monday, Mar 6</h1>
+
+</div>
+
+
+<p>You can also download a <a href="lecture-03-06-2023.pdf">PDF</a> copy
+of this lecture.</p>
+<div id="statistical-significance" class="section level2">
+<h2>Statistical Significance</h2>
+<p>A <a href="statisticallysignificant.jpg"><strong>statistically
+significant</strong></a> result is one that is decidedly not due to
+“ordinary variation” in the data (i.e., not due to chance or not a
+coincidence). <strong>Statistical tests</strong> (aka <em>significance
+tests</em> or <em>statistical hypothesis tests</em> or <em>hypothesis
+tests</em>) are how we decide whether or not an observed result is
+statistically significant.</p>
+</div>
+<div id="is-a-coin-fair" class="section level2">
+<h2>Is a Coin Fair?</h2>
+Suppose we flip a coin <span class="math inline">\(n\)</span> times. We
+can consider the observation of each flip to be a random variable with
+the following distribution.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(x\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(x)\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Heads
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(p\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Tails
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(1-p\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The value of <span class="math inline">\(p\)</span> implies something
+about the coin.</p>
+<ol style="list-style-type: decimal">
+<li>If <span class="math inline">\(p\)</span> <span
+class="math inline">\(=\)</span> 0.5 the coin is fair.</li>
+<li>If <span class="math inline">\(p\)</span> <span
+class="math inline">\(\neq\)</span> 0.5 the coin is not fair.</li>
+</ol>
+<p>Assume we do not know the value of <span
+class="math inline">\(p\)</span>. We flip the coin 30 times to produce a
+sample of <span class="math inline">\(n\)</span> = 30 observations. It
+comes up heads 20 times, so <span class="math inline">\(\hat{p}\)</span>
+= 20/30 = 2/3 <span class="math inline">\(\approx\)</span> 0.67. What
+might we decide about <span class="math inline">\(p\)</span>?</p>
+<ol style="list-style-type: decimal">
+<li>Conclude that <span class="math inline">\(p\)</span> <span
+class="math inline">\(=\)</span> 0.5. The result that <span
+class="math inline">\(\hat{p}\)</span> <span
+class="math inline">\(=\)</span> 2/3 <strong>is not</strong>
+statistically significant.</li>
+<li>Conclude that <span class="math inline">\(p\)</span> <span
+class="math inline">\(\neq\)</span> 0.5. The result that <span
+class="math inline">\(\hat{p}\)</span> <span
+class="math inline">\(=\)</span> 2/3 <strong>is</strong> statistically
+significant.</li>
+</ol>
+<p>How do we decide?</p>
+</div>
+<div id="can-milena-read" class="section level2">
+<h2>Can Milena Read?</h2>
+Suppose Milena plays <span class="math inline">\(n\)</span> games of <a
+href="https://youtu.be/mdyRkIBVSKQ">Pounce</a>. We can consider the
+observation of her response to a single game to be a random variable
+with the following distribution.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(x\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(x)\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Correct
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(p\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Incorrect
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(1-p\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The value of <span class="math inline">\(p\)</span> implies something
+about Milena’s reading ability.</p>
+<ol style="list-style-type: decimal">
+<li>Milena cannot read. She is guessing so <span
+class="math inline">\(p\)</span> <span class="math inline">\(=\)</span>
+1/3.</li>
+<li>Milena can read (somewhat) so <span class="math inline">\(p\)</span>
+<span class="math inline">\(&gt;\)</span> 1/3.</li>
+</ol>
+<p>We do not know the value of <span class="math inline">\(p\)</span>.
+Milena played Pounce 50 times to produce a sample of <span
+class="math inline">\(n\)</span> = 50 observations. She selected the
+correct word 25 times, so <span class="math inline">\(\hat{p}\)</span> =
+25/50 = 0.5. What would we decide about <span
+class="math inline">\(p\)</span>?</p>
+<ol style="list-style-type: decimal">
+<li>Conclude that <span class="math inline">\(p\)</span> <span
+class="math inline">\(=\)</span> 1/3. The result that <span
+class="math inline">\(\hat{p}\)</span> <span
+class="math inline">\(=\)</span> 0.5 <strong>is not</strong>
+statistically significant.</li>
+<li>Conclude that <span class="math inline">\(p\)</span> <span
+class="math inline">\(&gt;\)</span> 1/3. The result that <span
+class="math inline">\(\hat{p}\)</span> <span
+class="math inline">\(=\)</span> 0.5 <strong>is</strong> statistically
+significant.</li>
+</ol>
+<p>What do we decide?</p>
+</div>
+<div id="the-sampling-distribution-of-hatp" class="section level2">
+<h2>The Sampling Distribution of <span
+class="math inline">\(\hat{p}\)</span></h2>
+<p>What do we know about the sampling distribution of <span
+class="math inline">\(\hat{p}\)</span>?</p>
+<ol style="list-style-type: decimal">
+<li>The mean of <span class="math inline">\(\hat{p}\)</span> is <span
+class="math inline">\(p\)</span>.</li>
+<li>The standard deviation (i.e., standard error) of <span
+class="math inline">\(\hat{p}\)</span> is <span class="math display">\[
+  \sqrt{\frac{p(1-p)}{n}}.
+\]</span></li>
+<li>The shape of the sampling distribution is approximately that of a
+normal distribution.</li>
+</ol>
+<p>This is the sampling distribution of <span
+class="math inline">\(\hat{p}\)</span>.
+<img src="lecture-03-06-2023_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" />
+It is convenient to convert <span class="math inline">\(\hat{p}\)</span>
+into a <span class="math inline">\(z\)</span>-score using the formula
+<span class="math display">\[
+  z = \frac{\hat{p}-p}{\sqrt{p(1-p)/n}}.
+\]</span></p>
+<div style="page-break-after: always;"></div>
+<p>This is the sampling distribution of <span
+class="math inline">\(z\)</span>.
+<img src="lecture-03-06-2023_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" />
+But we do not know the value of <span
+class="math inline">\(p\)</span>!</p>
+</div>
+<div id="null-and-alternative-hypotheses" class="section level2">
+<h2>Null and Alternative Hypotheses</h2>
+<p><strong>Null Hypothesis</strong> <span
+class="math inline">\((H_0)\)</span>: Usually the hypothesis of “no
+effect” (e.g., nothing is “happening”). In practice the null hypothesis
+is often that the parameter equals a <em>specific value</em> (although
+we will consider the case when it may be a range of values when we
+discuss <em>composite</em> null hypotheses).</p>
+<p><strong>Alternative Hypothesis</strong> <span
+class="math inline">\((H_a)\)</span>: Usually the hypothesis of an
+“effect” (e.g., something is “happening”). In practice the alternative
+hypothesis is usually that the parameter is in a <em>range of
+values</em>.</p>
+<p>What would the null and alternative hypotheses be for the examples
+above?</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="test-statistics" class="section level2">
+<h2>Test Statistics</h2>
+<p>A <strong>test statistic</strong> measures the discrepancy between
+the point estimate of the parameter and the hypothesized value of the
+parameter. A test statistic is computed <em>under the assumption that
+the null hypothesis is true</em>.</p>
+<p><strong>Example</strong>: The <span
+class="math inline">\(z\)</span>-score <span class="math display">\[
+  z = \frac{\hat{p}-p}{\sqrt{p(1-p)/n}}
+\]</span> is a test statistic. What would be the value of the test
+statistic for the examples above?</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="decision-making" class="section level2">
+<h2>Decision Making</h2>
+<p><strong>Modus Tollens</strong>: If <em>A</em> then <em>B</em>. Not
+<em>B</em>. Therefore not <em>A</em>.</p>
+<p><strong>Example</strong>: If someone is a Hobbit (<em>A</em>), then
+their feet will be hairy (<em>B</em>). Your feet are not hairy (not
+<em>B</em>). Therefore you are not a Hobbit (not <em>A</em>).</p>
+<p><strong>Example</strong>: If it rains today (<em>A</em>), then the
+ground will be wet (<em>B</em>). The ground is not wet (not <em>B</em>).
+Therefore it did not rain today (not <em>A</em>).</p>
+<p><strong>“Probabilistic” Modus Tollens</strong>: If <span
+class="math inline">\(H_0\)</span> is true (<em>A</em>), then the test
+statistic <em>is likely</em> to be a “typical” value (<em>B</em>). The
+test statistics is not a “typical” value (not <em>B</em>). Therefore
+<span class="math inline">\(H_0\)</span> is <em>decidedly</em> false
+(not <em>A</em>).</p>
+<p><strong>Example</strong>: If <span class="math inline">\(H_0\)</span>
+is true (<em>A</em>), then it is likely that -1.96 &lt; <span
+class="math inline">\(z\)</span> &lt; 1.96 (<em>B</em>). So if <span
+class="math inline">\(z\)</span> &gt; 1.96 or <span
+class="math inline">\(z\)</span> &lt; -1.96 (not <em>B</em>), then we
+decide that <span class="math inline">\(H_0\)</span> is not true (not
+<em>A</em>).</p>
+<p>What can we decide?</p>
+<ol style="list-style-type: decimal">
+<li><p>The test statistic <em>is</em> a “typical” value when <span
+class="math inline">\(H_0\)</span> is true. <em>Do not reject</em> <span
+class="math inline">\(H_0\)</span>. The result <em>is not</em>
+statistically significant.</p></li>
+<li><p>The test statistic <em>is not</em> a “typical” value when <span
+class="math inline">\(H_0\)</span> is true. <em>Reject</em> <span
+class="math inline">\(H_0\)</span>. The result <em>is</em> statistically
+significant.</p></li>
+</ol>
+<p>Note: This is not a true modus tollens argument. This argument can
+lead us to the wrong conclusion because it is still possible to observe
+an atypical value of the test statistic even if <span
+class="math inline">\(H_0\)</span> is true.</p>
+<p><strong>Example</strong>: What might we decide for the previous
+examples?</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="more-platies" class="section level2">
+<h2>More Platies!</h2>
+<p>Do female platies have a preference for a yellow-tailed male?
+<img src="lecture-03-06-2023_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" />
+In 67 out of 84 observations, the female platy spent a majority of her
+time with the yellow-tailed male. Is this statistically significant?</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
