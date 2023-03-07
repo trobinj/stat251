@@ -83,7 +83,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [Introduction to statistical tests](lecture-03-06-2023.html). 
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [*p*-values, statistical tests concerning $p$](lecture-03-08-2023.html). A [set of homework problems](homework-10.html) on statistical tests concerning $p$ is now available.
 
 `r i <- i + 1; d[i]` 
  
