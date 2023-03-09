@@ -1,0 +1,235 @@
+---
+output:
+  html_document: 
+    theme: readable
+  pdf_document: default
+---
+
+```{r, echo = FALSE, message = FALSE}
+library(lubridate)
+date <- "03-10-2023"
+weekday <- wday(mdy(date), label = TRUE, abbr = FALSE)
+month <- month(mdy(date), label = TRUE)
+day <- day(mdy(date))
+```
+
+---
+title: `r paste(weekday, ", ", month, " ", day, sep = "")`
+output:
+  html_document: 
+    theme: readable
+  pdf_document: default
+header-includes:
+  - \usepackage{float}
+  - \usepackage{booktabs}
+  - \usepackage{array}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, out.width = "100%", fig.align = "center", cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
+```
+
+```{r packages}
+library(tidyverse)
+suppressWarnings(library(kableExtra))
+```
+
+```{r utilities}
+source("../../utilities.R")
+```
+
+`r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](lecture-", date, ".pdf) copy of this lecture.", sep = ""), "")`
+
+
+## Platies Again!
+
+Do female platies have a preference for a yellow-tailed male? 
+```{r, fig.height = 2, fig.width = 9}
+d <- Sleuth3::case0602
+y <- d$Percentage
+levels(d$Pair) <- 1:6
+d$Pair <- factor(d$Pair, levels = 6:1)
+m <- Sleuth3::case0602 %>% summarise(Percentage = mean(Percentage))
+p <- ggplot(d, aes(x = 0, y = round(Percentage))) 
+p <- p + geom_dotplot(binaxis = "y", binwidth = 1) + coord_flip()
+p <- p + geom_point(aes(x = -0.1), pch = 17, size = 1, data = m)
+p <- p + labs(y = "Percent of Time Spent with Yellow-Tailed Male") + ylim(0,100)
+p <- p + theme_classic() + noyaxis
+p <- p + theme(plot.margin = unit(c(0, 0, 0.5, 0), "cm")) 
+plot(p)
+```
+For the sample of $n$ = `r nrow(d)` observations, mean percent time spent with the yellow-tailed male was about $\bar{x}$ = `r round(mean(y),1)`\% and the standard deviation was about $s$ = `r round(sd(y),1)`\%. Would we conclude that female platies spend, on average, more time with the yellow-tailed male? 
+
+\pagebreak
+
+## Statistical Tests for $\mu$
+
+For the null hypothesis $H_0\!: \mu = \mu_0$ the test statistic
+$$
+  t = \frac{\bar{x}-\mu}{s/\sqrt{n}}
+$$
+has (approximately) a $t$-distribution with $n-1$ degrees of freedom. Computing the $p$-value based on a $t$ test statistic works the same as it does for the $z$ test statistic, except that a [$t$ distribution is used](http://www.statdistributions.com/t/). 
+
+1. $H_a\!: \mu > \mu_0$. The $p$-value is $P(\left. t \ge t_{\text{obs}} \right| H_0)$ (i.e., the probability of a value of $t$ *greater than or equal to* the value we observed when $H_0$ is true).
+
+2. $H_a\!: \mu < \mu_0$. The $p$-value is $P(\left. t \le t_{\text{obs}} \right| H_0)$ (i.e., the probability of a value of $t$ *less than or equal to* the value we observed when $H_0$ is true).
+
+3. $H_a\!: \mu \neq \mu_0$. The $p$-value is $P(\left. |t| \ge |t_{\text{obs}}| \ \right| H_0)$ (i.e., the probability of a value of $t$ that is *at least as large in absolute value* than the value we observed when $H_0$ is true).
+
+Note that here $\mu_0$ denotes the value of $\mu$ hypothesized by the null hypothesis, and $$t_{\text{obs}} = \frac{\bar{x}-\mu_0}{s/\sqrt{n}}$$ is the value of the test statistic we observe/compute.
+
+The steps of a statistical test concerning $\mu$ are like those for the test concerning $p$.
+
+1. State the null and alternative hypotheses.
+
+2. Check sample size and distribution (informally). 
+
+3. Compute the test statistic.
+
+4. Compute the $p$-value using the [$t$ distribution](http://www.statdistributions.com/t/).
+
+5. Make a decision.
+
+**Example**: For the sample of $n$ = `r nrow(d)` observations, mean percent time spent with the yellow-tailed male was about $\bar{x}$ = `r round(mean(y),1)`\% and the standard deviation was about $s$ = `r round(sd(y),1)`\%. Would we conclude that female platies spend, on average, more time with the yellow-tailed male?  
+
+\pagebreak
+
+**Example**: Consider the following data from a study of the volume of the left hippocampus for twin pairs discordant for schizophrenia.
+```{r, fig.width = 9}
+d <- Sleuth3::case0202
+d$Difference <- with(d, Unaffected - Affected)
+m <- round(mean(d$Difference), 2)
+s <- round(sd(d$Difference), 2)
+n <- nrow(d)
+d$Pair = 1:n
+d <- d[,c(4,1,2,3)]
+ktbl(headtail(round(d,2), 5)) %>% add_header_above(c(" " = 1, "Twin" = 2, " " = 1))
+```
+```{r, fig.height = 1.5}
+d <- Sleuth3::case0202
+d$pair <- factor(1:nrow(d))
+d <- reshape2::melt(d, measure.vars = c("Unaffected","Affected"),
+  variable.name = "twin", value.name = "volume")
+
+tmp <- d %>% group_by(twin) %>% summarise(mean = mean(volume))
+tmp$x <- 1:2
+
+p <- ggplot(d, aes(x = twin)) + coord_flip() + theme_classic()
+p <- p + labs(x = "", y = "Left Hippocampus Volume")
+p <- p + geom_dotplot(aes(y = volume), binaxis = "y", stackdir = "up", binwidth = 0.01)
+p <- p + geom_line(aes(x = as.numeric(twin) + 0.03, y = volume, group = pair), color = grey(0.5))
+p <- p + geom_dotplot(aes(y = volume), binaxis = "y", stackdir = "up", binwidth = 0.01)
+p <- p + geom_point(aes(y = mean, x = x - 0.1), data = tmp, pch = 17)
+p <- p + ggtitle("Distribution of Volume by Twin Status")
+p1 <- p
+
+d <- Sleuth3::case0202
+d$diff <- with(d, Unaffected - Affected)
+d$m <- with(d, mean(Unaffected - Affected))
+
+p <- ggplot(d, aes(x = Unaffected - Affected)) + theme_classic() + noyaxis
+p <- p + geom_dotplot(binwidth = 0.01)
+p <- p + labs(x = "Difference in Left Hippocampus Volume")
+p <- p + geom_point(aes(x = m, y = -0.1), pch = 17)
+p <- p + ggtitle("Distribution of Difference of Volume")
+p2 <- p
+
+#cowplot::plot_grid(p1, p2, align = "v", ncol = 1, rel_heights = c(2,1))
+plot(p2)
+```
+
+The mean difference from the sample is $\bar{x}$ = `r m` cubic centimeters, and the standard deviation from the sample is $s$ = `r s` cubic centimeters. Is this result statistically significant at a signficiance level of $\alpha$ = 0.05?  
+
+\pagebreak
+
+**Example**: Consider the data from the study of the pygmalion effect. The figure below shows the scores from the platoons in the control and pygmalion treatment conditions for each company, and the differences between those scores for each company. 
+```{r, fig.height = 4, fig.width = 9}
+d <- Sleuth3::case1302
+d <- d %>% group_by(Company, Treat) %>% summarise(Score = mean(Score))
+
+p <- ggplot(d, aes(x = Score, y = factor(as.numeric(Company))))
+p <- p + labs(y = "Company", x = "Practical Specialty Test Score", shape = "Treatment")
+p <- p + geom_point(aes(shape = Treat)) + scale_shape_manual(values = c(1,16))
+p <- p + theme_classic() + theme(legend.position = c(0.8, 0.85))
+p1 <- p
+
+d <- Sleuth3::case1302
+d <- d %>% group_by(Company, Treat) %>% summarise(y = mean(Score))
+d <- reshape2::dcast(d, Company ~ Treat, value.var = "y")
+
+p <- ggplot(d, aes(x = Pygmalion - Control, y = factor(as.numeric(Company))))
+p <- p + labs(y = "", x = "Score Difference")
+p <- p + geom_point(shape = 18) + theme_classic()
+p2 <- p
+
+cowplot::plot_grid(p1, p2, ncol = 2, align = "h", rel_widths = c(6,4))
+```
+
+The mean score difference is `r with(d, round(mean(Pygmalion - Control)), 1)` and the standard deviation is `r with(d, round(sd(Pygmalion - Control), 1))`. Is the apparent pygmalion effect statistically signficant at a significance level of $\alpha$ = 0.05?
+
+\pagebreak
+
+**Example**: Each of 22 baseball players ran from home plate to second base two times for each of three routes: *round*, *narrow*, and *wide*. These routes are illustrated in the figure below (the routes have been exaggerated slightly for illustration). 
+```{r, warning = FALSE, echo = FALSE, fig.asp = 0.9, out.width = "60%"}
+library(Hmisc)
+
+f <- function(x, y, ...) {
+  tmp <- bezier(x,y)
+  lines(tmp$x, tmp$y, ...)
+}
+
+par(mai = c(0,0,0,0))
+
+xs <- 0.7
+ys <- 0.7
+
+plot.new()
+plot.window( xlim=c(-5,6)/xs, ylim=c(0,10)/ys)
+lines(x = c(0,5)/xs, y = c(0,5)/ys)
+lines(x = c(0,-5)/xs, y = c(0,5)/ys)
+lines(x = c(5,0)/xs, y = c(5,10)/ys)
+lines(x = c(0,-5)/xs, y = c(10,5)/ys)
+
+# home plate
+lines(x = c(0.25,0.25)/xs, y = c(0.25,0.5)/ys)
+lines(x = -c(0.25,0.25)/xs, y = c(0.25,0.5)/ys)
+lines(x = c(-0.25,0.25)/xs, y = c(0.5,0.5)/ys)
+
+# first base
+lines(x = c(4.75, 4.5)/xs, y = c(4.75, 5)/ys)
+lines(x = c(4.5,4.75)/xs, y = c(5,5.25)/ys)
+
+# second base
+lines(x = c(0, 0.25)/xs, y = c(9.5,9.75)/ys)
+lines(x = -c(0, 0.25)/xs, y = c(9.5,9.75)/ys)
+
+# third base
+lines(x = -c(4.75, 4.5)/xs, y = c(4.75, 5)/ys)
+lines(x = -c(4.5,4.75)/xs, y = c(5,5.25)/ys)
+
+# round
+f(x = c(3,4,6,5)/xs, y = c(3,4,4,5)/ys, lty = 2)
+
+# narrow
+f(x = c(0, 3, 5, 5)/xs, y = c(0, 2.5, 3.5, 5)/ys, lty = 3)
+f(x = c(0, 3, 5, 5)/xs, y = c(10, 10-2.5, 10-3.5, 10-5)/ys, lty = 3)
+
+# wide
+f(x = c(0,3.5,6.5,5)/xs, y = c(0,3,3.5,5)/ys, lty = 4)
+
+legend(3/xs, 1.5/ys, bty = "n", lty = 2:4, legend = c("round","narrow","wide"))
+```
+Let's compare the *narrow* and *wide* routes. (Note: The running times are the average of two runs between a point 35 feet from home plate to a point 15 feet short of second base.)
+```{r}
+d <- trtools::baserun %>% select(narrow, wide) %>% mutate(player = 1:n(), difference = narrow - wide) %>% select(player, narrow, wide, difference) 
+
+m <- mean(d$difference)
+s <- sd(d$difference)
+
+d <- d %>% mutate(difference = as.character(round(difference,2)))
+names(d) <- c("Player","narrow","wide","Difference")
+headtail(d, 5) %>% ktbl()  %>% add_header_above(c(" " = 1, "Route" = 2, " " = 1))
+```
+For the sample of observations, the mean difference is `r m` seconds, and the standard deviation is `r round(s,3)` seconds. Is a mean difference of `r m` seconds statistically significant at a significance level of $\alpha$ = 0.05?
+
+
