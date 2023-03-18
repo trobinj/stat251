@@ -1,0 +1,273 @@
+---
+output:
+  html_document: 
+    theme: readable
+  pdf_document: default
+---
+
+```{r, echo = FALSE, message = FALSE}
+library(lubridate)
+date <- "03-20-2023"
+weekday <- wday(mdy(date), label = TRUE, abbr = FALSE)
+month <- month(mdy(date), label = TRUE)
+day <- day(mdy(date))
+```
+
+---
+title: `r paste(weekday, ", ", month, " ", day, sep = "")`
+output:
+  html_document: 
+    theme: readable
+  pdf_document: default
+header-includes:
+  - \usepackage{float}
+  - \usepackage{booktabs}
+  - \usepackage{array}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, out.width = "100%", fig.align = "center", cache = FALSE, dev = ifelse(knitr::is_html_output(), "png", "pdf"))
+```
+
+```{r packages}
+library(tidyverse)
+suppressWarnings(library(kableExtra))
+```
+
+```{r utilities}
+source("../../utilities.R")
+```
+
+`r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](lecture-", date, ".pdf) copy of this lecture.", sep = ""), "")`
+
+
+## Testing Composite Null Hypotheses
+
+**Simple hypotheses** specify that a parameter is *equal* some value (e.g., $p$ $=$ 0.5 or $\mu$ $=$ 0). 
+
+**Composite hypotheses** specify that a parameter is in a range of values (e.g., $p$ $>$ 0.5 or $\mu$ $>$ 0).
+
+In many of our examples null hypothesis are simple and alternative hypothesis are composite. But sometimes the null hypothesis is also composite such as
+$$
+  H_0: p \le 0.5,\ H_a: p > 0.5
+$$
+or 
+$$
+  H_0: \mu \le 0,\ H_a: \mu > 0.
+$$
+Decision rule for composite null hypotheses: 
+
+1. Reject $H_0\!: \mu \le \mu_0$ if and only if you reject $H_0\!: \mu = \mu_0$.
+
+2. Reject $H_0\!: p \le p_0$ if and only if you reject $H_0\!: p = p_0$. 
+
+\pagebreak
+
+**Example**: Consider again the schizophrenia twin study. 
+```{r}
+d <- Sleuth3::case0202
+d$Difference <- with(d, Unaffected - Affected)
+m <- round(mean(d$Difference), 2)
+s <- round(sd(d$Difference), 2)
+n <- nrow(d)
+d$Pair = 1:n
+d <- d[,c(4,1,2,3)]
+ktbl(headtail(round(d,2), 5)) %>% add_header_above(c(" " = 1, "Twin" = 2, " " = 1))
+```
+The mean and standard deviation for the sample of `r n` differences are `r m` and `r s` cubic centimeters, respectively. 
+
+How can we conduct a statistical test with the *composite* hypotheses $H_0\!: \mu \le 0$ and $H_a\!: \mu > 0$ using a significance level of $\alpha$ = 0.05?
+
+\vspace{6cm}
+
+```{r, fig.height = 2.75}
+d <- Sleuth3::case0202
+d$Difference <- with(d, Unaffected - Affected)
+m <- round(mean(d$Difference), 2)
+s <- round(sd(d$Difference), 2)
+n <- nrow(d)
+d$Pair = 1:n
+d <- d[,c(4,1,2,3)]
+x <- seq(0, -1, length = 100)
+y <- 1 - pt((m-x)/(s/sqrt(n)), df = n-1)
+d <- data.frame(x = x, y = y)
+p <- ggplot(d, aes(x = x, y = y)) + geom_line() + theme_classic()
+p <- p + geom_point(aes(x = x[1], y = y[1]), shape = 16)
+p <- p + labs(x = tex("$\\mu_0$"), y = "p-value") 
+p <- p + ggtitle("Schizophrenia Twin Study p-Value")
+p <- p + annotate("text", x[1], y[1] + 0.0002, label = round(y[1],3))
+plot(p)
+```
+
+\pagebreak
+
+**Example**: A study of the "peak/end effect" used two treatment conditions summarized below.[^kahneman]
+```{r}
+d <- data.frame(Time = c("60 sec", "30 sec"), Longer = c("14 C", "15 C"), Shorter = c("14 C", ""))
+ktbl(d) %>% add_header_above(c(" " = 1, "Treatment" = 2))
+```
+Each of 32 subjects went through both treatment conditions (in random order). When asked which of the two treatments they would like to repeat, 22 selected the *longer* treatment. Let $p$ be the probability of selecting to repeat the *longer* treatment.
+
+How can we conduct a statistical test with the *composite* hypotheses $H_0\!: p \le 0.5$ versus $H_a\!: p > 0.5$ using a significance level of $\alpha$ = 0.05?
+
+\vspace{6cm}
+
+```{r, fig.height = 2.75}
+x <- seq(0.5, 0.3, length = 100)
+y <- 1 - pnorm((22/32 - x)/sqrt(x*(1-x)/32))
+d <- data.frame(x = x, y = y)
+p <- ggplot(d, aes(x = x, y = y)) + geom_line() + theme_classic()
+p <- p + geom_point(aes(x = x[1], y = y[1]), shape = 16)
+p <- p + labs(x = tex("$p_0$"), y = "p-value")
+p <- p + ggtitle("Peak/End Effect p-Value")
+p <- p + annotate("text", x[1], y[1] + 0.0015, label = round(y[1],3))
+plot(p)
+```
+
+[^kahneman]: Kahneman, D., Fredrickson, B. L., Schreiber, C. A., & Redelmeier, D. A. (1993). When more pain is preferred to less. *Psychological Science*, *4(6)*, 401--405.
+
+\pagebreak
+
+**Example**: Recall the garlic study where 37 out of 66 subjects reported fewer tick bites when taking garlic. Let $p$ be the probability that someone responds that they were bit less often when taking garlic. 
+
+How can we conduct a statistical test with the *composite* hypotheses $H_0\!: p \le 0.5$ versus $H_a\!: p > 0.5$ using a significance level of $\alpha$ = 0.05?
+
+\vspace{6cm}
+
+```{r, fig.height = 2.75}
+x <- seq(0.5, 0.3, length = 100)
+y <- 1 - pnorm((37/66 - x)/sqrt(x*(1-x)/66))
+d <- data.frame(x = x, y = y)
+p <- ggplot(d, aes(x = x, y = y)) + geom_line() + theme_classic()
+p <- p + geom_point(aes(x = x[1], y = y[1]), shape = 16)
+p <- p + labs(x = tex("$p_0$"), y = "p-value")
+p <- p + ggtitle("Garlic Study p-Value")
+p <- p + annotate("text", x[1], y[1] + 0.015, label = round(y[1],3))
+plot(p)
+```
+
+\pagebreak
+
+## Using Confidence Intervals for Statistical Tests
+
+Consider a test of the hypotheses $H_0\!: \mu = \mu_0$ versus $H_a\!: \mu \neq \mu_0$. How can we use the *confidence interval* 
+$$
+  \bar{x} \pm t\frac{s}{\sqrt{n}}
+$$
+to conduct this test? 
+
+Decision rule: Reject $H_0\!:\mu = \mu_0$ if and only if $$\bar{x} - t\frac{s}{\sqrt{n}} < \mu_0 < \bar{x} + t\frac{s}{\sqrt{n}}$$ is *not* true.
+
+**Example**: Consider again the schizophrenia twin study. 
+```{r}
+d <- Sleuth3::case0202
+d$Difference <- with(d, Unaffected - Affected)
+m <- round(mean(d$Difference), 2)
+s <- round(sd(d$Difference), 2)
+n <- nrow(d)
+d$Pair = 1:n
+d <- d[,c(4,1,2,3)]
+ktbl(headtail(round(d,2), 5)) %>% add_header_above(c(" " = 1, "Twin" = 2, " " = 1))
+alpha <- 0.05
+```
+The mean and standard deviation for the sample of `r n` differences are `r m` and `r s` cubic centimeters, respectively. The confidence interval for $\mu$, based on a confidence level of 95%, is
+$$
+  `r m` \pm `r round(-qt(alpha/2, df = n-1), 3)` \frac{`r s`}{\sqrt{`r n`}}
+  \Rightarrow
+  `r m` \pm `r round(round(-qt(alpha/2, df = n-1), 3)*s/sqrt(n), 2)`
+  \Rightarrow
+  (`r m - round(round(-qt(alpha/2, df = n-1), 3)*s/sqrt(n), 2)`, 
+   `r m + round(round(-qt(0.025, df = n-1), 3)*s/sqrt(n), 2)`).
+$$
+What if we had the same results *except* that the the standard deviation was three times larger? Then the confidence interval would be
+$$
+  `r m` \pm `r round(-qt(alpha/2, df = n-1), 3)` \frac{`r 3*s`}{\sqrt{`r n`}}
+  \Rightarrow
+  `r m` \pm `r round(round(-qt(alpha/2, df = n-1), 3)*3*s/sqrt(n), 2)`
+  \Rightarrow
+  (`r m - round(round(-qt(alpha/2, df = n-1), 3)*3*s/sqrt(n), 2)`, 
+   `r m + round(round(-qt(0.025, df = n-1), 3)*3*s/sqrt(n), 2)`).
+$$
+
+
+Requirements for the test and confidence interval to agree.
+
+1. The test must be two-sided.
+2. The confidence level must be $(1-\alpha)100\%$.
+
+\pagebreak
+
+## The Sign Test
+
+The **sign test** is a test that can be applied to matched-pairs designs.[^qualls] It is what is sometimes called a "non-parametric" test. An advantage of such tests is that they can sometimes handle situations where the measurements are relatively "crude" in nature. 
+
+**Example**: Consider the following data from a study comparing the ratings of husbands and wives on the perceived relative influence of each member of the couple on a major financial decision. The ratings are made on a 1-7 scale ranging from wife-dominated (1) to husband-dominated (7).  
+```{r}
+d <- data.frame(
+  Couple = 1:17,
+  Husband = c(5,4,6,6,3,2,5,3,1,4,5,4,4,7,5,5,5),
+  Wife = c(3,3,4,5,3,3,2,3,2,3,2,2,5,2,5,3,1)
+)
+d$Difference = with(d, Husband - Wife)
+d$Sign <- " "
+d$Sign[d$Difference > 0] <- "$+$"
+d$Sign[d$Difference < 0] <- "$-$"
+ktbl(d) %>% add_header_above(c(" " = 1, "Rating" = 2, " " = 1, " " = 1))
+```
+Note that there are `r sum(d$Sign != " ")` signs, of which `r sum(d$Difference > 0)` are positive signs. Let $p$ be the probability of a positive sign and consider the hypotheses $H_0\!: p = 0.5$ versus $H_a\!: p > 0.5$, or $H_0\!: p = 0.5$ versus $H_a\!: p \neq 0.5$. 
+
+Assuming $p$ = 0.5, the number of positive signs out of a total number of signs has a *binomial* distribution where
+$$
+  P(s) = \frac{n!}{s!(n-s)!}0.5^s(1-0.5)^{n-s},
+$$
+where $n$ is the number of *signs* and $s$ is the number of positive signs.
+```{r}
+n <- sum(d$Difference != 0)
+d <- data.frame(x = 0:n)
+d$y <- dbinom(0:n, n, 0.5)
+d$txt <- format(round(d$y, 4), nsmall = 4)
+p <- ggplot(d, aes(x = x, y = y)) + geom_point() + theme_classic()
+p <- p + geom_segment(aes(xend = x, yend = 0))
+p <- p + labs(x = "Number of Positive Signs", y = "Probability")
+p <- p + scale_x_continuous(breaks = 0:n)
+p <- p + geom_text(aes(y = y + 0.01, label = txt), size = 2.5)
+p <- p + ggtitle("Sampling Distribution of Number of Positive Signs")
+plot(p)
+```
+For our use we can tabulate this sampling distribution.
+```{r}
+n <- 5:15
+x <- 0:max(n)
+p <- matrix("", max(n) + 1, length(n))
+for (i in 1:length(n)) {
+  p[1:(n[i]+1), i] <- as.character(format(round(dbinom(0:n[i], n[i], 0.5), 4), nsmall = 4)) 
+}
+d <- as.data.frame(cbind(x, p))
+names(d) <- c("$+$ Signs", n)
+ktbl(d) %>% add_header_above(c(" " = 1, "Total Number of Signs" = length(n)))
+```
+So what then are the $p$-values for our tests?
+
+[^qualls]: Qualls, W. J. (1982). A study of the joint decision making between husbands and wives in a housing purchase decision. Unpublished dissertation, Indiana University. 
+
+\pagebreak
+
+**Example**: Consider the following data using a matched-pairs design to investigate the effectiveness of temporary skin grafts from cadavers for severely burned patients.[^hla] Each patient was given one graft that was a *close* match and another that was a *poor* match based on human leukocyte antigen (HL-A) compatibility. The numbers shown below are days until the inevitable rejection of the graft by the immune system. 
+```{r}
+d <- data.frame(Patient = 1:11, 
+  Close = c(37,19,57,93,16,23,20,63,29,60,18),
+  Poor = c(29,13,15,26,11,18,26,43,18,42,19))
+d$Difference <- with(d, Close - Poor)
+d$Sign <- " "
+d$Sign[d$Difference > 0] <- "$+$"
+d$Sign[d$Difference < 0] <- "$-$"
+d$Close[3] <- paste(d$Close[3], "+", sep = "")
+d$Close[10] <- paste(d$Close[10], "+", sep = "")
+d$Difference[3] <- paste("at least", d$Difference[3])
+d$Difference[10] <- paste("at least", d$Difference[10])
+ktbl(d) %>% add_header_above(c(" " = 1, "HL-A Compatibility" = 2, " " = 1, " " = 1))
+```
+Note: For patients 3 and 10 only the minimum time until rejection is known for the close match skin graft due to the death of one patient and loss of data on the other (these are sometimes called *censored* observations). This would preclude use of the $t$ test statistic, but the sign test can still be applied!
+
+[^hla]: Batchelor, J. R. \& Hackett, M. (1970). HL-A matching in treatment of burned patients with skin allografts. *Lancet*, *2*, 581--583.
+

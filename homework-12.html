@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Homework Problem Set 12: Composite Hypothesis, Confidence Intervals for Statistical Tests, and the Sign Test</title>
+
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics 251</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="lectures.html">Lectures</a>
+</li>
+<li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Homework Problem Set 12: Composite
+Hypothesis, Confidence Intervals for Statistical Tests, and the Sign
+Test</h1>
+
+</div>
+
+
+<p>You can also download a <a href="homework-12.pdf">PDF</a> copy of
+this homework assignment.</p>
+<p><strong>Instructions</strong>: These homework problems concern
+composite null hypotheses, the use of confidence intervals for
+statistical tests, and the sign tests. The solutions for the composite
+null hypothesis and confidence interval problems problems are given at
+the end.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>
+For the sign test problems the answer is given and you are asked to
+confirm the answer by computing it yourself.</p>
+<div id="incidence-of-foot-lice" class="section level2">
+<h2>Incidence of Foot Lice</h2>
+<p>Researchers at the National Institutes of Hobbit Health (NIHH) were
+interested in determining if there had be an increase in the incidence
+of foot lice in the West Farthing. A year ago a very large survey had
+estimated that 15% of Hobbits in the West Farthing had foot lice. This
+year resources were not available for such a large survey, so the
+researchers obtained a random sample of only 100 Hobbits from the West
+Farthing and tested them for foot lice. Of those Hobbits 20 tested
+positive for foot lice. Let <span class="math inline">\(p\)</span> be
+the probability of sampling a Hobbit with foot lice this year. Then
+<span class="math inline">\(p\)</span> is also the proportion of Hobbits
+<em>in the population</em> that have foot lice this year. The question
+then is whether this proportion has increased since last year (i.e.,
+<span class="math inline">\(p &gt; 0.15\)</span>) or not (i.e., <span
+class="math inline">\(p \le 0.15\)</span>). Conduct a statistical test
+with the composite null hypothesis <span class="math inline">\(H_0: p
+\le 0.15\)</span> versus the composite alternative hypothesis <span
+class="math inline">\(H_a: p &gt; 0.15\)</span> using a significance
+level of 0.05.</p>
+</div>
+<div id="vegemite-quality-control" class="section level2">
+<h2>Vegemite Quality Control</h2>
+<p>A quality control analyst is responsible for maintaining the quality
+of Vegemite produced and packaged at a production facility. The facility
+produces many thousands of bottles per run. To monitor the production
+process the analyst using simple random sampling to select a few bottles
+from each run and tests them. One thing she monitors is if the bottles
+are over-filled or under-filled, on average. These bottles should
+contain about 220g of Vegemite. Each bottle will contain an amount that
+deviates from that by some amount which is tolerable if the deviation is
+not too large. But problems can arise if the bottles are contain too
+much or too little Vegemite, on average. In what follows let <span
+class="math inline">\(\mu\)</span> denote the mean amount of Vegemite
+per bottle in a run. The analyst tries to determine if <span
+class="math inline">\(\mu\)</span> becomes higher than 230g or lower
+than 210g.</p>
+<ol style="list-style-type: decimal">
+<li><p>During one production run a random sample of 25 bottles was
+selected. The mean contents per bottle in this sample was 235 grams, and
+the standard deviation was 10 grams. Conduct a test with the composite
+null hypothesis <span class="math inline">\(\mu \le 230\)</span> versus
+the composite alternative hypothesis <span class="math inline">\(\mu
+&gt; 230\)</span>. Use a significance level of 0.05.</p></li>
+<li><p>During another production run a random sample of 25 bottles was
+selected. The mean contents per bottle in this sample was 207 grams, and
+the standard deviation was 15 grams. Conduct a test with the composite
+null hypothesis <span class="math inline">\(\mu \ge 210\)</span> versus
+the composite alternative hypothesis <span class="math inline">\(\mu
+&lt; 210\)</span>. Use a significance level of 0.05.</p></li>
+</ol>
+</div>
+<div id="confidence-intervals-for-statistical-tests"
+class="section level2">
+<h2>Confidence Intervals for Statistical Tests</h2>
+<p>Suppose I computed <em>two</em> confidence intervals for <span
+class="math inline">\(\mu\)</span> based on a sample of observations.
+The first confidence interval, <span class="math display">\[
+105 \pm 4.128 \Leftrightarrow (100.872, 109.128),
+\]</span> is based on a confidence level of 95%. The second confidence
+interval, <span class="math display">\[
+105 \pm 5.594 \Leftrightarrow (99.406, 110.594),
+\]</span> is based on a confidence level of 99%.</p>
+<p>Now consider statistical test with the hypotheses <span
+class="math inline">\(H_0\!: \mu = \mu_0\)</span> versus <span
+class="math inline">\(H_a\!: \mu \neq \mu_0\)</span>. Consider the
+following possible values of <span class="math inline">\(\mu_0\)</span>:
+98, 100, 102, 104, 106, 108, 110, 112. Recall that we can using a
+confidence interval to conduct the statistical test in the sense that
+the confidence interval will determine if the null hypothesis is
+rejected or not.</p>
+<ol style="list-style-type: decimal">
+<li><p>Of the eight null hypotheses, which would be <em>rejected</em>
+when using a significance level of <span
+class="math inline">\(\alpha\)</span> = 0.05?</p></li>
+<li><p>Of the eight null hypotheses, which would be <em>rejected</em>
+when using a significance level of <span
+class="math inline">\(\alpha\)</span> = 0.01?</p></li>
+</ol>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="sign-test-table" class="section level2">
+<h2>Sign Test Table</h2>
+<p>The table below is used for the remaining problems involving the sign
+test. The table gives the sampling distribution of the number of
+positive signs out of a total number of signs, where it is assumed that
+the probability of a positive sign is 0.5 under the null hypothesis.<a
+href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> Use this
+table to compute <span class="math inline">\(p\)</span>-values for sign
+tests in the next three problems.</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="10">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Total Number of Signs
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(+\)</span> Signs
+</th>
+<th style="text-align:center;">
+7
+</th>
+<th style="text-align:center;">
+8
+</th>
+<th style="text-align:center;">
+9
+</th>
+<th style="text-align:center;">
+10
+</th>
+<th style="text-align:center;">
+11
+</th>
+<th style="text-align:center;">
+12
+</th>
+<th style="text-align:center;">
+13
+</th>
+<th style="text-align:center;">
+14
+</th>
+<th style="text-align:center;">
+15
+</th>
+<th style="text-align:center;">
+16
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0.0078
+</td>
+<td style="text-align:center;">
+0.0039
+</td>
+<td style="text-align:center;">
+0.0020
+</td>
+<td style="text-align:center;">
+0.0010
+</td>
+<td style="text-align:center;">
+0.0005
+</td>
+<td style="text-align:center;">
+0.0002
+</td>
+<td style="text-align:center;">
+0.0001
+</td>
+<td style="text-align:center;">
+0.0001
+</td>
+<td style="text-align:center;">
+0.0000
+</td>
+<td style="text-align:center;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0.0547
+</td>
+<td style="text-align:center;">
+0.0313
+</td>
+<td style="text-align:center;">
+0.0176
+</td>
+<td style="text-align:center;">
+0.0098
+</td>
+<td style="text-align:center;">
+0.0054
+</td>
+<td style="text-align:center;">
+0.0029
+</td>
+<td style="text-align:center;">
+0.0016
+</td>
+<td style="text-align:center;">
+0.0009
+</td>
+<td style="text-align:center;">
+0.0005
+</td>
+<td style="text-align:center;">
+0.0002
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+0.1641
+</td>
+<td style="text-align:center;">
+0.1094
+</td>
+<td style="text-align:center;">
+0.0703
+</td>
+<td style="text-align:center;">
+0.0439
+</td>
+<td style="text-align:center;">
+0.0269
+</td>
+<td style="text-align:center;">
+0.0161
+</td>
+<td style="text-align:center;">
+0.0095
+</td>
+<td style="text-align:center;">
+0.0056
+</td>
+<td style="text-align:center;">
+0.0032
+</td>
+<td style="text-align:center;">
+0.0018
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+0.2734
+</td>
+<td style="text-align:center;">
+0.2188
+</td>
+<td style="text-align:center;">
+0.1641
+</td>
+<td style="text-align:center;">
+0.1172
+</td>
+<td style="text-align:center;">
+0.0806
+</td>
+<td style="text-align:center;">
+0.0537
+</td>
+<td style="text-align:center;">
+0.0349
+</td>
+<td style="text-align:center;">
+0.0222
+</td>
+<td style="text-align:center;">
+0.0139
+</td>
+<td style="text-align:center;">
+0.0085
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+0.2734
+</td>
+<td style="text-align:center;">
+0.2734
+</td>
+<td style="text-align:center;">
+0.2461
+</td>
+<td style="text-align:center;">
+0.2051
+</td>
+<td style="text-align:center;">
+0.1611
+</td>
+<td style="text-align:center;">
+0.1208
+</td>
+<td style="text-align:center;">
+0.0873
+</td>
+<td style="text-align:center;">
+0.0611
+</td>
+<td style="text-align:center;">
+0.0417
+</td>
+<td style="text-align:center;">
+0.0278
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+0.1641
+</td>
+<td style="text-align:center;">
+0.2188
+</td>
+<td style="text-align:center;">
+0.2461
+</td>
+<td style="text-align:center;">
+0.2461
+</td>
+<td style="text-align:center;">
+0.2256
+</td>
+<td style="text-align:center;">
+0.1934
+</td>
+<td style="text-align:center;">
+0.1571
+</td>
+<td style="text-align:center;">
+0.1222
+</td>
+<td style="text-align:center;">
+0.0916
+</td>
+<td style="text-align:center;">
+0.0667
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+0.0547
+</td>
+<td style="text-align:center;">
+0.1094
+</td>
+<td style="text-align:center;">
+0.1641
+</td>
+<td style="text-align:center;">
+0.2051
+</td>
+<td style="text-align:center;">
+0.2256
+</td>
+<td style="text-align:center;">
+0.2256
+</td>
+<td style="text-align:center;">
+0.2095
+</td>
+<td style="text-align:center;">
+0.1833
+</td>
+<td style="text-align:center;">
+0.1527
+</td>
+<td style="text-align:center;">
+0.1222
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+0.0078
+</td>
+<td style="text-align:center;">
+0.0313
+</td>
+<td style="text-align:center;">
+0.0703
+</td>
+<td style="text-align:center;">
+0.1172
+</td>
+<td style="text-align:center;">
+0.1611
+</td>
+<td style="text-align:center;">
+0.1934
+</td>
+<td style="text-align:center;">
+0.2095
+</td>
+<td style="text-align:center;">
+0.2095
+</td>
+<td style="text-align:center;">
+0.1964
+</td>
+<td style="text-align:center;">
+0.1746
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+0.0039
+</td>
+<td style="text-align:center;">
+0.0176
+</td>
+<td style="text-align:center;">
+0.0439
+</td>
+<td style="text-align:center;">
+0.0806
+</td>
+<td style="text-align:center;">
+0.1208
+</td>
+<td style="text-align:center;">
+0.1571
+</td>
+<td style="text-align:center;">
+0.1833
+</td>
+<td style="text-align:center;">
+0.1964
+</td>
+<td style="text-align:center;">
+0.1964
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+0.0020
+</td>
+<td style="text-align:center;">
+0.0098
+</td>
+<td style="text-align:center;">
+0.0269
+</td>
+<td style="text-align:center;">
+0.0537
+</td>
+<td style="text-align:center;">
+0.0873
+</td>
+<td style="text-align:center;">
+0.1222
+</td>
+<td style="text-align:center;">
+0.1527
+</td>
+<td style="text-align:center;">
+0.1746
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+0.0010
+</td>
+<td style="text-align:center;">
+0.0054
+</td>
+<td style="text-align:center;">
+0.0161
+</td>
+<td style="text-align:center;">
+0.0349
+</td>
+<td style="text-align:center;">
+0.0611
+</td>
+<td style="text-align:center;">
+0.0916
+</td>
+<td style="text-align:center;">
+0.1222
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+11
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+0.0005
+</td>
+<td style="text-align:center;">
+0.0029
+</td>
+<td style="text-align:center;">
+0.0095
+</td>
+<td style="text-align:center;">
+0.0222
+</td>
+<td style="text-align:center;">
+0.0417
+</td>
+<td style="text-align:center;">
+0.0667
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+12
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+0.0002
+</td>
+<td style="text-align:center;">
+0.0016
+</td>
+<td style="text-align:center;">
+0.0056
+</td>
+<td style="text-align:center;">
+0.0139
+</td>
+<td style="text-align:center;">
+0.0278
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+13
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+0.0001
+</td>
+<td style="text-align:center;">
+0.0009
+</td>
+<td style="text-align:center;">
+0.0032
+</td>
+<td style="text-align:center;">
+0.0085
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+14
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+0.0001
+</td>
+<td style="text-align:center;">
+0.0005
+</td>
+<td style="text-align:center;">
+0.0018
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+15
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+0.0000
+</td>
+<td style="text-align:center;">
+0.0002
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+16
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+0.0000
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="vegemite-and-marmite-for-foot-hair-softening"
+class="section level2">
+<h2>Vegemite and Marmite for Foot Hair Softening</h2>
+Marketing researchers were interested in consumer opinion of the
+effectiveness of Vegemite and Marmite at promoting foot hair softness.
+They conducted a study using a matched-pairs design with 10 subjects
+where for one week Vegemite would be applied to the foot hair of one
+foot (selected at random) while Marmite would be applied to the other
+foot. After one week each subject was asked to rate the softness of the
+hair on each foot on a 5-point scale with higher numbers indicating
+greater softness. The results are given in the table below.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Product
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Subject
+</th>
+<th style="text-align:center;">
+Vegemite
+</th>
+<th style="text-align:center;">
+Marmite
+</th>
+<th style="text-align:center;">
+Difference
+</th>
+<th style="text-align:center;">
+Sign
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Hildegard Took-Brandybuck
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Engelberge Littlefoot
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(+\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Laura Bottomhill
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Gundradis Hairyfoot
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+-1
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(-\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Myrna Proudmead
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(+\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ponto Mugwort
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(+\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Theodulph Underhill
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Holfast Whitbottom
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(+\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Faramond Underburrow
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(+\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Odo Heathertoes
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(+\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Consider a <em>sign test</em> applied to the signs of the differences
+of the ratings between the Vegemite foot and the Marmite foot (i.e.,
+Vegemite foot rating minus Marmite foot rating). Let <span
+class="math inline">\(n\)</span> denote the number of signs and let
+<span class="math inline">\(p\)</span> denote the probability of a
+positive sign. Confirm that the p-value for a <em>sign test</em> with
+the hypotheses <span class="math inline">\(H_0\!: p = 0.5\)</span>
+versus <span class="math inline">\(H_a\!: p &gt; 0.5\)</span> is
+approximately 0.0625. Also confirm that the p-value for when the
+alternative hypothesis is <span class="math inline">\(H_a\!: p \neq
+0.5\)</span> is approximately 0.125.</p>
+</div>
+<div id="darwins-corn-seedling-study-revisited" class="section level2">
+<h2>Darwin’s Corn Seedling Study Revisited</h2>
+Recall Charles Darwin’s study that compared the heights of corn
+seedlings produced from cross-fertilization with those produced from
+self-fertilization.<a href="#fn3" class="footnote-ref"
+id="fnref3"><sup>3</sup></a> He used a <em>matched-pairs</em> design.
+Seedlings were raised in pairs where in each pair there was one seedling
+produced by each type of fertilization. The data are given in the table
+below.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Fertilization
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+Pair
+</th>
+<th style="text-align:center;">
+Cross
+</th>
+<th style="text-align:center;">
+Self
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+23.500
+</td>
+<td style="text-align:center;">
+17.375
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+12.000
+</td>
+<td style="text-align:center;">
+20.375
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+21.000
+</td>
+<td style="text-align:center;">
+20.000
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+22.000
+</td>
+<td style="text-align:center;">
+20.000
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+19.125
+</td>
+<td style="text-align:center;">
+18.375
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+21.500
+</td>
+<td style="text-align:center;">
+18.625
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+22.125
+</td>
+<td style="text-align:center;">
+18.625
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+20.375
+</td>
+<td style="text-align:center;">
+15.250
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+18.250
+</td>
+<td style="text-align:center;">
+16.500
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+21.625
+</td>
+<td style="text-align:center;">
+18.000
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+11
+</td>
+<td style="text-align:center;">
+23.250
+</td>
+<td style="text-align:center;">
+16.250
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+12
+</td>
+<td style="text-align:center;">
+21.000
+</td>
+<td style="text-align:center;">
+18.000
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+13
+</td>
+<td style="text-align:center;">
+22.125
+</td>
+<td style="text-align:center;">
+12.750
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+14
+</td>
+<td style="text-align:center;">
+23.000
+</td>
+<td style="text-align:center;">
+15.500
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+15
+</td>
+<td style="text-align:center;">
+12.000
+</td>
+<td style="text-align:center;">
+18.000
+</td>
+</tr>
+</tbody>
+</table>
+<p>Darwin’s motivation for this study was to show that
+cross-fertilization tends to result in plants that are more fit than
+self-fertilization. If this is true then it would be expected that the
+seedlings produced by cross-fertilization would tend to be taller than
+those produced by self-fertilization. Verify that the p-value for a
+one-sided <em>sign test</em> applied to these data is approximately
+0.0037. (Hint: You do not need to actually compute differences. The
+<em>signs</em> of the differences should be obvious.)</p>
+</div>
+<div id="generalized-reciprocity-in-rats-revisited"
+class="section level2">
+<h2>Generalized Reciprocity in Rats Revisited</h2>
+<p>In an earlier homework assignment you encountered a study that
+examined if there was evidence of <em>generalized reciprocity</em> in
+rats.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>
+Reciprocity is when an organism helps another organism in return for
+that organism helping them. <em>Generalized</em> reciprocity is when the
+organism that was helped helps another organism, but not the organism
+from which they received help. Rats were trained to learn that they
+could pull a lever that would “help” another rat by providing a small
+bit of food. The study then used a cross-over design to observe the
+number of pulls per minute made by each rat under each of two treatment
+conditions: one where the rat had recently received help from another
+rat (by providing it food), and another where the rat had not recently
+received such help. The order of the treatments was randomized and the
+observations made under the two treatment conditions were separated in
+time. The figure below shows the difference in the number of pulls per
+minute (pulls per minute in the help condition minus the pulls per
+minute in the no help condition).
+<img src="homework-12_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" />
+There is what appears to be a tendency for rats to pull the level more
+frequently after they have been helped, but it is not (yet) clear if
+this is a statistically significant result. In an earlier homework you
+used that <span class="math inline">\(t\)</span>-test (i.e., a test
+based on the <span class="math inline">\(t\)</span> test statistic) to
+answer this question. Here you will use the <em>sign test</em> as an
+alternative approach. Confirm that the <span
+class="math inline">\(p\)</span>-value for this test is approximately
+0.0105. (Hint: The signs of the differences can be seen from the figure
+on the right. Recall that a difference of zero does not have a
+sign.)</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="incidence-of-foot-lice-solutions" class="section level2">
+<h2>Incidence of Foot Lice (Solutions)</h2>
+<p>Our hypotheses would be <span class="math inline">\(H_0\!: p \le
+0.15\)</span> and <span class="math inline">\(H_a\!: p &gt;
+0.15\)</span>. If we assume <span class="math inline">\(p =
+0.15\)</span> then the test statistic is <span class="math inline">\(z
+\approx 1.4\)</span>. This test statistic would yield a p-value of about
+0.081. Using a significance level of <span class="math inline">\(\alpha
+= 0.05\)</span> our decision would therefore be to <em>not reject</em>
+<span class="math inline">\(H_0\)</span> and conclude that there is not
+evidence of an increase in the incidence of foot lice.</p>
+</div>
+<div id="vegemite-quality-control-solutions" class="section level2">
+<h2>Vegemite Quality Control (Solutions)</h2>
+<ol style="list-style-type: decimal">
+<li><p>If we assume <span class="math inline">\(\mu = 230\)</span> as
+our null hypothesis then the test statistic is <span
+class="math inline">\(t = 2.5\)</span>. This value of the test statistic
+would yield a p-value of about 0.01. Thus we reject <span
+class="math inline">\(\mu = 230\)</span> and must also reject the
+composite null hypothesis <span class="math inline">\(H_0: \mu \le
+230\)</span>.</p></li>
+<li><p>If we assume <span class="math inline">\(\mu = 210\)</span> as
+our null hypothesis then the test statistic is <span
+class="math inline">\(t = -1\)</span>. This value of the test statistic
+would yield a p-value of about 0.163. Thus we do not reject <span
+class="math inline">\(\mu = 210\)</span> and cannot therefore reject the
+composite null hypothesis <span class="math inline">\(H_0: \mu \ge
+210\)</span>.</p></li>
+</ol>
+</div>
+<div id="confidence-intervals-for-statistical-tests-solutions"
+class="section level2">
+<h2>Confidence Intervals for Statistical Tests (Solutions)</h2>
+<ol style="list-style-type: decimal">
+<li><p>For <span class="math inline">\(\alpha\)</span> = 0.05 we would
+reject the null hypothesis <span class="math inline">\(H_0\!:\mu =
+\mu_0\)</span> for values of <span class="math inline">\(\mu_0\)</span>
+of 98, 100, 110, and 112.</p></li>
+<li><p>For <span class="math inline">\(\alpha\)</span> = 0.01 we would
+reject the null hypothesis for values of <span
+class="math inline">\(\mu_0\)</span> of 98 and 112.</p></li>
+</ol>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>In the solutions the reported values of test statistics
+and p-values have been rounded to the second and third decimal place,
+respectively. Rounding was only done for the final reported values. It
+was avoided in intermediate calculations (e.g., the value of the test
+statistic used to compute a p-value was <em>not</em> rounded).<a
+href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>These numbers have been rounded to four decimal
+places.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Darwin, C. (1876). <em>The effect of cross- and
+self-fertilization in the vegetable kingdom</em> (2nd ed). London: John
+Murray.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Rutte, C. &amp; Taborsky, M. (2007). Generalized
+reciprocity in rats. <em>PLoS Biol</em>, <em>5(7)</em>: e196. <a
+href="doi:10.1371/journal.pbio.0050196"
+class="uri">doi:10.1371/journal.pbio.0050196</a>.<a href="#fnref4"
+class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

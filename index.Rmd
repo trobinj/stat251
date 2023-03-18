@@ -11,7 +11,7 @@ This site contains material for Dr. Johnson's *Statistical Methods* course (Stat
 
 <center>
 
-![https://xkcd.com/539](https://imgs.xkcd.com/comics/boyfriend.png)
+![https://xkcd.com/892](http://imgs.xkcd.com/comics/null_hypothesis.png)
 
 </center>
 
