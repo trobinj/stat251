@@ -99,7 +99,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [Composite hypotheses, the relationship between tests and confidence intervals, and the sign test](lecture-03-20-2023.html). A [set of homework problems](homework-12.html) on these topics is now available.
 
-`r i <- i + 1; d[i]`  
+`r i <- i + 1; d[i]` [Type I and Type II errors in statistical tests](lecture-03-22-2023.html). The [study guide](e4-studyguide.html) for the fourth examination is now available.
 
 `r i <- i + 1; d[i]` 
  
