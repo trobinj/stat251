@@ -101,7 +101,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [Type I and Type II errors in statistical tests](lecture-03-22-2023.html). The [study guide](e4-studyguide.html) for the fourth examination is now available.
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Power](lecture-03-24-2023.html). 
  
 ***
 
