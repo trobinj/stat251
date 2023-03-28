@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Homework Problem Set 13: Inferences for p_1-p_2 from Independent Samples</title>
+
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics 251</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="lectures.html">Lectures</a>
+</li>
+<li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Homework Problem Set 13: Inferences for
+<span class="math inline">\(p_1-p_2\)</span> from Independent
+Samples</h1>
+
+</div>
+
+
+<p>You can also download a <a href="homework-13.pdf">PDF</a> copy of
+this homework assignment.</p>
+<p>Instructions: These homework problems will help familiarize you with
+how we can make inferences concerning the difference between two
+probabilities (i.e., <span class="math inline">\(p_1 - p_2\)</span>).
+For statistical tests state appropriate null and alternative hypotheses,
+compute the test statistic, compute the p-value, and make a
+decision/conclusion. Use a significance level of <span
+class="math inline">\(\alpha\)</span> = 0.05. For confidence intervals
+use a confidence level of 95%. The solutions are given at the end.<a
+href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<div id="sex-role-stereotypes-in-personnel-decisions"
+class="section level2">
+<h2>Sex Role Stereotypes in Personnel Decisions</h2>
+<p>Rosen and Jerdee (1974) conducted a randomized experiment to
+investigate sex role stereotypes in personnel decisions.<a href="#fn2"
+class="footnote-ref" id="fnref2"><sup>2</sup></a> The subjects were 48
+male bank supervisors attending a management institute. Each manager was
+given a hypothetical personnel file and asked if the applicant described
+in the file should be promoted. The contents of the files were
+<em>identical</em> except in half of the files the applicant was listed
+as a man, and in the other half the applicant was listed as a woman. Of
+the 24 managers who were given the file of a male applicant, 21
+recommended promotion, and of the 24 managers who were given the file of
+a female applicant, 14 recommended promotion. Let <span
+class="math inline">\(p_m\)</span> denote the probability that a manager
+will recommend promotion of the <em>male</em> applicant, and let <span
+class="math inline">\(p_f\)</span> denote the probability that a manager
+will recommend promotion of the <em>female</em> applicant. A statistical
+test can be used to determine if there is a relationship between the sex
+of the applicant and the promotion decision using the hypotheses <span
+class="math inline">\(H_0: p_m - p_f = 0\)</span> (i.e., the probability
+of promotion is the same regardless of gender) versus <span
+class="math inline">\(H_a: p_m - p_f \neq 0\)</span> (i.e., the
+probability of promotion is not the same for the two genders). Conduct
+this statistical test including computing the test statistic, the
+p-value, and determining whether or not the null hypothesis would be
+rejected.</p>
+</div>
+<div id="comparison-of-two-drugs-for-nausea-from-chemotherapy"
+class="section level2">
+<h2>Comparison of Two Drugs for Nausea from Chemotherapy</h2>
+<p>An article in the <em>New England Journal of Medicine</em> described
+a randomized experiment that investigated the effectiveness of two
+medications for nausea in patients undergoing chemotherapy treatments
+for cancer.<a href="#fn3" class="footnote-ref"
+id="fnref3"><sup>3</sup></a> In the experiment, 157 patients were
+divided at random into two groups. One group of 78 patients were given a
+standard anti-nausea drug called prochlorperazine, while the other group
+of 79 patients received delta-9-tetrahydrocannabinol (i.e., THC, the
+active ingredient in marijuana). Both medications were delivered orally
+and no patients were told which of the two drugs they were taking. The
+observed response was whether or not the patient experienced relief from
+nausea when undergoing chemotherapy. 16 of the patients taking
+prochlorperazine experienced relief from nausea, while 36 of the
+patients taking THC experienced relief from nausea. Conduct a
+statistical test to determine whether or not the probability of a
+patient experiencing relief from nausea is the same when taking THC
+versus prochlorperazine. This includes stating the null and alternative
+hypotheses, computing the test statistic, computing the p-value, and
+deciding whether or not the null hypothesis is rejected. You may use a
+one-sided or two-sided test.</p>
+</div>
+<div id="aflatoxicol-and-liver-tumors-in-trout" class="section level2">
+<h2>Aflatoxicol and Liver Tumors in Trout</h2>
+Aflatoxicol is a metabolite of Aflatoxin <span
+class="math inline">\(\text{B}_1\)</span>, a toxin produced by mold that
+infects cottonseed meal, peanuts, and grains. It sometimes finds its way
+into freshwater systems. Researchers at the Marine/Freshwater Biomedical
+Sciences Center at Oregon State University conducted a randomized
+experiment to investigate the carcinogenic effects of aflatoxicol in
+rainbow trout (<em>Oncorhynchus mykiss</em>). Tanks of trout embryos
+were exposed to one of five doses (0.01, 0.025, 0.05, 0.1, or 0.25 ppm)
+of aflatoxicol for one hour.<a href="#fn4" class="footnote-ref"
+id="fnref4"><sup>4</sup></a> Figure 1 shows the proportion of trout at
+each dose that developed liver tumors after one year.
+<div class="figure" style="text-align: center">
+<img src="homework-13_files/figure-html/unnamed-chunk-3-1.png" alt="Proportion of rainbow trout with liver tumors one year after exposure to aflatoxicol." width="100%" />
+<p class="caption">
+Proportion of rainbow trout with liver tumors one year after exposure to
+aflatoxicol.
+</p>
+</div>
+<p>Let <span class="math inline">\(p_{\scriptsize 0.1}\)</span> denote
+the probability that a trout will develop liver tumors in one year after
+exposure to aflatoxicol at a dose of 0.01 ppm, and let <span
+class="math inline">\(p_{\scriptsize 0.05}\)</span> denote the
+probability of the same event but with a dose of 0.05 ppm. Compute an
+estimate, margin of error, and confidence interval for the difference
+between these two probabilities — i.e., <span
+class="math inline">\(p_{\scriptsize 0.1} - p_{\scriptsize
+0.05}\)</span>. Note that the sample sizes (353 and 355) are given in
+the figure, as well as the proportions of trout in each sample (226/353
+and 281/355).</p>
+</div>
+<div id="foot-lice-infestation-survey" class="section level2">
+<h2>Foot Lice Infestation Survey</h2>
+Researchers at the National Institutes of Hobbit Health (NIHH) are
+concerned about a possible outbreak of foot lice in the South
+Farthing.<a href="#fn5" class="footnote-ref"
+id="fnref5"><sup>5</sup></a> They have already made inferences about the
+incidence of foot lice in the South Farthing based on a simple random
+sample of 400 Hobbits. But now they want to compare the incidence of
+foot lice in the South Farthing to that in the North, East, and West
+Farthings. For this they obtained simple random samples of Hobbits from
+each of the other Farthings. The sizes of the samples from each Farthing
+and the number of infested Hobbits in the sample are shown in the table
+below.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Foot Lice?
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+Farthing
+</th>
+<th style="text-align:center;">
+yes
+</th>
+<th style="text-align:center;">
+no
+</th>
+<th style="text-align:center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+South
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+300
+</td>
+<td style="text-align:center;">
+400
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+East
+</td>
+<td style="text-align:center;">
+20
+</td>
+<td style="text-align:center;">
+80
+</td>
+<td style="text-align:center;">
+100
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+North
+</td>
+<td style="text-align:center;">
+20
+</td>
+<td style="text-align:center;">
+180
+</td>
+<td style="text-align:center;">
+200
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+West
+</td>
+<td style="text-align:center;">
+80
+</td>
+<td style="text-align:center;">
+320
+</td>
+<td style="text-align:center;">
+400
+</td>
+</tr>
+</tbody>
+</table>
+<p>Let <span class="math inline">\(p_n\)</span>, <span
+class="math inline">\(p_s\)</span>, <span
+class="math inline">\(p_e\)</span>, and <span
+class="math inline">\(p_w\)</span> denote the probability that a
+randomly selected Hobbit from the North, South, East, or West Farthing,
+respectively, has foot lice. Here each probability can also be
+interpreted as the <em>proportion</em> of all Hobbits in a giving
+Farthing that a with foot lice. Compute point estimates of differences
+in the proportion of Hobbits infested with foot lice in the East, North,
+and West Farthings versus the South Farthing (i.e., <span
+class="math inline">\(p_s-p_e\)</span>, <span
+class="math inline">\(p_s-p_n\)</span>, and <span
+class="math inline">\(p_s-p_w\)</span>) as well as the associated
+margins of error and confidence intervals for estimating these
+quantities.</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="sex-role-stereotypes-in-personnel-decisions-solution"
+class="section level2">
+<h2>Sex Role Stereotypes in Personnel Decisions (Solution)</h2>
+<p>The value of the test statistic is <span
+class="math inline">\(z\)</span> <span
+class="math inline">\(\approx\)</span> 2.27. For a two-sided test this
+would yield a p-value of approximately 0.023. Had the researchers used a
+one-sided test with the alternative hypothesis <span
+class="math inline">\(H_a: p_m - p_f \neq 0\)</span> (i.e., the
+probability of promotion is higher for male applicants) then the p-value
+would have been approximately 0.011. In either case we would reject the
+null hypothesis and conclude that there is a statistically significant
+difference between the proportions of male and female applicants who
+were recommended promotion. The probability of promotion was not the
+same for male and female applicants.</p>
+</div>
+<div id="comparison-of-two-drugs-for-nausea-from-chemotherapy-solution"
+class="section level2">
+<h2>Comparison of Two Drugs for Nausea from Chemotherapy (Solution)</h2>
+<p>Let <span class="math inline">\(p_t\)</span> and <span
+class="math inline">\(p_p\)</span> denote the probabilities that a
+patient will report experiencing relief from nausea after having been
+administered THC or prochlorperazine, respectively. Appropriate
+hypotheses would be <span class="math inline">\(H_0\!:p_t - p_p =
+0\)</span> versus <span class="math inline">\(H_a\!:p_t - p_p \neq
+0\)</span>. However if we had anticipated that THC would be more
+effective so that <span class="math inline">\(p_t &gt; p_p\)</span> we
+could also use the one-sided test with hypotheses <span
+class="math inline">\(H_0\!:p_t - p_p = 0\)</span> versus <span
+class="math inline">\(H_a\!:p_t - p_p &gt; 0\)</span>, or a one-sided
+test with a composite null hypothesis <span
+class="math inline">\(H_0\!:p_t - p_p \le 0\)</span>. The value of the
+test statistic is <span class="math inline">\(z\)</span> <span
+class="math inline">\(\approx\)</span> 3.34. For a two-sided test this
+would yield a p-value of approximately 0.001. For a one-sided test the
+p-value would be half of the p-value from the two-sided test. In either
+case we would conclude that the apparent difference in the effectiveness
+of the two drugs is statistically significant. The probability of
+experiencing relief does depend on whether the patient was administered
+THC or prochlorperazine.</p>
+</div>
+<div id="aflatoxicol-and-liver-tumors-in-trout-solutions"
+class="section level2">
+<h2>Aflatoxicol and Liver Tumors in Trout (Solutions)</h2>
+<p>The point estimate is just the difference in the proportions, which
+is approximately 0.15. The margin of error is approximately 0.07. This
+yields a confidence interval of approximately 0.15 <span
+class="math inline">\(\pm\)</span> 0.07.</p>
+</div>
+<div id="foot-lice-infestation-survey-solution" class="section level2">
+<h2>Foot Lice Infestation Survey (Solution)</h2>
+<p>The point estimates, margins of error, and confidence intervals are
+shown in the table below. The margins of error have been rounded to the
+third decimal place.</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Quantity
+</th>
+<th style="text-align:center;">
+Estimate
+</th>
+<th style="text-align:center;">
+Margin of Error
+</th>
+<th style="text-align:center;">
+Confidence Interval
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(p_s-p_e\)</span>
+</td>
+<td style="text-align:center;">
+0.05
+</td>
+<td style="text-align:center;">
+0.089
+</td>
+<td style="text-align:center;">
+0.05 <span class="math inline">\(\pm\)</span> 0.089
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(p_s-p_n\)</span>
+</td>
+<td style="text-align:center;">
+0.15
+</td>
+<td style="text-align:center;">
+0.059
+</td>
+<td style="text-align:center;">
+0.15 <span class="math inline">\(\pm\)</span> 0.059
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(p_s-p_w\)</span>
+</td>
+<td style="text-align:center;">
+0.05
+</td>
+<td style="text-align:center;">
+0.058
+</td>
+<td style="text-align:center;">
+0.05 <span class="math inline">\(\pm\)</span> 0.058
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>In the solutions the reported values of test statistics
+and p-values have been rounded some. Rounding was only done for the
+final reported values. It was avoided in intermediate calculations
+(e.g., the value of the test statistic used to compute a p-value was
+<em>not</em> rounded).<a href="#fnref1"
+class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Rosen, B. &amp; Jerdee, J. (1974). Influence of sex role
+stereotypes on personnel decisions. <em>Journal of Applied
+Psychology</em>, <em>59</em>, 9–14.<a href="#fnref2"
+class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Sallan, S. E., Cronin, C., Zelen, M., &amp; Zinberg, N.
+E. (1980). Antiemetics in patients receiving chemotherapy for cancer: a
+randomized comparison of delta-9-tetrahydrocannabinol and
+prochlorperazine. <em>New England Journal of Medicine</em>,
+<em>302(3)</em>. 135–138.<a href="#fnref3"
+class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>There were four tanks of trout embryos per dose for a
+total of 20 tanks. For simplicity I have combined the data for the tanks
+at each distinct value of dose. But a more sophisticated analysis would
+take into account possible variation between tanks.<a href="#fnref4"
+class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>Most Hobbits live in a region known as the
+<em>Shire</em>. It is divided into four regions or <em>Farthings</em>:
+North, South, East, and West.<a href="#fnref5"
+class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
