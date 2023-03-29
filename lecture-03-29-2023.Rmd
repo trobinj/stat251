@@ -150,7 +150,7 @@ $$
 $$
 How might we conduct a statistical test concerning $p_1-p_2$, and how might we apply that to the results of the aspirin study?
 ```{r}
-d <- data.frame(Group = c("aspirin","control"), yes = c(104,189), no = c(11034-104,11037-189), Total = c(11034,11037))
+d <- data.frame(Group = c("aspirin","control"), yes = c(104,189), no = c(11037-104,11034-189), Total = c(11037,11034))
 ktbl(d) %>% add_header_above(c(" " = 1, "Heart Attack?" = 2, " " = 1))
 ```
 
