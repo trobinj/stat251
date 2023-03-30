@@ -109,7 +109,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [Independent versus dependent samples, inferences for $p_1-p_2$](lecture-03-29-2023.html). A [set of homework problems](homework-13.html) concerning inferences for $p_1-p_2$ is now available.
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Inferences for $\mu_1-\mu_2$](lecture-03-31-2023.html). A [set of homework problems](homework-14.html) concerning inferences for $\mu_1-\mu_2$ is now available.
  
 ***
 
