@@ -113,7 +113,7 @@ i <- 1
  
 ***
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Independent versus dependent samples, an alternative standard error for $\bar{x}_1-\bar{x}_2$](lecture-04-03-2023.html).
 
 `r i <- i + 1; d[i]` 
  
