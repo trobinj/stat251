@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Wednesday, Apr 5</title>
+
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics 251</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="lectures.html">Lectures</a>
+</li>
+<li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Wednesday, Apr 5</h1>
+
+</div>
+
+
+<p>You can also download a <a href="lecture-04-05-2023.pdf">PDF</a> copy
+of this lecture.</p>
+<div id="explanatory-and-response-variables" class="section level2">
+<h2>Explanatory and Response Variables</h2>
+<p>Frequently when looking at the relationship between two variables we
+consider the <em>distribution</em> of a <strong>response
+variable</strong> (also known as a <a
+href="dependentvariable.jpg">“dependent variable”</a>) for <em>each
+value</em> of an <strong>explanatory variable</strong> (also known as an
+“independent variable”). The question we often have is if/how does the
+<em>distribution</em> of the response variable change when the
+<em>value</em> of the explanatory variable changes.</p>
+<p><strong>Example</strong>: Dot plots of samples of observations of
+beak size from before (1976) and after (1978) a drought in 1977.
+<img src="lecture-04-05-2023_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" />
+What are the response and explanatory variables?</p>
+<p><strong>Example</strong>: Creative writing students were “primed”
+with either extrinsic or intrinsic motivation. They were then asked to
+write a poem in the Haiku style about laughter. Each poem was then
+scored for “creativity” on a 40-point scale by judges.</p>
+<p><img src="lecture-04-05-2023_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /><img src="lecture-04-05-2023_files/figure-html/unnamed-chunk-3-2.png" width="100%" style="display: block; margin: auto;" />
+What are the response and explanatory variables?</p>
+</div>
+<div id="average-treatment-effect" class="section level2">
+<h2>Average Treatment Effect</h2>
+<p>Sometimes our goal is to estimate the <strong>average treatment
+effect</strong>, which is the average change in the <strong>response
+variable</strong> <em>caused</em> by changing the <strong>explanatory
+variable</strong> from one value to another.</p>
+<p>The difference <span class="math inline">\(\mu_1-\mu_2\)</span> or
+<span class="math inline">\(p_1-p_2\)</span> is the average treatment
+effect <em>provided that the difference between the parameters is not,
+in part, caused by any confounding variables</em>.</p>
+</div>
+<div id="confounding-variables" class="section level2">
+<h2>Confounding Variables</h2>
+<!-- Examples: Exposure to violent media and violent behavior, smoking and FEV. -->
+<p>A <strong>confounding variable</strong> (sometimes called a
+<em>lurking variable</em>) is a variable with a causal effect on both
+the explanatory and response variables.
+<img src="lecture-04-05-2023_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" />
+Failure to deal with confounding variables can result in a biased
+estimate of the average treatment effect. Three methods of dealing with
+confounding variables are <em>conditioning</em>, <em>randomization</em>,
+and <em>instrumental variables</em>.</p>
+<div style="page-break-after: always;"></div>
+<div id="conditioning" class="section level3">
+<h3>Conditioning</h3>
+<!-- Examples: Smoking and FEV. -->
+<p>By <strong>conditioning</strong> we “hold constant” the confounding
+variable when estimating the average treatment effect. If the
+confounding variable is constant it cannot have a causal effect on the
+explanatory or response variables.
+<img src="lecture-04-05-2023_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="randomization" class="section level3">
+<h3>Randomization</h3>
+<!-- Examples: Smoking and FEV, antidepressant drug trial. -->
+<p>With <strong>randomization</strong> we allow <em>only</em> a random
+variable (e.g., coin flip, dice roll) to have a causal effect the
+explanatory variable. Then any confounding variables cannot have a
+causal effect the explanatory variable.
+<img src="lecture-04-05-2023_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>The presence of randomization is often used to distinguish between
+<em>(randomized) experiments</em> and <em>observational
+studies</em>.</p>
+<p>In an <strong>experiment</strong> the researchers control the value
+of the explanatory variable, typically through the use of
+randomization.</p>
+<p>In an <strong>observational study</strong> the researchers do not
+control the value of the explanatory variable.</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="instrumental-variable" class="section level3">
+<h3>Instrumental Variable</h3>
+<!-- Example: Encouragement design with job training, SI session attendance, reminders. -->
+<p>An <strong>instrumental variable</strong> is a variable that has a
+causal effect the explanatory variable, but does not (directly) have a
+causal effect on the response variable, and does not affect and is not
+affected by any confounding variables.
+<img src="lecture-04-05-2023_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" />
+The treatment effect can then be adjusted to “remove” the effect of any
+confounding variables.</p>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div id="direct-versus-indirect-effects" class="section level2">
+<h2>Direct Versus Indirect Effects</h2>
+<p>Causal effects of an explanatory variable on a response variable can
+be <em>direct</em> and <em>indirect</em>. It is sometimes important to
+be able to distinguish between these two kinds of effects. Two examples
+of indirect effects are the <em>placebo effect</em> and the
+<em>observer-expectancy effect</em>.</p>
+<div id="placebo-effect" class="section level3">
+<h3>Placebo Effect</h3>
+<!-- Examples: Depression drug trial, educational psychology (material delivery method). -->
+<!-- A nice example would be in the Covid-19 vaccine trials. Why use a placebo (saline) for a vaccine? If someone knows they received the vaccine, they may engaged in more risky behavior, while if someone knows they did not receive the vaccine, they may engage in less risky behavior. This would lead to an underestimate of the efficacy of the vaccine. -->
+<p>The <strong>placebo effect</strong> can be characterized by an
+<em>indirect</em> causal effect of the explanatory variable on subject
+expectations, which in turn has a causal effect on the response
+variable.
+<img src="lecture-04-05-2023_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" />
+Use of a <strong>single-blind</strong> can eliminate the indirect causal
+effect of the explanatory variable through subject expectation, so the
+causal effect of the explanatory variable is only <em>direct</em>.
+<img src="lecture-04-05-2023_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="observer-expectancy-effect" class="section level3">
+<h3>Observer-Expectancy Effect</h3>
+<!-- Examples: Depression drug trial, educational psychology (different delivery methods).  -->
+<p>The <strong>observer-expectancy effect</strong> is when the
+explanatory variable has a causal effect on the expectations of the
+observer, which in turn has a causal effect on the response variable.
+<img src="lecture-04-05-2023_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" />
+This effect can also occur when the observer expectation has a causal
+effect on the subject expectation, which then has a causal effect on the
+response variable.
+<img src="lecture-04-05-2023_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" />
+Use of a <strong>double-blind</strong> can eliminate the indirect causal
+effect of the explanatory variable on observer expectations, so the
+causal effect of the explanatory variable is only <em>direct</em>.</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
