@@ -180,7 +180,7 @@ Causal effects of an explanatory variable on a response variable can be *direct*
 
 ### Placebo Effect
 
-<!-- Examples: Depression drug trial, educational psychology (material delivery method). -->
+<!-- Examples: Depression drug trial. -->
 
 <!-- A nice example would be in the Covid-19 vaccine trials. Why use a placebo (saline) for a vaccine? If someone knows they received the vaccine, they may engaged in more risky behavior, while if someone knows they did not receive the vaccine, they may engage in less risky behavior. This would lead to an underestimate of the efficacy of the vaccine. -->
 
@@ -218,7 +218,7 @@ plot(g)
 
 ### Observer-Expectancy Effect
 
-<!-- Examples: Depression drug trial, educational psychology (different delivery methods).  -->
+<!-- Examples: Depression drug trial.  -->
 
 The **observer-expectancy effect** is when the explanatory variable has a causal effect on the expectations of the observer, which in turn has a causal effect on the response variable. 
 ```{r, fig.height = 2}
