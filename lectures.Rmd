@@ -125,15 +125,15 @@ i <- 1
 
 `r i <- i + 1; d[i]` **Exam 5**
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Goodness-of-fit tests](lecture-04-14-2023.html). 
  
 ***
 
 `r i <- i + 1; d[i]` 
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` Class meeting in Albertson (ALB) 204.
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` No class.
  
 ***
 
