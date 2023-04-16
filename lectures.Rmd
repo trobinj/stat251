@@ -129,7 +129,7 @@ i <- 1
  
 ***
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Goodness-of-fit tests and tests of independence](lecture-04-17-2023.html). A [set of homework problems](homework-15.html) on these topics is now available.
 
 `r i <- i + 1; d[i]` Class meeting in Albertson (ALB) 204.
 

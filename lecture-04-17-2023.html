@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Monday, Apr 17</title>
+
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics 251</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="lectures.html">Lectures</a>
+</li>
+<li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Monday, Apr 17</h1>
+
+</div>
+
+
+<p>You can also download a <a href="lecture-04-17-2023.pdf">PDF</a> copy
+of this lecture.</p>
+<div id="genetic-linkage-bateson-saunders-and-punnett"
+class="section level2">
+<h2>Genetic Linkage (Bateson, Saunders, and Punnett)</h2>
+<a href="https://en.wikipedia.org/wiki/Genetic_linkage">Genetic
+linkage</a> is the tendency for DNA sequences that are close on a
+chromosome to be inherited together. An early demonstration of linkage
+used two traits of sweat peas: flower color (purple or red) and pollen
+grain shape (long or round). If there is <em>no linkage</em> then the
+probabilities of each combination of traits are as shown in the table
+below.
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Count
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Traits
+</th>
+<th style="text-align:center;">
+Probability
+</th>
+<th style="text-align:center;">
+observed
+</th>
+<th style="text-align:center;">
+expected
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Purple and Long
+</td>
+<td style="text-align:center;">
+9/16
+</td>
+<td style="text-align:center;">
+284
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Purple and Round
+</td>
+<td style="text-align:center;">
+3/16
+</td>
+<td style="text-align:center;">
+21
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Red and Long
+</td>
+<td style="text-align:center;">
+3/16
+</td>
+<td style="text-align:center;">
+21
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Red and Round
+</td>
+<td style="text-align:center;">
+1/16
+</td>
+<td style="text-align:center;">
+55
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+</tbody>
+</table>
+<p>How would we conduct a goodness-of-fit test for no linkage?</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="tests-of-independence" class="section level2">
+<h2>Tests of Independence</h2>
+<p>Two categorical variables are said to be <strong>independent</strong>
+if the distribution of one variable does not depend on the value of the
+other variable.</p>
+<p><strong>Example</strong>: Consider the following data where a sample
+of 1398 children were classified with respect to tonsil size and carrier
+status of <em>Streptococcus pyogenes</em>.<a href="#fn1"
+class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Carrier
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Size
+</th>
+<th style="text-align:center;">
+yes
+</th>
+<th style="text-align:center;">
+no
+</th>
+<th style="text-align:center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+small
+</td>
+<td style="text-align:center;">
+19
+</td>
+<td style="text-align:center;">
+497
+</td>
+<td style="text-align:center;">
+516
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+medium
+</td>
+<td style="text-align:center;">
+29
+</td>
+<td style="text-align:center;">
+560
+</td>
+<td style="text-align:center;">
+589
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+large
+</td>
+<td style="text-align:center;">
+24
+</td>
+<td style="text-align:center;">
+269
+</td>
+<td style="text-align:center;">
+293
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Total
+</td>
+<td style="text-align:center;">
+72
+</td>
+<td style="text-align:center;">
+1326
+</td>
+<td style="text-align:center;">
+1398
+</td>
+</tr>
+</tbody>
+</table>
+These are the <em>observed</em> counts. The table below shows the
+estimated <em>expected</em> counts under the assumption that tonsil size
+and carrier status are <em>independent</em>. How are they computed?
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Carrier
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Size
+</th>
+<th style="text-align:center;">
+yes
+</th>
+<th style="text-align:center;">
+no
+</th>
+<th style="text-align:center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+small
+</td>
+<td style="text-align:center;">
+26.58
+</td>
+<td style="text-align:center;">
+489.42
+</td>
+<td style="text-align:center;">
+516
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+medium
+</td>
+<td style="text-align:center;">
+30.33
+</td>
+<td style="text-align:center;">
+558.67
+</td>
+<td style="text-align:center;">
+589
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+large
+</td>
+<td style="text-align:center;">
+15.09
+</td>
+<td style="text-align:center;">
+277.91
+</td>
+<td style="text-align:center;">
+293
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Total
+</td>
+<td style="text-align:center;">
+72
+</td>
+<td style="text-align:center;">
+1326
+</td>
+<td style="text-align:center;">
+1398
+</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="steps-of-a-test-of-independence" class="section level2">
+<h2>Steps of a Test of Independence</h2>
+<ol style="list-style-type: decimal">
+<li><p>State hypotheses in terms of independence of the
+variables.</p></li>
+<li><p>Check assumptions (all expected counts should be at least
+five).</p></li>
+<li><p>Compute the <span class="math inline">\(X^2\)</span> test
+statistic. Estimate the expected counts using the formula <span
+class="math display">\[
+  \frac{R \times C}{T}
+\]</span> where <span class="math inline">\(R\)</span> and <span
+class="math inline">\(C\)</span> are the the sum of the observed counts
+in the corresponding row and column, respectively, and <span
+class="math inline">\(T\)</span> is the total of all the observed
+counts.</p></li>
+<li><p>Compute the <span class="math inline">\(p\)</span>-value using
+<span class="math inline">\((r-1)(c-1)\)</span> as the degrees of
+freedom, where <span class="math inline">\(r\)</span> and <span
+class="math inline">\(c\)</span> are the number of rows and columns of
+observed counts in the table, respectively.</p></li>
+<li><p>Make a decision/conclusion.</p></li>
+</ol>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="the-two-sample-test-of-proportions" class="section level2">
+<h2>The Two-Sample Test of Proportions</h2>
+Recall the study of the influence of applicant’s sex on personnel
+decisions.<a href="#fn2" class="footnote-ref"
+id="fnref2"><sup>2</sup></a>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Promotion
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Applicant
+</th>
+<th style="text-align:center;">
+yes
+</th>
+<th style="text-align:center;">
+no
+</th>
+<th style="text-align:center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+male
+</td>
+<td style="text-align:center;">
+21
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+female
+</td>
+<td style="text-align:center;">
+14
+</td>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Total
+</td>
+<td style="text-align:center;">
+35
+</td>
+<td style="text-align:center;">
+13
+</td>
+<td style="text-align:center;">
+48
+</td>
+</tr>
+</tbody>
+</table>
+<p>We could investigate the relationship between applicant sex and
+promotion decision by a test of the hypotheses <span
+class="math inline">\(H_0\!: p_m-p_f = 0\)</span> versus <span
+class="math inline">\(H_a\!: p_m-p_f \neq 0\)</span> using the test
+statistic <span class="math display">\[
+  z = \frac{\hat{p}_m-\hat{p}_f}{\sqrt{\hat{p}(1-\hat{p})(1/n_m +
+1/n_f)}},
+\]</span> which yields a test statistic of <span
+class="math inline">\(z\)</span> <span
+class="math inline">\(\approx\)</span> 2.27 and a p-value of about 0.02.
+How is this test related to the test of independence using the <span
+class="math inline">\(X^2\)</span> test statistic? How is the <span
+class="math inline">\(z\)</span> test statistic limited?</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="comparison-of-chemotherapy-treatment-strategies"
+class="section level2">
+<h2>Comparison of Chemotherapy Treatment Strategies</h2>
+Consider the following data from a randomized experiment comparing two
+strategies for chemotherapy.<a href="#fn3" class="footnote-ref"
+id="fnref3"><sup>3</sup></a>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Tumor Response
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Strategy
+</th>
+<th style="text-align:center;">
+progressive disease
+</th>
+<th style="text-align:center;">
+no change
+</th>
+<th style="text-align:center;">
+partial remission
+</th>
+<th style="text-align:center;">
+complete remission
+</th>
+<th style="text-align:center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+sequential
+</td>
+<td style="text-align:center;">
+32
+</td>
+<td style="text-align:center;">
+57
+</td>
+<td style="text-align:center;">
+34
+</td>
+<td style="text-align:center;">
+28
+</td>
+<td style="text-align:center;">
+151
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+alternating
+</td>
+<td style="text-align:center;">
+53
+</td>
+<td style="text-align:center;">
+51
+</td>
+<td style="text-align:center;">
+23
+</td>
+<td style="text-align:center;">
+21
+</td>
+<td style="text-align:center;">
+148
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Total
+</td>
+<td style="text-align:center;">
+85
+</td>
+<td style="text-align:center;">
+108
+</td>
+<td style="text-align:center;">
+57
+</td>
+<td style="text-align:center;">
+49
+</td>
+<td style="text-align:center;">
+299
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Holmes, M. C. &amp; Willaims, R. E. O. (1954). The
+distribution of carriers of Streptococcus pyogenes among 2413 healthy
+children. <em>Journal of Hygiene</em>, <em>52</em>, 165–179.<a
+href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Rosen, B. &amp; Jerdee, J. (1974). Influence of sex role
+stereotypes on personnel decisions. <em>Journal of Applied
+Psychology</em>, <em>59</em>, 9–14.<a href="#fnref2"
+class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Holtbrugge, W. &amp; Schumacher, M. (1991). A comparison
+of regression models for the analysis of ordered categorical data.
+<em>Applied Statistics</em>, <em>40</em>, 249–259.<a href="#fnref3"
+class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -11,7 +11,7 @@ This site contains material for Dr. Johnson's *Statistical Methods* course (Stat
 
 <center>
 
-![](mendelspeas.jpg)
+![https://xkcd.com/2620](https://imgs.xkcd.com/comics/health_data.png)
 
 </center>
 
