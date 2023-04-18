@@ -131,9 +131,9 @@ i <- 1
 
 `r i <- i + 1; d[i]` [Goodness-of-fit tests and tests of independence](lecture-04-17-2023.html). A [set of homework problems](homework-15.html) on these topics is now available.
 
-`r i <- i + 1; d[i]` Class meeting in Albertson (ALB) 204.
+`r i <- i + 1; d[i]` **Class meeting in Albertson (ALB) 204**. [Mark-recapture designs and abundance estimation](lecture-04-19-2023.html). A [set of homework problems](homework-16.html) on this topic is now available.
 
-`r i <- i + 1; d[i]` No class.
+`r i <- i + 1; d[i]` **No class**.
  
 ***
 
