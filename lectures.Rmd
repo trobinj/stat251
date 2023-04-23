@@ -137,7 +137,7 @@ i <- 1
  
 ***
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Cramer's V and McNemar's Test](lecture-04-24-2023.html). The [study guide](e6-studyguide.html) for the sixth examination is now available.
 
 `r i <- i + 1; d[i]` 
 

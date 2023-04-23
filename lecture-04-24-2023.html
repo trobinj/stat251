@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Monday, Apr 24</title>
+
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
+<script src="site_libs/tabwid-1.1.3/tabwid.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics 251</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="lectures.html">Lectures</a>
+</li>
+<li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Monday, Apr 24</h1>
+
+</div>
+
+
+<p>No PDF version available.</p>
+<div id="cramers-v" class="section level2">
+<h2>Cramer’s V</h2>
+<p>Consider the following data where a sample of 1398 children were
+classified with respect to tonsil size and carrier status of
+<em>Streptococcus pyogenes</em>.<a href="#fn1" class="footnote-ref"
+id="fnref1"><sup>1</sup></a></p>
+<div class="tabwid"><style>.cl-b11d85f2{table-layout:auto;}.cl-b1192d7c{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b11b21b8{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b11b2e24{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b11b2e2e{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b11b2e2f{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-b11d85f2'><thead><tr style="overflow-wrap:break-word;"><th class="cl-b11b2e24"><p class="cl-b11b21b8"><span class="cl-b1192d7c"></span></p></th><th  colspan="2"class="cl-b11b2e24"><p class="cl-b11b21b8"><span class="cl-b1192d7c">Strep</span></p></th><th class="cl-b11b2e24"><p class="cl-b11b21b8"><span class="cl-b1192d7c"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-b11b2e24"><p class="cl-b11b21b8"><span class="cl-b1192d7c">Size</span></p></th><th class="cl-b11b2e24"><p class="cl-b11b21b8"><span class="cl-b1192d7c">yes</span></p></th><th class="cl-b11b2e24"><p class="cl-b11b21b8"><span class="cl-b1192d7c">no</span></p></th><th class="cl-b11b2e24"><p class="cl-b11b21b8"><span class="cl-b1192d7c">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b11b2e2e"><p class="cl-b11b21b8"><span class="cl-b1192d7c">small</span></p></td><td class="cl-b11b2e2e"><p class="cl-b11b21b8"><span class="cl-b1192d7c">19 (0.04)</span></p></td><td class="cl-b11b2e2e"><p class="cl-b11b21b8"><span class="cl-b1192d7c">497 (0.96)</span></p></td><td class="cl-b11b2e2e"><p class="cl-b11b21b8"><span class="cl-b1192d7c">516</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b11b2e2e"><p class="cl-b11b21b8"><span class="cl-b1192d7c">medium</span></p></td><td class="cl-b11b2e2e"><p class="cl-b11b21b8"><span class="cl-b1192d7c">29 (0.05)</span></p></td><td class="cl-b11b2e2e"><p class="cl-b11b21b8"><span class="cl-b1192d7c">560 (0.95)</span></p></td><td class="cl-b11b2e2e"><p class="cl-b11b21b8"><span class="cl-b1192d7c">589</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b11b2e2e"><p class="cl-b11b21b8"><span class="cl-b1192d7c">large</span></p></td><td class="cl-b11b2e2e"><p class="cl-b11b21b8"><span class="cl-b1192d7c">24 (0.08)</span></p></td><td class="cl-b11b2e2e"><p class="cl-b11b21b8"><span class="cl-b1192d7c">269 (0.92)</span></p></td><td class="cl-b11b2e2e"><p class="cl-b11b21b8"><span class="cl-b1192d7c">293</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b11b2e2f"><p class="cl-b11b21b8"><span class="cl-b1192d7c">Total</span></p></td><td class="cl-b11b2e2f"><p class="cl-b11b21b8"><span class="cl-b1192d7c">72 (0.05)</span></p></td><td class="cl-b11b2e2f"><p class="cl-b11b21b8"><span class="cl-b1192d7c">1326 (0.95)</span></p></td><td class="cl-b11b2e2f"><p class="cl-b11b21b8"><span class="cl-b1192d7c">1398</span></p></td></tr></tbody></table></div>
+<p>The numbers in parentheses are the <em>proportions</em> of children
+of each tonsil size who are or are not carriers. The value of the test
+statistic for a test of independence is <span class="math inline">\(X^2
+\approx 7.88\)</span>. We might decide tonsil size and carrier status
+are dependent. But can we <em>measure</em> the amount of dependence?</p>
+<p><strong>Cramer’s V</strong> is a <em>measure of association</em>
+between two categorical variables. It is defined as <span
+class="math display">\[
+V = \sqrt{\frac{X^2/n}{\min(r-1,c-1)}},
+\]</span> and is bounded such that <span class="math inline">\(0 \le V
+\le 1\)</span>. It effectively measures the degree to which the observed
+counts deviate from the expected counts under the assumption of
+independence, and thus can be viewed as a measurement of the degree of
+dependence.</p>
+<p><strong>Example</strong>: For the data on tonsil size and carrier
+status, the value of Cramer’s V is <span class="math display">\[
+\sqrt{\frac{7.88/1398}{\min(3 - 1, 2 - 1)}} \approx
+0.08,
+\]</span> which is a relatively <em>weak</em> association.</p>
+<div style="page-break-after: always;"></div>
+<p>Here are some hypothetical observed counts showing a
+<em>stronger</em> association.</p>
+<div class="tabwid"><style>.cl-b12dc6a6{table-layout:auto;}.cl-b1295120{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b12b0524{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b12b11e0{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b12b11ea{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b12b11eb{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-b12dc6a6'><thead><tr style="overflow-wrap:break-word;"><th class="cl-b12b11e0"><p class="cl-b12b0524"><span class="cl-b1295120"></span></p></th><th  colspan="2"class="cl-b12b11e0"><p class="cl-b12b0524"><span class="cl-b1295120">Strep</span></p></th><th class="cl-b12b11e0"><p class="cl-b12b0524"><span class="cl-b1295120"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-b12b11e0"><p class="cl-b12b0524"><span class="cl-b1295120">Size</span></p></th><th class="cl-b12b11e0"><p class="cl-b12b0524"><span class="cl-b1295120">yes</span></p></th><th class="cl-b12b11e0"><p class="cl-b12b0524"><span class="cl-b1295120">no</span></p></th><th class="cl-b12b11e0"><p class="cl-b12b0524"><span class="cl-b1295120">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b12b11ea"><p class="cl-b12b0524"><span class="cl-b1295120">small</span></p></td><td class="cl-b12b11ea"><p class="cl-b12b0524"><span class="cl-b1295120">25 (0.05)</span></p></td><td class="cl-b12b11ea"><p class="cl-b12b0524"><span class="cl-b1295120">475 (0.95)</span></p></td><td class="cl-b12b11ea"><p class="cl-b12b0524"><span class="cl-b1295120">500</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b12b11ea"><p class="cl-b12b0524"><span class="cl-b1295120">medium</span></p></td><td class="cl-b12b11ea"><p class="cl-b12b0524"><span class="cl-b1295120">90 (0.15)</span></p></td><td class="cl-b12b11ea"><p class="cl-b12b0524"><span class="cl-b1295120">510 (0.85)</span></p></td><td class="cl-b12b11ea"><p class="cl-b12b0524"><span class="cl-b1295120">600</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b12b11ea"><p class="cl-b12b0524"><span class="cl-b1295120">large</span></p></td><td class="cl-b12b11ea"><p class="cl-b12b0524"><span class="cl-b1295120">75 (0.25)</span></p></td><td class="cl-b12b11ea"><p class="cl-b12b0524"><span class="cl-b1295120">225 (0.75)</span></p></td><td class="cl-b12b11ea"><p class="cl-b12b0524"><span class="cl-b1295120">300</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b12b11eb"><p class="cl-b12b0524"><span class="cl-b1295120">Total</span></p></td><td class="cl-b12b11eb"><p class="cl-b12b0524"><span class="cl-b1295120">190 (0.14)</span></p></td><td class="cl-b12b11eb"><p class="cl-b12b0524"><span class="cl-b1295120">1210 (0.86)</span></p></td><td class="cl-b12b11eb"><p class="cl-b12b0524"><span class="cl-b1295120">1400</span></p></td></tr></tbody></table></div>
+<p>The test statistic is <span class="math inline">\(X^2 \approx
+65.77\)</span> and the measure of association is <span
+class="math inline">\(V \approx 0.22\)</span>.</p>
+<p>And here are some hypothetical observed counts showing an <em>even
+stronger</em> association.</p>
+<div class="tabwid"><style>.cl-b13be7b8{table-layout:auto;}.cl-b13800bc{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b139b4e8{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b139bf24{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b139bf2e{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b139bf2f{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-b13be7b8'><thead><tr style="overflow-wrap:break-word;"><th class="cl-b139bf24"><p class="cl-b139b4e8"><span class="cl-b13800bc"></span></p></th><th  colspan="2"class="cl-b139bf24"><p class="cl-b139b4e8"><span class="cl-b13800bc">Strep</span></p></th><th class="cl-b139bf24"><p class="cl-b139b4e8"><span class="cl-b13800bc"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-b139bf24"><p class="cl-b139b4e8"><span class="cl-b13800bc">Size</span></p></th><th class="cl-b139bf24"><p class="cl-b139b4e8"><span class="cl-b13800bc">yes</span></p></th><th class="cl-b139bf24"><p class="cl-b139b4e8"><span class="cl-b13800bc">no</span></p></th><th class="cl-b139bf24"><p class="cl-b139b4e8"><span class="cl-b13800bc">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b139bf2e"><p class="cl-b139b4e8"><span class="cl-b13800bc">small</span></p></td><td class="cl-b139bf2e"><p class="cl-b139b4e8"><span class="cl-b13800bc">25 (0.05)</span></p></td><td class="cl-b139bf2e"><p class="cl-b139b4e8"><span class="cl-b13800bc">475 (0.95)</span></p></td><td class="cl-b139bf2e"><p class="cl-b139b4e8"><span class="cl-b13800bc">500</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b139bf2e"><p class="cl-b139b4e8"><span class="cl-b13800bc">medium</span></p></td><td class="cl-b139bf2e"><p class="cl-b139b4e8"><span class="cl-b13800bc">300 (0.5)</span></p></td><td class="cl-b139bf2e"><p class="cl-b139b4e8"><span class="cl-b13800bc">300 (0.5)</span></p></td><td class="cl-b139bf2e"><p class="cl-b139b4e8"><span class="cl-b13800bc">600</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b139bf2e"><p class="cl-b139b4e8"><span class="cl-b13800bc">large</span></p></td><td class="cl-b139bf2e"><p class="cl-b139b4e8"><span class="cl-b13800bc">285 (0.95)</span></p></td><td class="cl-b139bf2e"><p class="cl-b139b4e8"><span class="cl-b13800bc">15 (0.05)</span></p></td><td class="cl-b139bf2e"><p class="cl-b139b4e8"><span class="cl-b13800bc">300</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b139bf2f"><p class="cl-b139b4e8"><span class="cl-b13800bc">Total</span></p></td><td class="cl-b139bf2f"><p class="cl-b139b4e8"><span class="cl-b13800bc">610 (0.44)</span></p></td><td class="cl-b139bf2f"><p class="cl-b139b4e8"><span class="cl-b13800bc">790 (0.56)</span></p></td><td class="cl-b139bf2f"><p class="cl-b139b4e8"><span class="cl-b13800bc">1400</span></p></td></tr></tbody></table></div>
+<p>The test statistic is <span class="math inline">\(X^2 \approx
+635.36\)</span> and the measure of association is <span
+class="math inline">\(V \approx 0.67\)</span>.</p>
+<p>Here is an example of the <em>maximum degree of association</em>.</p>
+<div class="tabwid"><style>.cl-b14b2eda{table-layout:auto;}.cl-b146e410{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b148dc34{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b148e6fc{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b148e6fd{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b148e706{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-b14b2eda'><thead><tr style="overflow-wrap:break-word;"><th class="cl-b148e6fc"><p class="cl-b148dc34"><span class="cl-b146e410"></span></p></th><th  colspan="2"class="cl-b148e6fc"><p class="cl-b148dc34"><span class="cl-b146e410">Strep</span></p></th><th class="cl-b148e6fc"><p class="cl-b148dc34"><span class="cl-b146e410"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-b148e6fc"><p class="cl-b148dc34"><span class="cl-b146e410">Size</span></p></th><th class="cl-b148e6fc"><p class="cl-b148dc34"><span class="cl-b146e410">yes</span></p></th><th class="cl-b148e6fc"><p class="cl-b148dc34"><span class="cl-b146e410">no</span></p></th><th class="cl-b148e6fc"><p class="cl-b148dc34"><span class="cl-b146e410">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b148e6fd"><p class="cl-b148dc34"><span class="cl-b146e410">small</span></p></td><td class="cl-b148e6fd"><p class="cl-b148dc34"><span class="cl-b146e410">0 (0)</span></p></td><td class="cl-b148e6fd"><p class="cl-b148dc34"><span class="cl-b146e410">500 (1)</span></p></td><td class="cl-b148e6fd"><p class="cl-b148dc34"><span class="cl-b146e410">500</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b148e6fd"><p class="cl-b148dc34"><span class="cl-b146e410">medium</span></p></td><td class="cl-b148e6fd"><p class="cl-b148dc34"><span class="cl-b146e410">0 (0)</span></p></td><td class="cl-b148e6fd"><p class="cl-b148dc34"><span class="cl-b146e410">600 (1)</span></p></td><td class="cl-b148e6fd"><p class="cl-b148dc34"><span class="cl-b146e410">600</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b148e6fd"><p class="cl-b148dc34"><span class="cl-b146e410">large</span></p></td><td class="cl-b148e6fd"><p class="cl-b148dc34"><span class="cl-b146e410">300 (1)</span></p></td><td class="cl-b148e6fd"><p class="cl-b148dc34"><span class="cl-b146e410">0 (0)</span></p></td><td class="cl-b148e6fd"><p class="cl-b148dc34"><span class="cl-b146e410">300</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b148e706"><p class="cl-b148dc34"><span class="cl-b146e410">Total</span></p></td><td class="cl-b148e706"><p class="cl-b148dc34"><span class="cl-b146e410">300 (0.21)</span></p></td><td class="cl-b148e706"><p class="cl-b148dc34"><span class="cl-b146e410">1100 (0.79)</span></p></td><td class="cl-b148e706"><p class="cl-b148dc34"><span class="cl-b146e410">1400</span></p></td></tr></tbody></table></div>
+<p>The test statistic is <span class="math inline">\(X^2 = 1400\)</span>
+and the measure of association is <span class="math inline">\(V =
+1\)</span>.</p>
+<p>What about the <em>minimum</em> degree of association?</p>
+<div class="tabwid"><style>.cl-b15b6700{table-layout:auto;}.cl-b157110a{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b158c3ba{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b158ce5a{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b158ce64{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b158ce65{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-b15b6700'><thead><tr style="overflow-wrap:break-word;"><th class="cl-b158ce5a"><p class="cl-b158c3ba"><span class="cl-b157110a"></span></p></th><th  colspan="2"class="cl-b158ce5a"><p class="cl-b158c3ba"><span class="cl-b157110a">Strep</span></p></th><th class="cl-b158ce5a"><p class="cl-b158c3ba"><span class="cl-b157110a"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-b158ce5a"><p class="cl-b158c3ba"><span class="cl-b157110a">Size</span></p></th><th class="cl-b158ce5a"><p class="cl-b158c3ba"><span class="cl-b157110a">yes</span></p></th><th class="cl-b158ce5a"><p class="cl-b158c3ba"><span class="cl-b157110a">no</span></p></th><th class="cl-b158ce5a"><p class="cl-b158c3ba"><span class="cl-b157110a">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b158ce64"><p class="cl-b158c3ba"><span class="cl-b157110a">small</span></p></td><td class="cl-b158ce64"><p class="cl-b158c3ba"><span class="cl-b157110a">25 (0.05)</span></p></td><td class="cl-b158ce64"><p class="cl-b158c3ba"><span class="cl-b157110a">475 (0.95)</span></p></td><td class="cl-b158ce64"><p class="cl-b158c3ba"><span class="cl-b157110a">500</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b158ce64"><p class="cl-b158c3ba"><span class="cl-b157110a">medium</span></p></td><td class="cl-b158ce64"><p class="cl-b158c3ba"><span class="cl-b157110a">30 (0.05)</span></p></td><td class="cl-b158ce64"><p class="cl-b158c3ba"><span class="cl-b157110a">570 (0.95)</span></p></td><td class="cl-b158ce64"><p class="cl-b158c3ba"><span class="cl-b157110a">600</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b158ce64"><p class="cl-b158c3ba"><span class="cl-b157110a">large</span></p></td><td class="cl-b158ce64"><p class="cl-b158c3ba"><span class="cl-b157110a">15 (0.05)</span></p></td><td class="cl-b158ce64"><p class="cl-b158c3ba"><span class="cl-b157110a">285 (0.95)</span></p></td><td class="cl-b158ce64"><p class="cl-b158c3ba"><span class="cl-b157110a">300</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b158ce65"><p class="cl-b158c3ba"><span class="cl-b157110a">Total</span></p></td><td class="cl-b158ce65"><p class="cl-b158c3ba"><span class="cl-b157110a">70 (0.05)</span></p></td><td class="cl-b158ce65"><p class="cl-b158c3ba"><span class="cl-b157110a">1330 (0.95)</span></p></td><td class="cl-b158ce65"><p class="cl-b158c3ba"><span class="cl-b157110a">1400</span></p></td></tr></tbody></table></div>
+<p>The test statistic is <span class="math inline">\(X^2 = 0\)</span>
+and the measure of association is <span class="math inline">\(V =
+0\)</span>. Here the observed counts would be <em>equal</em> to the
+expected counts.</p>
+<div style="page-break-after: always;"></div>
+<p><strong>Example</strong>: Consider the following data from a
+randomized experiment comparing two strategies for chemotherapy.<a
+href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<div class="tabwid"><style>.cl-b16b6326{table-layout:auto;}.cl-b16782d8{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b1693970{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b16943f2{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b16943f3{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b16943f4{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-b16b6326'><thead><tr style="overflow-wrap:break-word;"><th class="cl-b16943f2"><p class="cl-b1693970"><span class="cl-b16782d8"></span></p></th><th  colspan="4"class="cl-b16943f2"><p class="cl-b1693970"><span class="cl-b16782d8">Tumor Response</span></p></th><th class="cl-b16943f2"><p class="cl-b1693970"><span class="cl-b16782d8"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-b16943f2"><p class="cl-b1693970"><span class="cl-b16782d8">Strategy</span></p></th><th class="cl-b16943f2"><p class="cl-b1693970"><span class="cl-b16782d8">progressive disease</span></p></th><th class="cl-b16943f2"><p class="cl-b1693970"><span class="cl-b16782d8">no change</span></p></th><th class="cl-b16943f2"><p class="cl-b1693970"><span class="cl-b16782d8">partial remission</span></p></th><th class="cl-b16943f2"><p class="cl-b1693970"><span class="cl-b16782d8">complete remission</span></p></th><th class="cl-b16943f2"><p class="cl-b1693970"><span class="cl-b16782d8">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b16943f3"><p class="cl-b1693970"><span class="cl-b16782d8">sequential</span></p></td><td class="cl-b16943f3"><p class="cl-b1693970"><span class="cl-b16782d8">32 (0.21)</span></p></td><td class="cl-b16943f3"><p class="cl-b1693970"><span class="cl-b16782d8">57 (0.38)</span></p></td><td class="cl-b16943f3"><p class="cl-b1693970"><span class="cl-b16782d8">34 (0.23)</span></p></td><td class="cl-b16943f3"><p class="cl-b1693970"><span class="cl-b16782d8">28 (0.19)</span></p></td><td class="cl-b16943f3"><p class="cl-b1693970"><span class="cl-b16782d8">151</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b16943f3"><p class="cl-b1693970"><span class="cl-b16782d8">alternating</span></p></td><td class="cl-b16943f3"><p class="cl-b1693970"><span class="cl-b16782d8">53 (0.36)</span></p></td><td class="cl-b16943f3"><p class="cl-b1693970"><span class="cl-b16782d8">51 (0.34)</span></p></td><td class="cl-b16943f3"><p class="cl-b1693970"><span class="cl-b16782d8">23 (0.16)</span></p></td><td class="cl-b16943f3"><p class="cl-b1693970"><span class="cl-b16782d8">21 (0.14)</span></p></td><td class="cl-b16943f3"><p class="cl-b1693970"><span class="cl-b16782d8">148</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b16943f4"><p class="cl-b1693970"><span class="cl-b16782d8">Total</span></p></td><td class="cl-b16943f4"><p class="cl-b1693970"><span class="cl-b16782d8">85 (0.28)</span></p></td><td class="cl-b16943f4"><p class="cl-b1693970"><span class="cl-b16782d8">108 (0.36)</span></p></td><td class="cl-b16943f4"><p class="cl-b1693970"><span class="cl-b16782d8">57 (0.19)</span></p></td><td class="cl-b16943f4"><p class="cl-b1693970"><span class="cl-b16782d8">49 (0.16)</span></p></td><td class="cl-b16943f4"><p class="cl-b1693970"><span class="cl-b16782d8">299</span></p></td></tr></tbody></table></div>
+<p>The test statistic is <span class="math inline">\(X^2 \approx
+8.62\)</span> and the measure of association is <span
+class="math inline">\(V \approx 0.17\)</span>.</p>
+<p>Here is a weaker association with some hypothetical observed
+counts.</p>
+<div class="tabwid"><style>.cl-b17c2e40{table-layout:auto;}.cl-b1775fd2{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b179b98a{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b179c4b6{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b179c4c0{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b179c4c1{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-b17c2e40'><thead><tr style="overflow-wrap:break-word;"><th class="cl-b179c4b6"><p class="cl-b179b98a"><span class="cl-b1775fd2"></span></p></th><th  colspan="4"class="cl-b179c4b6"><p class="cl-b179b98a"><span class="cl-b1775fd2">Tumor Response</span></p></th><th class="cl-b179c4b6"><p class="cl-b179b98a"><span class="cl-b1775fd2"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-b179c4b6"><p class="cl-b179b98a"><span class="cl-b1775fd2">Strategy</span></p></th><th class="cl-b179c4b6"><p class="cl-b179b98a"><span class="cl-b1775fd2">progressive disease</span></p></th><th class="cl-b179c4b6"><p class="cl-b179b98a"><span class="cl-b1775fd2">no change</span></p></th><th class="cl-b179c4b6"><p class="cl-b179b98a"><span class="cl-b1775fd2">partial remission</span></p></th><th class="cl-b179c4b6"><p class="cl-b179b98a"><span class="cl-b1775fd2">complete remission</span></p></th><th class="cl-b179c4b6"><p class="cl-b179b98a"><span class="cl-b1775fd2">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b179c4c0"><p class="cl-b179b98a"><span class="cl-b1775fd2">sequential</span></p></td><td class="cl-b179c4c0"><p class="cl-b179b98a"><span class="cl-b1775fd2">40 (0.2)</span></p></td><td class="cl-b179c4c0"><p class="cl-b179b98a"><span class="cl-b1775fd2">80 (0.4)</span></p></td><td class="cl-b179c4c0"><p class="cl-b179b98a"><span class="cl-b1775fd2">50 (0.25)</span></p></td><td class="cl-b179c4c0"><p class="cl-b179b98a"><span class="cl-b1775fd2">30 (0.15)</span></p></td><td class="cl-b179c4c0"><p class="cl-b179b98a"><span class="cl-b1775fd2">200</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b179c4c0"><p class="cl-b179b98a"><span class="cl-b1775fd2">alternating</span></p></td><td class="cl-b179c4c0"><p class="cl-b179b98a"><span class="cl-b1775fd2">50 (0.25)</span></p></td><td class="cl-b179c4c0"><p class="cl-b179b98a"><span class="cl-b1775fd2">84 (0.42)</span></p></td><td class="cl-b179c4c0"><p class="cl-b179b98a"><span class="cl-b1775fd2">42 (0.21)</span></p></td><td class="cl-b179c4c0"><p class="cl-b179b98a"><span class="cl-b1775fd2">24 (0.12)</span></p></td><td class="cl-b179c4c0"><p class="cl-b179b98a"><span class="cl-b1775fd2">200</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b179c4c1"><p class="cl-b179b98a"><span class="cl-b1775fd2">Total</span></p></td><td class="cl-b179c4c1"><p class="cl-b179b98a"><span class="cl-b1775fd2">90 (0.22)</span></p></td><td class="cl-b179c4c1"><p class="cl-b179b98a"><span class="cl-b1775fd2">164 (0.41)</span></p></td><td class="cl-b179c4c1"><p class="cl-b179b98a"><span class="cl-b1775fd2">92 (0.23)</span></p></td><td class="cl-b179c4c1"><p class="cl-b179b98a"><span class="cl-b1775fd2">54 (0.14)</span></p></td><td class="cl-b179c4c1"><p class="cl-b179b98a"><span class="cl-b1775fd2">400</span></p></td></tr></tbody></table></div>
+<p>The test statistic is <span class="math inline">\(X^2 \approx
+2.57\)</span> and the measure of association is <span
+class="math inline">\(V \approx 0.08\)</span>.</p>
+<p>Here is a stronger association with some hypothetical observed
+counts.</p>
+<div class="tabwid"><style>.cl-b18c1742{table-layout:auto;}.cl-b1881bec{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b189e850{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b189f2a0{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b189f2aa{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b189f2ab{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-b18c1742'><thead><tr style="overflow-wrap:break-word;"><th class="cl-b189f2a0"><p class="cl-b189e850"><span class="cl-b1881bec"></span></p></th><th  colspan="4"class="cl-b189f2a0"><p class="cl-b189e850"><span class="cl-b1881bec">Tumor Response</span></p></th><th class="cl-b189f2a0"><p class="cl-b189e850"><span class="cl-b1881bec"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-b189f2a0"><p class="cl-b189e850"><span class="cl-b1881bec">Strategy</span></p></th><th class="cl-b189f2a0"><p class="cl-b189e850"><span class="cl-b1881bec">progressive disease</span></p></th><th class="cl-b189f2a0"><p class="cl-b189e850"><span class="cl-b1881bec">no change</span></p></th><th class="cl-b189f2a0"><p class="cl-b189e850"><span class="cl-b1881bec">partial remission</span></p></th><th class="cl-b189f2a0"><p class="cl-b189e850"><span class="cl-b1881bec">complete remission</span></p></th><th class="cl-b189f2a0"><p class="cl-b189e850"><span class="cl-b1881bec">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b189f2aa"><p class="cl-b189e850"><span class="cl-b1881bec">sequential</span></p></td><td class="cl-b189f2aa"><p class="cl-b189e850"><span class="cl-b1881bec">60 (0.3)</span></p></td><td class="cl-b189f2aa"><p class="cl-b189e850"><span class="cl-b1881bec">100 (0.5)</span></p></td><td class="cl-b189f2aa"><p class="cl-b189e850"><span class="cl-b1881bec">20 (0.1)</span></p></td><td class="cl-b189f2aa"><p class="cl-b189e850"><span class="cl-b1881bec">20 (0.1)</span></p></td><td class="cl-b189f2aa"><p class="cl-b189e850"><span class="cl-b1881bec">200</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b189f2aa"><p class="cl-b189e850"><span class="cl-b1881bec">alternating</span></p></td><td class="cl-b189f2aa"><p class="cl-b189e850"><span class="cl-b1881bec">20 (0.1)</span></p></td><td class="cl-b189f2aa"><p class="cl-b189e850"><span class="cl-b1881bec">40 (0.2)</span></p></td><td class="cl-b189f2aa"><p class="cl-b189e850"><span class="cl-b1881bec">100 (0.5)</span></p></td><td class="cl-b189f2aa"><p class="cl-b189e850"><span class="cl-b1881bec">40 (0.2)</span></p></td><td class="cl-b189f2aa"><p class="cl-b189e850"><span class="cl-b1881bec">200</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b189f2ab"><p class="cl-b189e850"><span class="cl-b1881bec">Total</span></p></td><td class="cl-b189f2ab"><p class="cl-b189e850"><span class="cl-b1881bec">80 (0.2)</span></p></td><td class="cl-b189f2ab"><p class="cl-b189e850"><span class="cl-b1881bec">140 (0.35)</span></p></td><td class="cl-b189f2ab"><p class="cl-b189e850"><span class="cl-b1881bec">120 (0.3)</span></p></td><td class="cl-b189f2ab"><p class="cl-b189e850"><span class="cl-b1881bec">60 (0.15)</span></p></td><td class="cl-b189f2ab"><p class="cl-b189e850"><span class="cl-b1881bec">400</span></p></td></tr></tbody></table></div>
+<p>The test statistic is <span class="math inline">\(X^2 \approx
+105.71\)</span> and the measure of association is <span
+class="math inline">\(V \approx 0.51\)</span>.</p>
+<p>Here is a very strong association with some hypothetical observed
+counts.</p>
+<div class="tabwid"><style>.cl-b19c17a0{table-layout:auto;}.cl-b197b188{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b199cd74{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b199d7ce{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b199d7d8{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b199d7d9{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-b19c17a0'><thead><tr style="overflow-wrap:break-word;"><th class="cl-b199d7ce"><p class="cl-b199cd74"><span class="cl-b197b188"></span></p></th><th  colspan="4"class="cl-b199d7ce"><p class="cl-b199cd74"><span class="cl-b197b188">Tumor Response</span></p></th><th class="cl-b199d7ce"><p class="cl-b199cd74"><span class="cl-b197b188"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-b199d7ce"><p class="cl-b199cd74"><span class="cl-b197b188">Strategy</span></p></th><th class="cl-b199d7ce"><p class="cl-b199cd74"><span class="cl-b197b188">progressive disease</span></p></th><th class="cl-b199d7ce"><p class="cl-b199cd74"><span class="cl-b197b188">no change</span></p></th><th class="cl-b199d7ce"><p class="cl-b199cd74"><span class="cl-b197b188">partial remission</span></p></th><th class="cl-b199d7ce"><p class="cl-b199cd74"><span class="cl-b197b188">complete remission</span></p></th><th class="cl-b199d7ce"><p class="cl-b199cd74"><span class="cl-b197b188">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b199d7d8"><p class="cl-b199cd74"><span class="cl-b197b188">sequential</span></p></td><td class="cl-b199d7d8"><p class="cl-b199cd74"><span class="cl-b197b188">90 (0.45)</span></p></td><td class="cl-b199d7d8"><p class="cl-b199cd74"><span class="cl-b197b188">100 (0.5)</span></p></td><td class="cl-b199d7d8"><p class="cl-b199cd74"><span class="cl-b197b188">6 (0.03)</span></p></td><td class="cl-b199d7d8"><p class="cl-b199cd74"><span class="cl-b197b188">4 (0.02)</span></p></td><td class="cl-b199d7d8"><p class="cl-b199cd74"><span class="cl-b197b188">200</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b199d7d8"><p class="cl-b199cd74"><span class="cl-b197b188">alternating</span></p></td><td class="cl-b199d7d8"><p class="cl-b199cd74"><span class="cl-b197b188">2 (0.01)</span></p></td><td class="cl-b199d7d8"><p class="cl-b199cd74"><span class="cl-b197b188">18 (0.09)</span></p></td><td class="cl-b199d7d8"><p class="cl-b199cd74"><span class="cl-b197b188">100 (0.5)</span></p></td><td class="cl-b199d7d8"><p class="cl-b199cd74"><span class="cl-b197b188">80 (0.4)</span></p></td><td class="cl-b199d7d8"><p class="cl-b199cd74"><span class="cl-b197b188">200</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b199d7d9"><p class="cl-b199cd74"><span class="cl-b197b188">Total</span></p></td><td class="cl-b199d7d9"><p class="cl-b199cd74"><span class="cl-b197b188">92 (0.23)</span></p></td><td class="cl-b199d7d9"><p class="cl-b199cd74"><span class="cl-b197b188">118 (0.3)</span></p></td><td class="cl-b199d7d9"><p class="cl-b199cd74"><span class="cl-b197b188">106 (0.26)</span></p></td><td class="cl-b199d7d9"><p class="cl-b199cd74"><span class="cl-b197b188">84 (0.21)</span></p></td><td class="cl-b199d7d9"><p class="cl-b199cd74"><span class="cl-b197b188">400</span></p></td></tr></tbody></table></div>
+<p>The test statistic is <span class="math inline">\(X^2 \approx
+293.28\)</span> and the measure of association is <span
+class="math inline">\(V \approx 0.86\)</span>.</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="mcnemars-test-for-matched-pairs" class="section level2">
+<h2>McNemar’s Test for Matched Pairs</h2>
+<p><strong>Example</strong>: A retrospective <a
+href="https://en.wikipedia.org/wiki/Case-control_study">case-control</a>
+study was used to investigate the theory that tonsils protect the body
+against the invasion of the lymph nodes by the virus responsible for
+Hodgkin’s disease. The study compared patients with Hodgkin’s disease
+(the cases) with their siblings without the disease (the controls) with
+respect to whether or not they had a tonsillectomy in the past.<a
+href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> Here are
+the first ten sibling pairs.</p>
+<div class="tabwid"><style>.cl-b1a8b8ca{table-layout:auto;}.cl-b1a463f6{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b1a61bf6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b1a62650{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b1a6265a{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b1a6265b{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-b1a8b8ca'><thead><tr style="overflow-wrap:break-word;"><th class="cl-b1a62650"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">Pair</span></p></th><th class="cl-b1a62650"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">Patient (Case)</span></p></th><th class="cl-b1a62650"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">Sibling (Control)</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">1</span></p></td><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">no tonsillectomy</span></p></td><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">tonsillectomy</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">2</span></p></td><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">no tonsillectomy</span></p></td><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">no tonsillectomy</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">3</span></p></td><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">no tonsillectomy</span></p></td><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">no tonsillectomy</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">4</span></p></td><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">tonsillectomy</span></p></td><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">tonsillectomy</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">5</span></p></td><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">no tonsillectomy</span></p></td><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">no tonsillectomy</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">6</span></p></td><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">tonsillectomy</span></p></td><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">no tonsillectomy</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">7</span></p></td><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">no tonsillectomy</span></p></td><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">no tonsillectomy</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">8</span></p></td><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">tonsillectomy</span></p></td><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">no tonsillectomy</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">9</span></p></td><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">no tonsillectomy</span></p></td><td class="cl-b1a6265a"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">no tonsillectomy</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b1a6265b"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">10</span></p></td><td class="cl-b1a6265b"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">tonsillectomy</span></p></td><td class="cl-b1a6265b"><p class="cl-b1a61bf6"><span class="cl-b1a463f6">tonsillectomy</span></p></td></tr></tbody></table></div>
+<p>Each <em>pair</em> can be classified in terms of whether or not the
+patient (case) had a tonsillectomy, and whether or not the sibling
+(control) had a tonsillectomy.</p>
+<div class="tabwid"><style>.cl-b1b528a8{table-layout:auto;}.cl-b1b0e130{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b1b2b9e2{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b1b2c4fa{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b1b2c504{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b1b2c505{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-b1b528a8'><thead><tr style="overflow-wrap:break-word;"><th class="cl-b1b2c4fa"><p class="cl-b1b2b9e2"><span class="cl-b1b0e130"></span></p></th><th  colspan="2"class="cl-b1b2c4fa"><p class="cl-b1b2b9e2"><span class="cl-b1b0e130">Sibling (Control)</span></p></th><th class="cl-b1b2c4fa"><p class="cl-b1b2b9e2"><span class="cl-b1b0e130"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-b1b2c4fa"><p class="cl-b1b2b9e2"><span class="cl-b1b0e130">Patient (Case)</span></p></th><th class="cl-b1b2c4fa"><p class="cl-b1b2b9e2"><span class="cl-b1b0e130">tonsillectomy</span></p></th><th class="cl-b1b2c4fa"><p class="cl-b1b2b9e2"><span class="cl-b1b0e130">no tonsillectomy</span></p></th><th class="cl-b1b2c4fa"><p class="cl-b1b2b9e2"><span class="cl-b1b0e130">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b1b2c504"><p class="cl-b1b2b9e2"><span class="cl-b1b0e130">tonsillectomy</span></p></td><td class="cl-b1b2c504"><p class="cl-b1b2b9e2"><span class="cl-b1b0e130">26</span></p></td><td class="cl-b1b2c504"><p class="cl-b1b2b9e2"><span class="cl-b1b0e130">15</span></p></td><td class="cl-b1b2c504"><p class="cl-b1b2b9e2"><span class="cl-b1b0e130">41</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b1b2c504"><p class="cl-b1b2b9e2"><span class="cl-b1b0e130">no tonsillectomy</span></p></td><td class="cl-b1b2c504"><p class="cl-b1b2b9e2"><span class="cl-b1b0e130">7</span></p></td><td class="cl-b1b2c504"><p class="cl-b1b2b9e2"><span class="cl-b1b0e130">37</span></p></td><td class="cl-b1b2c504"><p class="cl-b1b2b9e2"><span class="cl-b1b0e130">44</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b1b2c505"><p class="cl-b1b2b9e2"><span class="cl-b1b0e130">Total</span></p></td><td class="cl-b1b2c505"><p class="cl-b1b2b9e2"><span class="cl-b1b0e130">33</span></p></td><td class="cl-b1b2c505"><p class="cl-b1b2b9e2"><span class="cl-b1b0e130">52</span></p></td><td class="cl-b1b2c505"><p class="cl-b1b2b9e2"><span class="cl-b1b0e130">85</span></p></td></tr></tbody></table></div>
+<p>Let <span class="math inline">\(p_p\)</span> be the probability that
+the patient (case) had a tonsillectomy, and let <span
+class="math inline">\(p_s\)</span> be the probability that the sibling
+(control) had a tonsillectomy. How can we test the null hypothesis <span
+class="math inline">\(H_0\!: p_p = p_s\)</span> versus <span
+class="math inline">\(H_a\!: p_p \neq p_s\)</span>? It would be tempting
+to use the test statistic <span class="math display">\[
+  z = \frac{\hat{p}_p - \hat{p}_s}{\sqrt{\hat{p}(1-\hat{p})(1/n_p +
+1/n_s)}},
+\]</span> where <span class="math inline">\(\hat{p}_p = 41/85\)</span>,
+<span class="math inline">\(\hat{p}_s = 33/85\)</span>, <span
+class="math inline">\(n_p = 85\)</span>, <span class="math inline">\(n_s
+= 85\)</span>, and <span class="math inline">\(\hat{p} =
+(41+33)/(85+85)\)</span>. However this test statistic assumes that the
+samples are <em>independent</em>, but they are <em>not
+independent</em>.</p>
+<div style="page-break-after: always;"></div>
+<div id="derivation-of-mcnemars-test-statistic" class="section level3">
+<h3>Derivation of McNemar’s Test Statistic</h3>
+<p>Let <span class="math inline">\(p_a\)</span>, <span
+class="math inline">\(p_b\)</span>, <span
+class="math inline">\(p_c\)</span>, and <span
+class="math inline">\(p_d\)</span> denote the probabilities of each of
+the four possible sibling pairs.</p>
+<div class="tabwid"><style>.cl-b1d0f1aa{table-layout:auto;}.cl-b1cd0a22{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b1cd0a2c{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;top:3.3pt;}.cl-b1cee0d6{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b1ceeb3a{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b1ceeb3b{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b1ceeb44{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-b1d0f1aa'><thead><tr style="overflow-wrap:break-word;"><th class="cl-b1ceeb3a"><p class="cl-b1cee0d6"><span class="cl-b1cd0a22">Patient (Case)</span></p></th><th class="cl-b1ceeb3a"><p class="cl-b1cee0d6"><span class="cl-b1cd0a22">tonsillectomy</span></p></th><th class="cl-b1ceeb3a"><p class="cl-b1cee0d6"><span class="cl-b1cd0a22">no tonsillectomy</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b1ceeb3b"><p class="cl-b1cee0d6"><span class="cl-b1cd0a22">tonsillectomy</span></p></td><td class="cl-b1ceeb3b"><p class="cl-b1cee0d6"><span class="cl-b1cd0a22">p</span><span class="cl-b1cd0a2c">a</span></p></td><td class="cl-b1ceeb3b"><p class="cl-b1cee0d6"><span class="cl-b1cd0a22">p</span><span class="cl-b1cd0a2c">b</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b1ceeb44"><p class="cl-b1cee0d6"><span class="cl-b1cd0a22">no</span><span class="cl-b1cd0a22"> </span><span class="cl-b1cd0a22">tonsillectomy</span></p></td><td class="cl-b1ceeb44"><p class="cl-b1cee0d6"><span class="cl-b1cd0a22">p</span><span class="cl-b1cd0a2c">c</span></p></td><td class="cl-b1ceeb44"><p class="cl-b1cee0d6"><span class="cl-b1cd0a22">p</span><span class="cl-b1cd0a2c">d</span></p></td></tr></tbody></table></div>
+<p>So the probability that the <em>patient</em> had a tonsillectomy is
+<span class="math display">\[
+  p_p = p_a + p_b,
+\]</span> and the probability that the <em>sibling</em> had a
+tonsillectomy is <span class="math display">\[
+  p_s = p_a + p_c.
+\]</span> If the null hypothesis is true then <span
+class="math display">\[
+  p_p = p_s \Rightarrow p_a + p_b = p_a + p_c \Rightarrow p_b = p_c.
+\]</span> Now we don’t know <span class="math inline">\(p_b\)</span> or
+<span class="math inline">\(p_c\)</span>, but we can estimate them from
+the observed counts,</p>
+<div class="tabwid"><style>.cl-b1dcf7ac{table-layout:auto;}.cl-b1d91844{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b1dad134{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b1dadb48{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b1dadb52{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b1dadb53{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-b1dcf7ac'><thead><tr style="overflow-wrap:break-word;"><th class="cl-b1dadb48"><p class="cl-b1dad134"><span class="cl-b1d91844"></span></p></th><th  colspan="2"class="cl-b1dadb48"><p class="cl-b1dad134"><span class="cl-b1d91844">Sibling (Control)</span></p></th><th class="cl-b1dadb48"><p class="cl-b1dad134"><span class="cl-b1d91844"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-b1dadb48"><p class="cl-b1dad134"><span class="cl-b1d91844">Patient (Case)</span></p></th><th class="cl-b1dadb48"><p class="cl-b1dad134"><span class="cl-b1d91844">tonsillectomy</span></p></th><th class="cl-b1dadb48"><p class="cl-b1dad134"><span class="cl-b1d91844">no tonsillectomy</span></p></th><th class="cl-b1dadb48"><p class="cl-b1dad134"><span class="cl-b1d91844">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b1dadb52"><p class="cl-b1dad134"><span class="cl-b1d91844">tonsillectomy</span></p></td><td class="cl-b1dadb52"><p class="cl-b1dad134"><span class="cl-b1d91844">26</span></p></td><td class="cl-b1dadb52"><p class="cl-b1dad134"><span class="cl-b1d91844">15</span></p></td><td class="cl-b1dadb52"><p class="cl-b1dad134"><span class="cl-b1d91844">41</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b1dadb52"><p class="cl-b1dad134"><span class="cl-b1d91844">no tonsillectomy</span></p></td><td class="cl-b1dadb52"><p class="cl-b1dad134"><span class="cl-b1d91844">7</span></p></td><td class="cl-b1dadb52"><p class="cl-b1dad134"><span class="cl-b1d91844">37</span></p></td><td class="cl-b1dadb52"><p class="cl-b1dad134"><span class="cl-b1d91844">44</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b1dadb53"><p class="cl-b1dad134"><span class="cl-b1d91844">Total</span></p></td><td class="cl-b1dadb53"><p class="cl-b1dad134"><span class="cl-b1d91844">33</span></p></td><td class="cl-b1dadb53"><p class="cl-b1dad134"><span class="cl-b1d91844">52</span></p></td><td class="cl-b1dadb53"><p class="cl-b1dad134"><span class="cl-b1d91844">85</span></p></td></tr></tbody></table></div>
+<p>The estimates of <span class="math inline">\(p_b\)</span> and <span
+class="math inline">\(p_c\)</span> are obtained by averaging the
+corresponding proportions because we assume that <span
+class="math inline">\(p_b = p_c\)</span> under the null hypothesis so
+that <span class="math display">\[
+  \hat{p}_b = \frac{7/85+15/85}{2}, \ \ \hat{p}_c =
+\frac{7/85+15/85}{2}.
+\]</span> Now these estimates can be used to compute two of the
+(estimated) expected counts corresponding to the bottom-left and
+top-right cells. <span class="math display">\[
+  n \times \hat{p}_b = 85 \times \frac{7/85+15/85}{2} = \frac{7+15}{2} =
+11, \\ \\
+  n \times \hat{p}_c = 85 \times \frac{7/85+15/85}{2} = \frac{7+15}{2} =
+11.
+\]</span> The null hypothesis does not imply anything about the expected
+counts for the top-left and top-right cells, so we just use the observed
+counts as estimates of the expected counts in those cells. The expected
+counts for each cell are shown in the table below.</p>
+<div class="tabwid"><style>.cl-b1ea1c7a{table-layout:auto;}.cl-b1e5d32c{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b1e7c268{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b1e7ce5c{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b1e7ce66{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b1e7ce67{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-b1ea1c7a'><thead><tr style="overflow-wrap:break-word;"><th class="cl-b1e7ce5c"><p class="cl-b1e7c268"><span class="cl-b1e5d32c"></span></p></th><th  colspan="2"class="cl-b1e7ce5c"><p class="cl-b1e7c268"><span class="cl-b1e5d32c">Sibling (Control)</span></p></th><th class="cl-b1e7ce5c"><p class="cl-b1e7c268"><span class="cl-b1e5d32c"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-b1e7ce5c"><p class="cl-b1e7c268"><span class="cl-b1e5d32c">Patient (Case)</span></p></th><th class="cl-b1e7ce5c"><p class="cl-b1e7c268"><span class="cl-b1e5d32c">tonsillectomy</span></p></th><th class="cl-b1e7ce5c"><p class="cl-b1e7c268"><span class="cl-b1e5d32c">no tonsillectomy</span></p></th><th class="cl-b1e7ce5c"><p class="cl-b1e7c268"><span class="cl-b1e5d32c">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b1e7ce66"><p class="cl-b1e7c268"><span class="cl-b1e5d32c">tonsillectomy</span></p></td><td class="cl-b1e7ce66"><p class="cl-b1e7c268"><span class="cl-b1e5d32c">26</span></p></td><td class="cl-b1e7ce66"><p class="cl-b1e7c268"><span class="cl-b1e5d32c">(7+15)/2</span></p></td><td class="cl-b1e7ce66"><p class="cl-b1e7c268"><span class="cl-b1e5d32c">41</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b1e7ce66"><p class="cl-b1e7c268"><span class="cl-b1e5d32c">no tonsillectomy</span></p></td><td class="cl-b1e7ce66"><p class="cl-b1e7c268"><span class="cl-b1e5d32c">(7+15)/2</span></p></td><td class="cl-b1e7ce66"><p class="cl-b1e7c268"><span class="cl-b1e5d32c">37</span></p></td><td class="cl-b1e7ce66"><p class="cl-b1e7c268"><span class="cl-b1e5d32c">44</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b1e7ce67"><p class="cl-b1e7c268"><span class="cl-b1e5d32c">Total</span></p></td><td class="cl-b1e7ce67"><p class="cl-b1e7c268"><span class="cl-b1e5d32c">33</span></p></td><td class="cl-b1e7ce67"><p class="cl-b1e7c268"><span class="cl-b1e5d32c">52</span></p></td><td class="cl-b1e7ce67"><p class="cl-b1e7c268"><span class="cl-b1e5d32c">85</span></p></td></tr></tbody></table></div>
+<p>Now plugging the observed and expected counts into the formula for
+<span class="math inline">\(X^2\)</span> gives us <span
+class="math display">\[
+  X^2 = \frac{(26-26)^2}{26} + \frac{[15-(7+15)/2]^2}{(7+15)/2} +
+\frac{[7-(7+15)/2]^2}{(7+15)/2} + \frac{(37-37)^2}{37} \approx 2.91.
+\]</span> Some algebra will show that this can be simplified
+considerably to <span class="math display">\[
+  X^2 = \frac{(7-15)^2}{7+15} \approx 2.91.
+\]</span> In general, we can write the test statistic as <span
+class="math display">\[
+  X^2 = \frac{(O_{bl}-O_{tr})^2}{O_{bl} + O_{tr}}
+\]</span> where <span class="math inline">\(O_{bl}\)</span> and <span
+class="math inline">\(O_{tr}\)</span> denote the bottom-left and
+top-right <em>observed counts</em>, respectively. The degrees of freedom
+for computing the <span class="math inline">\(p\)</span>-value is always
+1.</p>
+<p><strong>Example</strong>: An <a
+href="https://en.wikipedia.org/wiki/ELISA">enzyme-linked immunosorbent
+assay (ELISA)</a> is an analytical biochemical procedure that can be
+used to detect the presence of antigens or antibodies, and so so it can
+be used to detect the presence of specific infections. A study applied
+two kinds of ELISA — a standard version and the ABC-ELISA — to each of
+101 patients with hydatidosis (i.e., an infestation with
+<em>echinococcus</em>, a genus of tapeworms).<a href="#fn4"
+class="footnote-ref" id="fnref4"><sup>4</sup></a> Each test will give a
+<em>positive</em> or <em>negative</em> test result for the presence of
+the disease. Let <span class="math inline">\(p_{\text{abc}}\)</span> and
+<span class="math inline">\(p_{\text{s}}\)</span> be the probability
+that a ABC-ELISA and standard ELISA, respectively, will produce a
+positive result when applied to someone with the disease (this
+probability is called the <a
+href="https://en.wikipedia.org/wiki/Sensitivity_and_specificity"><em>sensitivity</em></a>
+of the test). To determine if the two tests differ with respect to their
+sensitivity we could test the hypotheses <span
+class="math inline">\(H_0\!: p_{\text{abc}} - p_{\text{s}} = 0\)</span>
+versus <span class="math inline">\(H_a\!: p_{\text{abc}} - p_{\text{s}}
+\neq 0\)</span> using the test statistic <span class="math display">\[
+  z = \frac{\hat{p}_{\text{abc}} -
+\hat{p}_{\text{s}}}{\sqrt{\hat{p}(1-\hat{p})(1/n_{\text{abc}} +
+1/n_{\text{s}})}}.
+\]</span> This is what was done in the original analysis, but it was
+later pointed out that this analysis is incorrect because the two
+samples are <em>dependent</em> because both assays were applied to the
+same patients.<a href="#fn5" class="footnote-ref"
+id="fnref5"><sup>5</sup></a> So how can we test the hypotheses <span
+class="math inline">\(H_0\!: p_{\text{abc}} - p_{\text{s}} = 0\)</span>
+versus <span class="math inline">\(H_a\!: p_{\text{abc}} - p_{\text{s}}
+\neq 0\)</span>?</p>
+<div class="tabwid"><style>.cl-b1f6dc94{table-layout:auto;}.cl-b1f23b12{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b1f41806{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b1f4259e{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b1f425a8{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b1f425a9{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-b1f6dc94'><thead><tr style="overflow-wrap:break-word;"><th class="cl-b1f4259e"><p class="cl-b1f41806"><span class="cl-b1f23b12"></span></p></th><th  colspan="2"class="cl-b1f4259e"><p class="cl-b1f41806"><span class="cl-b1f23b12">Standard ELISA</span></p></th><th class="cl-b1f4259e"><p class="cl-b1f41806"><span class="cl-b1f23b12"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-b1f4259e"><p class="cl-b1f41806"><span class="cl-b1f23b12">ABC-ELISA</span></p></th><th class="cl-b1f4259e"><p class="cl-b1f41806"><span class="cl-b1f23b12">positive</span></p></th><th class="cl-b1f4259e"><p class="cl-b1f41806"><span class="cl-b1f23b12">negative</span></p></th><th class="cl-b1f4259e"><p class="cl-b1f41806"><span class="cl-b1f23b12">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b1f425a8"><p class="cl-b1f41806"><span class="cl-b1f23b12">positive</span></p></td><td class="cl-b1f425a8"><p class="cl-b1f41806"><span class="cl-b1f23b12">82</span></p></td><td class="cl-b1f425a8"><p class="cl-b1f41806"><span class="cl-b1f23b12">13</span></p></td><td class="cl-b1f425a8"><p class="cl-b1f41806"><span class="cl-b1f23b12">95</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b1f425a8"><p class="cl-b1f41806"><span class="cl-b1f23b12">negative</span></p></td><td class="cl-b1f425a8"><p class="cl-b1f41806"><span class="cl-b1f23b12">6</span></p></td><td class="cl-b1f425a8"><p class="cl-b1f41806"><span class="cl-b1f23b12">0</span></p></td><td class="cl-b1f425a8"><p class="cl-b1f41806"><span class="cl-b1f23b12">6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b1f425a9"><p class="cl-b1f41806"><span class="cl-b1f23b12">Total</span></p></td><td class="cl-b1f425a9"><p class="cl-b1f41806"><span class="cl-b1f23b12">88</span></p></td><td class="cl-b1f425a9"><p class="cl-b1f41806"><span class="cl-b1f23b12">13</span></p></td><td class="cl-b1f425a9"><p class="cl-b1f41806"><span class="cl-b1f23b12">101</span></p></td></tr></tbody></table></div>
+<div style="page-break-after: always;"></div>
+<p><strong>Example</strong>: In educational testing, a simple measure of
+the “easiness” of an item is the proportion of examinees that get the
+question correct (similarly, a measure of the “difficulty” of an item is
+the proportion of examinees that get the question incorrect). Suppose a
+test has two items, <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span>, and let <span
+class="math inline">\(p_A\)</span> and <span
+class="math inline">\(p_B\)</span> denote the probability that a
+randomly selected examinee will get each item correct. The test was
+administered to <span class="math inline">\(n=1000\)</span> examinees.
+The responses of the examinees to these two items are summarized in the
+table below.</p>
+<div class="tabwid"><style>.cl-b203c3be{table-layout:auto;}.cl-b1ff8e0c{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b20162f4{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b2016f42{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b2016f4c{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b2016f4d{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-b203c3be'><thead><tr style="overflow-wrap:break-word;"><th class="cl-b2016f42"><p class="cl-b20162f4"><span class="cl-b1ff8e0c"></span></p></th><th  colspan="2"class="cl-b2016f42"><p class="cl-b20162f4"><span class="cl-b1ff8e0c">Item B</span></p></th><th class="cl-b2016f42"><p class="cl-b20162f4"><span class="cl-b1ff8e0c"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-b2016f42"><p class="cl-b20162f4"><span class="cl-b1ff8e0c">Item A</span></p></th><th class="cl-b2016f42"><p class="cl-b20162f4"><span class="cl-b1ff8e0c">correct</span></p></th><th class="cl-b2016f42"><p class="cl-b20162f4"><span class="cl-b1ff8e0c">incorrect</span></p></th><th class="cl-b2016f42"><p class="cl-b20162f4"><span class="cl-b1ff8e0c">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b2016f4c"><p class="cl-b20162f4"><span class="cl-b1ff8e0c">correct</span></p></td><td class="cl-b2016f4c"><p class="cl-b20162f4"><span class="cl-b1ff8e0c">400</span></p></td><td class="cl-b2016f4c"><p class="cl-b20162f4"><span class="cl-b1ff8e0c">125</span></p></td><td class="cl-b2016f4c"><p class="cl-b20162f4"><span class="cl-b1ff8e0c">525</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b2016f4c"><p class="cl-b20162f4"><span class="cl-b1ff8e0c">incorrect</span></p></td><td class="cl-b2016f4c"><p class="cl-b20162f4"><span class="cl-b1ff8e0c">175</span></p></td><td class="cl-b2016f4c"><p class="cl-b20162f4"><span class="cl-b1ff8e0c">300</span></p></td><td class="cl-b2016f4c"><p class="cl-b20162f4"><span class="cl-b1ff8e0c">475</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b2016f4d"><p class="cl-b20162f4"><span class="cl-b1ff8e0c">Total</span></p></td><td class="cl-b2016f4d"><p class="cl-b20162f4"><span class="cl-b1ff8e0c">575</span></p></td><td class="cl-b2016f4d"><p class="cl-b20162f4"><span class="cl-b1ff8e0c">425</span></p></td><td class="cl-b2016f4d"><p class="cl-b20162f4"><span class="cl-b1ff8e0c">1,000</span></p></td></tr></tbody></table></div>
+<p>Now consider a test of the hypotheses <span
+class="math inline">\(H_0\!: p_A - p_B = 0\)</span> versus <span
+class="math inline">\(H_a\!: p_A - p_B \neq 0\)</span>. However the two
+samples of responses — i.e., the samples of responses to item A and the
+sample of responses to item B — are not independent. How then do we test
+these hypotheses?</p>
+</div>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Holmes, M. C. &amp; Williams, R. E. O. (1954). The
+distribution of carriers of Streptococcus pyogenes among 2413 healthy
+children. <em>Journal of Hygiene</em>, <em>52</em>, 165–179.<a
+href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Holtbrugge, W. &amp; Schumacher, M. (1991). A comparison
+of regression models for the analysis of ordered categorical data.
+<em>Applied Statistics</em>, <em>40</em>, 249–259.<a href="#fnref2"
+class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Johnson, S. K. &amp; Johnson, R. E. (1972).
+Tonsillectomy history in Hodgkin’s disease. <em>New England Journal of
+Medicine</em>, <em>287</em>, 1122–1125.<a href="#fnref3"
+class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Shen, Z. Q., Feng, X. H., Qian, Z. X., Liu, R. L., &amp;
+Yang, C. R. (1988). Application of biotinadvin system, determination of
+circulating immune complexes, and evaluation of antibody response in
+different hydatidosis patients. <em>American Journal of Tropical
+Medicine and Hygiene</em>. <em>39</em>, 93–96.<a href="#fnref4"
+class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>Cruess, D. F. (1989). Review of use of statistics in The
+American Journal of Tropical Medicine and Hygiene for January-December
+1988. <em>American Journal of Tropical Medicine and Hygiene</em>,
+<em>41</em>, 619–626.<a href="#fnref5"
+class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

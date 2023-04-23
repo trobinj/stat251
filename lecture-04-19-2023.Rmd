@@ -40,7 +40,6 @@ source("../../utilities.R")
 
 `r ifelse(knitr::is_html_output(), paste("You can also download a [PDF](lecture-", date, ".pdf) copy of this lecture.", sep = ""), "")`
 
-
 ## Mark-Recapture Designs
 
 The simplest mark-recapture design involves two steps.

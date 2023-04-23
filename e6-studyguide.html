@@ -11,7 +11,7 @@
 
 
 
-<title>Statistics 251 (Statistical Methods)</title>
+<title>Sixth Examination Study Guide</title>
 
 <script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -260,23 +260,85 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Statistics 251 (Statistical Methods)</h1>
+<h1 class="title toc-ignore">Sixth Examination Study Guide</h1>
 
 </div>
 
 
-<p>This site contains material for Dr. Johnson’s <em>Statistical
-Methods</em> course (Stat 251) at the University of Idaho for the spring
-semester of 2023.</p>
-<hr />
-<center>
-<div class="figure">
-<img src="http://imgs.xkcd.com/comics/students.png" alt="" />
-<p class="caption"><a href="https://xkcd.com/557"
-class="uri">https://xkcd.com/557</a></p>
-</div>
-</center>
-<hr />
+<p>You can also download a <a href="e6-studyguide.pdf">PDF</a> copy of
+this study guide.</p>
+<ol style="list-style-type: decimal">
+<li><p>Know how to conduct the three kinds of tests that we discussed
+that use the <span class="math inline">\(X^2\)</span> test statistic:
+the <em>goodness-of-fit test</em>, the <em>test of independence</em>,
+and <em>McNemar’s test</em>. This includes the statement of the null and
+alternative hypotheses, calculation of the test statistic, calculation
+of the p-value, and the decision.</p></li>
+<li><p>Know how to compute expected counts for a goodness-of-fit test
+and a test of independence.</p></li>
+<li><p>Know how to compute the <span class="math inline">\(X^2\)</span>
+test statistic using observed and expected counts.</p></li>
+<li><p>Know how to compute the <span
+class="math inline">\(p\)</span>-value using the <span
+class="math inline">\(\chi^2\)</span> sampling distribution.</p></li>
+<li><p>What does it mean to say that two variables are
+<em>independent</em>?</p></li>
+<li><p>The test statistic <span class="math display">\[
+  z = \frac{\hat{p}-p}{\sqrt{p(1-p)/n}}
+\]</span> can <em>sometimes</em> be used instead of the <span
+class="math inline">\(X^2\)</span> test statistic for a goodness-of-fit
+test. What is the relationship between the <span
+class="math inline">\(z\)</span> and <span
+class="math inline">\(X^2\)</span> test statistics? What is the
+limitation of the <span class="math inline">\(z\)</span> test
+statistic?</p></li>
+<li><p>The test statistic <span class="math display">\[
+  z = \frac{\hat{p}_1-\hat{p}_2}{\sqrt{\hat{p}(1-\hat{p})(1/n_1 +
+1/n_2)}}.
+\]</span> can <em>sometimes</em> be used instead of the <span
+class="math inline">\(X^2\)</span> test statistic for a test of
+independence. What is the relationship between the <span
+class="math inline">\(z\)</span> and <span
+class="math inline">\(X^2\)</span> test statistics? What is the
+limitation of the <span class="math inline">\(z\)</span> test
+statistic?</p></li>
+<li><p>What is the purpose of a <em>mark-recapture</em> study?</p></li>
+<li><p>How do you compute the Lincoln-Petersen estimator? What does it
+estimate?</p></li>
+<li><p>Understand the importance of independence of inclusion/exclusion
+within the two samples in the context of a mark-recapture study, and how
+this assumption might be violated.</p></li>
+<li><p>What are <em>direct sampling</em> and <em>inverse sampling</em>
+in the context of a mark-recapture study? Why is the distinction between
+these two kinds of sampling important?</p></li>
+<li><p>Understand the purpose and calculation of Cramer’s V.</p></li>
+<li><p>What is <em>Simpson’s paradox</em>, <em>Berkson’s paradox</em>,
+the <em>ecological fallacy</em>, a <em>suppressor variable</em>, and a
+<em>spurious relationship</em>?</p></li>
+</ol>
+<p>Formulas/expressions you should understand when and how to use.</p>
+<p><span class="math display">\[
+    X^2 = \sum \frac{(\text{observed count} - \text{expected
+count})^2}{\text{expected count}}
+\]</span> <span class="math display">\[
+    \text{expected count} = \text{probability} \times n
+\]</span> <span class="math display">\[
+    \text{expected count} = \frac{R \times C}{T}
+\]</span> <span class="math display">\[
+  \text{df} = \text{number of categories} - 1
+\]</span> <span class="math display">\[
+    \text{df} = (r-1)(c-1)
+\]</span> <span class="math display">\[
+    \hat{N} = \frac{n_1n_2}{m}
+\]</span> <span class="math display">\[
+\text{standard error} = \sqrt{\frac{n_1n_2(n_1-m)(n_2-m)}{m^3}}
+\]</span> <span class="math display">\[
+\text{standard error} = \sqrt{\frac{n_1^2n_2(n_2-m)}{m^2(m+1)}}
+\]</span> <span class="math display">\[
+V = \sqrt{\frac{X^2/n}{\min(r-1,c-1)}}
+\]</span> <span class="math display">\[
+X^2 = \frac{(O_{bl}-O_{tr})^2}{O_{bl} + O_{tr}}
+\]</span></p>
 
 
 
