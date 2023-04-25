@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Wednesday, Apr 26</title>
+
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
+<script src="site_libs/tabwid-1.1.3/tabwid.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics 251</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="lectures.html">Lectures</a>
+</li>
+<li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Wednesday, Apr 26</h1>
+
+</div>
+
+
+<p>No PDF version available.</p>
+<div id="simpsons-paradox" class="section level2">
+<h2>Simpson’s Paradox</h2>
+<p><strong>Example</strong>: The following data are from an
+observational study that compared open surgical methods with
+percutaneous nephrolithotomy with respect to success of removing a
+kidney stone.<a href="#fn1" class="footnote-ref"
+id="fnref1"><sup>1</sup></a></p>
+<div class="tabwid"><style>.cl-002b4d22{table-layout:auto;}.cl-00267b9e{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-0028c016{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-0028ccc8{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0028ccd2{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0028ccd3{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-002b4d22'><thead><tr style="overflow-wrap:break-word;"><th class="cl-0028ccc8"><p class="cl-0028c016"><span class="cl-00267b9e"></span></p></th><th  colspan="2"class="cl-0028ccc8"><p class="cl-0028c016"><span class="cl-00267b9e">Outcome</span></p></th><th class="cl-0028ccc8"><p class="cl-0028c016"><span class="cl-00267b9e"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-0028ccc8"><p class="cl-0028c016"><span class="cl-00267b9e">Treatment</span></p></th><th class="cl-0028ccc8"><p class="cl-0028c016"><span class="cl-00267b9e">success</span></p></th><th class="cl-0028ccc8"><p class="cl-0028c016"><span class="cl-00267b9e">failure</span></p></th><th class="cl-0028ccc8"><p class="cl-0028c016"><span class="cl-00267b9e">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-0028ccd2"><p class="cl-0028c016"><span class="cl-00267b9e">open surgical method</span></p></td><td class="cl-0028ccd2"><p class="cl-0028c016"><span class="cl-00267b9e">273 (0.78)</span></p></td><td class="cl-0028ccd2"><p class="cl-0028c016"><span class="cl-00267b9e">77 (0.22)</span></p></td><td class="cl-0028ccd2"><p class="cl-0028c016"><span class="cl-00267b9e">350</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-0028ccd3"><p class="cl-0028c016"><span class="cl-00267b9e">percutaneous nephrolithotomy</span></p></td><td class="cl-0028ccd3"><p class="cl-0028c016"><span class="cl-00267b9e">289 (0.83)</span></p></td><td class="cl-0028ccd3"><p class="cl-0028c016"><span class="cl-00267b9e">61 (0.17)</span></p></td><td class="cl-0028ccd3"><p class="cl-0028c016"><span class="cl-00267b9e">350</span></p></td></tr></tbody></table></div>
+<p>Now consider the same data but now also considering the <em>size</em>
+of the kidney stone.</p>
+<div class="tabwid"><style>.cl-0040df84{table-layout:auto;}.cl-003b70ee{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-003de2e8{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-003dee1e{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-003dee1f{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-003dee28{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-0040df84'><thead><tr style="overflow-wrap:break-word;"><th  colspan="2"class="cl-003dee1e"><p class="cl-003de2e8"><span class="cl-003b70ee"></span></p></th><th  colspan="2"class="cl-003dee1e"><p class="cl-003de2e8"><span class="cl-003b70ee">Outcome</span></p></th><th class="cl-003dee1e"><p class="cl-003de2e8"><span class="cl-003b70ee"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-003dee1e"><p class="cl-003de2e8"><span class="cl-003b70ee">Size</span></p></th><th class="cl-003dee1e"><p class="cl-003de2e8"><span class="cl-003b70ee">Treatment</span></p></th><th class="cl-003dee1e"><p class="cl-003de2e8"><span class="cl-003b70ee">success</span></p></th><th class="cl-003dee1e"><p class="cl-003de2e8"><span class="cl-003b70ee">failure</span></p></th><th class="cl-003dee1e"><p class="cl-003de2e8"><span class="cl-003b70ee">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-003dee1f"><p class="cl-003de2e8"><span class="cl-003b70ee">large</span></p></td><td class="cl-003dee1f"><p class="cl-003de2e8"><span class="cl-003b70ee">open surgical method</span></p></td><td class="cl-003dee1f"><p class="cl-003de2e8"><span class="cl-003b70ee">192 (0.73)</span></p></td><td class="cl-003dee1f"><p class="cl-003de2e8"><span class="cl-003b70ee">71 (0.27)</span></p></td><td class="cl-003dee1f"><p class="cl-003de2e8"><span class="cl-003b70ee">263</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-003dee1f"><p class="cl-003de2e8"><span class="cl-003b70ee">large</span></p></td><td class="cl-003dee1f"><p class="cl-003de2e8"><span class="cl-003b70ee">percutaneous nephrolithotomy</span></p></td><td class="cl-003dee1f"><p class="cl-003de2e8"><span class="cl-003b70ee">55 (0.69)</span></p></td><td class="cl-003dee1f"><p class="cl-003de2e8"><span class="cl-003b70ee">25 (0.31)</span></p></td><td class="cl-003dee1f"><p class="cl-003de2e8"><span class="cl-003b70ee">80</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-003dee1f"><p class="cl-003de2e8"><span class="cl-003b70ee">small</span></p></td><td class="cl-003dee1f"><p class="cl-003de2e8"><span class="cl-003b70ee">open surgical method</span></p></td><td class="cl-003dee1f"><p class="cl-003de2e8"><span class="cl-003b70ee">81 (0.93)</span></p></td><td class="cl-003dee1f"><p class="cl-003de2e8"><span class="cl-003b70ee">6 (0.07)</span></p></td><td class="cl-003dee1f"><p class="cl-003de2e8"><span class="cl-003b70ee">87</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-003dee28"><p class="cl-003de2e8"><span class="cl-003b70ee">small</span></p></td><td class="cl-003dee28"><p class="cl-003de2e8"><span class="cl-003b70ee">percutaneous nephrolithotomy</span></p></td><td class="cl-003dee28"><p class="cl-003de2e8"><span class="cl-003b70ee">234 (0.87)</span></p></td><td class="cl-003dee28"><p class="cl-003de2e8"><span class="cl-003b70ee">36 (0.13)</span></p></td><td class="cl-003dee28"><p class="cl-003de2e8"><span class="cl-003b70ee">270</span></p></td></tr></tbody></table></div>
+<p>Why?</p>
+<p><strong>Simpson’s Paradox</strong>: A situation when the relationship
+between two variables “reverses” when conditioning upon a third
+confounding variable.</p>
+<p><strong>Example</strong>: The data shown below are from an
+investigation of the relationship between the defendant’s race and
+whether or not the death penalty was given in murder trials.</p>
+<div class="tabwid"><style>.cl-004fd430{table-layout:auto;}.cl-004bb8aa{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-004d848c{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-004d8fb8{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-004d8fc2{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-004d8fc3{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-004fd430'><thead><tr style="overflow-wrap:break-word;"><th  colspan="2"class="cl-004d8fb8"><p class="cl-004d848c"><span class="cl-004bb8aa"></span></p></th><th  colspan="2"class="cl-004d8fb8"><p class="cl-004d848c"><span class="cl-004bb8aa">Outcome</span></p></th><th class="cl-004d8fb8"><p class="cl-004d848c"><span class="cl-004bb8aa"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-004d8fb8"><p class="cl-004d848c"><span class="cl-004bb8aa">Defendant</span></p></th><th class="cl-004d8fb8"><p class="cl-004d848c"><span class="cl-004bb8aa">Victim</span></p></th><th class="cl-004d8fb8"><p class="cl-004d848c"><span class="cl-004bb8aa">yes</span></p></th><th class="cl-004d8fb8"><p class="cl-004d848c"><span class="cl-004bb8aa">Total</span></p></th><th class="cl-004d8fb8"><p class="cl-004d848c"><span class="cl-004bb8aa">total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">white</span></p></td><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">either</span></p></td><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">53 (0.11)</span></p></td><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">430 (0.89)</span></p></td><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">483</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">black</span></p></td><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">either</span></p></td><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">15 (0.08)</span></p></td><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">176 (0.92)</span></p></td><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">191</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">white</span></p></td><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">white</span></p></td><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">53 (0.11)</span></p></td><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">414 (0.89)</span></p></td><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">467</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">black</span></p></td><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">white</span></p></td><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">11 (0.23)</span></p></td><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">37 (0.77)</span></p></td><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">48</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">white</span></p></td><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">black</span></p></td><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">0 (0)</span></p></td><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">16 (1)</span></p></td><td class="cl-004d8fc2"><p class="cl-004d848c"><span class="cl-004bb8aa">16</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-004d8fc3"><p class="cl-004d848c"><span class="cl-004bb8aa">black</span></p></td><td class="cl-004d8fc3"><p class="cl-004d848c"><span class="cl-004bb8aa">black</span></p></td><td class="cl-004d8fc3"><p class="cl-004d848c"><span class="cl-004bb8aa">4 (0.03)</span></p></td><td class="cl-004d8fc3"><p class="cl-004d848c"><span class="cl-004bb8aa">139 (0.97)</span></p></td><td class="cl-004d8fc3"><p class="cl-004d848c"><span class="cl-004bb8aa">143</span></p></td></tr></tbody></table></div>
+<p><strong>Example</strong>: Consider data from a survey of women and an
+investigation of the relationship between smoking and mortality.<br />
+<img src="lecture-04-26-2023_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<!-- **Example**: Consider data from a [study](https://en.wikipedia.org/wiki/Simpson%27s_paradox#UC_Berkeley_gender_bias) of sex bias in admissions to graduate school at the University of California Berkeley. -->
+</div>
+<div id="berksons-paradox" class="section level2">
+<h2>Berkson’s Paradox</h2>
+<p><strong>Berkson’s paradox</strong> is when an association between two
+variables is due (in part) to <em>selection bias</em> (i.e., that some
+units have a higher probability of being sampled than others).</p>
+<p><strong>Example</strong>: Suppose that an observational study of
+people from the general population does not reveal any relationship
+between diabetes and cholecystitis (an inflammation of the
+gallbladder).</p>
+<div class="tabwid"><style>.cl-00be0edc{table-layout:auto;}.cl-00b832e6{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-00bbe51c{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-00bbefe4{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00bbefee{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00bbefef{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-00be0edc'><thead><tr style="overflow-wrap:break-word;"><th class="cl-00bbefe4"><p class="cl-00bbe51c"><span class="cl-00b832e6"></span></p></th><th  colspan="2"class="cl-00bbefe4"><p class="cl-00bbe51c"><span class="cl-00b832e6">Cholecystitis</span></p></th><th class="cl-00bbefe4"><p class="cl-00bbe51c"><span class="cl-00b832e6"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-00bbefe4"><p class="cl-00bbe51c"><span class="cl-00b832e6">Diabetes</span></p></th><th class="cl-00bbefe4"><p class="cl-00bbe51c"><span class="cl-00b832e6">yes</span></p></th><th class="cl-00bbefe4"><p class="cl-00bbe51c"><span class="cl-00b832e6">no</span></p></th><th class="cl-00bbefe4"><p class="cl-00bbe51c"><span class="cl-00b832e6">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-00bbefee"><p class="cl-00bbe51c"><span class="cl-00b832e6">yes</span></p></td><td class="cl-00bbefee"><p class="cl-00bbe51c"><span class="cl-00b832e6">100 (0.1)</span></p></td><td class="cl-00bbefee"><p class="cl-00bbe51c"><span class="cl-00b832e6">900 (0.9)</span></p></td><td class="cl-00bbefee"><p class="cl-00bbe51c"><span class="cl-00b832e6">1,000</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-00bbefee"><p class="cl-00bbe51c"><span class="cl-00b832e6">no</span></p></td><td class="cl-00bbefee"><p class="cl-00bbe51c"><span class="cl-00b832e6">1900 (0.1)</span></p></td><td class="cl-00bbefee"><p class="cl-00bbe51c"><span class="cl-00b832e6">17100 (0.9)</span></p></td><td class="cl-00bbefee"><p class="cl-00bbe51c"><span class="cl-00b832e6">19,000</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-00bbefef"><p class="cl-00bbe51c"><span class="cl-00b832e6">Total</span></p></td><td class="cl-00bbefef"><p class="cl-00bbe51c"><span class="cl-00b832e6">2000</span></p></td><td class="cl-00bbefef"><p class="cl-00bbe51c"><span class="cl-00b832e6">2000</span></p></td><td class="cl-00bbefef"><p class="cl-00bbe51c"><span class="cl-00b832e6">20,000</span></p></td></tr></tbody></table></div>
+<p>But if this study was based on <em>hospital records</em> then many
+people <em>without</em> diabetes <em>or</em> cholecystitis would not be
+sampled. This causes an apparent association between diabetes and
+cholecystitis, and appears to show that people with diabetes are
+<em>less likely</em> to have cholecystitis.</p>
+<div class="tabwid"><style>.cl-00cca5be{table-layout:auto;}.cl-00c767a2{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-00c9f03a{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-00c9fbf2{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c9fbf3{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00c9fbfc{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-00cca5be'><thead><tr style="overflow-wrap:break-word;"><th class="cl-00c9fbf2"><p class="cl-00c9f03a"><span class="cl-00c767a2"></span></p></th><th  colspan="2"class="cl-00c9fbf2"><p class="cl-00c9f03a"><span class="cl-00c767a2">Cholecystitis</span></p></th><th class="cl-00c9fbf2"><p class="cl-00c9f03a"><span class="cl-00c767a2"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-00c9fbf2"><p class="cl-00c9f03a"><span class="cl-00c767a2">Diabetes</span></p></th><th class="cl-00c9fbf2"><p class="cl-00c9f03a"><span class="cl-00c767a2">yes</span></p></th><th class="cl-00c9fbf2"><p class="cl-00c9f03a"><span class="cl-00c767a2">no</span></p></th><th class="cl-00c9fbf2"><p class="cl-00c9f03a"><span class="cl-00c767a2">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-00c9fbf3"><p class="cl-00c9f03a"><span class="cl-00c767a2">yes</span></p></td><td class="cl-00c9fbf3"><p class="cl-00c9f03a"><span class="cl-00c767a2">100 (0.1)</span></p></td><td class="cl-00c9fbf3"><p class="cl-00c9f03a"><span class="cl-00c767a2">900 (0.9)</span></p></td><td class="cl-00c9fbf3"><p class="cl-00c9f03a"><span class="cl-00c767a2">1,000</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-00c9fbf3"><p class="cl-00c9f03a"><span class="cl-00c767a2">no</span></p></td><td class="cl-00c9fbf3"><p class="cl-00c9f03a"><span class="cl-00c767a2">1900 (0.48)</span></p></td><td class="cl-00c9fbf3"><p class="cl-00c9f03a"><span class="cl-00c767a2">2100 (0.52)</span></p></td><td class="cl-00c9fbf3"><p class="cl-00c9f03a"><span class="cl-00c767a2">4,000</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-00c9fbfc"><p class="cl-00c9f03a"><span class="cl-00c767a2">Total</span></p></td><td class="cl-00c9fbfc"><p class="cl-00c9f03a"><span class="cl-00c767a2">2000</span></p></td><td class="cl-00c9fbfc"><p class="cl-00c9f03a"><span class="cl-00c767a2">2000</span></p></td><td class="cl-00c9fbfc"><p class="cl-00c9f03a"><span class="cl-00c767a2">5,000</span></p></td></tr></tbody></table></div>
+<p><strong>Example</strong>: A study published in the <a
+href="https://onlinelibrary.wiley.com/doi/full/10.1111/joim.12363"><em>Journal
+of Internal Medicine</em></a> of individuals aged 19 years or younger
+who received emergency medical care in Ontario, Canada, following an
+off‐road vehicle crash showed that those that were wearing a helmet were
+associated with a <em>greater</em> injury severity and necessity for
+more medical care than those not wearing a helmet.</p>
+<div class="tabwid"><style>.cl-00dbd07a{table-layout:auto;}.cl-00d754dc{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-00d94cba{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-00d9587c{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00d95886{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00d95887{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-00dbd07a'><thead><tr style="overflow-wrap:break-word;"><th class="cl-00d9587c"><p class="cl-00d94cba"><span class="cl-00d754dc"></span></p></th><th  colspan="2"class="cl-00d9587c"><p class="cl-00d94cba"><span class="cl-00d754dc">Hospitalized</span></p></th><th class="cl-00d9587c"><p class="cl-00d94cba"><span class="cl-00d754dc"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-00d9587c"><p class="cl-00d94cba"><span class="cl-00d754dc">Helmet</span></p></th><th class="cl-00d9587c"><p class="cl-00d94cba"><span class="cl-00d754dc">yes</span></p></th><th class="cl-00d9587c"><p class="cl-00d94cba"><span class="cl-00d754dc">no</span></p></th><th class="cl-00d9587c"><p class="cl-00d94cba"><span class="cl-00d754dc">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-00d95886"><p class="cl-00d94cba"><span class="cl-00d754dc">yes</span></p></td><td class="cl-00d95886"><p class="cl-00d94cba"><span class="cl-00d754dc">945 (0.1)</span></p></td><td class="cl-00d95886"><p class="cl-00d94cba"><span class="cl-00d754dc">8917 (0.9)</span></p></td><td class="cl-00d95886"><p class="cl-00d94cba"><span class="cl-00d754dc">9,862</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-00d95886"><p class="cl-00d94cba"><span class="cl-00d754dc">no</span></p></td><td class="cl-00d95886"><p class="cl-00d94cba"><span class="cl-00d754dc">1652 (0.07)</span></p></td><td class="cl-00d95886"><p class="cl-00d94cba"><span class="cl-00d754dc">23688 (0.93)</span></p></td><td class="cl-00d95886"><p class="cl-00d94cba"><span class="cl-00d754dc">25,340</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-00d95887"><p class="cl-00d94cba"><span class="cl-00d754dc">Total</span></p></td><td class="cl-00d95887"><p class="cl-00d94cba"><span class="cl-00d754dc">2597</span></p></td><td class="cl-00d95887"><p class="cl-00d94cba"><span class="cl-00d754dc">2597</span></p></td><td class="cl-00d95887"><p class="cl-00d94cba"><span class="cl-00d754dc">35,202</span></p></td></tr></tbody></table></div>
+<p>But individuals who <em>did not</em> receive emergency medical care
+(either because they were fine or because they died at the scene) are
+not included. What happens if we include them?</p>
+<p>Suppose that there were 10000 cases where an individual was wearing a
+helmet but did not require emergency medical care, and 50 cases where an
+individual was not wearing a helmet but did not require emergency
+medical care.</p>
+<div class="tabwid"><style>.cl-00ea2936{table-layout:auto;}.cl-00e50bae{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-00e6e82a{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-00e6faf4{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00e6fafe{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00e6fb08{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-00ea2936'><thead><tr style="overflow-wrap:break-word;"><th class="cl-00e6faf4"><p class="cl-00e6e82a"><span class="cl-00e50bae"></span></p></th><th  colspan="2"class="cl-00e6faf4"><p class="cl-00e6e82a"><span class="cl-00e50bae">Hospitalized</span></p></th><th class="cl-00e6faf4"><p class="cl-00e6e82a"><span class="cl-00e50bae"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-00e6faf4"><p class="cl-00e6e82a"><span class="cl-00e50bae">Helmet</span></p></th><th class="cl-00e6faf4"><p class="cl-00e6e82a"><span class="cl-00e50bae">yes</span></p></th><th class="cl-00e6faf4"><p class="cl-00e6e82a"><span class="cl-00e50bae">no</span></p></th><th class="cl-00e6faf4"><p class="cl-00e6e82a"><span class="cl-00e50bae">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-00e6fafe"><p class="cl-00e6e82a"><span class="cl-00e50bae">yes</span></p></td><td class="cl-00e6fafe"><p class="cl-00e6e82a"><span class="cl-00e50bae">945 (0.05)</span></p></td><td class="cl-00e6fafe"><p class="cl-00e6e82a"><span class="cl-00e50bae">18917 (0.95)</span></p></td><td class="cl-00e6fafe"><p class="cl-00e6e82a"><span class="cl-00e50bae">19,862</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-00e6fafe"><p class="cl-00e6e82a"><span class="cl-00e50bae">no</span></p></td><td class="cl-00e6fafe"><p class="cl-00e6e82a"><span class="cl-00e50bae">1652 (0.07)</span></p></td><td class="cl-00e6fafe"><p class="cl-00e6e82a"><span class="cl-00e50bae">23738 (0.93)</span></p></td><td class="cl-00e6fafe"><p class="cl-00e6e82a"><span class="cl-00e50bae">25,390</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-00e6fb08"><p class="cl-00e6e82a"><span class="cl-00e50bae">Total</span></p></td><td class="cl-00e6fb08"><p class="cl-00e6e82a"><span class="cl-00e50bae">2597</span></p></td><td class="cl-00e6fb08"><p class="cl-00e6e82a"><span class="cl-00e50bae">2597</span></p></td><td class="cl-00e6fb08"><p class="cl-00e6e82a"><span class="cl-00e50bae">45,252</span></p></td></tr></tbody></table></div>
+</div>
+<div id="ecological-fallacy" class="section level2">
+<h2>Ecological Fallacy</h2>
+<p>The <strong>ecological fallacy</strong> is the misconception that an
+association at the <em>group</em> level implies a similar association at
+the <em>individual</em> level.</p>
+<p><strong>Example</strong>: Research in Europe in the 19th century
+showed that suicide was more common in <em>regions</em> that were
+predominantly Protestant in comparison to areas that were predominantly
+Catholic. Would we conclude that within any given area the suicide rate
+is higher among Protestant <em>people</em> than Catholic
+<em>people</em>?</p>
+<p><strong>Example</strong>: Hobbit <em>villages</em> with higher pipe
+weed consumption also tend to have higher rates of foot lice. Would we
+conclude that within a given village that foot lice is more common among
+<em>individual</em> Hobbits that smoke in comparison to those who do
+not?</p>
+</div>
+<div id="suppressor-variables" class="section level2">
+<h2>Suppressor Variables</h2>
+<p>A <strong>suppressor variable</strong> is a variable that, if not
+conditioned upon, will “suppress” (i.e., reduce in magnitude) the
+relationship between two variables.</p>
+<p><strong>Example</strong>: Consider a study of the relationship
+between participation in a Head Start program and academic success.</p>
+<div class="tabwid"><style>.cl-00fbc75e{table-layout:auto;}.cl-00f7d19e{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-00f98bba{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-00f99600{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00f99601{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00f9960a{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-00fbc75e'><thead><tr style="overflow-wrap:break-word;"><th class="cl-00f99600"><p class="cl-00f98bba"><span class="cl-00f7d19e"></span></p></th><th  colspan="2"class="cl-00f99600"><p class="cl-00f98bba"><span class="cl-00f7d19e">Success</span></p></th><th class="cl-00f99600"><p class="cl-00f98bba"><span class="cl-00f7d19e"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-00f99600"><p class="cl-00f98bba"><span class="cl-00f7d19e">Head Start</span></p></th><th class="cl-00f99600"><p class="cl-00f98bba"><span class="cl-00f7d19e">yes</span></p></th><th class="cl-00f99600"><p class="cl-00f98bba"><span class="cl-00f7d19e">no</span></p></th><th class="cl-00f99600"><p class="cl-00f98bba"><span class="cl-00f7d19e">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-00f99601"><p class="cl-00f98bba"><span class="cl-00f7d19e">no</span></p></td><td class="cl-00f99601"><p class="cl-00f98bba"><span class="cl-00f7d19e">471 (0.47)</span></p></td><td class="cl-00f99601"><p class="cl-00f98bba"><span class="cl-00f7d19e">533 (0.53)</span></p></td><td class="cl-00f99601"><p class="cl-00f98bba"><span class="cl-00f7d19e">1,004</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-00f9960a"><p class="cl-00f98bba"><span class="cl-00f7d19e">yes</span></p></td><td class="cl-00f9960a"><p class="cl-00f98bba"><span class="cl-00f7d19e">509 (0.51)</span></p></td><td class="cl-00f9960a"><p class="cl-00f98bba"><span class="cl-00f7d19e">487 (0.49)</span></p></td><td class="cl-00f9960a"><p class="cl-00f98bba"><span class="cl-00f7d19e">996</span></p></td></tr></tbody></table></div>
+<div class="tabwid"><style>.cl-010e07f2{table-layout:auto;}.cl-01090aea{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-010b39a0{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-010b56d8{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-010b56e2{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-010b56f6{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-010e07f2'><thead><tr style="overflow-wrap:break-word;"><th  colspan="2"class="cl-010b56d8"><p class="cl-010b39a0"><span class="cl-01090aea"></span></p></th><th  colspan="2"class="cl-010b56d8"><p class="cl-010b39a0"><span class="cl-01090aea">Success</span></p></th><th class="cl-010b56d8"><p class="cl-010b39a0"><span class="cl-01090aea"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-010b56d8"><p class="cl-010b39a0"><span class="cl-01090aea">SES</span></p></th><th class="cl-010b56d8"><p class="cl-010b39a0"><span class="cl-01090aea">Head Start</span></p></th><th class="cl-010b56d8"><p class="cl-010b39a0"><span class="cl-01090aea">yes</span></p></th><th class="cl-010b56d8"><p class="cl-010b39a0"><span class="cl-01090aea">Total</span></p></th><th class="cl-010b56d8"><p class="cl-010b39a0"><span class="cl-01090aea">total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-010b56e2"><p class="cl-010b39a0"><span class="cl-01090aea">high</span></p></td><td class="cl-010b56e2"><p class="cl-010b39a0"><span class="cl-01090aea">no</span></p></td><td class="cl-010b56e2"><p class="cl-010b39a0"><span class="cl-01090aea">426 (0.5)</span></p></td><td class="cl-010b56e2"><p class="cl-010b39a0"><span class="cl-01090aea">422 (0.5)</span></p></td><td class="cl-010b56e2"><p class="cl-010b39a0"><span class="cl-01090aea">848</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-010b56e2"><p class="cl-010b39a0"><span class="cl-01090aea">high</span></p></td><td class="cl-010b56e2"><p class="cl-010b39a0"><span class="cl-01090aea">yes</span></p></td><td class="cl-010b56e2"><p class="cl-010b39a0"><span class="cl-01090aea">101 (0.78)</span></p></td><td class="cl-010b56e2"><p class="cl-010b39a0"><span class="cl-01090aea">29 (0.22)</span></p></td><td class="cl-010b56e2"><p class="cl-010b39a0"><span class="cl-01090aea">130</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-010b56e2"><p class="cl-010b39a0"><span class="cl-01090aea">low</span></p></td><td class="cl-010b56e2"><p class="cl-010b39a0"><span class="cl-01090aea">no</span></p></td><td class="cl-010b56e2"><p class="cl-010b39a0"><span class="cl-01090aea">45 (0.29)</span></p></td><td class="cl-010b56e2"><p class="cl-010b39a0"><span class="cl-01090aea">111 (0.71)</span></p></td><td class="cl-010b56e2"><p class="cl-010b39a0"><span class="cl-01090aea">156</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-010b56f6"><p class="cl-010b39a0"><span class="cl-01090aea">low</span></p></td><td class="cl-010b56f6"><p class="cl-010b39a0"><span class="cl-01090aea">yes</span></p></td><td class="cl-010b56f6"><p class="cl-010b39a0"><span class="cl-01090aea">408 (0.47)</span></p></td><td class="cl-010b56f6"><p class="cl-010b39a0"><span class="cl-01090aea">458 (0.53)</span></p></td><td class="cl-010b56f6"><p class="cl-010b39a0"><span class="cl-01090aea">866</span></p></td></tr></tbody></table></div>
+</div>
+<div id="spurious-relationships" class="section level2">
+<h2>Spurious Relationships</h2>
+<p>A <strong>spurious relationship</strong> is when the apparent
+association between two variables disappears when conditioning on a
+third variable.</p>
+<p><strong>Example</strong>: Consider data from an observational study
+of the relationship between smoking and forced expiratory volume (FEV)
+and children and adolescents.
+<img src="lecture-04-26-2023_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" />
+Now suppose we examine the data but take into consideration
+<em>height</em>.
+<img src="lecture-04-26-2023_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Charig, C. R., Webb, D. R., Payne, S. R., &amp; Wickham,
+J. E. A. (1986). Comparison of treatment of renal calculi by open
+surgery, percutaneous nephrolithotomy, and extracorporeal shockwave
+lithotripsy. <em>British Medical Journal</em>, <em>292</em>, 879–882.<a
+href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
