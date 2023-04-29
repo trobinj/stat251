@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Monday, May 1</title>
+
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
+<script src="site_libs/tabwid-1.1.3/tabwid.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Statistics 251</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="lectures.html">Lectures</a>
+</li>
+<li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Monday, May 1</h1>
+
+</div>
+
+
+<div id="correlation" class="section level2">
+<h2>Correlation</h2>
+<p><strong>Study Question</strong>: How is the <em>correlation
+coefficient</em> (<span class="math inline">\(r\)</span>) related to the
+association between two quantitative variables?</p>
+<p><strong>Example</strong>: Consider a sample of 31 observations of the
+girth (in), height (ft), and volume (cubic feet) of black cherry trees
+from Allegheny National Forest.</p>
+<div class="tabwid"><style>.cl-2af7e3f8{table-layout:auto;}.cl-2af2b2e8{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2af4f2b0{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2af4ffb2{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2af4ffbc{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2af4ffbd{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-2af7e3f8'><thead><tr style="overflow-wrap:break-word;"><th class="cl-2af4ffb2"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">Tree</span></p></th><th class="cl-2af4ffb2"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">Girth</span></p></th><th class="cl-2af4ffb2"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">Height</span></p></th><th class="cl-2af4ffb2"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">Volume</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">1</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">8.3</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">70</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">10.3</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">2</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">8.6</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">65</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">10.3</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">3</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">8.8</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">63</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">10.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">4</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">10.5</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">72</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">16.4</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">5</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">10.7</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">81</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">18.8</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">6</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">10.8</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">83</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">19.7</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">7</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">11.0</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">66</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">15.6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">8</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">11.0</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">75</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">18.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">9</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">11.1</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">80</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">22.6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">10</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">11.2</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">75</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">19.9</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">11</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">11.3</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">79</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">24.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">12</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">11.4</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">76</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">21.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">13</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">11.4</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">76</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">21.4</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">14</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">11.7</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">69</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">21.3</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">15</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">12.0</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">75</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">19.1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">16</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">12.9</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">74</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">22.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">17</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">12.9</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">85</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">33.8</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">18</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">13.3</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">86</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">27.4</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">19</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">13.7</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">71</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">25.7</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">20</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">13.8</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">64</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">24.9</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">21</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">14.0</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">78</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">34.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">22</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">14.2</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">80</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">31.7</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">23</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">14.5</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">74</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">36.3</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">24</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">16.0</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">72</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">38.3</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">25</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">16.3</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">77</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">42.6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">26</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">17.3</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">81</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">55.4</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">27</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">17.5</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">82</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">55.7</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">28</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">17.9</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">80</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">58.3</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">29</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">18.0</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">80</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">51.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">30</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">18.0</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">80</span></p></td><td class="cl-2af4ffbc"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">51.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2af4ffbd"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">31</span></p></td><td class="cl-2af4ffbd"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">20.6</span></p></td><td class="cl-2af4ffbd"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">87</span></p></td><td class="cl-2af4ffbd"><p class="cl-2af4f2b0"><span class="cl-2af2b2e8">77.0</span></p></td></tr></tbody></table></div>
+<p>The <em>joint</em> distribution of any two variables can be
+visualized using a <em>scatter plot</em>.
+<img src="lecture-05-01-2023_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Example</strong>: The data below record the average outdoor
+temperature (C) and gas consumption (1000s of cubic feet) to heat a home
+for a week. But note that between the 26th and 28th weeks cavity-wall
+insulation was added.</p>
+<div class="tabwid"><style>.cl-2b47370a{table-layout:auto;}.cl-2b416820{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2b438fd8{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2b439c4e{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2b439c4f{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2b439c58{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-2b47370a'><thead><tr style="overflow-wrap:break-word;"><th class="cl-2b439c4e"><p class="cl-2b438fd8"><span class="cl-2b416820">Week</span></p></th><th class="cl-2b439c4e"><p class="cl-2b438fd8"><span class="cl-2b416820">Insulation</span></p></th><th class="cl-2b439c4e"><p class="cl-2b438fd8"><span class="cl-2b416820">Temp</span></p></th><th class="cl-2b439c4e"><p class="cl-2b438fd8"><span class="cl-2b416820">Gas</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">1</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">7.4</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">2</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">7.5</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.9</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.2</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">5.8</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">7.6</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">5</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">2.5</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">6.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">6</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">8.0</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">7</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">0.4</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">6.4</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">8</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">7.5</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">9</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">6.9</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.7</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">10</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.9</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.7</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">11</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">6.0</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.4</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">12</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">6.2</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">13</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">9.1</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">14</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">5.4</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.9</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">15</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.2</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">5.8</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">16</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.6</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">5.6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">17</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">6.0</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.9</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">18</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">6.0</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.3</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">19</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">10.2</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">2.6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">20</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">7.0</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.9</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">21</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">-0.7</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">6.9</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">22</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">2.9</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">5.8</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">23</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.3</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">5.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">24</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">8.5</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">25</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">-0.8</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">7.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">26</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">Before</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">6.3</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">28</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.9</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.7</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">29</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">5.0</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">30</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">7.5</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">2.6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">31</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">7.1</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">32</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">9.7</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">1.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">33</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">2.3</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">34</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">1.5</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">35</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">2.5</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">36</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.2</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">37</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">8.7</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">2.8</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">38</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">1.6</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">39</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">-0.7</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.8</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">40</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">6.2</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">2.8</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">41</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.9</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.9</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">42</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.6</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.7</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">43</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">7.2</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">2.8</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">44</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.7</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">45</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.3</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">46</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">8.8</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">1.3</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">47</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.9</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.4</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">48</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">0.8</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">49</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">5.3</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.7</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">50</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.9</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">51</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">1.0</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.7</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">52</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.0</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">53</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">1.4</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">54</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.1</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">55</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">4.0</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">3.7</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">56</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">8.0</span></p></td><td class="cl-2b439c4f"><p class="cl-2b438fd8"><span class="cl-2b416820">2.7</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2b439c58"><p class="cl-2b438fd8"><span class="cl-2b416820">57</span></p></td><td class="cl-2b439c58"><p class="cl-2b438fd8"><span class="cl-2b416820">After</span></p></td><td class="cl-2b439c58"><p class="cl-2b438fd8"><span class="cl-2b416820">2.5</span></p></td><td class="cl-2b439c58"><p class="cl-2b438fd8"><span class="cl-2b416820">3.5</span></p></td></tr></tbody></table></div>
+<p>Again a scatter plot with some color coding to indicate whether the
+observation was before or after insulation was added is useful.
+<img src="lecture-05-01-2023_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="the-correlation-coefficient" class="section level2">
+<h2>The Correlation Coefficient</h2>
+<p>The <strong>correlation coefficient</strong> measures the
+<em>direction</em> and <em>strength</em> of the <em>linear</em>
+association between two <em>quantitative</em> variables. The correlation
+is symbolized by <span class="math inline">\(r\)</span> when it is a
+statistic (i.e., describing a sample of observations) and <span
+class="math inline">\(\rho\)</span> when it is a parameter (i.e.,
+describing the population distribution of the variables).
+<img src="lecture-05-01-2023_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Example</strong>: Consider the correlations among nine test
+scores of seventh- and eigth-grade children.</p>
+<div class="tabwid"><style>.cl-2be9a1c0{table-layout:auto;}.cl-2be30c02{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2be57de8{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2be57df2{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2be58a68{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2be58a69{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2be58a72{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2be58a73{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2be58a74{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-2be9a1c0'><thead><tr style="overflow-wrap:break-word;"><th class="cl-2be58a68"><p class="cl-2be57de8"><span class="cl-2be30c02"></span></p></th><th  colspan="9"class="cl-2be58a68"><p class="cl-2be57de8"><span class="cl-2be30c02">Variable</span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-2be58a68"><p class="cl-2be57de8"><span class="cl-2be30c02">Variable</span></p></th><th class="cl-2be58a68"><p class="cl-2be57de8"><span class="cl-2be30c02">ViP</span></p></th><th class="cl-2be58a68"><p class="cl-2be57de8"><span class="cl-2be30c02">Cub</span></p></th><th class="cl-2be58a68"><p class="cl-2be57de8"><span class="cl-2be30c02">Loz</span></p></th><th class="cl-2be58a68"><p class="cl-2be57de8"><span class="cl-2be30c02">PaC</span></p></th><th class="cl-2be58a68"><p class="cl-2be57de8"><span class="cl-2be30c02">SeC</span></p></th><th class="cl-2be58a68"><p class="cl-2be57de8"><span class="cl-2be30c02">WoM</span></p></th><th class="cl-2be58a68"><p class="cl-2be57de8"><span class="cl-2be30c02">SpA</span></p></th><th class="cl-2be58a68"><p class="cl-2be57de8"><span class="cl-2be30c02">SpC</span></p></th><th class="cl-2be58a68"><p class="cl-2be57de8"><span class="cl-2be30c02">SpD</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2be58a69"><p class="cl-2be57df2"><span class="cl-2be30c02">Visual Perception (ViP)</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">1.00</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.33</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.45</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.34</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.31</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.32</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.10</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.31</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.49</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2be58a69"><p class="cl-2be57df2"><span class="cl-2be30c02">Cubes (Cub)</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.33</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">1.00</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.42</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.23</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.16</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.19</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.07</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.17</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.25</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2be58a69"><p class="cl-2be57df2"><span class="cl-2be30c02">Lozenges (Loz)</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.45</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.42</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">1.00</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.33</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.29</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.35</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.07</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.24</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.37</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2be58a69"><p class="cl-2be57df2"><span class="cl-2be30c02">Paragraph Comprehension (PaC)</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.34</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.23</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.33</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">1.00</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.72</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.71</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.21</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.10</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.31</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2be58a69"><p class="cl-2be57df2"><span class="cl-2be30c02">Sentence Completion (SeC)</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.31</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.16</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.29</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.72</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">1.00</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.69</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.25</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.20</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.36</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2be58a69"><p class="cl-2be57df2"><span class="cl-2be30c02">Word Meaning (WoM)</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.32</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.19</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.35</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.71</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.69</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">1.00</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.18</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.12</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.27</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2be58a69"><p class="cl-2be57df2"><span class="cl-2be30c02">Speeded Addition (SpA)</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.10</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.07</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.07</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.21</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.25</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.18</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">1.00</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.59</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.42</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2be58a69"><p class="cl-2be57df2"><span class="cl-2be30c02">Speeded Counting (SpC)</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.31</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.17</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.24</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.10</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.20</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.12</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.59</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">1.00</span></p></td><td class="cl-2be58a72"><p class="cl-2be57de8"><span class="cl-2be30c02">0.53</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2be58a73"><p class="cl-2be57df2"><span class="cl-2be30c02">Speeded Discrimination (SpD)</span></p></td><td class="cl-2be58a74"><p class="cl-2be57de8"><span class="cl-2be30c02">0.49</span></p></td><td class="cl-2be58a74"><p class="cl-2be57de8"><span class="cl-2be30c02">0.25</span></p></td><td class="cl-2be58a74"><p class="cl-2be57de8"><span class="cl-2be30c02">0.37</span></p></td><td class="cl-2be58a74"><p class="cl-2be57de8"><span class="cl-2be30c02">0.31</span></p></td><td class="cl-2be58a74"><p class="cl-2be57de8"><span class="cl-2be30c02">0.36</span></p></td><td class="cl-2be58a74"><p class="cl-2be57de8"><span class="cl-2be30c02">0.27</span></p></td><td class="cl-2be58a74"><p class="cl-2be57de8"><span class="cl-2be30c02">0.42</span></p></td><td class="cl-2be58a74"><p class="cl-2be57de8"><span class="cl-2be30c02">0.53</span></p></td><td class="cl-2be58a74"><p class="cl-2be57de8"><span class="cl-2be30c02">1.00</span></p></td></tr></tbody></table></div>
+<p>The relative strengths of such correlations have been used to study
+intelligence.</p>
+<p><strong>Example</strong>: Correlation of BMI for monozygotic (i.e.,
+identical) and dizygotic (i.e., fraternal) twins.
+<img src="lecture-05-01-2023_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" />
+Falconer’s formula of <span class="math inline">\(2(r_{mz} - r_{dz}) =
+2(0.68 - 0.37) = 0.62\)</span> has been used as a (crude) estimate of
+heritability.</p>
+<p><strong>Example</strong>: Suppose we had a matched-pairs design using
+genetically-related individuals (e.g., cousins, siblings, or identical
+twins) for a study like that that investigated the relationship between
+schizophrenia and left hippocampus volume.
+<img src="lecture-05-01-2023_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" />
+The standard error of <span class="math inline">\(\bar{x}_d =
+\bar{x}_1-\bar{x}_2\)</span> is <span class="math display">\[
+\sqrt{\frac{\sigma_1^2}{n} + \frac{\sigma_2^2}{n} -
+\rho\frac{2\sigma_1\sigma_2}{n}},
+\]</span> where <span class="math inline">\(\rho\)</span> is the
+<em>correlation coefficient</em> for the population distribution.</p>
+<p><strong>Study Question</strong>: How does <span
+class="math inline">\(\rho\)</span> affect the standard error of <span
+class="math inline">\(\bar{x}_d = \bar{x}_1 - \bar{x}_2\)</span> when
+using dependent samples?</p>
+</div>
+<div id="correlation-and-prediction-by-linear-regression"
+class="section level2">
+<h2>Correlation and Prediction by Linear Regression</h2>
+<p><strong>Study Question</strong>: How is the correlation coefficient
+(<span class="math inline">\(r\)</span>) involved in using one variable
+to predict another using linear regression?</p>
+<p><strong>Example</strong>: Consider the problem of trying to
+<em>predict</em> tree volume using its girth.
+<img src="lecture-05-01-2023_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" />
+Perhaps we could use an equation like <span class="math display">\[
+  \hat{y} = a + bx,
+\]</span> where <span class="math inline">\(\hat{y}\)</span> is the
+<em>predicted</em> volume, and <span class="math inline">\(x\)</span> is
+girth. Here <span class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span> are the <em>parameters</em> of the
+equation known as the “intercept” and “slope” of the equation,
+respectively. How should we choose <span
+class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span>?</p>
+<p>The correlation is related to <span class="math inline">\(a\)</span>
+and <span class="math inline">\(b\)</span>. The <em>method of least
+squares</em> can be used to choose <span
+class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span> such that the <span
+class="math inline">\(\hat{y}\)</span>’s and the <span
+class="math inline">\(y\)</span>’s are “close” in the sense that <span
+class="math display">\[
+  \sum (y - \hat{y})^2 = (y_1 - \hat{y}_1)^2 + (y_2 - \hat{y}_2)^2 +
+\cdots + (y_n - \hat{y}_n)^2
+\]</span> is as small as possible. The values of <span
+class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span> that achieve this are given by <span
+class="math display">\[
+b = r\frac{s_y}{s_x}, \ \ \
+a = \bar{y} - b\bar{x},
+\]</span> where <span class="math inline">\(s_y\)</span> and <span
+class="math inline">\(s_x\)</span> are the standard deviations of <span
+class="math inline">\(y\)</span> (volume) and <span
+class="math inline">\(x\)</span> (girth), respectively, and <span
+class="math inline">\(\bar{y}\)</span> and <span
+class="math inline">\(\bar{x}\)</span> are their means.</p>
+<p>The correlation can also be used to compute the <em>standard error of
+prediction</em> which can be viewed as the average squared difference
+between <span class="math inline">\(y\)</span> and <span
+class="math inline">\(\hat{y}\)</span>. This is <span
+class="math display">\[
+  s_e = s_y\sqrt{1 - r^2}.
+\]</span> So larger values of <span class="math inline">\(r\)</span> (in
+absolute value) lead to smaller prediction errors (on average).</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

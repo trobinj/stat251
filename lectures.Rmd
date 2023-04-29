@@ -145,7 +145,7 @@ i <- 1
  
 ***
 
-`r i <- i + 1; d[i]` 
+`r i <- i + 1; d[i]` [Correlation and regression](lecture-05-01-2023.html). The [study guide](final-studyguide.html) for the final examination is now available. 
 
 `r i <- i + 1; d[i]` 
 
