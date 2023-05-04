@@ -149,7 +149,7 @@ i <- 1
 
 `r i <- i + 1; d[i]` [Regression models](lecture-05-03-2023.html).
 
-`r i <- i + 1; d[i]`
+`r i <- i + 1; d[i]` Final examination informal review. Attendance not required. 
 
 *** 
 
